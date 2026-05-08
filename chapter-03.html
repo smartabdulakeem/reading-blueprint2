@@ -388,6 +388,7 @@ function buildVowelSections(){
     // word grid
     const grid=document.createElement('div');
     grid.className='word-grid';
+    const frag = document.createDocumentFragment();
     vd.words.forEach(w=>{
       const card=document.createElement('div');
       card.className='wcard';
@@ -395,8 +396,9 @@ function buildVowelSections(){
       const highlighted=w.split('').map((c,i)=>i===vi?`<span style="color:${vd.color};font-weight:800;">${c}</span>`:c).join('');
       card.innerHTML=`<div class="wcard-word">${highlighted}</div>`;
       card.onclick=()=>sayWord(w,card);
-      grid.appendChild(card);
+      frag.appendChild(card);
     });
+    grid.appendChild(frag);
     sec.appendChild(grid);
     // controlled text
     const ctLabel=document.createElement('div');
