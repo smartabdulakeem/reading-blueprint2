@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 9 — Syllable Types | The Reading Blueprint</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1C1A17;--paper:#FAF7F2;--cream:#F2EDE4;--gold:#B8860B;--gold-light:#F5E6B0;--rust:#C0392B;--forest:#2C5F2E;--blue:#1A4A7A;--purple:#6A0DAD;--muted:#7A7468;--border:rgba(28,26,23,0.12);--radius:10px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:var(--ink);min-height:100vh;}
+.voice-bar{background:var(--ink);padding:8px 1.5rem;display:flex;align-items:center;gap:10px;flex-wrap:wrap;position:sticky;top:0;z-index:200;box-shadow:0 2px 12px rgba(28,26,23,0.3);}
+.vb-brand{font-family:'Playfair Display',serif;color:var(--gold);font-size:13px;letter-spacing:1.5px;text-transform:uppercase;flex-shrink:0;margin-right:6px;}
+.home-btn{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(184,134,11,0.15);border:1.5px solid rgba(184,134,11,0.45);border-radius:8px;color:var(--gold);font-size:15px;cursor:pointer;transition:all .2s;text-decoration:none;flex-shrink:0;margin-right:4px;position:relative;}
+.home-btn:hover{background:rgba(184,134,11,0.3);border-color:var(--gold);transform:scale(1.08);}
+.home-btn::after{content:"Home";position:absolute;bottom:-26px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--gold);font-size:10px;padding:2px 7px;border-radius:4px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;border:1px solid rgba(184,134,11,0.3);}
+.home-btn:hover::after{opacity:1;}
+.vb-label{font-size:11px;font-weight:700;color:rgba(255,255,255,0.4);letter-spacing:1.5px;text-transform:uppercase;white-space:nowrap;flex-shrink:0;}
+.voice-select{min-width:150px;max-width:260px;padding:5px 26px 5px 9px;font-family:'Source Serif 4',serif;font-size:13px;border:1px solid rgba(255,255,255,0.15);border-radius:7px;background:rgba(255,255,255,0.08);color:#fff;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23B8860B' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 9px center;}
+.voice-select option{background:#1C1A17;color:#fff;}
+.speed-group{display:flex;align-items:center;gap:4px;flex-shrink:0;}
+.spd-label{font-size:11px;font-weight:700;color:rgba(255,255,255,0.4);letter-spacing:1px;text-transform:uppercase;margin-right:3px;}
+.spd-btn{padding:4px 10px;font-family:'Source Serif 4',serif;font-size:12px;font-weight:600;border:1px solid rgba(255,255,255,0.15);border-radius:6px;background:transparent;color:rgba(255,255,255,0.5);cursor:pointer;transition:all .15s;}
+.spd-btn.active{background:var(--gold);color:var(--ink);border-color:var(--gold);}
+.spd-btn:hover:not(.active){border-color:var(--gold);color:var(--gold);}
+.vtest{display:inline-flex;align-items:center;gap:5px;padding:5px 13px;font-family:'Source Serif 4',serif;font-size:12px;font-weight:600;border:1px solid rgba(184,134,11,0.5);border-radius:16px;background:rgba(184,134,11,0.12);color:var(--gold);cursor:pointer;transition:all .15s;flex-shrink:0;}
+.vtest:hover{background:rgba(184,134,11,0.22);}
+.vtest.speaking{background:rgba(192,57,43,0.2);border-color:var(--rust);color:#ff7b6b;}
+.vtest::before{content:"▶";font-size:9px;}
+.vtest.speaking::before{content:"◼";}
+.vsaved{font-size:11px;color:var(--gold);font-style:italic;flex-shrink:0;opacity:0;transition:opacity .3s;}
+.vsaved.show{opacity:1;}
+.chapter-hero{background:var(--ink);padding:3rem 2rem 2.5rem;text-align:center;border-bottom:3px solid var(--gold);position:relative;overflow:hidden;}
+.chapter-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(184,134,11,0.18) 0%,transparent 70%);}
+.ch-num{font-family:'Playfair Display',serif;font-size:12px;color:var(--gold);letter-spacing:4px;text-transform:uppercase;margin-bottom:12px;position:relative;}
+.ch-title{font-family:'Playfair Display',serif;font-size:clamp(26px,5vw,44px);color:#fff;line-height:1.15;margin-bottom:10px;position:relative;}
+.ch-sub{font-size:15px;color:rgba(255,255,255,0.5);font-style:italic;margin-bottom:1.5rem;position:relative;}
+.hero-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border:1.5px solid rgba(184,134,11,0.6);border-radius:24px;background:rgba(184,134,11,0.1);color:var(--gold);font-family:'Source Serif 4',serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;position:relative;}
+.hero-btn:hover{background:rgba(184,134,11,0.2);}
+.hero-btn.speaking{background:rgba(192,57,43,0.2);border-color:var(--rust);color:#ff7b6b;}
+.hero-btn::before{content:"▶";font-size:10px;}
+.hero-btn.speaking::before{content:"◼";}
+.container{max-width:860px;margin:0 auto;padding:2rem 1.25rem;}
+.tabs-bar{display:flex;gap:4px;margin-bottom:2rem;background:var(--cream);padding:5px;border-radius:var(--radius);border:1px solid var(--border);flex-wrap:wrap;}
+.tab-btn{flex:1;min-width:80px;padding:8px 10px;font-family:'Source Serif 4',serif;font-size:13px;font-weight:600;border:none;border-radius:7px;background:transparent;color:var(--muted);cursor:pointer;transition:all .15s;text-align:center;white-space:nowrap;}
+.tab-btn.active{background:var(--ink);color:var(--gold);}
+.tab-btn:hover:not(.active){background:rgba(28,26,23,0.06);color:var(--ink);}
+.panel{display:none;}.panel.active{display:block;}
+.sb{background:var(--cream);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem 1.75rem;margin-bottom:1.25rem;}
+.sb.gl{border-left:4px solid var(--gold);}
+.sb.rl{border-left:4px solid var(--rust);}
+.sb.fl{border-left:4px solid var(--forest);}
+.sb.bl{border-left:4px solid var(--blue);}
+.sb.pl{border-left:4px solid var(--purple);}
+.sec-num{font-size:11px;font-weight:600;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;}
+.sec-title{font-family:'Playfair Display',serif;font-size:20px;color:var(--ink);margin-bottom:10px;line-height:1.3;display:flex;align-items:center;flex-wrap:wrap;gap:8px;}
+.sec-body{font-size:15px;line-height:1.8;color:#3A3730;}
+.sec-body p{margin-bottom:10px;}
+.listen-btn{display:inline-flex;align-items:center;gap:5px;padding:4px 12px;font-family:'Source Serif 4',serif;font-size:12px;font-weight:600;border:1px solid var(--border);border-radius:16px;background:#fff;color:var(--muted);cursor:pointer;transition:all .15s;flex-shrink:0;}
+.listen-btn:hover{border-color:var(--gold);color:var(--gold);}
+.listen-btn.speaking{border-color:var(--rust);color:var(--rust);background:#fff5f5;}
+.listen-btn::before{content:"▶";font-size:9px;}
+.listen-btn.speaking::before{content:"◼";}
+.big-listen{display:flex;align-items:center;gap:8px;padding:10px 18px;font-family:'Source Serif 4',serif;font-size:14px;font-weight:700;border:2px solid var(--gold);border-radius:20px;background:var(--gold-light);color:var(--ink);cursor:pointer;transition:all .2s;margin-top:12px;width:fit-content;}
+.big-listen:hover{background:#EDD97A;}
+.big-listen.speaking{background:#fce4e4;border-color:var(--rust);color:var(--rust);}
+.big-listen::before{content:"🔊";font-size:14px;}
+.big-listen.speaking::before{content:"⏹";}
+.callout{background:var(--gold-light);border:1px solid rgba(184,134,11,0.3);border-radius:var(--radius);padding:1rem 1.25rem;margin:1rem 0;font-size:14px;line-height:1.8;}
+.step-row{display:flex;align-items:flex-start;gap:10px;padding:8px 12px;border-radius:7px;background:var(--cream);font-size:14px;margin-bottom:6px;line-height:1.6;}
+.step-n{font-size:11px;font-weight:700;color:var(--gold);width:20px;flex-shrink:0;margin-top:2px;}
+
+/* SYLLABLE TYPE CARDS */
+.syl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin:1rem 0;}
+.syl-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;border-top:4px solid;}
+.syl-num{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;}
+.syl-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;margin-bottom:4px;}
+.syl-rule{font-size:13px;color:var(--muted);font-style:italic;margin-bottom:10px;line-height:1.5;}
+.syl-examples{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;}
+.syl-ex{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;padding:5px 10px;border:1px solid var(--border);border-radius:6px;cursor:pointer;background:var(--cream);transition:all .15s;}
+.syl-ex:hover{background:var(--gold-light);border-color:var(--gold);}
+.syl-ex.speaking{border-color:var(--rust);background:#fff5f5;color:var(--rust);}
+.syl-sound-btn{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;font-family:'Source Serif 4',serif;font-size:12px;font-weight:700;border:1.5px solid;border-radius:16px;cursor:pointer;transition:all .15s;margin-top:4px;}
+.syl-sound-btn:hover{opacity:0.8;}
+.syl-sound-btn.speaking{background:#fce4e4 !important;border-color:var(--rust) !important;color:var(--rust) !important;}
+.syl-sound-btn::before{content:"🔊 ";}
+.syl-sound-btn.speaking::before{content:"⏹ ";}
+
+/* CHIN TEST */
+.chin-demo{background:var(--ink);border-radius:var(--radius);padding:1.75rem;text-align:center;margin:1rem 0;}
+.chin-title{font-family:'Playfair Display',serif;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;}
+.chin-words{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-bottom:1.2rem;}
+.chin-word{background:rgba(255,255,255,0.07);border:1px solid rgba(184,134,11,0.25);border-radius:10px;padding:14px 20px;cursor:pointer;transition:all .15s;}
+.chin-word:hover{background:rgba(184,134,11,0.15);border-color:var(--gold);}
+.chin-word.speaking{border-color:var(--rust);background:rgba(192,57,43,0.15);}
+.chin-w{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:#fff;}
+.chin-dots{display:flex;justify-content:center;gap:4px;margin-top:6px;}
+.chin-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.2);}
+.chin-dot.active{background:var(--gold);}
+
+/* DIVISION TABLE */
+.div-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--radius);overflow:hidden;margin:1rem 0;border:1px solid var(--border);}
+.div-table th{padding:9px 14px;font-family:'Source Serif 4',serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;background:var(--ink);color:var(--gold);}
+.div-table td{padding:8px 14px;font-family:'Playfair Display',serif;font-size:16px;font-weight:700;border-bottom:1px solid var(--border);cursor:pointer;background:#fff;}
+.div-table td.word-cell{color:var(--ink);}
+.div-table td.div-cell{color:var(--blue);}
+.div-table td.rule-cell{font-size:12px;font-weight:600;color:var(--muted);font-family:'Source Serif 4',serif;}
+.div-table td.type-cell{font-size:12px;font-weight:700;color:var(--gold);}
+.div-table td:hover{background:var(--gold-light);}
+.div-table td.speaking{outline:2px solid var(--rust);outline-offset:-2px;}
+.div-table tr:last-child td{border-bottom:none;}
+
+/* CONTROLLED TEXT */
+.ct-box{background:var(--cream);border:1px solid var(--border);border-left:4px solid var(--forest);border-radius:var(--radius);padding:1rem 1.25rem;margin:6px 0;font-size:16px;line-height:2.3;}
+.word-tap{cursor:pointer;border-radius:3px;padding:1px 2px;transition:background .1s;display:inline-block;}
+.word-tap:hover{background:var(--gold-light);}
+.word-tap.speaking{background:var(--gold-light);color:var(--gold);font-weight:600;}
+.grand-box{background:var(--ink);color:#fff;border-radius:var(--radius);padding:1.5rem 2rem;margin:1rem 0;font-size:17px;line-height:2.3;}
+.grand-box .word-tap{color:rgba(255,255,255,0.9);}
+.grand-box .word-tap:hover{background:rgba(184,134,11,0.3);}
+.grand-box .word-tap.speaking{background:rgba(184,134,11,0.4);color:var(--gold);}
+
+/* AT A GLANCE TABLE */
+.glance-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);margin:1rem 0;}
+.glance-table th{padding:10px 14px;font-family:'Source Serif 4',serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;background:var(--ink);color:var(--gold);}
+.glance-table td{padding:9px 14px;font-size:14px;border-bottom:1px solid var(--border);background:#fff;}
+.glance-table td.type-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;cursor:pointer;}
+.glance-table td.type-name:hover{background:var(--gold-light);}
+.glance-table td.type-name.speaking{color:var(--rust);}
+.glance-table td.type-key{font-weight:600;color:var(--blue);}
+.glance-table td.type-ex{font-family:'Playfair Display',serif;font-weight:700;cursor:pointer;}
+.glance-table td.type-ex:hover{background:var(--gold-light);}
+.glance-table tr:last-child td{border-bottom:none;}
+.glance-table tr:nth-child(even) td{background:var(--cream);}
+
+/* QUIZ */
+.quiz-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;max-width:580px;}
+.quiz-prompt-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:1rem;}
+.quiz-prompt{font-family:'Playfair Display',serif;font-size:17px;flex:1;line-height:1.4;}
+.quiz-display-wrap{text-align:center;margin-bottom:1.2rem;}
+.quiz-display{font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:var(--gold);padding:1rem;background:var(--cream);border-radius:var(--radius);letter-spacing:4px;display:block;width:100%;cursor:pointer;border:none;}
+.quiz-display:hover{background:#EDD97A;}
+.quiz-display.speaking{background:#fce4e4;color:var(--rust);}
+.quiz-display-hint{font-size:12px;color:var(--muted);margin-top:5px;font-style:italic;}
+.quiz-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem;}
+.q-opt{padding:11px;font-family:'Source Serif 4',serif;font-size:13px;font-weight:600;border:1.5px solid var(--border);border-radius:8px;background:var(--cream);color:var(--ink);cursor:pointer;transition:all .15s;text-align:left;}
+.q-opt:hover{border-color:var(--gold);background:var(--gold-light);}
+.q-opt.correct{background:#EAF3DE;border-color:var(--forest);color:#27500A;}
+.q-opt.wrong{background:#FCEBEB;border-color:var(--rust);color:#791F1F;}
+.quiz-fb{font-size:14px;padding:10px 14px;border-radius:8px;margin-bottom:1rem;line-height:1.5;display:none;}
+.quiz-fb.ok{background:#EAF3DE;color:#27500A;}
+.quiz-fb.err{background:#FCEBEB;color:#791F1F;}
+.next-btn{padding:10px 24px;background:var(--ink);color:var(--gold);border:none;border-radius:20px;font-family:'Source Serif 4',serif;font-size:14px;font-weight:600;cursor:pointer;display:none;}
+.next-btn:hover{opacity:0.85;}
+.score-row{display:flex;align-items:center;gap:12px;margin-bottom:1.2rem;font-size:13px;color:var(--muted);}
+.score-track{flex:1;height:5px;background:var(--cream);border-radius:3px;overflow:hidden;}
+.score-fill{height:100%;background:var(--forest);border-radius:3px;transition:width .3s;}
+.ch-nav{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 0;border-top:1px solid var(--border);margin-top:2rem;flex-wrap:wrap;gap:10px;}
+.nav-lnk{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border:1px solid var(--border);border-radius:20px;font-size:13px;font-weight:600;color:var(--muted);background:var(--cream);text-decoration:none;transition:all .15s;}
+.nav-lnk:hover{border-color:var(--ink);color:var(--ink);}
+.nav-lnk.next{background:var(--ink);color:var(--gold);border-color:var(--ink);}
+.phase-badge{font-size:11px;background:var(--gold-light);color:var(--gold);border:1px solid rgba(184,134,11,0.3);padding:4px 12px;border-radius:12px;font-weight:600;}
+</style>
+</head>
+<body>
+
+<div class="voice-bar">
+  <a class="home-btn" href="index.html" title="Back to Home">🏠</a>
+  <span class="vb-brand">The Reading Blueprint</span>
+  <span class="vb-label">🔊 Voice</span>
+  <select class="voice-select" id="voice-select" onchange="onVoiceChange()">
+    <option value="-1">Loading voices...</option>
+  </select>
+  <div class="speed-group">
+    <span class="spd-label">Speed</span>
+    <button class="spd-btn" data-rate="0.6" onclick="setSpeed(0.6,this)">Slow</button>
+    <button class="spd-btn active" data-rate="0.85" onclick="setSpeed(0.85,this)">Normal</button>
+    <button class="spd-btn" data-rate="1.1" onclick="setSpeed(1.1,this)">Fast</button>
+  </div>
+  <button class="vtest" onclick="testVoice(this)">Test voice</button>
+  <span class="vsaved" id="vsaved">✓ Saved</span>
+</div>
+
+<div class="chapter-hero">
+  <div class="ch-num">Chapter 9 of 19</div>
+  <h1 class="ch-title">Syllable Types:<br>The Six Structures of Every Word</h1>
+  <p class="ch-sub">The master key to pronouncing any English word you encounter</p>
+  <button class="hero-btn" onclick="readHero(this)">Listen to introduction</button>
+</div>
+
+<div class="container">
+  <div class="tabs-bar">
+    <button class="tab-btn active" onclick="showPanel('learn',this)">① Learn</button>
+    <button class="tab-btn" onclick="showPanel('types',this)">② Six Types</button>
+    <button class="tab-btn" onclick="showPanel('chin',this)">③ Chin Test</button>
+    <button class="tab-btn" onclick="showPanel('divide',this)">④ Divide Words</button>
+    <button class="tab-btn" onclick="showPanel('read',this)">⑤ Read Aloud</button>
+    <button class="tab-btn" onclick="showPanel('quiz',this)">⑥ Quiz</button>
+  </div>
+
+  <!-- ① LEARN -->
+  <div class="panel active" id="panel-learn">
+    <div class="sb gl">
+      <div class="sec-num">9.1</div>
+      <div class="sec-title">Why Syllables Matter
+        <button class="listen-btn" onclick="speakBtn('Section 9.1. Why Syllables Matter.',this)">Listen to title</button>
+      </div>
+      <div class="sec-body">
+        <p>A <strong>syllable</strong> is the smallest unit of pronunciation that contains a vowel sound. Every word can be broken into syllables, and every syllable belongs to one of <strong>six types</strong>.</p>
+        <p>Knowing the syllable type tells you <strong>exactly how to pronounce the vowel</strong> in that syllable. This is not a trivial skill — it is the master key to pronouncing any English word you encounter for the first time.</p>
+      </div>
+      <button class="big-listen" onclick="speakBtn('A syllable is the smallest unit of pronunciation that contains a vowel sound. Every word can be broken into syllables, and every syllable belongs to one of six types. Knowing the syllable type tells you exactly how to pronounce the vowel in that syllable. This is not a trivial skill — it is the master key to pronouncing any English word you encounter for the very first time.',this)">Listen to explanation</button>
+    </div>
+
+    <div class="sb rl">
+      <div class="sec-num">The Big Idea</div>
+      <div class="sec-title">Six Types — One System
+        <button class="listen-btn" onclick="speakBtn('The Big Idea. Six Syllable Types, one system.',this)">Listen to title</button>
+      </div>
+      <div class="callout">
+        Every syllable in the English language fits into one of six types. Once you know the type, you know the vowel sound — automatically. No guessing required.<br><br>
+        <strong>The Six Types:</strong> Closed · Open · Silent E · Vowel Team · R-Controlled · Consonant-LE
+      </div>
+      <button class="big-listen" onclick="speakBtn('The Big Idea. Every syllable in the English language fits into one of six types. Once you know the type, you know the vowel sound — automatically. No guessing required. The six types are: Type 1 — Closed. Type 2 — Open. Type 3 — Silent E. Type 4 — Vowel Team. Type 5 — R-Controlled. Type 6 — Consonant LE.',this)">Listen to the Big Idea</button>
+    </div>
+
+    <div class="sb fl">
+      <div class="sec-num">Chapter Goals</div>
+      <div class="sec-title">What You Will Master
+        <button class="listen-btn" onclick="speakBtn('Chapter Goals. What You Will Master.',this)">Listen to title</button>
+      </div>
+      <div style="margin-top:10px;">
+        <div class="step-row"><span class="step-n">✓</span>All six syllable types and their vowel rules</div>
+        <div class="step-row"><span class="step-n">✓</span>The Chin Test — how to count syllables in any word</div>
+        <div class="step-row"><span class="step-n">✓</span>The VCCV and VCV division rules — where to split a word</div>
+        <div class="step-row"><span class="step-n">✓</span>Apply syllable knowledge to read multi-syllable words confidently</div>
+      </div>
+      <button class="big-listen" onclick="speakBtn('By the end of this chapter you will master: all six syllable types and their vowel rules. The Chin Test — how to count syllables in any word. The VCCV and VCV division rules — knowing exactly where to split a word in two. And applying your syllable knowledge to read multi-syllable words confidently.',this)">Listen to goals</button>
+    </div>
+
+    <!-- AT A GLANCE TABLE -->
+    <div class="sb bl">
+      <div class="sec-num">The Six Syllable Types at a Glance</div>
+      <div class="sec-title">Quick Reference — Tap Any Row to Hear It
+        <button class="listen-btn" onclick="speakBtn('The Six Syllable Types at a Glance. Tap any row to hear it explained.',this)">Listen to title</button>
+      </div>
+      <table class="glance-table" id="glance-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Type</th>
+            <th>Key Feature</th>
+            <th>Examples</th>
+          </tr>
+        </thead>
+        <tbody id="glance-body"></tbody>
+      </table>
+      <button class="big-listen" onclick="speakBtn('The six syllable types. Type 1: Closed — ends in a consonant, vowel is short. Example: cat, rabbit. Type 2: Open — ends in a vowel, vowel is long. Example: me, baby. Type 3: Silent E — vowel consonant E, first vowel is long. Example: cake, time. Type 4: Vowel Team — two vowels together, usually long sound of first vowel. Example: rain, feet. Type 5: R-Controlled — vowel plus R, R controls the sound. Example: car, bird. Type 6: Consonant LE — consonant plus LE at end of word. Example: table, little.',this)">Listen to all six types</button>
+    </div>
+  </div>
+
+  <!-- ② SIX TYPES -->
+  <div class="panel" id="panel-types">
+    <div class="sb gl">
+      <div class="sec-num">9.3 — All Six Types</div>
+      <div class="sec-title">Each Type Explained
+        <button class="listen-btn" onclick="speakBtn('Section 9.3. Each of the six syllable types explained. Tap any example word to hear it. Tap the sound button to hear the rule.',this)">Listen to title</button>
+      </div>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:1rem;">Tap any word to hear it. Tap the rule button on each card to hear the full explanation.</p>
+    </div>
+    <div class="syl-grid" id="syl-grid"></div>
+  </div>
+
+  <!-- ③ CHIN TEST -->
+  <div class="panel" id="panel-chin">
+    <div class="sb gl">
+      <div class="sec-num">9.2 — The Chin Test</div>
+      <div class="sec-title">How to Count Syllables
+        <button class="listen-btn" onclick="speakBtn('Section 9.2. The Chin Test. How to Count Syllables.',this)">Listen to title</button>
+      </div>
+      <div class="sec-body">
+        <p>The Chin Test is a simple physical technique for counting syllables in any word. It works because every syllable contains one vowel sound — and every vowel sound makes your chin drop slightly as you say it.</p>
+      </div>
+      <button class="big-listen" onclick="speakBtn('The Chin Test. Here is how it works. Step 1: place the palm of your hand flat under your chin. Step 2: say the word clearly at normal speed. Step 3: count how many times your chin drops and touches your hand. Step 4: each chin drop is one syllable. Try it: say cat — one chin drop, one syllable. Say rabbit — two chin drops, two syllables. Say elephant — three chin drops, three syllables.',this)">Listen to the Chin Test</button>
+    </div>
+
+    <div class="sb bl">
+      <div class="sec-num">Try It — Tap a Word and Count the Drops</div>
+      <div class="sec-title">Chin Test Practice
+        <button class="listen-btn" onclick="speakBtn('Chin Test Practice. Tap each word to hear it. Place your hand under your chin and count how many times your chin drops as you say the word. Each drop is one syllable.',this)">Listen to instructions</button>
+      </div>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:1rem;">Tap a word to hear it. Place your hand under your chin — count the drops. The gold dots show the syllable count.</p>
+      <div class="chin-demo">
+        <div class="chin-title">Tap a Word — Count Your Chin Drops</div>
+        <div class="chin-words" id="chin-words"></div>
+      </div>
+    </div>
+
+    <div class="sb fl">
+      <div class="sec-num">Chin Test Steps</div>
+      <div class="sec-title">Four Steps
+        <button class="listen-btn" onclick="speakBtn('The four steps of the Chin Test.',this)">Listen to title</button>
+      </div>
+      <div style="margin-top:8px;">
+        <div class="step-row"><span class="step-n">1</span>Place the <strong>palm of your hand</strong> flat under your chin.</div>
+        <div class="step-row"><span class="step-n">2</span>Say the word clearly at <strong>normal speed</strong>.</div>
+        <div class="step-row"><span class="step-n">3</span>Count how many times your <strong>chin drops</strong> and touches your hand.</div>
+        <div class="step-row"><span class="step-n">4</span>Each chin-drop is <strong>one syllable</strong>.</div>
+      </div>
+      <button class="big-listen" onclick="speakBtn('The four steps of the Chin Test. Step 1: place the palm of your hand flat under your chin. Step 2: say the word clearly at normal speed. Step 3: count how many times your chin drops and touches your hand. Step 4: each chin drop is one syllable. Remember: cat — 1 drop. rabbit — 2 drops. elephant — 3 drops.',this)">Listen to all four steps</button>
+    </div>
+  </div>
+
+  <!-- ④ DIVIDE WORDS -->
+  <div class="panel" id="panel-divide">
+    <div class="sb gl">
+      <div class="sec-num">9.5 — Division Rules</div>
+      <div class="sec-title">VCCV and VCV Rules
+        <button class="listen-btn" onclick="speakBtn('Section 9.5. Syllable Division Rules. VCCV and VCV.',this)">Listen to title</button>
+      </div>
+      <div class="sec-body">
+        <p>Knowing the syllable types helps you know <strong>where to divide</strong> a word. There are two main division rules.</p>
+      </div>
+      <div class="callout">
+        <strong>VCCV Rule:</strong> When two consonants appear between two vowels, divide <strong>between</strong> the consonants.<br>
+        <em>rab|bit &nbsp;·&nbsp; bas|ket &nbsp;·&nbsp; nap|kin &nbsp;·&nbsp; den|tist</em><br><br>
+        <strong>VCV Rule:</strong> When one consonant appears between two vowels, usually divide <strong>before</strong> the consonant — giving the first syllable a long vowel (open syllable).<br>
+        <em>ba|by &nbsp;·&nbsp; o|pen &nbsp;·&nbsp; mu|sic &nbsp;·&nbsp; si|lent</em>
+      </div>
+      <button class="big-listen" onclick="speakBtn('The two main syllable division rules. VCCV Rule: when two consonants appear between two vowels, divide between the two consonants. For example: rabbit divides as rab-bit. basket divides as bas-ket. napkin divides as nap-kin. VCV Rule: when one consonant appears between two vowels, usually divide before the consonant. This makes the first syllable open, giving it a long vowel sound. For example: baby divides as ba-by. open divides as o-pen. music divides as mu-sic.',this)">Listen to both rules</button>
+    </div>
+
+    <div class="sb bl">
+      <div class="sec-num">Division Practice Table — Tap Any Cell to Hear It</div>
+      <div class="sec-title">Words Divided and Labelled
+        <button class="listen-btn" onclick="speakBtn('Tap any word in the table to hear it. Tap the divided form to hear the syllables separately. Tap the rule column to hear the rule explanation.',this)">Listen to instructions</button>
+      </div>
+      <table class="div-table">
+        <thead>
+          <tr>
+            <th>Word</th>
+            <th>Division</th>
+            <th>Rule</th>
+            <th>Syllable Types</th>
+          </tr>
+        </thead>
+        <tbody id="div-body"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ⑤ READ ALOUD -->
+  <div class="panel" id="panel-read">
+    <div class="sb fl">
+      <div class="sec-num">9.6 — Multi-Syllable Reading</div>
+      <div class="sec-title">Apply Syllable Knowledge
+        <button class="listen-btn" onclick="speakBtn('Section 9.6. Multi-syllable reading. Apply your syllable knowledge to read these words and passages.',this)">Listen to title</button>
+      </div>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:1rem;">These passages contain multi-syllable words. Use your syllable type knowledge to decode each one. Tap any word to hear it.</p>
+      <button class="big-listen" onclick="speakBtn('Instructions. Before reading each word, try to identify its syllable types. Divide it using VCCV or VCV rules. Then blend the syllables together. Tap any word to check your pronunciation.',this)">Listen to reading strategy</button>
+    </div>
+    <div class="sb gl" id="mini-texts-container"></div>
+    <div class="sb bl">
+      <div class="sec-num">Grand Passage — All Syllable Types</div>
+      <div class="sec-title">Full Passage
+        <button class="listen-btn" id="grand-btn" onclick="readGrand(this)">Read full passage</button>
+      </div>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:1rem;">This passage uses all six syllable types. Tap any word to hear it. Read three times — each smoother than the last.</p>
+      <div class="grand-box" id="grand-text"></div>
+    </div>
+  </div>
+
+  <!-- ⑥ QUIZ -->
+  <div class="panel" id="panel-quiz">
+    <div class="sb gl">
+      <div class="sec-num">Chapter 9 — Assessment</div>
+      <div class="sec-title">Test Yourself
+        <button class="listen-btn" onclick="speakBtn('Chapter 9 Assessment. Tap the word in the box to hear it. Then answer the question about syllable types and division.',this)">Listen to instructions</button>
+      </div>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:1.2rem;">Tap the <strong>word box</strong> to hear it. Then choose the correct answer.</p>
+      <div class="quiz-card">
+        <div class="score-row">
+          <span id="score-text">Score: 0 / 0</span>
+          <div class="score-track"><div class="score-fill" id="score-fill" style="width:0%"></div></div>
+        </div>
+        <div class="quiz-prompt-row">
+          <p class="quiz-prompt" id="quiz-prompt">Loading...</p>
+          <button class="listen-btn" onclick="readQuizQuestion(this)">Listen to question</button>
+        </div>
+        <div class="quiz-display-wrap">
+          <div class="quiz-display" id="quiz-display" onclick="readQuizWord(this)">—</div>
+          <div class="quiz-display-hint">Tap the word above to hear it</div>
+        </div>
+        <div class="quiz-opts" id="quiz-opts"></div>
+        <div class="quiz-fb" id="quiz-fb"></div>
+        <button class="next-btn" id="next-btn" onclick="nextQ()">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="ch-nav">
+    <a class="nav-lnk" href="chapter-08.html">← Chapter 8: Phonograms</a>
+    <span class="phase-badge">Phase 2 — Cracking the Code</span>
+    <a class="nav-lnk next" href="chapter-10.html">Chapter 10: Silent Letters →</a>
+  </div>
+</div>
+
+<script>
+// VOICE ENGINE
+let voices=[],selectedVoiceIndex=-1,speechRate=0.85;
+function loadVoices(){
+  voices=window.speechSynthesis.getVoices();
+  const sel=document.getElementById('voice-select');
+  if(!voices.length)return;
+  const eng=voices.filter(v=>v.lang.startsWith('en'));
+  sel.innerHTML='<option value="-1">🔊 Browser default</option>';
+  eng.forEach(v=>{const idx=voices.indexOf(v);const o=document.createElement('option');o.value=idx;o.textContent=v.name+' ('+v.lang+')'+(v.localService?' ★':'');sel.appendChild(o);});
+  const sv=localStorage.getItem('rbVoiceIndex'),sr=localStorage.getItem('rbSpeechRate');
+  if(sv!=null){sel.value=sv;selectedVoiceIndex=parseInt(sv);}
+  if(sr!=null){speechRate=parseFloat(sr);document.querySelectorAll('.spd-btn').forEach(b=>b.classList.toggle('active',parseFloat(b.getAttribute('data-rate'))===speechRate));}
+}
+function onVoiceChange(){selectedVoiceIndex=parseInt(document.getElementById('voice-select').value);localStorage.setItem('rbVoiceIndex',selectedVoiceIndex);showSaved();}
+function setSpeed(r,btn){speechRate=r;localStorage.setItem('rbSpeechRate',r);document.querySelectorAll('.spd-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');showSaved();}
+function showSaved(){const s=document.getElementById('vsaved');s.classList.add('show');setTimeout(()=>s.classList.remove('show'),2000);}
+function applyVoice(u){u.rate=speechRate;if(selectedVoiceIndex>=0&&voices[selectedVoiceIndex]){u.voice=voices[selectedVoiceIndex];u.lang=voices[selectedVoiceIndex].lang;}else u.lang='en-GB';}
+function speakBtn(text,btn){
+  if(!window.speechSynthesis)return;
+  window.speechSynthesis.cancel();
+  document.querySelectorAll('.speaking').forEach(b=>b.classList.remove('speaking'));
+  const u=new SpeechSynthesisUtterance(text);applyVoice(u);
+  if(btn){btn.classList.add('speaking');u.onend=()=>btn.classList.remove('speaking');u.onerror=()=>btn.classList.remove('speaking');}
+  window.speechSynthesis.speak(u);
+}
+function sayWord(word,el){
+  if(!window.speechSynthesis)return;
+  window.speechSynthesis.cancel();
+  document.querySelectorAll('.speaking').forEach(b=>b.classList.remove('speaking'));
+  if(el)el.classList.add('speaking');
+  const u=new SpeechSynthesisUtterance(word);applyVoice(u);u.rate=speechRate*0.85;
+  if(el)u.onend=()=>el.classList.remove('speaking');
+  window.speechSynthesis.speak(u);
+}
+function testVoice(btn){speakBtn('Hello. This is your selected voice for The Reading Blueprint. The baby rabbit sat on the open table.',btn);}
+function readHero(btn){speakBtn('Chapter 9: Syllable Types — The Six Structures of Every Word. A syllable is the smallest unit of pronunciation containing a vowel sound. Every syllable belongs to one of six types. Knowing the type tells you exactly how to pronounce the vowel — automatically. This is the master key to pronouncing any English word you encounter for the first time.',btn);}
+function showPanel(id,btn){
+  window.speechSynthesis&&window.speechSynthesis.cancel();
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(t=>t.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// SIX SYLLABLE TYPES DATA
+const sylTypes=[
+  {num:'Type 1',name:'Closed Syllable',color:'#B8860B',
+   rule:'Ends in one or more consonants. The vowel is SHORT. The consonant "closes" the syllable, trapping the vowel.',
+   soundText:'Type 1: Closed Syllable. Ends in a consonant. The vowel is short. The consonant closes the syllable, trapping the vowel and keeping it short. Examples: cat, sit, hop, bed, run, rabbit, basket.',
+   keyFeature:'Ends in consonant → vowel is SHORT',
+   examples:['cat','sit','hop','bed','run','trip','frog','bend','rabbit','basket','dentist','velvet']},
+  {num:'Type 2',name:'Open Syllable',color:'#C0392B',
+   rule:'Ends in a vowel. Because there is no consonant to close it, the vowel is free to say its LONG sound.',
+   soundText:'Type 2: Open Syllable. Ends in a vowel. Because there is no consonant to close it, the vowel is free to say its long sound. Examples: me, he, she, go, no, so, be, we, baby, open, silent, hero, music.',
+   keyFeature:'Ends in vowel → vowel is LONG',
+   examples:['me','he','she','go','no','so','be','we','hi','baby','open','silent','hero','music','pilot']},
+  {num:'Type 3',name:'Silent E Syllable',color:'#2C5F2E',
+   rule:'A vowel, then a consonant, then a silent E. The silent E makes the first vowel say its LONG sound.',
+   soundText:'Type 3: Silent E Syllable. Also called VCe. A vowel, then a consonant, then a silent E. The silent E makes the first vowel long. Examples: cake, like, home, cute, these, time, hope, tube.',
+   keyFeature:'Vowel + consonant + silent E → first vowel LONG',
+   examples:['cake','like','home','cute','these','time','hope','tube','fake','pine','vote','mule']},
+  {num:'Type 4',name:'Vowel Team Syllable',color:'#1A4A7A',
+   rule:'Two vowels working together to produce a single sound — usually the long sound of the first vowel.',
+   soundText:'Type 4: Vowel Team Syllable. Two vowels together work as a team to produce one sound — usually the long sound of the first vowel. Examples: rain, play, feet, read, boat, moon, hoe, blue, fruit.',
+   keyFeature:'Two vowels together → usually LONG sound',
+   examples:['rain','play','feet','read','boat','moon','hoe','blue','fruit','sail','greet','float']},
+  {num:'Type 5',name:'R-Controlled Syllable',color:'#6A0DAD',
+   rule:'When a vowel is followed by R, the R controls the vowel\'s sound — neither short nor long, but pulled toward the R.',
+   soundText:'Type 5: R-Controlled Syllable. When a vowel is followed by R, the R controls the sound. The vowel is neither short nor long — it is pulled toward the R. Examples: car, her, bird, corn, burn, hurt, bark, fern, shirt.',
+   keyFeature:'Vowel + R → R-controlled sound',
+   examples:['car','her','bird','corn','burn','hurt','bark','fern','shirt','horn','curl','term']},
+  {num:'Type 6',name:'Consonant-LE Syllable',color:'#7A7468',
+   rule:'Always at the end of a word. A consonant followed by -le. The E is silent and the syllable sounds like "ul" + the consonant.',
+   soundText:'Type 6: Consonant LE Syllable. This type always appears at the end of a word. It consists of a consonant followed by LE. The E is silent. The sound is a brief schwa — uh — followed by the consonant sound. Examples: table, cable, little, simple, puzzle, candle, giggle, tremble.',
+   keyFeature:'Consonant + le at end → /-ul/ sound',
+   examples:['table','cable','little','simple','puzzle','candle','giggle','tremble','cycle','noble','turtle','maple']},
+];
+
+function buildSylGrid(){
+  const el=document.getElementById('syl-grid');
+  sylTypes.forEach(t=>{
+    const card=document.createElement('div');card.className='syl-card';
+    card.style.borderTopColor=t.color;
+    const num=document.createElement('div');num.className='syl-num';num.style.color=t.color;num.textContent=t.num;
+    const name=document.createElement('div');name.className='syl-name';name.style.color=t.color;name.textContent=t.name;
+    const rule=document.createElement('div');rule.className='syl-rule';rule.textContent=t.keyFeature;
+    const exs=document.createElement('div');exs.className='syl-examples';
+    t.examples.slice(0,8).forEach(w=>{
+      const sp=document.createElement('span');sp.className='syl-ex';sp.textContent=w;
+      sp.onclick=()=>sayWord(w,sp);exs.appendChild(sp);
+    });
+    const sndBtn=document.createElement('button');
+    sndBtn.className='syl-sound-btn';
+    sndBtn.style.cssText='border-color:'+t.color+';color:'+t.color+';background:white;';
+    sndBtn.textContent='Hear the rule: '+t.name;
+    sndBtn.onclick=()=>speakBtn(t.soundText,sndBtn);
+    card.appendChild(num);card.appendChild(name);card.appendChild(rule);card.appendChild(exs);card.appendChild(sndBtn);
+    el.appendChild(card);
+  });
+}
+
+// GLANCE TABLE
+const glanceData=[
+  {num:'1',name:'Closed',key:'Ends in consonant',examples:'cat, rabbit, basket',audio:'Type 1: Closed syllable. Ends in a consonant. Vowel is short.'},
+  {num:'2',name:'Open',key:'Ends in vowel',examples:'me, baby, open',audio:'Type 2: Open syllable. Ends in a vowel. Vowel is long.'},
+  {num:'3',name:'Silent E',key:'VCe pattern',examples:'cake, time, hope',audio:'Type 3: Silent E syllable. Vowel consonant E. First vowel is long.'},
+  {num:'4',name:'Vowel Team',key:'Two vowels together',examples:'rain, feet, boat',audio:'Type 4: Vowel Team syllable. Two vowels together, usually long sound.'},
+  {num:'5',name:'R-Controlled',key:'Vowel + R',examples:'car, bird, corn',audio:'Type 5: R-Controlled syllable. Vowel plus R. R controls the sound.'},
+  {num:'6',name:'Consonant-LE',key:'-le ending',examples:'table, little, simple',audio:'Type 6: Consonant LE syllable. Consonant plus LE at end of word.'},
+];
+function buildGlanceTable(){
+  const tbody=document.getElementById('glance-body');
+  glanceData.forEach(row=>{
+    const tr=document.createElement('tr');
+    const tdN=document.createElement('td');tdN.textContent=row.num;tdN.style.fontWeight='700';tdN.style.color='var(--gold)';
+    const tdNm=document.createElement('td');tdNm.className='type-name';tdNm.textContent=row.name;
+    tdNm.onclick=()=>sayWord(row.audio,tdNm);
+    const tdK=document.createElement('td');tdK.className='type-key';tdK.textContent=row.key;
+    const tdE=document.createElement('td');tdE.className='type-ex';tdE.textContent=row.examples;
+    tdE.onclick=()=>speakBtn(row.examples,tdE);
+    tr.appendChild(tdN);tr.appendChild(tdNm);tr.appendChild(tdK);tr.appendChild(tdE);
+    tbody.appendChild(tr);
+  });
+}
+
+// CHIN TEST
+const chinWords=[
+  {word:'cat',syls:1},{word:'rabbit',syls:2},{word:'elephant',syls:3},
+  {word:'me',syls:1},{word:'open',syls:2},{word:'basketball',syls:3},
+  {word:'big',syls:1},{word:'table',syls:2},{word:'calendar',syls:3},
+  {word:'go',syls:1},{word:'baby',syls:2},{word:'understand',syls:3},
+];
+function buildChinWords(){
+  const el=document.getElementById('chin-words');
+  chinWords.forEach(cw=>{
+    const wrap=document.createElement('div');wrap.className='chin-word';
+    const w=document.createElement('div');w.className='chin-w';w.textContent=cw.word;
+    const dots=document.createElement('div');dots.className='chin-dots';
+    for(let i=0;i<3;i++){
+      const d=document.createElement('div');d.className='chin-dot'+(i<cw.syls?' active':'');
+      dots.appendChild(d);
+    }
+    wrap.appendChild(w);wrap.appendChild(dots);
+    wrap.onclick=()=>{
+      document.querySelectorAll('.chin-word.speaking').forEach(c=>c.classList.remove('speaking'));
+      wrap.classList.add('speaking');
+      const u=new SpeechSynthesisUtterance(cw.word);applyVoice(u);u.rate=speechRate*0.7;
+      u.onend=()=>wrap.classList.remove('speaking');
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(u);
+    };
+    el.appendChild(wrap);
+  });
+}
+
+// DIVISION TABLE
+const divData=[
+  {word:'rabbit',div:'rab | bit',rule:'VCCV — divide between bb',types:'Closed + Closed'},
+  {word:'music',div:'mu | sic',rule:'VCV — divide before s',types:'Open + Closed'},
+  {word:'table',div:'ta | ble',rule:'VCV — divide before b',types:'Open + Cons-LE'},
+  {word:'basket',div:'bas | ket',rule:'VCCV — divide between sk',types:'Closed + Closed'},
+  {word:'belong',div:'be | long',rule:'VCV — divide before l',types:'Open + Closed'},
+  {word:'station',div:'sta | tion',rule:'VCV — open + vowel team',types:'Open + Vowel Team'},
+  {word:'monster',div:'mon | ster',rule:'VCCV — divide between ns',types:'Closed + R-Controlled'},
+  {word:'turtle',div:'tur | tle',rule:'VCCV — divide between rt',types:'R-Controlled + Cons-LE'},
+  {word:'dentist',div:'den | tist',rule:'VCCV — divide between nt',types:'Closed + Closed'},
+  {word:'napkin',div:'nap | kin',rule:'VCCV — divide between pk',types:'Closed + Closed'},
+  {word:'open',div:'o | pen',rule:'VCV — divide before p',types:'Open + Closed'},
+  {word:'silent',div:'si | lent',rule:'VCV — divide before l',types:'Open + Closed'},
+];
+function buildDivTable(){
+  const tbody=document.getElementById('div-body');
+  divData.forEach(row=>{
+    const tr=document.createElement('tr');
+    const tw=document.createElement('td');tw.className='word-cell';tw.textContent=row.word;tw.onclick=()=>sayWord(row.word,tw);
+    const td=document.createElement('td');td.className='div-cell';td.textContent=row.div;td.onclick=()=>speakBtn(row.div.replace('|',''),td);
+    const tr2=document.createElement('td');tr2.className='rule-cell';tr2.textContent=row.rule;tr2.onclick=()=>speakBtn(row.rule+'. The word is '+row.word+', divided as '+row.div,tr2);
+    const tt=document.createElement('td');tt.className='type-cell';tt.textContent=row.types;tt.onclick=()=>speakBtn(row.types,tt);
+    tr.appendChild(tw);tr.appendChild(td);tr.appendChild(tr2);tr.appendChild(tt);
+    tbody.appendChild(tr);
+  });
+}
+
+// MINI TEXTS
+const miniTexts=[
+  {label:'Closed + Open Syllables',text:'The baby rabbit sat on the open basket. The hero ran to the cabin. A robot sat on a table by the river.'},
+  {label:'Silent E + Vowel Team Syllables',text:'Jane made a cake on the table. The green boat floated on the lake. Pete can read the note on the seat.'},
+  {label:'R-Controlled + Consonant-LE',text:'The purple turtle sat by the river. A simple candle lit the circle. The marble castle stood on the corner.'},
+  {label:'All Six Types Mixed',text:'The open basket held a simple candle. A purple rabbit ran to the castle table. Music filled the silent garden at sunset.'},
+];
+function buildMiniTexts(){
+  const el=document.getElementById('mini-texts-container');
+  const hdr=document.createElement('div');hdr.className='sec-num';hdr.textContent='Build Up Passages';
+  const title=document.createElement('div');title.className='sec-title';title.textContent='One Syllable Type Focus at a Time';
+  const btn=document.createElement('button');btn.className='listen-btn';btn.style.marginLeft='8px';btn.textContent='Listen to instructions';
+  btn.onclick=()=>speakBtn('These shorter passages each focus on one or two syllable types. Master each one before reading the grand passage.',btn);
+  title.appendChild(btn);el.appendChild(hdr);el.appendChild(title);
+  miniTexts.forEach(mt=>{
+    const wrap=document.createElement('div');wrap.style.marginBottom='1.2rem';
+    const lbl=document.createElement('div');lbl.style.cssText='font-size:11px;font-weight:700;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;margin-top:1rem;';lbl.textContent=mt.label;
+    const box=document.createElement('div');box.className='ct-box';
+    mt.text.split(' ').forEach(w=>{
+      const clean=w.replace(/[^a-zA-Z]/g,'');
+      const span=document.createElement('span');span.className='word-tap';span.textContent=w+' ';
+      span.onclick=()=>sayWord(clean,span);box.appendChild(span);
+    });
+    const readBtn=document.createElement('button');readBtn.className='listen-btn';readBtn.style.marginTop='8px';readBtn.textContent='Read passage';
+    readBtn.onclick=()=>speakBtn(mt.text,readBtn);
+    wrap.appendChild(lbl);wrap.appendChild(box);wrap.appendChild(readBtn);el.appendChild(wrap);
+  });
+}
+
+// GRAND PASSAGE
+const grandPassage='The baby rabbit sat in the open garden near a simple table. A purple candle lit the silent circle of stones. Music floated over the river as the turtle moved slowly past the castle. Pete read the note on the green boat. Jane made a cake and placed it on the marble shelf by the window. The hero smiled and sat down to rest.';
+function buildGrandText(){
+  const el=document.getElementById('grand-text');
+  grandPassage.split(' ').forEach(w=>{
+    const clean=w.replace(/[^a-zA-Z]/g,'');
+    const span=document.createElement('span');span.className='word-tap';span.textContent=w+' ';
+    span.onclick=()=>sayWord(clean,span);el.appendChild(span);
+  });
+}
+function readGrand(btn){speakBtn(grandPassage,btn);}
+
+// QUIZ
+const quizData=[
+  {q:'What type of syllable ends in a consonant with a short vowel?',d:'cat',correct:'Type 1 — Closed Syllable',opts:['Type 1 — Closed Syllable','Type 2 — Open Syllable','Type 3 — Silent E','Type 5 — R-Controlled']},
+  {q:'What type of syllable ends in a vowel with a long vowel sound?',d:'me',correct:'Type 2 — Open Syllable',opts:['Type 2 — Open Syllable','Type 1 — Closed Syllable','Type 4 — Vowel Team','Type 6 — Consonant-LE']},
+  {q:'What syllable type is this word?',d:'cake',correct:'Type 3 — Silent E Syllable',opts:['Type 3 — Silent E Syllable','Type 1 — Closed Syllable','Type 4 — Vowel Team','Type 2 — Open Syllable']},
+  {q:'What syllable type is the first syllable in this word?',d:'rain',correct:'Type 4 — Vowel Team Syllable',opts:['Type 4 — Vowel Team Syllable','Type 2 — Open Syllable','Type 3 — Silent E','Type 5 — R-Controlled']},
+  {q:'What syllable type is in this word?',d:'bird',correct:'Type 5 — R-Controlled Syllable',opts:['Type 5 — R-Controlled Syllable','Type 1 — Closed Syllable','Type 2 — Open Syllable','Type 4 — Vowel Team']},
+  {q:'What syllable type is the last syllable in this word?',d:'table',correct:'Type 6 — Consonant-LE Syllable',opts:['Type 6 — Consonant-LE Syllable','Type 1 — Closed Syllable','Type 3 — Silent E','Type 2 — Open Syllable']},
+  {q:'How many syllables does this word have? Use the Chin Test.',d:'elephant',correct:'3 syllables — el-e-phant',opts:['3 syllables — el-e-phant','2 syllables — el-phant','4 syllables','1 syllable']},
+  {q:'Which rule divides this word: rabbit?',d:'rab|bit',correct:'VCCV — divide between the two consonants',opts:['VCCV — divide between the two consonants','VCV — divide before the consonant','No rule — it cannot be divided','VCV — the first vowel is long']},
+  {q:'Which rule divides this word: music?',d:'mu|sic',correct:'VCV — divide before the consonant, open first syllable',opts:['VCV — divide before the consonant, open first syllable','VCCV — divide between consonants','The word cannot be divided','Silent E rule applies']},
+  {q:'What does knowing a syllable type tell you?',d:'basket',correct:'Exactly how to pronounce the vowel in that syllable',opts:['Exactly how to pronounce the vowel in that syllable','The spelling of the whole word','Whether the word is a noun or verb','The number of letters in the word']},
+];
+let qi=0,score=0,answered=false,currentQ=null;
+const shuffle=a=>a.sort(()=>Math.random()-.5);
+let order=shuffle([...Array(quizData.length).keys()]);
+function readQuizQuestion(btn){if(currentQ)speakBtn(currentQ.q,btn);}
+function readQuizWord(el){if(currentQ)sayWord(currentQ.d,el);}
+function renderQ(){
+  answered=false;currentQ=quizData[order[qi]];
+  document.getElementById('quiz-prompt').textContent=currentQ.q;
+  const disp=document.getElementById('quiz-display');disp.textContent=currentQ.d;disp.classList.remove('speaking');
+  const opts=document.getElementById('quiz-opts');opts.innerHTML='';
+  shuffle([...currentQ.opts]).forEach(opt=>{
+    const b=document.createElement('button');b.className='q-opt';b.textContent=opt;
+    b.onclick=()=>checkQ(opt,currentQ.correct,b);opts.appendChild(b);
+  });
+  document.getElementById('quiz-fb').style.display='none';
+  document.getElementById('next-btn').style.display='none';
+  setTimeout(()=>speakBtn(currentQ.q+'. The word is: '+currentQ.d,null),350);
+}
+function checkQ(chosen,correct,btn){
+  if(answered)return;answered=true;
+  const fb=document.getElementById('quiz-fb');
+  if(chosen===correct){score++;btn.classList.add('correct');fb.className='quiz-fb ok';fb.textContent='✓ Correct! '+correct;}
+  else{btn.classList.add('wrong');document.querySelectorAll('.q-opt').forEach(b=>{if(b.textContent===correct)b.classList.add('correct');});fb.className='quiz-fb err';fb.textContent='✗ The correct answer is: '+correct;}
+  fb.style.display='block';
+  speakBtn(fb.textContent.replace('✓ ','').replace('✗ The correct answer is: ','The correct answer is: '),null);
+  document.getElementById('next-btn').style.display='inline-block';
+  const t=qi+1;
+  document.getElementById('score-text').textContent='Score: '+score+' / '+t;
+  document.getElementById('score-fill').style.width=Math.round(score/t*100)+'%';
+}
+function nextQ(){qi++;if(qi>=order.length){qi=0;score=0;order=shuffle([...Array(quizData.length).keys()]);}renderQ();}
+
+// INIT
+if(window.speechSynthesis){if(speechSynthesis.onvoiceschanged!==undefined)speechSynthesis.onvoiceschanged=loadVoices;loadVoices();}
+buildSylGrid();
+buildGlanceTable();
+buildChinWords();
+buildDivTable();
+buildMiniTexts();
+buildGrandText();
+renderQ();
+</script>
+</body>
+</html>

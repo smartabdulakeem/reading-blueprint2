@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 10 — Silent Letters & Irregular Patterns | The Reading Blueprint</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1C1A17;--paper:#FAF7F2;--cream:#F2EDE4;--gold:#B8860B;--gold-light:#F5E6B0;--rust:#C0392B;--forest:#2C5F2E;--blue:#1A4A7A;--purple:#6A0DAD;--muted:#7A7468;--border:rgba(28,26,23,0.12);--radius:10px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:var(--ink);min-height:100vh;}
+.voice-bar{background:var(--ink);padding:8px 1.5rem;display:flex;align-items:center;gap:10px;flex-wrap:wrap;position:sticky;top:0;z-index:200;box-shadow:0 2px 12px rgba(28,26,23,0.3);}
+.vb-brand{font-family:'Playfair Display',serif;color:var(--gold);font-size:13px;letter-spacing:1.5px;text-transform:uppercase;flex-shrink:0;margin-right:6px;}
+.home-btn{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(184,134,11,0.15);border:1.5px solid rgba(184,134,11,0.45);border-radius:8px;color:var(--gold);font-size:15px;cursor:pointer;transition:all .2s;text-decoration:none;flex-shrink:0;margin-right:4px;position:relative;}
+.home-btn:hover{background:rgba(184,134,11,0.3);border-color:var(--gold);transform:scale(1.08);}
+.home-btn::after{content:"Home";position:absolute;bottom:-26px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--gold);font-size:10px;padding:2px 7px;border-radius:4px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;border:1px solid rgba(184,134,11,0.3);}
+.home-btn:hover::after{opacity:1;}
+.vb-label{font-size:11px;font-weight:700;color:rgba(255,255,255,0.4);letter-spacing:1.5px;text-transform:uppercase;white-space:nowrap;flex-shrink:0;}
+.voice-select{min-width:150px;max-width:260px;padding:5px 26px 5px 9px;font-family:'Source Serif 4',serif;font-size:13px;border:1px solid rgba(255,255,255,0.15);border-radius:7px;background:rgba(255,255,255,0.08);color:#fff;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23B8860B' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 9px center;}
+.voice-select option{background:#1C1A17;color:#fff;}
+.speed-group{display:flex;align-items:center;gap:4px;flex-shrink:0;}
+.spd-label{font-size:11px;font-weight:700;color:rgba(255,255,255,0.4);letter-spacing:1px;text-transform:uppercase;margin-right:3px;}
+.spd-btn{padding:4px 10px;font-family:'Source Serif 4',serif;font-size:12px;font-weight:600;border:1px solid rgba(255,255,255,0.15);border-radius:6px;background:transparent;color:rgba(255,255,255,0.5);cursor:pointer;transition:all .15s;}
+.spd-btn.active{background:var(--gold);color:var(--ink);border-color:var(--gold);}
+.spd-btn:hover:not(.active){border-color:var(--gold);color:var(--gold);}
+.vtest{display:inline-flex;align-items:center;gap:5px;padding:5px 13px;font-family:'Source Serif 4',serif;font-size:12px;font-weight:600;border:1px solid rgba(184,134,11,0.5);border-radius:16px;background:rgba(184,134,11,0.12);color:var(--gold);cursor:pointer;transition:all .15s;flex-shrink:0;}
+.vtest:hover{background:rgba(184,134,11,0.22);}
+.vtest.speaking{background:rgba(192,57,43,0.2);border-color:var(--rust);color:#ff7b6b;}
+.vtest::before{content:"▶";font-size:9px;}
+.vtest.speaking::before{content:"◼";}
+.vsaved{font-size:11px;color:var(--gold);font-style:italic;flex-shrink:0;opacity:0;transition:opacity .3s;}
+.vsaved.show{opacity:1;}
+.chapter-hero{background:var(--ink);padding:3rem 2rem 2.5rem;text-align:center;border-bottom:3px solid var(--gold);position:relative;overflow:hidden;}
+.chapter-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(184,134,11,0.18) 0%,transparent 70%);}
+.ch-num{font-family:'Playfair Display',serif;font-size:12px;color:var(--gold);letter-spacing:4px;text-transform:uppercase;margin-bottom:12px;position:relative;}
+.ch-title{font-family:'Playfair Display',serif;font-size:clamp(26px,5vw,44px);color:#fff;line-height:1.15;margin-bottom:10px;position:relative;}
+.ch-sub{font-size:15px;color:rgba(255,255,255,0.5);font-style:italic;margin-bottom:1.5rem;position:relative;}
+.hero-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border:1.5px solid rgba(184,134,11,0.6);border-radius:24px;background:rgba(184,134,11,0.1);color:var(--gold);font-family:'Source Serif 4',serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;position:relative;}
+.hero-btn:hover{background:rgba(184,134,11,0.2);}
+.hero-btn.speaking{background:rgba(192,57,43,0.2);border-color:var(--rust);color:#ff7b6b;}
+.hero-btn::before{content:"▶";font-size:10px;}
+.hero-btn.speaking::before{content:"◼";}
+.container{max-width:860px;margin:0 auto;padding:2rem 1.25rem;}
+.tabs-bar{display:flex;gap:4px;margin-bottom:2rem;background:var(--cream);padding:5px;border-radius:var(--radius);border:1px solid var(--border);flex-wrap:wrap;}
+.tab-btn{flex:1;min-width:80px;padding:8px 10px;font-family:'Source Serif 4',serif;font-size:13px;font-weight:600;border:none;border-radius:7px;background:transparent;color:var(--muted);cursor:pointer;transition:all .15s;text-align:center;white-space:nowrap;}
+.tab-btn.active{background:var(--ink);color:var(--gold);}
+.tab-btn:hover:not(.active){background:rgba(28,26,23,0.06);color:var(--ink);}
+.panel{display:none;}.panel.active{display:block;}
+.sb{background:var(--cream);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem 1.75rem;margin-bottom:1.25rem;}
+.sb.gl{border-left:4px solid var(--gold);}
+.sb.rl{border-left:4px solid var(--rust);}
+.sb.fl{border-left:4px solid var(--forest);}
+.sb.bl{border-left:4px solid var(--blue);}
+.sb.pl{border-left:4px solid var(--purple);}
+.sec-num{font-size:11px;font-weight:600;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;}
+.sec-title{font-family:'Playfair Display',serif;font-size:20px;color:var(--ink);margin-bottom:10px;line-height:1.3;display:flex;align-items:center;flex-wrap:wrap;gap:8px;}
+.sec-body{font-size:15px;line-height:1.8;color:#3A3730;}
+.sec-body p{margin-bottom:10px;}
+.listen-btn{display:inline-flex;align-items:center;gap:5px;padding:4px 12px;font-family:'Source Serif 4',serif;font-size:12px;font-weight:600;border:1px solid var(--border);border-radius:16px;background:#fff;color:var(--muted);cursor:pointer;transition:all .15s;flex-shrink:0;}
+.listen-btn:hover{border-color:var(--gold);color:var(--gold);}
+.listen-btn.speaking{border-color:var(--rust);color:var(--rust);background:#fff5f5;}
+.listen-btn::before{content:"▶";font-size:9px;}
+.listen-btn.speaking::before{content:"◼";}
+.big-listen{display:flex;align-items:center;gap:8px;padding:10px 18px;font-family:'Source Serif 4',serif;font-size:14px;font-weight:700;border:2px solid var(--gold);border-radius:20px;background:var(--gold-light);color:var(--ink);cursor:pointer;transition:all .2s;margin-top:12px;width:fit-content;}
+.big-listen:hover{background:#EDD97A;}
+.big-listen.speaking{background:#fce4e4;border-color:var(--rust);color:var(--rust);}
+.big-listen::before{content:"🔊";font-size:14px;}
+.big-listen.speaking::before{content:"⏹";}
+.callout{background:var(--gold-light);border:1px solid rgba(184,134,11,0.3);border-radius:var(--radius);padding:1rem 1.25rem;margin:1rem 0;font-size:14px;line-height:1.8;}
+.step-row{display:flex;align-items:flex-start;gap:10px;padding:8px 12px;border-radius:7px;background:var(--cream);font-size:14px;margin-bottom:6px;line-height:1.6;}
+.step-n{font-size:11px;font-weight:700;color:var(--gold);width:20px;flex-shrink:0;margin-top:2px;}
+
+/* SILENT LETTER SECTION */
+.sl-sec{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem 1.5rem;margin-bottom:14px;}
+.sl-hdr{display:flex;align-items:center;gap:14px;margin-bottom:12px;flex-wrap:wrap;}
+.sl-badge{font-family:'Playfair Display',serif;font-size:44px;font-weight:700;line-height:1;min-width:80px;text-align:center;cursor:pointer;border-radius:8px;padding:6px;transition:all .15s;border:2px solid var(--border);}
+.sl-badge:hover{background:var(--cream);}
+.sl-badge.speaking{background:#fff5f5;}
+.sl-info{flex:1;}
+.sl-rule-label{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:3px;}
+.sl-rule-desc{font-size:13px;color:var(--muted);font-style:italic;margin-bottom:3px;}
+.sl-origin{font-size:12px;color:var(--muted);padding:2px 10px;background:var(--cream);border-radius:6px;display:inline-block;margin-bottom:6px;}
+.sl-sound-btn{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;font-family:'Source Serif 4',serif;font-size:13px;font-weight:700;border:2px solid;border-radius:20px;cursor:pointer;transition:all .15s;}
+.sl-sound-btn:hover{opacity:0.8;}
+.sl-sound-btn.speaking{background:#fce4e4 !important;border-color:var(--rust) !important;color:var(--rust) !important;}
+.sl-sound-btn::before{content:"🔊 ";}
+.sl-sound-btn.speaking::before{content:"⏹ ";}
+.word-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:7px;margin-bottom:10px;}
+.wcard{background:var(--cream);border:1px solid var(--border);border-radius:7px;padding:8px 4px;text-align:center;cursor:pointer;transition:all .15s;user-select:none;}
+.wcard:hover{border-color:var(--gold);background:var(--gold-light);transform:translateY(-1px);}
+.wcard.speaking{border-color:var(--rust);background:#fff5f5;}
+.wcard-word{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;}
+.wcard-silent{font-size:10px;color:var(--muted);margin-top:2px;}
+
+/* IRREGULAR WORDS */
+.irreg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px;margin:1rem 0;}
+.irreg-card{background:#fff;border:1.5px solid var(--border);border-radius:8px;padding:10px;text-align:center;cursor:pointer;transition:all .15s;}
+.irreg-card:hover{border-color:var(--rust);background:#fff5f5;transform:translateY(-2px);}
+.irreg-card.speaking{border-color:var(--rust);background:#fff5f5;}
+.irreg-word{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--rust);}
+.irreg-note{font-size:10px;color:var(--muted);margin-top:3px;}
+
+/* CONTROLLED TEXT */
+.ct-box{background:var(--cream);border:1px solid var(--border);border-left:4px solid var(--forest);border-radius:var(--radius);padding:1rem 1.25rem;margin:6px 0;font-size:16px;line-height:2.3;}
+.word-tap{cursor:pointer;border-radius:3px;padding:1px 2px;transition:background .1s;display:inline-block;}
+.word-tap:hover{background:var(--gold-light);}
+.word-tap.speaking{background:var(--gold-light);color:var(--gold);font-weight:600;}
+.grand-box{background:var(--ink);color:#fff;border-radius:var(--radius);padding:1.5rem 2rem;margin:1rem 0;font-size:17px;line-height:2.3;}
+.grand-box .word-tap{color:rgba(255,255,255,0.9);}
+.grand-box .word-tap:hover{background:rgba(184,134,11,0.3);}
+.grand-box .word-tap.speaking{background:rgba(184,134,11,0.4);color:var(--gold);}
+
+/* PHASE 2 ASSESSMENT */
+.assessment-box{background:var(--ink);color:#fff;border-radius:var(--radius);padding:1.75rem 2rem;margin:1rem 0;}
+.assess-title{font-family:'Playfair Display',serif;font-size:18px;color:var(--gold);margin-bottom:1rem;letter-spacing:1px;}
+.assess-checklist{list-style:none;padding:0;}
+.assess-checklist li{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.08);font-size:14px;color:rgba(255,255,255,0.85);line-height:1.6;}
+.assess-checklist li:last-child{border-bottom:none;}
+.assess-check{font-size:16px;flex-shrink:0;margin-top:2px;}
+
+/* QUIZ */
+.quiz-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;max-width:580px;}
+.quiz-prompt-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:1rem;}
+.quiz-prompt{font-family:'Playfair Display',serif;font-size:17px;flex:1;line-height:1.4;}
+.quiz-display-wrap{text-align:center;margin-bottom:1.2rem;}
+.quiz-display{font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:var(--gold);padding:1rem;background:var(--cream);border-radius:var(--radius);letter-spacing:4px;display:block;width:100%;cursor:pointer;border:none;}
+.quiz-display:hover{background:#EDD97A;}
+.quiz-display.speaking{background:#fce4e4;color:var(--rust);}
+.quiz-display-hint{font-size:12px;color:var(--muted);margin-top:5px;font-style:italic;}
+.quiz-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem;}
+.q-opt{padding:11px;font-family:'Source Serif 4',serif;font-size:13px;font-weight:600;border:1.5px solid var(--border);border-radius:8px;background:var(--cream);color:var(--ink);cursor:pointer;transition:all .15s;text-align:left;}
+.q-opt:hover{border-color:var(--gold);background:var(--gold-light);}
+.q-opt.correct{background:#EAF3DE;border-color:var(--forest);color:#27500A;}
+.q-opt.wrong{background:#FCEBEB;border-color:var(--rust);color:#791F1F;}
+.quiz-fb{font-size:14px;padding:10px 14px;border-radius:8px;margin-bottom:1rem;line-height:1.5;display:none;}
+.quiz-fb.ok{background:#EAF3DE;color:#27500A;}
+.quiz-fb.err{background:#FCEBEB;color:#791F1F;}
+.next-btn{padding:10px 24px;background:var(--ink);color:var(--gold);border:none;border-radius:20px;font-family:'Source Serif 4',serif;font-size:14px;font-weight:600;cursor:pointer;display:none;}
+.next-btn:hover{opacity:0.85;}
+.score-row{display:flex;align-items:center;gap:12px;margin-bottom:1.2rem;font-size:13px;color:var(--muted);}
+.score-track{flex:1;height:5px;background:var(--cream);border-radius:3px;overflow:hidden;}
+.score-fill{height:100%;background:var(--forest);border-radius:3px;transition:width .3s;}
+.ch-nav{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 0;border-top:1px solid var(--border);margin-top:2rem;flex-wrap:wrap;gap:10px;}
+.nav-lnk{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border:1px solid var(--border);border-radius:20px;font-size:13px;font-weight:600;color:var(--muted);background:var(--cream);text-decoration:none;transition:all .15s;}
+.nav-lnk:hover{border-color:var(--ink);color:var(--ink);}
+.nav-lnk.next{background:var(--ink);color:var(--gold);border-color:var(--ink);}
+.phase-badge{font-size:11px;background:var(--gold-light);color:var(--gold);border:1px solid rgba(184,134,11,0.3);padding:4px 12px;border-radius:12px;font-weight:600;}
+</style>
+</head>
+<body>
+
+<div class="voice-bar">
+  <a class="home-btn" href="index.html" title="Back to Home">🏠</a>
+  <span class="vb-brand">The Reading Blueprint</span>
+  <span class="vb-label">🔊 Voice</span>
+  <select class="voice-select" id="voice-select" onchange="onVoiceChange()">
+    <option value="-1">Loading voices...</option>
+  </select>
+  <div class="speed-group">
+    <span class="spd-label">Speed</span>
+    <button class="spd-btn" data-rate="0.6" onclick="setSpeed(0.6,this)">Slow</button>
+    <button class="spd-btn active" data-rate="0.85" onclick="setSpeed(0.85,this)">Normal</button>
+    <button class="spd-btn" data-rate="1.1" onclick="setSpeed(1.1,this)">Fast</button>
+  </div>
+  <button class="vtest" onclick="testVoice(this)">Test voice</button>
+  <span class="vsaved" id="vsaved">✓ Saved</span>
+</div>
+
+<div class="chapter-hero">
+  <div class="ch-num">Chapter 10 of 19</div>
+  <h1 class="ch-title">Silent Letters &<br>Irregular Patterns</h1>
+  <p class="ch-sub">The fingerprints of history — why English spelling surprises us</p>
+  <button class="hero-btn" onclick="readHero(this)">Listen to introduction</button>
+</div>
+
+<div class="container">
+  <div class="tabs-bar">
+    <button class="tab-btn active" onclick="showPanel('learn',this)">① Learn</button>
+    <button class="tab-btn" onclick="showPanel('silent',this)">② Silent Letters</button>
+    <button class="tab-btn" onclick="showPanel('irregular',this)">③ Irregular Words</button>
+    <button class="tab-btn" onclick="showPanel('read',this)">④ Read Aloud</button>
+    <button class="tab-btn" onclick="showPanel('assess',this)">⑤ Phase 2 Review</button>
+    <button class="tab-btn" onclick="showPanel('quiz',this)">⑥ Quiz</button>
+  </div>
+
+  <!-- ① LEARN -->
+  <div class="panel active" id="panel-learn">
+    <div class="sb gl">
+      <div class="sec-num">10.1</div>
+      <div class="sec-title">Why Silent Letters Exist
+        <button class="listen-btn" onclick="speakBtn('Section 10.1. Why Silent Letters Exist.',this)">Listen to title</button>
+      </div>
+      <div class="sec-body">
+        <p>English has borrowed words from Latin, Greek, French, Norse, and dozens of other languages. Silent letters are often <strong>historical artifacts</strong> — letters that were once pronounced in the original language but fell silent as the word was absorbed into English.</p>
+        <p>Understanding this history removes the frustration: silent letters are not mistakes. They are the <strong>fingerprints of history</strong>.</p>
+      </div>
+      <button class="big-listen" onclick="speakBtn('Why do silent letters exist? English has borrowed words from Latin, Greek, French, Norse, and dozens of other languages over thousands of years. Silent letters are historical artifacts — letters that were once pronounced in the original language but fell silent as the word was absorbed into English. For example, the K in knight was once pronounced in Old English. The B in lamb was once sounded in Latin. Understanding this history removes the frustration. Silent letters are not mistakes. They are the fingerprints of history — clues about where a word came from.',this)">Listen to full explanation</button>
+    </div>
+
+    <div class="sb rl">
+      <div class="sec-num">The Big Idea</div>
+      <div class="sec-title">Pattern Over Memorisation
+        <button class="listen-btn" onclick="speakBtn('The Big Idea. Pattern over memorisation.',this)">Listen to title</button>
+      </div>
+      <div class="callout">
+        Most silent letters follow <strong>predictable patterns</strong>. You do not need to memorise every word individually. Once you learn the pattern — for example, <em>K is silent before N at the start of a word</em> — you can apply that rule to every word that fits.
+      </div>
+      <button class="big-listen" onclick="speakBtn('The Big Idea. Most silent letters follow predictable patterns. You do not need to memorise every word individually. Once you learn the pattern — for example, the letter K is always silent before N at the start of a word — you can apply that rule to every word that fits. know, knee, knife, knight, knob, knit, knock — the K is silent in all of them. Learn the pattern once. Unlock dozens of words.',this)">Listen to the Big Idea</button>
+    </div>
+
+    <div class="sb fl">
+      <div class="sec-num">Chapter Goals</div>
+      <div class="sec-title">What You Will Master
+        <button class="listen-btn" onclick="speakBtn('Chapter Goals. What You Will Master.',this)">Listen to title</button>
+      </div>
+      <div style="margin-top:10px;">
+        <div class="step-row"><span class="step-n">✓</span>10 silent consonant patterns with rules and examples</div>
+        <div class="step-row"><span class="step-n">✓</span>Irregular high-frequency words — must be memorised</div>
+        <div class="step-row"><span class="step-n">✓</span>Reading passages that mix regular and irregular patterns</div>
+        <div class="step-row"><span class="step-n">✓</span>Phase 2 Grand Assessment — testing all Phase 2 knowledge</div>
+      </div>
+      <button class="big-listen" onclick="speakBtn('By the end of this chapter you will master: 10 silent consonant patterns with their rules and examples. Irregular high-frequency words that must be memorised because they do not follow phonics rules. Reading passages that mix regular and irregular patterns. And the Phase 2 Grand Assessment — testing all your knowledge from chapters 6 through 10.',this)">Listen to goals</button>
+    </div>
+  </div>
+
+  <!-- ② SILENT LETTERS -->
+  <div class="panel" id="panel-silent">
+    <div class="sb gl">
+      <div class="sec-num">10.2 — Silent Consonant Patterns</div>
+      <div class="sec-title">Ten Patterns to Master
+        <button class="listen-btn" onclick="speakBtn('Section 10.2. Silent Consonant Patterns. Ten patterns to master. Tap the big letters to hear the pattern name. Tap the sound button to hear the rule and examples. Tap any word to hear it.',this)">Listen to title</button>
+      </div>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:1rem;">Tap the large letters to hear the pattern. Tap the rule button to hear the full explanation. Tap any word to hear it spoken.</p>
+      <button class="big-listen" onclick="speakBtn('Instructions for silent letter patterns. For each pattern, first tap the large letters to hear the pattern name. Then tap the rule button to hear the full explanation of when the letter is silent. Then tap individual words to practise. The silent letter in each word is shown in grey — it is there in the spelling but you do not hear it.',this)">Listen to instructions</button>
+    </div>
+    <div id="silent-container"></div>
+  </div>
+
+  <!-- ③ IRREGULAR WORDS -->
+  <div class="panel" id="panel-irregular">
+    <div class="sb gl">
+      <div class="sec-num">10.3 — Irregular High-Frequency Words</div>
+      <div class="sec-title">Words That Break the Rules
+        <button class="listen-btn" onclick="speakBtn('Section 10.3. Irregular High-Frequency Words. Words that break the rules.',this)">Listen to title</button>
+      </div>
+      <div class="sec-body">
+        <p>Some of the most common words in English have <strong>irregular spellings</strong> that do not follow phonics rules. You must learn these by heart.</p>
+        <p>The good news: these are words you will see thousands of times, so they become automatic very quickly with practice.</p>
+      </div>
+      <button class="big-listen" onclick="speakBtn('Irregular high-frequency words. Some of the most common words in English have irregular spellings that do not follow phonics rules. You must learn these by heart. But here is the good news: these are words you will see thousands of times in everything you read. Because of that, they become automatic very quickly with regular practice. Tap each word to hear it. Say it aloud. Spell it aloud. Then write it from memory.',this)">Listen to explanation</button>
+    </div>
+    <div class="sb bl">
+      <div class="sec-num">Tap Any Word to Hear It — Learn by Heart</div>
+      <div class="sec-title">Irregular Words
+        <button class="listen-btn" onclick="speakBtn('Tap any word to hear it. Say it aloud after hearing it. These words must be memorised because their spelling does not match how they sound.',this)">Listen to instructions</button>
+      </div>
+      <div class="irreg-grid" id="irreg-grid"></div>
+      <button class="big-listen" style="margin-top:1rem;" onclick="readAllIrreg(this)">Read all irregular words aloud</button>
+    </div>
+    <div class="sb fl">
+      <div class="sec-num">Irregular Words in Context</div>
+      <div class="sec-title">Sentences Using Irregular Words
+        <button class="listen-btn" onclick="speakBtn('Read each sentence aloud. Every sentence uses one or more irregular words. Tap any word to hear it.',this)">Listen to instructions</button>
+      </div>
+      <div id="irreg-sentences"></div>
+    </div>
+  </div>
+
+  <!-- ④ READ ALOUD -->
+  <div class="panel" id="panel-read">
+    <div class="sb fl">
+      <div class="sec-num">10.4 — Silent Letter Passages</div>
+      <div class="sec-title">Build Up Passages
+        <button class="listen-btn" onclick="speakBtn('These passages mix silent letter patterns and irregular words with all the phonics you have already learned. Tap any word to hear it.',this)">Listen to instructions</button>
+      </div>
+      <div id="mini-texts"></div>
+    </div>
+    <div class="sb gl">
+      <div class="sec-num">Phase 2 Grand Assessment Text</div>
+      <div class="sec-title">The Full Passage
+        <button class="listen-btn" id="grand-btn" onclick="readGrand(this)">Read full passage</button>
+      </div>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:1rem;">This passage uses blends, digraphs, phonograms, all six syllable types, silent letters, and irregular words. Read it three times — each smoother than the last. Tap any word to hear it.</p>
+      <div class="grand-box" id="grand-text"></div>
+    </div>
+  </div>
+
+  <!-- ⑤ PHASE 2 REVIEW -->
+  <div class="panel" id="panel-assess">
+    <div class="sb gl">
+      <div class="sec-num">Phase 2 — Grand Assessment</div>
+      <div class="sec-title">Before You Move to Phase 3
+        <button class="listen-btn" onclick="speakBtn('Phase 2 Grand Assessment. Before moving to Phase 3, confirm you can do everything on this checklist without hesitation.',this)">Listen to title</button>
+      </div>
+      <div class="sec-body"><p>Before continuing to Phase 3, confirm you can do all of the following <strong>without hesitation</strong>. Tap each item to hear it read aloud.</p></div>
+      <button class="big-listen" onclick="speakBtn('Phase 2 Grand Assessment checklist. Listen to each item and confirm you can do it. One: identify whether a pair of letters is a blend or a digraph, and explain why. Two: say the sounds made by CH, SH, TH voiced, TH unvoiced, PH, CK, and NG. Three: read any word family from the short vowel, long vowel, R-controlled, and diphthong phonograms. Four: name all six syllable types and state the vowel rule for each. Five: use the Chin Test to count syllables in any word. Six: apply the VCCV and VCV rules to divide a multi-syllable word. Seven: read words containing silent letters K, W, G, B, T, P, H, L, C, and D. Eight: recognise and read all irregular high-frequency words instantly. Nine: read the Phase 2 grand assessment passage fluently.',this)">Listen to full checklist</button>
+    </div>
+    <div class="sb bl">
+      <div class="assessment-box">
+        <div class="assess-title">✓ Phase 2 Mastery Checklist</div>
+        <ul class="assess-checklist" id="assess-list"></ul>
+      </div>
+    </div>
+    <div class="sb rl" style="margin-top:4px;">
+      <div class="sec-num">Well Done</div>
+      <div class="sec-title">You Have Cracked the Code
+        <button class="listen-btn" onclick="speakBtn('You have completed Phase 2: Cracking the Code. You now have the full decoding toolkit of a skilled reader. Phase 3 moves you from sounding out words to understanding how words are built from meaning parts — prefixes, suffixes, and root words. You are ready.',this)">Listen</button>
+      </div>
+      <div class="sec-body">
+        <p>Completing Phase 2 means you now possess the <strong>full decoding toolkit</strong> of a skilled reader. You can decode blends, digraphs, phonograms, syllable types, silent letters, and irregular words.</p>
+        <p><strong>Phase 3</strong> now moves you beyond decoding — into understanding how words are built from <em>meaning</em>. Prefixes, suffixes, root words, grammar, and the architecture of sentences.</p>
+      </div>
+      <button class="big-listen" onclick="speakBtn('Congratulations. You have completed Phase 2: Cracking the Code. You now possess the full decoding toolkit of a skilled reader. Phase 3 moves you beyond decoding — into understanding how words are built from meaning. You will study prefixes, suffixes, root words, grammar, and the architecture of sentences. You are ready to continue.',this)">Listen to Phase 2 completion</button>
+    </div>
+  </div>
+
+  <!-- ⑥ QUIZ -->
+  <div class="panel" id="panel-quiz">
+    <div class="sb gl">
+      <div class="sec-num">Chapter 10 — Assessment</div>
+      <div class="sec-title">Test Yourself
+        <button class="listen-btn" onclick="speakBtn('Chapter 10 Assessment. Tap the word in the box to hear it. Then answer the question about silent letters and irregular patterns.',this)">Listen to instructions</button>
+      </div>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:1.2rem;">Tap the <strong>word box</strong> to hear it. Then choose the correct answer.</p>
+      <div class="quiz-card">
+        <div class="score-row">
+          <span id="score-text">Score: 0 / 0</span>
+          <div class="score-track"><div class="score-fill" id="score-fill" style="width:0%"></div></div>
+        </div>
+        <div class="quiz-prompt-row">
+          <p class="quiz-prompt" id="quiz-prompt">Loading...</p>
+          <button class="listen-btn" onclick="readQuizQuestion(this)">Listen to question</button>
+        </div>
+        <div class="quiz-display-wrap">
+          <div class="quiz-display" id="quiz-display" onclick="readQuizWord(this)">—</div>
+          <div class="quiz-display-hint">Tap the word above to hear it</div>
+        </div>
+        <div class="quiz-opts" id="quiz-opts"></div>
+        <div class="quiz-fb" id="quiz-fb"></div>
+        <button class="next-btn" id="next-btn" onclick="nextQ()">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="ch-nav">
+    <a class="nav-lnk" href="chapter-09.html">← Chapter 9: Syllable Types</a>
+    <span class="phase-badge">Phase 3 — Architecture of Meaning</span>
+    <a class="nav-lnk next" href="chapter-11.html">Chapter 11: Morphemes →</a>
+  </div>
+</div>
+
+<script>
+// VOICE ENGINE
+let voices=[],selectedVoiceIndex=-1,speechRate=0.85;
+function loadVoices(){
+  voices=window.speechSynthesis.getVoices();
+  const sel=document.getElementById('voice-select');
+  if(!voices.length)return;
+  const eng=voices.filter(v=>v.lang.startsWith('en'));
+  sel.innerHTML='<option value="-1">🔊 Browser default</option>';
+  eng.forEach(v=>{const idx=voices.indexOf(v);const o=document.createElement('option');o.value=idx;o.textContent=v.name+' ('+v.lang+')'+(v.localService?' ★':'');sel.appendChild(o);});
+  const sv=localStorage.getItem('rbVoiceIndex'),sr=localStorage.getItem('rbSpeechRate');
+  if(sv!=null){sel.value=sv;selectedVoiceIndex=parseInt(sv);}
+  if(sr!=null){speechRate=parseFloat(sr);document.querySelectorAll('.spd-btn').forEach(b=>b.classList.toggle('active',parseFloat(b.getAttribute('data-rate'))===speechRate));}
+}
+function onVoiceChange(){selectedVoiceIndex=parseInt(document.getElementById('voice-select').value);localStorage.setItem('rbVoiceIndex',selectedVoiceIndex);showSaved();}
+function setSpeed(r,btn){speechRate=r;localStorage.setItem('rbSpeechRate',r);document.querySelectorAll('.spd-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');showSaved();}
+function showSaved(){const s=document.getElementById('vsaved');s.classList.add('show');setTimeout(()=>s.classList.remove('show'),2000);}
+function applyVoice(u){u.rate=speechRate;if(selectedVoiceIndex>=0&&voices[selectedVoiceIndex]){u.voice=voices[selectedVoiceIndex];u.lang=voices[selectedVoiceIndex].lang;}else u.lang='en-GB';}
+function speakBtn(text,btn){
+  if(!window.speechSynthesis)return;
+  window.speechSynthesis.cancel();
+  document.querySelectorAll('.speaking').forEach(b=>b.classList.remove('speaking'));
+  const u=new SpeechSynthesisUtterance(text);applyVoice(u);
+  if(btn){btn.classList.add('speaking');u.onend=()=>btn.classList.remove('speaking');u.onerror=()=>btn.classList.remove('speaking');}
+  window.speechSynthesis.speak(u);
+}
+function sayWord(word,el){
+  if(!window.speechSynthesis)return;
+  window.speechSynthesis.cancel();
+  document.querySelectorAll('.speaking').forEach(b=>b.classList.remove('speaking'));
+  if(el)el.classList.add('speaking');
+  const u=new SpeechSynthesisUtterance(word);applyVoice(u);u.rate=speechRate*0.85;
+  if(el)u.onend=()=>el.classList.remove('speaking');
+  window.speechSynthesis.speak(u);
+}
+function testVoice(btn){speakBtn('Hello. This is your selected voice. The knight knew the road would be long.',btn);}
+function readHero(btn){speakBtn('Chapter 10: Silent Letters and Irregular Patterns. Silent letters are the fingerprints of history — letters that were once pronounced in older forms of English or in the original language the word was borrowed from. Understanding this removes frustration. Once you learn the patterns, you can decode hundreds of words that once seemed unpredictable.',btn);}
+function showPanel(id,btn){
+  window.speechSynthesis&&window.speechSynthesis.cancel();
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(t=>t.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// SILENT LETTER DATA
+const silentData=[
+  {letters:'KN',color:'#B8860B',rule:'K is silent before N at the start of a word',origin:'Old English / Germanic',
+   soundText:'Silent K. The K is silent when it comes before N at the start of a word. Only the N sound is heard. Examples: know, knee, knife, knight, knob, knit, knock, knack, kneel, knew.',
+   words:[{w:'know',s:'K'},{w:'knee',s:'K'},{w:'knife',s:'K'},{w:'knight',s:'K'},{w:'knob',s:'K'},{w:'knit',s:'K'},{w:'knock',s:'K'},{w:'knack',s:'K'},{w:'kneel',s:'K'},{w:'knew',s:'K'}]},
+  {letters:'WR',color:'#C0392B',rule:'W is silent before R at the start of a word',origin:'Old English',
+   soundText:'Silent W. The W is silent when it comes before R at the start of a word. Only the R sound is heard. Examples: write, wrong, wrap, wrist, wreck, wrestle, wrinkle, wren, wring, wrote.',
+   words:[{w:'write',s:'W'},{w:'wrong',s:'W'},{w:'wrap',s:'W'},{w:'wrist',s:'W'},{w:'wreck',s:'W'},{w:'wrestle',s:'W'},{w:'wrinkle',s:'W'},{w:'wren',s:'W'},{w:'wring',s:'W'},{w:'wrote',s:'W'}]},
+  {letters:'GN',color:'#2C5F2E',rule:'G is silent before N at start or end of a word',origin:'Latin / Greek',
+   soundText:'Silent G. The G is silent before N at the start or end of a word. Examples: gnat, gnaw, gnome, sign, design, align, campaign, benign, foreign.',
+   words:[{w:'gnat',s:'G'},{w:'gnaw',s:'G'},{w:'gnome',s:'G'},{w:'sign',s:'G'},{w:'design',s:'G'},{w:'align',s:'G'},{w:'campaign',s:'G'},{w:'benign',s:'G'},{w:'foreign',s:'G'}]},
+  {letters:'MB',color:'#1A4A7A',rule:'B is silent after M at the end of a word',origin:'Latin',
+   soundText:'Silent B. The B is silent after M at the end of a word. Examples: lamb, comb, bomb, climb, thumb, plumb, dumb, numb, tomb, womb.',
+   words:[{w:'lamb',s:'B'},{w:'comb',s:'B'},{w:'bomb',s:'B'},{w:'climb',s:'B'},{w:'thumb',s:'B'},{w:'plumb',s:'B'},{w:'dumb',s:'B'},{w:'numb',s:'B'},{w:'tomb',s:'B'},{w:'womb',s:'B'}]},
+  {letters:'ST',color:'#6A0DAD',rule:'T is silent in certain consonant clusters',origin:'Old French',
+   soundText:'Silent T. The T is silent in certain consonant clusters — especially in words borrowed from French. Examples: castle, listen, fasten, whistle, bristle, hustle, often, soften, moisten, wrestle.',
+   words:[{w:'castle',s:'T'},{w:'listen',s:'T'},{w:'fasten',s:'T'},{w:'whistle',s:'T'},{w:'bristle',s:'T'},{w:'hustle',s:'T'},{w:'often',s:'T'},{w:'soften',s:'T'},{w:'moisten',s:'T'}]},
+  {letters:'PH/PN',color:'#7A7468',rule:'P is silent before N, S, T at the start (Greek origin)',origin:'Ancient Greek',
+   soundText:'Silent P. The P is silent before N, S, and T at the start of certain words borrowed from Greek. Examples: pneumonia, psychology, pterodactyl, pseudo, psalm.',
+   words:[{w:'pneumonia',s:'P'},{w:'psychology',s:'P'},{w:'pterodactyl',s:'P'},{w:'pseudo',s:'P'},{w:'psalm',s:'P'},{w:'psyche',s:'P'}]},
+  {letters:'GH',color:'#B8860B',rule:'GH is often silent — especially in -ight and -ough patterns',origin:'Old English',
+   soundText:'Silent GH. The letters GH are often completely silent, especially in the patterns I-G-H-T and some O-U-G-H words. Examples: night, light, right, sight, bright, knight, though, through, dough, daughter.',
+   words:[{w:'night',s:'GH'},{w:'light',s:'GH'},{w:'right',s:'GH'},{w:'sight',s:'GH'},{w:'bright',s:'GH'},{w:'though',s:'GH'},{w:'through',s:'GH'},{w:'dough',s:'GH'},{w:'daughter',s:'GH'},{w:'straight',s:'GH'}]},
+  {letters:'SL',color:'#C0392B',rule:'L is silent before certain consonants',origin:'Old French / Latin',
+   soundText:'Silent L. The L is silent before certain consonants, especially in words borrowed from French. Examples: walk, talk, chalk, calm, palm, half, calf, folk, yolk, should, would, could.',
+   words:[{w:'walk',s:'L'},{w:'talk',s:'L'},{w:'chalk',s:'L'},{w:'calm',s:'L'},{w:'palm',s:'L'},{w:'half',s:'L'},{w:'calf',s:'L'},{w:'folk',s:'L'},{w:'yolk',s:'L'},{w:'would',s:'L'},{w:'could',s:'L'},{w:'should',s:'L'}]},
+  {letters:'SC',color:'#2C5F2E',rule:'C is silent in SC combinations before E and I',origin:'Latin',
+   soundText:'Silent C. The C is silent in SC combinations, especially before E and I. Examples: scene, scent, science, scissors, muscle, descent, disciple.',
+   words:[{w:'scene',s:'C'},{w:'scent',s:'C'},{w:'science',s:'C'},{w:'scissors',s:'C'},{w:'muscle',s:'C'},{w:'descent',s:'C'},{w:'disciple',s:'C'}]},
+  {letters:'DW',color:'#1A4A7A',rule:'D is silent in certain common words',origin:'Old English',
+   soundText:'Silent D. The D is silent in certain common words. Examples: Wednesday, handsome, handkerchief, sandwich.',
+   words:[{w:'Wednesday',s:'D'},{w:'handsome',s:'D'},{w:'handkerchief',s:'D'},{w:'sandwich',s:'D'}]},
+];
+
+function buildSilentSections(){
+  const el=document.getElementById('silent-container');
+  silentData.forEach(sd=>{
+    const sec=document.createElement('div');sec.className='sl-sec';
+    const hdr=document.createElement('div');hdr.className='sl-hdr';
+    const badge=document.createElement('div');
+    badge.className='sl-badge';badge.style.color=sd.color;badge.style.borderColor=sd.color+'44';
+    badge.textContent=sd.letters;badge.onclick=()=>sayWord('Silent '+sd.letters,badge);
+    hdr.appendChild(badge);
+    const info=document.createElement('div');info.className='sl-info';
+    const rl=document.createElement('div');rl.className='sl-rule-label';rl.textContent=sd.rule;
+    const origin=document.createElement('div');origin.className='sl-origin';origin.textContent='🏛 Origin: '+sd.origin;
+    const sndBtn=document.createElement('button');
+    sndBtn.className='sl-sound-btn';
+    sndBtn.style.cssText='border-color:'+sd.color+';color:'+sd.color+';background:white;';
+    sndBtn.textContent='Hear the rule & examples';
+    sndBtn.onclick=()=>speakBtn(sd.soundText,sndBtn);
+    info.appendChild(rl);info.appendChild(origin);info.appendChild(sndBtn);
+    hdr.appendChild(info);sec.appendChild(hdr);
+    const grid=document.createElement('div');grid.className='word-grid';
+    sd.words.forEach(wd=>{
+      const card=document.createElement('div');card.className='wcard';
+      // highlight silent letter
+      const silentL=wd.s.toLowerCase();
+      let display=wd.w;
+      const wl=wd.w.toLowerCase();
+      let html='';
+      for(let i=0;i<wl.length;i++){
+        if(silentL.includes(wl[i])&&!html.includes('muted')){
+          html+='<span style="color:var(--muted);opacity:0.4;">'+wd.w[i]+'</span>';
+        } else {
+          html+=wd.w[i];
+        }
+      }
+      card.innerHTML='<div class="wcard-word">'+wd.w+'</div><div class="wcard-silent">silent '+wd.s+'</div>';
+      card.onclick=()=>sayWord(wd.w,card);
+      grid.appendChild(card);
+    });
+    const readAllBtn=document.createElement('button');
+    readAllBtn.className='listen-btn';readAllBtn.style.margin='6px 0 4px';
+    readAllBtn.textContent='Read all words';
+    readAllBtn.onclick=()=>speakBtn(sd.words.map(w=>w.w).join('. '),readAllBtn);
+    sec.appendChild(grid);sec.appendChild(readAllBtn);
+    el.appendChild(sec);
+  });
+}
+
+// IRREGULAR WORDS
+const irregWords=[
+  {w:'the',note:'says "thuh" or "thee"'},{w:'of',note:'says "ov"'},{w:'to',note:'says "too" or "tuh"'},
+  {w:'was',note:'says "woz"'},{w:'are',note:'says "ar"'},{w:'were',note:'says "wer"'},
+  {w:'said',note:'says "sed"'},{w:'have',note:'V not F sound'},{w:'once',note:'says "wunce"'},
+  {w:'come',note:'O says "uh"'},{w:'some',note:'O says "uh"'},{w:'done',note:'O says "uh"'},
+  {w:'been',note:'says "bin"'},{w:'does',note:'says "duz"'},{w:'goes',note:'says "gohz"'},
+  {w:'give',note:'I says short i'},{w:'live',note:'I says short i'},{w:'love',note:'O says "uh"'},
+  {w:'would',note:'silent L'},{w:'could',note:'silent L'},{w:'should',note:'silent L'},
+  {w:'people',note:'unusual vowel'},{w:'their',note:'ei = "air"'},{w:'there',note:'ere = "air"'},
+  {w:'because',note:'multi-irregular'},{w:'where',note:'ere = "air"'},{w:'whole',note:'silent W'},
+  {w:'what',note:'irregular vowel'},{w:'who',note:'says "hoo"'},{w:'whose',note:'says "hooz"'},
+];
+function buildIrregGrid(){
+  const el=document.getElementById('irreg-grid');
+  irregWords.forEach(iw=>{
+    const card=document.createElement('div');card.className='irreg-card';
+    card.innerHTML='<div class="irreg-word">'+iw.w+'</div><div class="irreg-note">'+iw.note+'</div>';
+    card.onclick=()=>sayWord(iw.w,card);
+    el.appendChild(card);
+  });
+}
+function readAllIrreg(btn){speakBtn(irregWords.map(w=>w.w).join('. '),btn);}
+
+// IRREGULAR SENTENCES
+const irregSentences=[
+  'The people said they would come once the rain was done.',
+  'She has been there before and does not know who lives there.',
+  'What were you doing when the whole town was asleep?',
+  'Some of us have given love where it was not given back.',
+  'Could you tell me whose coat was left by the door?',
+  'Because it was done, they were ready to go.',
+];
+function buildIrregSentences(){
+  const el=document.getElementById('irreg-sentences');
+  irregSentences.forEach((s,i)=>{
+    const wrap=document.createElement('div');wrap.style.cssText='background:#fff;border:1px solid var(--border);border-left:4px solid var(--forest);border-radius:var(--radius);padding:1rem 1.25rem;margin-bottom:10px;font-size:16px;line-height:2.3;display:flex;align-items:flex-start;gap:10px;';
+    const num=document.createElement('div');num.style.cssText='font-size:11px;font-weight:700;color:var(--gold);flex-shrink:0;margin-top:6px;';num.textContent=(i+1)+'.';
+    const txt=document.createElement('div');txt.style.flex='1';
+    s.split(' ').forEach(w=>{
+      const clean=w.replace(/[^a-zA-Z]/g,'');
+      const span=document.createElement('span');span.className='word-tap';span.textContent=w+' ';
+      span.onclick=()=>sayWord(clean,span);txt.appendChild(span);
+    });
+    const btn=document.createElement('button');btn.className='listen-btn';btn.style.flexShrink='0';btn.style.marginTop='4px';btn.textContent='Listen';
+    btn.onclick=()=>speakBtn(s,btn);
+    wrap.appendChild(num);wrap.appendChild(txt);wrap.appendChild(btn);
+    el.appendChild(wrap);
+  });
+}
+
+// MINI TEXTS
+const miniTexts=[
+  {label:'Silent KN and WR',text:'The knight knew the road would be wrong. He wrote the wrong name on the knot. The wren sat on a wrinkled branch near the knoll.'},
+  {label:'Silent GH — ight and ough patterns',text:'The bright light at night was a sight to see. Though the road was tough, they fought through. The straight path led right to the top.'},
+  {label:'Silent L — walk, talk, calm, would',text:'She would walk and talk by the calm palm trees. Half the folk could not find the yolk. He should chalk the path before they could follow.'},
+  {label:'Irregular Words in Context',text:'The people said they would come once the rain was done. She has been there and does not know who lives there. What were you doing when the whole town was asleep?'},
+];
+function buildMiniTexts(){
+  const el=document.getElementById('mini-texts');
+  miniTexts.forEach(mt=>{
+    const wrap=document.createElement('div');wrap.style.marginBottom='1.2rem';
+    const lbl=document.createElement('div');lbl.style.cssText='font-size:11px;font-weight:700;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;margin-top:1rem;';lbl.textContent=mt.label;
+    const box=document.createElement('div');box.className='ct-box';
+    mt.text.split(' ').forEach(w=>{
+      const clean=w.replace(/[^a-zA-Z]/g,'');
+      const span=document.createElement('span');span.className='word-tap';span.textContent=w+' ';
+      span.onclick=()=>sayWord(clean,span);box.appendChild(span);
+    });
+    const btn=document.createElement('button');btn.className='listen-btn';btn.style.marginTop='8px';btn.textContent='Read passage';
+    btn.onclick=()=>speakBtn(mt.text,btn);
+    wrap.appendChild(lbl);wrap.appendChild(box);wrap.appendChild(btn);
+    el.appendChild(wrap);
+  });
+}
+
+// GRAND PASSAGE
+const grandPassage='The knight knew the road would be long. He had to climb the sharp ridge at dawn, where the cold wind whistled through the castle walls. His friend Phil checked the map on the table. The trail splits here, said Phil, and one path leads straight to the sea. The knight wrapped his cloak around his shoulders. Then we must be swift, he replied. Together they strode into the misty morning, their boots crunching on the frost-covered stones. Three birds sang from the branches of a gnarled old oak. The whole world felt still and bright.';
+function buildGrandText(){
+  const el=document.getElementById('grand-text');
+  grandPassage.split(' ').forEach(w=>{
+    const clean=w.replace(/[^a-zA-Z]/g,'');
+    const span=document.createElement('span');span.className='word-tap';span.textContent=w+' ';
+    span.onclick=()=>sayWord(clean,span);el.appendChild(span);
+  });
+}
+function readGrand(btn){speakBtn(grandPassage,btn);}
+
+// PHASE 2 CHECKLIST
+const assessItems=[
+  'Identify whether a pair of letters is a blend or digraph — and explain why',
+  'Say the sounds made by CH, SH, TH (voiced), TH (unvoiced), PH, CK, and NG',
+  'Read any word family from the short vowel, long vowel, R-controlled, and diphthong phonograms',
+  'Name all six syllable types and state the vowel rule for each',
+  'Use the Chin Test to count syllables in any word',
+  'Apply VCCV and VCV rules to divide a multi-syllable word at the correct point',
+  'Read words containing silent letters: KN, WR, GN, MB, ST, GH, L, SC, and D',
+  'Recognise and read all irregular high-frequency words instantly without sounding out',
+  'Read the Phase 2 Grand Assessment passage fluently and without hesitation',
+];
+function buildAssessChecklist(){
+  const el=document.getElementById('assess-list');
+  assessItems.forEach(item=>{
+    const li=document.createElement('li');
+    li.innerHTML='<span class="assess-check">☐</span><span style="flex:1;cursor:pointer;" onclick="speakBtn(\''+item.replace(/'/g,"\\'")+'.\',null)">'+item+'</span>';
+    li.querySelector('span:last-child').onclick=()=>speakBtn(item,null);
+    el.appendChild(li);
+  });
+}
+
+// QUIZ
+const quizData=[
+  {q:'Why do silent letters exist in English?',d:'knife',correct:'They are historical — once pronounced in the original language',opts:['They are historical — once pronounced in the original language','They are mistakes by early printers','They make words look longer','They were added randomly over time']},
+  {q:'Which letter is silent in this word?',d:'knock',correct:'K — silent before N at the start',opts:['K — silent before N at the start','N — N is always silent','CK — the whole digraph is silent','O — the vowel is silent']},
+  {q:'Which letter is silent in this word?',d:'write',correct:'W — silent before R at the start',opts:['W — silent before R at the start','R — R is sometimes silent','E — the silent E rule','T — T is always silent']},
+  {q:'Which letters are silent in this word?',d:'night',correct:'GH — silent in the -ight pattern',opts:['GH — silent in the -ight pattern','N — N is sometimes silent','I — the vowel is silent','T — T is always silent at the end']},
+  {q:'Which letter is silent in this word?',d:'lamb',correct:'B — silent after M at the end',opts:['B — silent after M at the end','L — L is often silent','A — the vowel is silent','M — M is sometimes silent']},
+  {q:'Which letter is silent in this word?',d:'walk',correct:'L — silent before K in this pattern',opts:['L — silent before K in this pattern','W — W is sometimes silent','A — the vowel is silent','K — K is silent before N only']},
+  {q:'This word is irregular — it does not follow phonics rules. What makes it irregular?',d:'said',correct:'AI does not make the long A sound — it says "sed"',opts:['AI does not make the long A sound — it says "sed"','S is silent in this word','The D is completely silent','It follows the Silent E rule']},
+  {q:'This word is irregular. What sound does the O make?',d:'come',correct:'The O says the short U sound — "kum"',opts:['The O says the short U sound — "kum"','The O says its long sound — "kohm"','The O is completely silent','The O says the short O sound — "kom"']},
+  {q:'Which letter is silent in this word?',d:'castle',correct:'T — silent in the -stle pattern',opts:['T — silent in the -stle pattern','C — C is sometimes silent','A — the vowel is silent','L — L is silent before E']},
+  {q:'Silent letters are described as "fingerprints of history." What does this mean?',d:'gnome',correct:'They reveal where a word came from and what it sounded like originally',opts:['They reveal where a word came from and what it sounded like originally','They show that the word is very old and should not be used','They prove that English spelling is completely random','They were added by historians to make reading harder']},
+];
+let qi=0,score=0,answered=false,currentQ=null;
+const shuffle=a=>a.sort(()=>Math.random()-.5);
+let order=shuffle([...Array(quizData.length).keys()]);
+function readQuizQuestion(btn){if(currentQ)speakBtn(currentQ.q,btn);}
+function readQuizWord(el){if(currentQ)sayWord(currentQ.d,el);}
+function renderQ(){
+  answered=false;currentQ=quizData[order[qi]];
+  document.getElementById('quiz-prompt').textContent=currentQ.q;
+  const disp=document.getElementById('quiz-display');disp.textContent=currentQ.d;disp.classList.remove('speaking');
+  const opts=document.getElementById('quiz-opts');opts.innerHTML='';
+  shuffle([...currentQ.opts]).forEach(opt=>{
+    const b=document.createElement('button');b.className='q-opt';b.textContent=opt;
+    b.onclick=()=>checkQ(opt,currentQ.correct,b);opts.appendChild(b);
+  });
+  document.getElementById('quiz-fb').style.display='none';
+  document.getElementById('next-btn').style.display='none';
+  setTimeout(()=>speakBtn(currentQ.q+'. The word is: '+currentQ.d,null),350);
+}
+function checkQ(chosen,correct,btn){
+  if(answered)return;answered=true;
+  const fb=document.getElementById('quiz-fb');
+  if(chosen===correct){score++;btn.classList.add('correct');fb.className='quiz-fb ok';fb.textContent='✓ Correct! '+correct;}
+  else{btn.classList.add('wrong');document.querySelectorAll('.q-opt').forEach(b=>{if(b.textContent===correct)b.classList.add('correct');});fb.className='quiz-fb err';fb.textContent='✗ The correct answer is: '+correct;}
+  fb.style.display='block';
+  speakBtn(fb.textContent.replace('✓ ','').replace('✗ The correct answer is: ','The correct answer is: '),null);
+  document.getElementById('next-btn').style.display='inline-block';
+  const t=qi+1;
+  document.getElementById('score-text').textContent='Score: '+score+' / '+t;
+  document.getElementById('score-fill').style.width=Math.round(score/t*100)+'%';
+}
+function nextQ(){qi++;if(qi>=order.length){qi=0;score=0;order=shuffle([...Array(quizData.length).keys()]);}renderQ();}
+
+// INIT
+if(window.speechSynthesis){if(speechSynthesis.onvoiceschanged!==undefined)speechSynthesis.onvoiceschanged=loadVoices;loadVoices();}
+buildSilentSections();
+buildIrregGrid();
+buildIrregSentences();
+buildMiniTexts();
+buildGrandText();
+buildAssessChecklist();
+renderQ();
+</script>
+</body>
+</html>

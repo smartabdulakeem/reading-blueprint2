@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 14 — Punctuation | The Reading Blueprint</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1C1A17;--paper:#FAF7F2;--cream:#F2EDE4;--gold:#B8860B;--gold-light:#F5E6B0;--rust:#C0392B;--forest:#2C5F2E;--blue:#1A4A7A;--purple:#6A0DAD;--muted:#7A7468;--border:rgba(28,26,23,0.12);--radius:10px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:var(--ink);min-height:100vh;}
+.voice-bar{background:var(--ink);padding:8px 1.5rem;display:flex;align-items:center;gap:10px;flex-wrap:wrap;position:sticky;top:0;z-index:200;box-shadow:0 2px 12px rgba(28,26,23,0.3);}
+.vb-brand{font-family:'Playfair Display',serif;color:var(--gold);font-size:13px;letter-spacing:1.5px;text-transform:uppercase;flex-shrink:0;margin-right:6px;}
+.home-btn{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(184,134,11,0.15);border:1.5px solid rgba(184,134,11,0.45);border-radius:8px;color:var(--gold);font-size:15px;cursor:pointer;transition:all .2s;text-decoration:none;flex-shrink:0;margin-right:4px;position:relative;}
+.home-btn:hover{background:rgba(184,134,11,0.3);border-color:var(--gold);transform:scale(1.08);}
+.home-btn::after{content:"Home";position:absolute;bottom:-26px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--gold);font-size:10px;padding:2px 7px;border-radius:4px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;border:1px solid rgba(184,134,11,0.3);}
+.home-btn:hover::after{opacity:1;}
+.vb-label{font-size:11px;font-weight:700;color:rgba(255,255,255,0.4);letter-spacing:1.5px;text-transform:uppercase;white-space:nowrap;flex-shrink:0;}
+.voice-select{min-width:150px;max-width:260px;padding:5px 26px 5px 9px;font-family:'Source Serif 4',serif;font-size:13px;border:1px solid rgba(255,255,255,0.15);border-radius:7px;background:rgba(255,255,255,0.08);color:#fff;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23B8860B' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 9px center;}
+.voice-select option{background:#1C1A17;color:#fff;}
+.speed-group{display:flex;align-items:center;gap:4px;flex-shrink:0;}
+.spd-label{font-size:11px;font-weight:700;color:rgba(255,255,255,0.4);letter-spacing:1px;text-transform:uppercase;margin-right:3px;}
+.spd-btn{padding:4px 10px;font-family:'Source Serif 4',serif;font-size:12px;font-weight:600;border:1px solid rgba(255,255,255,0.15);border-radius:6px;background:transparent;color:rgba(255,255,255,0.5);cursor:pointer;transition:all .15s;}
+.spd-btn.active{background:var(--gold);color:var(--ink);border-color:var(--gold);}
+.spd-btn:hover:not(.active){border-color:var(--gold);color:var(--gold);}
+.vtest{display:inline-flex;align-items:center;gap:5px;padding:5px 13px;font-family:'Source Serif 4',serif;font-size:12px;font-weight:600;border:1px solid rgba(184,134,11,0.5);border-radius:16px;background:rgba(184,134,11,0.12);color:var(--gold);cursor:pointer;transition:all .15s;flex-shrink:0;}
+.vtest:hover{background:rgba(184,134,11,0.22);}
+.vtest.speaking{background:rgba(192,57,43,0.2);border-color:var(--rust);color:#ff7b6b;}
+.vtest::before{content:"▶";font-size:9px;}
+.vtest.speaking::before{content:"◼";}
+.vsaved{font-size:11px;color:var(--gold);font-style:italic;flex-shrink:0;opacity:0;transition:opacity .3s;}
+.vsaved.show{opacity:1;}
+.chapter-hero{background:var(--ink);padding:3rem 2rem 2.5rem;text-align:center;border-bottom:3px solid var(--gold);position:relative;overflow:hidden;}
+.chapter-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(184,134,11,0.18) 0%,transparent 70%);}
+.ch-num{font-family:'Playfair Display',serif;font-size:12px;color:var(--gold);letter-spacing:4px;text-transform:uppercase;margin-bottom:12px;position:relative;}
+.ch-title{font-family:'Playfair Display',serif;font-size:clamp(26px,5vw,44px);color:#fff;line-height:1.15;margin-bottom:10px;position:relative;}
+.ch-sub{font-size:15px;color:rgba(255,255,255,0.5);font-style:italic;margin-bottom:1.5rem;position:relative;}
+.hero-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border:1.5px solid rgba(184,134,11,0.6);border-radius:24px;background:rgba(184,134,11,0.1);color:var(--gold);font-family:'Source Serif 4',serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;position:relative;}
+.hero-btn:hover{background:rgba(184,134,11,0.2);}
+.hero-btn.speaking{background:rgba(192,57,43,0.2);border-color:var(--rust);color:#ff7b6b;}
+.hero-btn::before{content:"▶";font-size:10px;}
+.hero-btn.speaking::before{content:"◼";}
+.container{max-width:860px;margin:0 auto;padding:2rem 1.25rem;}
+.tabs-bar{display:flex;gap:4px;margin-bottom:2rem;background:var(--cream);padding:5px;border-radius:var(--radius);border:1px solid var(--border);flex-wrap:wrap;}
+.tab-btn{flex:1;min-width:80px;padding:8px 10px;font-family:'Source Serif 4',serif;font-size:13px;font-weight:600;border:none;border-radius:7px;background:transparent;color:var(--muted);cursor:pointer;transition:all .15s;text-align:center;white-space:nowrap;}
+.tab-btn.active{background:var(--ink);color:var(--gold);}
+.tab-btn:hover:not(.active){background:rgba(28,26,23,0.06);color:var(--ink);}
+.panel{display:none;}.panel.active{display:block;}
+.sb{background:var(--cream);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem 1.75rem;margin-bottom:1.25rem;}
+.sb.gl{border-left:4px solid var(--gold);}
+.sb.rl{border-left:4px solid var(--rust);}
+.sb.fl{border-left:4px solid var(--forest);}
+.sb.bl{border-left:4px solid var(--blue);}
+.sb.pl{border-left:4px solid var(--purple);}
+.sec-num{font-size:11px;font-weight:600;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;}
+.sec-title{font-family:'Playfair Display',serif;font-size:20px;color:var(--ink);margin-bottom:10px;line-height:1.3;display:flex;align-items:center;flex-wrap:wrap;gap:8px;}
+.sec-body{font-size:15px;line-height:1.8;color:#3A3730;}
+.sec-body p{margin-bottom:10px;}
+.listen-btn{display:inline-flex;align-items:center;gap:5px;padding:4px 12px;font-family:'Source Serif 4',serif;font-size:12px;font-weight:600;border:1px solid var(--border);border-radius:16px;background:#fff;color:var(--muted);cursor:pointer;transition:all .15s;flex-shrink:0;}
+.listen-btn:hover{border-color:var(--gold);color:var(--gold);}
+.listen-btn.speaking{border-color:var(--rust);color:var(--rust);background:#fff5f5;}
+.listen-btn::before{content:"▶";font-size:9px;}
+.listen-btn.speaking::before{content:"◼";}
+.big-listen{display:flex;align-items:center;gap:8px;padding:10px 18px;font-family:'Source Serif 4',serif;font-size:14px;font-weight:700;border:2px solid var(--gold);border-radius:20px;background:var(--gold-light);color:var(--ink);cursor:pointer;transition:all .2s;margin-top:12px;width:fit-content;}
+.big-listen:hover{background:#EDD97A;}
+.big-listen.speaking{background:#fce4e4;border-color:var(--rust);color:var(--rust);}
+.big-listen::before{content:"🔊";font-size:14px;}
+.big-listen.speaking::before{content:"⏹";}
+.callout{background:var(--gold-light);border:1px solid rgba(184,134,11,0.3);border-radius:var(--radius);padding:1rem 1.25rem;margin:1rem 0;font-size:14px;line-height:1.8;}
+.step-row{display:flex;align-items:flex-start;gap:10px;padding:8px 12px;border-radius:7px;background:var(--cream);font-size:14px;margin-bottom:6px;line-height:1.6;}
+.step-n{font-size:11px;font-weight:700;color:var(--gold);width:20px;flex-shrink:0;margin-top:2px;}
+
+/* PUNCTUATION MARK CARDS */
+.punct-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin:1rem 0;}
+.punct-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;cursor:pointer;transition:all .15s;border-top:4px solid;}
+.punct-card:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(28,26,23,0.08);}
+.punct-card.speaking{outline:2px solid var(--rust);}
+.pc-symbol{font-family:'Playfair Display',serif;font-size:48px;font-weight:700;line-height:1;margin-bottom:8px;}
+.pc-name{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;margin-bottom:4px;}
+.pc-use{font-size:13px;color:var(--muted);line-height:1.5;margin-bottom:8px;}
+.pc-example{font-family:'Playfair Display',serif;font-size:14px;padding:7px 10px;background:var(--cream);border-radius:6px;line-height:1.6;}
+.pc-voice{font-size:11px;color:var(--blue);font-weight:600;margin-top:6px;font-style:italic;}
+
+/* READING ALOUD TABLE */
+.read-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);margin:1rem 0;}
+.read-table th{padding:9px 14px;font-family:'Source Serif 4',serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;background:var(--ink);color:var(--gold);}
+.read-table td{padding:9px 14px;border-bottom:1px solid var(--border);background:#fff;font-size:14px;cursor:pointer;vertical-align:middle;}
+.read-table td.sym-cell{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;text-align:center;width:60px;}
+.read-table td.name-cell{font-weight:700;color:var(--ink);}
+.read-table td.how-cell{color:var(--muted);font-style:italic;}
+.read-table td:hover{background:var(--gold-light);}
+.read-table tr:last-child td{border-bottom:none;}
+
+/* OXFORD COMMA */
+.oxford-demo{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:1rem 0;}
+.oxford-card{border-radius:var(--radius);padding:1.25rem;cursor:pointer;transition:all .15s;}
+.oxford-card:hover{opacity:0.9;}
+.oxford-card.speaking{outline:2px solid var(--rust);}
+.oxford-bad{background:#FCEBEB;border:1.5px solid var(--rust);}
+.oxford-good{background:#EAF3DE;border:1.5px solid var(--forest);}
+.oxford-label{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;}
+.oxford-sent{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;line-height:1.5;margin-bottom:6px;}
+.oxford-note{font-size:12px;color:var(--muted);line-height:1.5;}
+
+/* PASSAGE READER */
+.grand-box{background:var(--ink);color:#fff;border-radius:var(--radius);padding:1.5rem 2rem;margin:1rem 0;font-size:17px;line-height:2.3;}
+.word-tap{cursor:pointer;border-radius:3px;padding:1px 2px;transition:background .1s;display:inline-block;}
+.word-tap:hover{background:rgba(184,134,11,0.3);}
+.word-tap.speaking{background:rgba(184,134,11,0.4);color:var(--gold);font-weight:600;}
+.ct-box{background:var(--cream);border:1px solid var(--border);border-left:4px solid var(--forest);border-radius:var(--radius);padding:1rem 1.25rem;margin:6px 0;font-size:16px;line-height:2.3;}
+.ct-word{cursor:pointer;border-radius:3px;padding:1px 2px;transition:background .1s;display:inline-block;}
+.ct-word:hover{background:var(--gold-light);}
+.ct-word.speaking{background:var(--gold-light);color:var(--gold);font-weight:600;}
+
+/* QUIZ */
+.quiz-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;max-width:580px;}
+.quiz-prompt-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:1rem;}
+.quiz-prompt{font-family:'Playfair Display',serif;font-size:16px;flex:1;line-height:1.4;}
+.quiz-display-wrap{text-align:center;margin-bottom:1.2rem;}
+.quiz-display{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--gold);padding:1rem;background:var(--cream);border-radius:var(--radius);letter-spacing:1px;display:block;width:100%;cursor:pointer;border:none;line-height:1.5;}
+.quiz-display:hover{background:#EDD97A;}
+.quiz-display.speaking{background:#fce4e4;color:var(--rust);}
+.quiz-display-hint{font-size:12px;color:var(--muted);margin-top:5px;font-style:italic;}
+.quiz-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem;}
+.q-opt{padding:11px;font-family:'Source Serif 4',serif;font-size:13px;font-weight:600;border:1.5px solid var(--border);border-radius:8px;background:var(--cream);color:var(--ink);cursor:pointer;transition:all .15s;text-align:left;}
+.q-opt:hover{border-color:var(--gold);background:var(--gold-light);}
+.q-opt.correct{background:#EAF3DE;border-color:var(--forest);color:#27500A;}
+.q-opt.wrong{background:#FCEBEB;border-color:var(--rust);color:#791F1F;}
+.quiz-fb{font-size:14px;padding:10px 14px;border-radius:8px;margin-bottom:1rem;line-height:1.5;display:none;}
+.quiz-fb.ok{background:#EAF3DE;color:#27500A;}
+.quiz-fb.err{background:#FCEBEB;color:#791F1F;}
+.next-btn{padding:10px 24px;background:var(--ink);color:var(--gold);border:none;border-radius:20px;font-family:'Source Serif 4',serif;font-size:14px;font-weight:600;cursor:pointer;display:none;}
+.next-btn:hover{opacity:0.85;}
+.score-row{display:flex;align-items:center;gap:12px;margin-bottom:1.2rem;font-size:13px;color:var(--muted);}
+.score-track{flex:1;height:5px;background:var(--cream);border-radius:3px;overflow:hidden;}
+.score-fill{height:100%;background:var(--forest);border-radius:3px;transition:width .3s;}
+.ch-nav{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 0;border-top:1px solid var(--border);margin-top:2rem;flex-wrap:wrap;gap:10px;}
+.nav-lnk{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border:1px solid var(--border);border-radius:20px;font-size:13px;font-weight:600;color:var(--muted);background:var(--cream);text-decoration:none;transition:all .15s;}
+.nav-lnk:hover{border-color:var(--ink);color:var(--ink);}
+.nav-lnk.next{background:var(--ink);color:var(--gold);border-color:var(--ink);}
+.phase-badge{font-size:11px;background:var(--gold-light);color:var(--gold);border:1px solid rgba(184,134,11,0.3);padding:4px 12px;border-radius:12px;font-weight:600;}
+@media(max-width:500px){.oxford-demo{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<div class="voice-bar">
+  <a class="home-btn" href="index.html">🏠</a>
+  <span class="vb-brand">The Reading Blueprint</span>
+  <span class="vb-label">🔊 Voice</span>
+  <select class="voice-select" id="voice-select" onchange="onVoiceChange()">
+    <option value="-1">Loading voices...</option>
+  </select>
+  <div class="speed-group">
+    <span class="spd-label">Speed</span>
+    <button class="spd-btn" data-rate="0.6" onclick="setSpeed(0.6,this)">Slow</button>
+    <button class="spd-btn active" data-rate="0.85" onclick="setSpeed(0.85,this)">Normal</button>
+    <button class="spd-btn" data-rate="1.1" onclick="setSpeed(1.1,this)">Fast</button>
+  </div>
+  <button class="vtest" onclick="testVoice(this)">Test voice</button>
+  <span class="vsaved" id="vsaved">✓ Saved</span>
+</div>
+
+<div class="chapter-hero">
+  <div class="ch-num">Chapter 14 of 19</div>
+  <h1 class="ch-title">Punctuation:<br>The Music Notation of Writing</h1>
+  <p class="ch-sub">Every mark tells your voice what to do — pause, stop, rise, fall, emphasise</p>
+  <button class="hero-btn" onclick="readHero(this)">Listen to introduction</button>
+</div>
+
+<div class="container">
+  <div class="tabs-bar">
+    <button class="tab-btn active" onclick="showPanel('learn',this)">① Learn</button>
+    <button class="tab-btn" onclick="showPanel('marks',this)">② All Marks</button>
+    <button class="tab-btn" onclick="showPanel('reading',this)">③ Reading Aloud</button>
+    <button class="tab-btn" onclick="showPanel('oxford',this)">④ Oxford Comma</button>
+    <button class="tab-btn" onclick="showPanel('practice',this)">⑤ Practice</button>
+    <button class="tab-btn" onclick="showPanel('quiz',this)">⑥ Quiz</button>
+  </div>
+
+  <!-- ① LEARN -->
+  <div class="panel active" id="panel-learn">
+    <div class="sb gl">
+      <div class="sec-num">14.1</div>
+      <div class="sec-title">What Punctuation Does
+        <button class="listen-btn" onclick="speakBtn('Section 14.1. What Punctuation Does.',this)">Listen to title</button>
+      </div>
+      <div class="sec-body">
+        <p>Punctuation does for writing what <strong>breathing, pausing, and intonation</strong> do for speech. It tells the reader when to pause, when to stop, how to group ideas, and what kind of emphasis or emotion is intended.</p>
+        <p>A sentence without punctuation is like music without rests — technically possible, but exhausting and often impossible to understand.</p>
+      </div>
+      <button class="big-listen" onclick="speakBtn('Punctuation does for writing what breathing, pausing, and intonation do for speech. It tells the reader when to pause, when to stop, how to group ideas, and what kind of emphasis or emotion is intended. A sentence without punctuation is like music without rests — technically possible, but exhausting and often impossible to understand.',this)">Listen to explanation</button>
+    </div>
+
+    <div class="sb rl">
+      <div class="sec-num">The Big Idea</div>
+      <div class="sec-title">Punctuation Is Voice on the Page
+        <button class="listen-btn" onclick="speakBtn('The Big Idea. Punctuation is voice on the page.',this)">Listen to title</button>
+      </div>
+      <div class="callout">
+        When you read aloud, punctuation tells your voice exactly what to do:<br><br>
+        <strong>Period</strong> → full stop, voice drops. &nbsp;<strong>Comma</strong> → brief pause, stay level.<br>
+        <strong>Question Mark</strong> → voice rises at end. &nbsp;<strong>Exclamation Mark</strong> → voice intensifies.<br>
+        <strong>Colon</strong> → pause with anticipation. &nbsp;<strong>Dash</strong> → noticeable pivot pause.
+      </div>
+      <button class="big-listen" onclick="speakBtn('The Big Idea. Punctuation is voice on the page. When you read aloud, every mark tells your voice what to do. A period means: full stop, drop your voice. A comma means: brief pause, stay level. A question mark means: voice rises at the end. An exclamation mark means: voice rises or intensifies. A colon means: pause with anticipation — something important follows. A dash means: a noticeable pause, often signalling a pivot or addition.',this)">Listen to the Big Idea</button>
+    </div>
+
+    <div class="sb fl">
+      <div class="sec-num">Chapter Goals</div>
+      <div class="sec-title">What You Will Master
+        <button class="listen-btn" onclick="speakBtn('Chapter Goals.',this)">Listen to title</button>
+      </div>
+      <div style="margin-top:10px;">
+        <div class="step-row"><span class="step-n">✓</span>All 12 punctuation marks — uses and examples</div>
+        <div class="step-row"><span class="step-n">✓</span>How each mark affects your reading voice</div>
+        <div class="step-row"><span class="step-n">✓</span>The Oxford comma — what it is and why it matters</div>
+        <div class="step-row"><span class="step-n">✓</span>Reading passages with correct vocal punctuation</div>
+      </div>
+      <button class="big-listen" onclick="speakBtn('By the end of this chapter you will master: all 12 punctuation marks, their uses and examples. How each mark affects your reading voice when you read aloud. The Oxford comma — what it is and why it prevents ambiguity. And practice reading passages with correct vocal punctuation.',this)">Listen to goals</button>
+    </div>
+  </div>
+
+  <!-- ② ALL MARKS -->
+  <div class="panel" id="panel-marks">
+    <div class="sb gl">
+      <div class="sec-num">14.2 — Complete Reference</div>
+      <div class="sec-title">All 12 Punctuation Marks
+        <button class="listen-btn" onclick="speakBtn('All 12 punctuation marks. Tap any card to hear the mark, its use, and an example read aloud.',this)">Listen to title</button>
+      </div>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:1rem;">Tap any card to hear the mark explained and its example read aloud.</p>
+      <button class="big-listen" onclick="speakBtn('Complete punctuation reference. Tap any card to hear the mark, its use, and an example sentence read aloud.',this)">Listen to instructions</button>
+    </div>
+    <div class="punct-grid" id="punct-grid"></div>
+  </div>
+
+  <!-- ③ READING ALOUD -->
+  <div class="panel" id="panel-reading">
+    <div class="sb gl">
+      <div class="sec-num">14.4 — Punctuation in Reading</div>
+      <div class="sec-title">How Punctuation Guides Your Voice
+        <button class="listen-btn" onclick="speakBtn('Section 14.4. Punctuation in Reading. How each mark guides your voice when you read aloud.',this)">Listen to title</button>
+      </div>
+      <div class="sec-body"><p>When reading aloud, punctuation is your conductor. Every mark is an instruction to your voice. Tap any row to hear how to deliver that mark.</p></div>
+      <button class="big-listen" onclick="speakBtn('When reading aloud, punctuation is your conductor. Every mark is a precise instruction to your voice. A period or semicolon means: full pause, drop your voice slightly. A comma means: brief pause, voice stays level. A question mark means: brief pause, voice rises at the end. An exclamation mark means: full pause, voice rises or intensifies. A colon means: pause with anticipation — something follows. A dash means: noticeable pause, can signal a pivot or addition. An ellipsis means: slow, trailing pause, voice fades. Parentheses mean: read the enclosed text slightly faster and quieter.',this)">Listen to all voice instructions</button>
+    </div>
+    <div class="sb bl">
+      <div class="sec-num">Voice Guide Table — Tap Any Row</div>
+      <table class="read-table" id="read-table">
+        <thead><tr><th style="width:60px;">Mark</th><th>Name</th><th>How to Read It</th></tr></thead>
+        <tbody id="read-body"></tbody>
+      </table>
+    </div>
+    <div class="sb fl">
+      <div class="sec-num">Voice Practice — Read These Aloud</div>
+      <div class="sec-title">Let the Marks Guide Your Voice
+        <button class="listen-btn" onclick="speakBtn('Read each sentence aloud. Let the punctuation marks guide your voice — where to pause, where to stop, when to rise, when to intensify. Tap any sentence to hear it modelled.',this)">Listen to instructions</button>
+      </div>
+      <div id="voice-practice"></div>
+    </div>
+  </div>
+
+  <!-- ④ OXFORD COMMA -->
+  <div class="panel" id="panel-oxford">
+    <div class="sb gl">
+      <div class="sec-num">14.3 — The Oxford Comma</div>
+      <div class="sec-title">The Comma That Prevents Confusion
+        <button class="listen-btn" onclick="speakBtn('Section 14.3. The Oxford Comma. The comma that prevents confusion.',this)">Listen to title</button>
+      </div>
+      <div class="sec-body">
+        <p>The Oxford comma (also called the serial comma) is the <strong>final comma in a list</strong>, placed before the word "and" or "or". Its use is debated — but in academic, professional, and formal writing it is strongly recommended because it <strong>prevents ambiguity</strong>.</p>
+      </div>
+      <button class="big-listen" onclick="speakBtn('The Oxford comma. Also called the serial comma. It is the final comma in a list, placed before the word and or or. Some people leave it out. But in academic, professional, and formal writing it is strongly recommended because it prevents ambiguity. Without it, a list can be misread in ways the writer never intended.',this)">Listen to explanation</button>
+    </div>
+    <div class="sb bl">
+      <div class="sec-num">See the Difference — Tap Either Card</div>
+      <div class="sec-title">With vs Without
+        <button class="listen-btn" onclick="speakBtn('Compare the two sentences. Tap either card to hear it read aloud. Then notice how the meaning changes depending on whether the Oxford comma is present.',this)">Listen to instructions</button>
+      </div>
+      <div class="oxford-demo" id="oxford-demo"></div>
+    </div>
+    <div class="sb fl">
+      <div class="sec-num">More Oxford Comma Examples</div>
+      <div class="sec-title">Tap Any Example to Hear It
+        <button class="listen-btn" onclick="speakBtn('More examples of how the Oxford comma prevents ambiguity. Tap any example to hear it.',this)">Listen to instructions</button>
+      </div>
+      <div id="oxford-examples"></div>
+    </div>
+  </div>
+
+  <!-- ⑤ PRACTICE -->
+  <div class="panel" id="panel-practice">
+    <div class="sb fl">
+      <div class="sec-num">Practice Passages</div>
+      <div class="sec-title">Read with Correct Punctuation Voice
+        <button class="listen-btn" onclick="speakBtn('Read each passage aloud. Let every punctuation mark guide your voice. Tap any word to hear it. Tap the Read passage button to hear the whole passage modelled.',this)">Listen to instructions</button>
+      </div>
+      <div id="practice-passages"></div>
+    </div>
+    <div class="sb gl">
+      <div class="sec-num">Grand Punctuation Passage</div>
+      <div class="sec-title">All Marks in Action
+        <button class="listen-btn" id="grand-btn" onclick="readGrand(this)">Read full passage</button>
+      </div>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:1rem;">This passage uses all 12 punctuation marks. Read it three times — each time letting the marks guide your voice more precisely. Tap any word to hear it.</p>
+      <div class="grand-box" id="grand-text"></div>
+    </div>
+  </div>
+
+  <!-- ⑥ QUIZ -->
+  <div class="panel" id="panel-quiz">
+    <div class="sb gl">
+      <div class="sec-num">Chapter 14 — Assessment</div>
+      <div class="sec-title">Test Yourself
+        <button class="listen-btn" onclick="speakBtn('Chapter 14 Assessment. Tap the sentence in the box to hear it. Then answer the question about punctuation.',this)">Listen to instructions</button>
+      </div>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:1.2rem;">Tap the <strong>sentence box</strong> to hear it. Then choose the correct answer.</p>
+      <div class="quiz-card">
+        <div class="score-row">
+          <span id="score-text">Score: 0 / 0</span>
+          <div class="score-track"><div class="score-fill" id="score-fill" style="width:0%"></div></div>
+        </div>
+        <div class="quiz-prompt-row">
+          <p class="quiz-prompt" id="quiz-prompt">Loading...</p>
+          <button class="listen-btn" onclick="readQuizQuestion(this)">Listen to question</button>
+        </div>
+        <div class="quiz-display-wrap">
+          <div class="quiz-display" id="quiz-display" onclick="readQuizWord(this)">—</div>
+          <div class="quiz-display-hint">Tap the sentence above to hear it</div>
+        </div>
+        <div class="quiz-opts" id="quiz-opts"></div>
+        <div class="quiz-fb" id="quiz-fb"></div>
+        <button class="next-btn" id="next-btn" onclick="nextQ()">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="ch-nav">
+    <a class="nav-lnk" href="chapter-13.html">← Chapter 13: Sentence Mechanics</a>
+    <span class="phase-badge">Phase 3 — Architecture of Meaning</span>
+    <a class="nav-lnk next" href="chapter-15.html">Chapter 15: Paragraph Structure →</a>
+  </div>
+</div>
+
+<script>
+let voices=[],selectedVoiceIndex=-1,speechRate=0.85;
+function loadVoices(){
+  voices=window.speechSynthesis.getVoices();
+  const sel=document.getElementById('voice-select');
+  if(!voices.length)return;
+  const eng=voices.filter(v=>v.lang.startsWith('en'));
+  sel.innerHTML='<option value="-1">🔊 Browser default</option>';
+  eng.forEach(v=>{const idx=voices.indexOf(v);const o=document.createElement('option');o.value=idx;o.textContent=v.name+' ('+v.lang+')'+(v.localService?' ★':'');sel.appendChild(o);});
+  const sv=localStorage.getItem('rbVoiceIndex'),sr=localStorage.getItem('rbSpeechRate');
+  if(sv!=null){sel.value=sv;selectedVoiceIndex=parseInt(sv);}
+  if(sr!=null){speechRate=parseFloat(sr);document.querySelectorAll('.spd-btn').forEach(b=>b.classList.toggle('active',parseFloat(b.getAttribute('data-rate'))===speechRate));}
+}
+function onVoiceChange(){selectedVoiceIndex=parseInt(document.getElementById('voice-select').value);localStorage.setItem('rbVoiceIndex',selectedVoiceIndex);showSaved();}
+function setSpeed(r,btn){speechRate=r;localStorage.setItem('rbSpeechRate',r);document.querySelectorAll('.spd-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');showSaved();}
+function showSaved(){const s=document.getElementById('vsaved');s.classList.add('show');setTimeout(()=>s.classList.remove('show'),2000);}
+function applyVoice(u){u.rate=speechRate;if(selectedVoiceIndex>=0&&voices[selectedVoiceIndex]){u.voice=voices[selectedVoiceIndex];u.lang=voices[selectedVoiceIndex].lang;}else u.lang='en-GB';}
+function speakBtn(text,btn){
+  if(!window.speechSynthesis)return;
+  window.speechSynthesis.cancel();
+  document.querySelectorAll('.speaking').forEach(b=>b.classList.remove('speaking'));
+  const u=new SpeechSynthesisUtterance(text);applyVoice(u);
+  if(btn){btn.classList.add('speaking');u.onend=()=>btn.classList.remove('speaking');u.onerror=()=>btn.classList.remove('speaking');}
+  window.speechSynthesis.speak(u);
+}
+function sayWord(word,el){
+  if(!window.speechSynthesis)return;
+  window.speechSynthesis.cancel();
+  document.querySelectorAll('.speaking').forEach(b=>b.classList.remove('speaking'));
+  if(el)el.classList.add('speaking');
+  const u=new SpeechSynthesisUtterance(word);applyVoice(u);u.rate=speechRate*0.85;
+  if(el)u.onend=()=>el.classList.remove('speaking');
+  window.speechSynthesis.speak(u);
+}
+function testVoice(btn){speakBtn('Hello. This is your selected voice. She arrived at noon; he was already waiting.',btn);}
+function readHero(btn){speakBtn('Chapter 14: Punctuation — The Music Notation of Writing. Punctuation does for writing what breathing, pausing, and intonation do for speech. Every mark is an instruction to your voice — and to the reader\'s mind.',btn);}
+function showPanel(id,btn){
+  window.speechSynthesis&&window.speechSynthesis.cancel();
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(t=>t.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// PUNCTUATION MARKS DATA
+const punctData=[
+  {sym:'.',name:'Period',color:'#B8860B',use:'Ends a declarative or imperative sentence.',ex:'She arrived at noon. Close the window.',
+   voice:'Full pause. Drop your voice slightly at the end.',
+   audio:'Period. Ends a declarative or imperative sentence. When you see a period, make a full pause and drop your voice slightly. Example: She arrived at noon. Close the window.'},
+  {sym:'?',name:'Question Mark',color:'#1A4A7A',use:'Ends an interrogative sentence.',ex:'Where is the library? Are you sure?',
+   voice:'Voice rises at the end for yes-or-no questions.',
+   audio:'Question mark. Ends an interrogative sentence. When you see a question mark, your voice rises at the end, especially for yes-or-no questions. Example: Are you sure?'},
+  {sym:'!',name:'Exclamation Mark',color:'#C0392B',use:'Ends an exclamatory sentence or shows strong emotion.',ex:'That was amazing! Look out!',
+   voice:'Full pause. Voice rises or intensifies.',
+   audio:'Exclamation mark. Shows strong emotion. When you see an exclamation mark, make a full pause with your voice rising or intensifying. Example: That was amazing!'},
+  {sym:',',name:'Comma',color:'#2C5F2E',use:'Separates items in a list, clauses, introductory elements.',ex:'I bought apples, bread, and milk. Although tired, she continued.',
+   voice:'Brief pause. Voice stays level.',
+   audio:'Comma. Makes a brief pause — your voice stays level and continues at the same pitch. Example: I bought apples, bread, and milk.'},
+  {sym:';',name:'Semicolon',color:'#6A0DAD',use:'Joins two independent clauses; separates items in a complex list.',ex:'She studied hard; she passed. He visited Paris, France; Rome, Italy.',
+   voice:'Full pause — like a period, but the thought continues.',
+   audio:'Semicolon. Joins two independent clauses. Pause like a period, but signal that the thought continues into the next clause. Example: She studied hard; she passed.'},
+  {sym:':',name:'Colon',color:'#B8860B',use:'Introduces a list, a quotation, or an explanation.',ex:'Bring three items: a pen, paper, and ruler.',
+   voice:'Pause with anticipation — something important follows.',
+   audio:'Colon. Introduces a list, explanation, or quotation. Pause with anticipation — signal to the reader that something important is coming. Example: Bring three items: a pen, paper, and ruler.'},
+  {sym:"'",name:'Apostrophe',color:'#C0392B',use:"Shows possession or marks a contraction.",ex:"The cat's bowl. It's raining. Can't stop.",
+   voice:'No pause — reads as part of the word.',
+   audio:"Apostrophe. Shows possession or marks a contraction. It is read as part of the word — no separate pause. Example: The cat's bowl. It's raining."},
+  {sym:'"…"',name:'Quotation Marks',color:'#2C5F2E',use:'Encloses direct speech or titles of short works.',ex:'She said, "I will go." The poem "Daffodils."',
+   voice:'Slight shift in tone to signal reported speech.',
+   audio:'Quotation marks. Enclose direct speech. When reading aloud, shift your tone slightly to signal that you are voicing someone else\'s words. Example: She said, "I will go."'},
+  {sym:'-',name:'Hyphen',color:'#1A4A7A',use:'Joins compound words or word parts.',ex:'mother-in-law, self-aware, twenty-three.',
+   voice:'No pause — reads the compound as one unit.',
+   audio:'Hyphen. Joins compound words. When reading aloud, read the hyphenated compound as one connected unit with no pause. Example: mother-in-law, self-aware.'},
+  {sym:'—',name:'Dash',color:'#6A0DAD',use:'Creates emphasis, introduces a sudden change, sets off an appositive.',ex:'She made her decision — and never looked back.',
+   voice:'Noticeable pause — signals a pivot or addition.',
+   audio:'Dash. Creates emphasis or introduces a pivot in thought. When you see a dash, make a noticeable pause — more than a comma, less than a period — to signal the shift. Example: She made her decision — and never looked back.'},
+  {sym:'(…)',name:'Parentheses',color:'#7A7468',use:'Encloses additional, non-essential information.',ex:'The event (first held in 1908) draws millions.',
+   voice:'Read enclosed text slightly faster and quieter.',
+   audio:'Parentheses. Enclose additional, non-essential information. When reading aloud, read the content inside the parentheses slightly faster and quieter to signal it is a side note. Example: The event, first held in 1908, draws millions.'},
+  {sym:'…',name:'Ellipsis',color:'#B8860B',use:'Indicates an omission or trailing off.',ex:'"He entered the room and…" she paused.',
+   voice:'Slow, trailing pause. Voice fades.',
+   audio:'Ellipsis. Three dots indicating an omission or trailing off. When reading aloud, slow down and let your voice fade to signal the unfinished thought. Example: He entered the room and... she paused.'},
+];
+
+function buildPunctGrid(){
+  const el=document.getElementById('punct-grid');
+  punctData.forEach(p=>{
+    const card=document.createElement('div');card.className='punct-card';card.style.borderTopColor=p.color;
+    card.innerHTML=`<div class="pc-symbol" style="color:${p.color};">${p.sym}</div>
+      <div class="pc-name" style="color:${p.color};">${p.name}</div>
+      <div class="pc-use">${p.use}</div>
+      <div class="pc-example">${p.ex}</div>
+      <div class="pc-voice">🎙 ${p.voice}</div>`;
+    card.onclick=()=>{
+      document.querySelectorAll('.punct-card.speaking').forEach(c=>c.classList.remove('speaking'));
+      card.classList.add('speaking');
+      const u=new SpeechSynthesisUtterance(p.audio);applyVoice(u);
+      u.onend=()=>card.classList.remove('speaking');
+      window.speechSynthesis.cancel();window.speechSynthesis.speak(u);
+    };
+    el.appendChild(card);
+  });
+}
+
+// READING ALOUD TABLE
+const readTableData=[
+  {sym:'.',name:'Period / Semicolon',how:'Full pause. Drop your voice slightly.',audio:'Period and semicolon: full pause, drop your voice slightly at the end.'},
+  {sym:',',name:'Comma',how:'Brief pause. Voice stays level.',audio:'Comma: brief pause. Your voice stays level and continues.'},
+  {sym:'?',name:'Question Mark',how:'Brief pause. Voice rises at the end.',audio:'Question mark: brief pause. Voice rises at the end, especially for yes-or-no questions.'},
+  {sym:'!',name:'Exclamation Mark',how:'Full pause. Voice rises or intensifies.',audio:'Exclamation mark: full pause. Voice rises or intensifies.'},
+  {sym:':',name:'Colon',how:'Pause with anticipation — something follows.',audio:'Colon: pause with anticipation — something important is about to follow.'},
+  {sym:'—',name:'Dash',how:'Noticeable pause — signals a pivot or addition.',audio:'Dash: noticeable pause. It can signal a pivot, an addition, or a dramatic emphasis.'},
+  {sym:'…',name:'Ellipsis',how:'Slow, trailing pause. Voice fades.',audio:'Ellipsis: slow down and let your voice fade away, trailing off.'},
+  {sym:'()',name:'Parentheses',how:'Read inside text slightly faster and quieter.',audio:'Parentheses: read the enclosed content slightly faster and quieter, as a side note.'},
+];
+function buildReadTable(){
+  const tbody=document.getElementById('read-body');
+  readTableData.forEach(r=>{
+    const tr=document.createElement('tr');
+    const ts=document.createElement('td');ts.className='sym-cell';ts.style.color='var(--gold)';ts.textContent=r.sym;ts.onclick=()=>speakBtn(r.audio,ts);
+    const tn=document.createElement('td');tn.className='name-cell';tn.textContent=r.name;tn.onclick=()=>speakBtn(r.name+'. '+r.how,tn);
+    const th=document.createElement('td');th.className='how-cell';th.textContent=r.how;th.onclick=()=>speakBtn(r.audio,th);
+    tr.appendChild(ts);tr.appendChild(tn);tr.appendChild(th);tbody.appendChild(tr);
+  });
+}
+
+// VOICE PRACTICE SENTENCES
+const voicePractice=[
+  {s:'She arrived at noon; he was already waiting by the door.',note:'Semicolon: full pause, thought continues'},
+  {s:'Bring three things: your notebook, your pen, and your patience.',note:'Colon: pause with anticipation before the list'},
+  {s:'The garden — overgrown and silent — had not been touched for years.',note:'Dashes: noticeable pauses framing extra information'},
+  {s:'Did she really mean it? I wasn\'t sure.',note:'Question mark: voice rises; period: full stop'},
+  {s:'The result was extraordinary!',note:'Exclamation mark: voice intensifies'},
+  {s:'"I will not stop," she said quietly, "until it is done."',note:'Quotation marks: shift tone for direct speech'},
+];
+function buildVoicePractice(){
+  const el=document.getElementById('voice-practice');
+  voicePractice.forEach((vp,i)=>{
+    const wrap=document.createElement('div');
+    wrap.style.cssText='background:#fff;border:1px solid var(--border);border-left:4px solid var(--blue);border-radius:var(--radius);padding:1rem 1.25rem;margin-bottom:10px;';
+    const sentDiv=document.createElement('div');
+    sentDiv.style.cssText='font-family:Playfair Display,serif;font-size:17px;font-weight:700;color:var(--ink);margin-bottom:6px;cursor:pointer;';
+    sentDiv.textContent=vp.s;sentDiv.onclick=()=>speakBtn(vp.s,sentDiv);
+    const noteDiv=document.createElement('div');noteDiv.style.cssText='font-size:12px;color:var(--muted);font-style:italic;margin-bottom:6px;';
+    noteDiv.textContent='🎙 '+vp.note;
+    const btn=document.createElement('button');btn.className='listen-btn';
+    btn.textContent='Hear it read';btn.onclick=()=>speakBtn(vp.s,btn);
+    wrap.appendChild(sentDiv);wrap.appendChild(noteDiv);wrap.appendChild(btn);
+    el.appendChild(wrap);
+  });
+}
+
+// OXFORD COMMA
+function buildOxfordDemo(){
+  const el=document.getElementById('oxford-demo');
+  const bad=document.createElement('div');bad.className='oxford-card oxford-bad';
+  bad.innerHTML=`<div class="oxford-label" style="color:var(--rust);">✗ Without Oxford Comma</div>
+    <div class="oxford-sent">"I love my parents, Lady Gaga and the Pope."</div>
+    <div class="oxford-note">Ambiguous — are Lady Gaga and the Pope your parents?</div>`;
+  bad.onclick=()=>{
+    document.querySelectorAll('.oxford-card.speaking').forEach(c=>c.classList.remove('speaking'));
+    bad.classList.add('speaking');
+    const u=new SpeechSynthesisUtterance('Without Oxford comma: I love my parents, Lady Gaga and the Pope. This is ambiguous — it sounds like Lady Gaga and the Pope might be your parents.');
+    applyVoice(u);u.onend=()=>bad.classList.remove('speaking');window.speechSynthesis.cancel();window.speechSynthesis.speak(u);
+  };
+  const good=document.createElement('div');good.className='oxford-card oxford-good';
+  good.innerHTML=`<div class="oxford-label" style="color:var(--forest);">✓ With Oxford Comma</div>
+    <div class="oxford-sent">"I love my parents, Lady Gaga, and the Pope."</div>
+    <div class="oxford-note">Clear — four separate items in the list.</div>`;
+  good.onclick=()=>{
+    document.querySelectorAll('.oxford-card.speaking').forEach(c=>c.classList.remove('speaking'));
+    good.classList.add('speaking');
+    const u=new SpeechSynthesisUtterance('With Oxford comma: I love my parents, Lady Gaga, and the Pope. This is clear — four separate items in the list.');
+    applyVoice(u);u.onend=()=>good.classList.remove('speaking');window.speechSynthesis.cancel();window.speechSynthesis.speak(u);
+  };
+  el.appendChild(bad);el.appendChild(good);
+}
+
+const oxfordExamples=[
+  {bad:'We invited the teachers, Obama and the Queen.',good:'We invited the teachers, Obama, and the Queen.',note:'Without Oxford comma, it could sound like Obama and the Queen are the teachers.'},
+  {bad:'I had eggs, toast and orange juice.',good:'I had eggs, toast, and orange juice.',note:'With Oxford comma it is clear there are three separate items.'},
+  {bad:'This book is dedicated to my parents, God and Ayn Rand.',good:'This book is dedicated to my parents, God, and Ayn Rand.',note:'Without Oxford comma, it appears God and Ayn Rand are the author\'s parents.'},
+];
+function buildOxfordExamples(){
+  const el=document.getElementById('oxford-examples');
+  oxfordExamples.forEach(ex=>{
+    const wrap=document.createElement('div');wrap.style.cssText='background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.1rem 1.25rem;margin-bottom:10px;';
+    const bad=document.createElement('div');bad.style.cssText='font-family:Playfair Display,serif;font-size:15px;color:var(--rust);cursor:pointer;margin-bottom:5px;';
+    bad.textContent='✗ '+ex.bad;bad.onclick=()=>speakBtn(ex.bad,bad);
+    const good=document.createElement('div');good.style.cssText='font-family:Playfair Display,serif;font-size:15px;color:var(--forest);cursor:pointer;margin-bottom:5px;';
+    good.textContent='✓ '+ex.good;good.onclick=()=>speakBtn(ex.good,good);
+    const note=document.createElement('div');note.style.cssText='font-size:12px;color:var(--muted);font-style:italic;';note.textContent=ex.note;
+    const btn=document.createElement('button');btn.className='listen-btn';btn.style.marginTop='6px';
+    btn.textContent='Hear both versions';btn.onclick=()=>speakBtn('Without Oxford comma: '+ex.bad+'. With Oxford comma: '+ex.good+'. '+ex.note,btn);
+    wrap.appendChild(bad);wrap.appendChild(good);wrap.appendChild(note);wrap.appendChild(btn);el.appendChild(wrap);
+  });
+}
+
+// PRACTICE PASSAGES
+const practicePassages=[
+  {label:'Commas, Periods and Question Marks',text:'She bought apples, bread, and milk. Was it enough? She thought so. After all, the party was small.',audio:'She bought apples, bread, and milk. Was it enough? She thought so. After all, the party was small.'},
+  {label:'Semicolons and Colons',text:'She had one goal: to finish first. The others had given up; she had not. Her secret was simple: she never stopped.',audio:'She had one goal: to finish first. The others had given up; she had not. Her secret was simple: she never stopped.'},
+  {label:'Dashes, Parentheses and Ellipsis',text:'The old house — silent and dark — had stood for a century. Its owner (long since gone) had left no note. "What happened?" I thought. "Was it…?"',audio:'The old house — silent and dark — had stood for a century. Its owner, long since gone, had left no note. What happened? I thought. Was it?'},
+];
+function buildPracticePassages(){
+  const el=document.getElementById('practice-passages');
+  practicePassages.forEach(pp=>{
+    const wrap=document.createElement('div');wrap.style.marginBottom='1.4rem';
+    const lbl=document.createElement('div');lbl.style.cssText='font-size:11px;font-weight:700;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;';lbl.textContent=pp.label;
+    const box=document.createElement('div');box.className='ct-box';
+    pp.text.split(' ').forEach(w=>{
+      const clean=w.replace(/[^a-zA-Z]/g,'');
+      const span=document.createElement('span');span.className='ct-word';span.textContent=w+' ';
+      span.onclick=()=>sayWord(clean||w,span);box.appendChild(span);
+    });
+    const btn=document.createElement('button');btn.className='listen-btn';btn.style.marginTop='8px';
+    btn.textContent='Read passage';btn.onclick=()=>speakBtn(pp.audio,btn);
+    wrap.appendChild(lbl);wrap.appendChild(box);wrap.appendChild(btn);el.appendChild(wrap);
+  });
+}
+
+// GRAND PASSAGE
+const grandPassage='She opened the letter — her hands trembling slightly — and read. "Dear Maria," it began, "we regret to inform you that your application, although impressive, has not been successful this time." She set it down. The words, which she had half-expected, still stung. She thought of all the work: the late nights, the revisions, the hope. What now? She stood, walked to the window, and looked out. The city moved below her; life continued, indifferent. She took a breath. She would try again.';
+function buildGrandText(){
+  const el=document.getElementById('grand-text');
+  grandPassage.split(' ').forEach(w=>{
+    const clean=w.replace(/[^a-zA-Z]/g,'');
+    const span=document.createElement('span');span.className='word-tap';span.textContent=w+' ';
+    span.onclick=()=>sayWord(clean||w,span);el.appendChild(span);
+  });
+}
+function readGrand(btn){speakBtn(grandPassage,btn);}
+
+// QUIZ
+const quizData=[
+  {q:'What does a period tell your voice to do when reading aloud?',d:'She arrived at noon.',correct:'Full pause — drop your voice slightly at the end',opts:['Full pause — drop your voice slightly at the end','Brief pause — voice stays level','Voice rises at the end','Voice intensifies']},
+  {q:'What does a comma tell your voice to do?',d:'I bought apples, bread, and milk.',correct:'Brief pause — voice stays level',opts:['Brief pause — voice stays level','Full pause — drop your voice','Voice rises at the end','Long trailing pause — voice fades']},
+  {q:'What punctuation mark ends a question?',d:'Where are you going?',correct:'Question mark — voice rises at the end',opts:['Question mark — voice rises at the end','Period — full stop','Exclamation mark — voice intensifies','Comma — brief pause']},
+  {q:'What is the purpose of a semicolon?',d:'She studied; she passed.',correct:'Joins two independent clauses with a full pause',opts:['Joins two independent clauses with a full pause','Makes a brief pause like a comma','Introduces a list','Shows possession']},
+  {q:'What does a colon do?',d:'Bring three items: pen, paper, ruler.',correct:'Introduces a list, explanation, or quotation',opts:['Introduces a list, explanation, or quotation','Joins two independent clauses','Shows possession','Marks a contraction']},
+  {q:'What is the Oxford comma?',d:'apples, bread, and milk',correct:'The final comma in a list before "and" or "or"',opts:['The final comma in a list before "and" or "or"','A comma after a question mark','A comma used only in formal writing','A comma that replaces a semicolon']},
+  {q:'What does a dash signal when reading aloud?',d:'She left — and never returned.',correct:'A noticeable pause — signals a pivot or addition',opts:['A noticeable pause — signals a pivot or addition','A brief pause like a comma','A full stop like a period','A rising voice like a question mark']},
+  {q:'What does an ellipsis signal?',d:'He entered the room and...',correct:'A slow trailing pause — voice fades',opts:['A slow trailing pause — voice fades','A full stop','A strong emphasis','A list is following']},
+  {q:'How should you read text inside parentheses?',d:'The event (held since 1908) draws millions.',correct:'Slightly faster and quieter — it is a side note',opts:['Slightly faster and quieter — it is a side note','Louder and slower for emphasis','With a rising voice','With a full pause before and after']},
+  {q:'What punctuation mark shows possession?',d:"the cat's bowl",correct:"Apostrophe — shows the bowl belongs to the cat",opts:["Apostrophe — shows the bowl belongs to the cat","Comma — separates items","Hyphen — joins compound words","Colon — introduces information"]},
+];
+let qi=0,score=0,answered=false,currentQ=null;
+const shuffle=a=>a.sort(()=>Math.random()-.5);
+let order=shuffle([...Array(quizData.length).keys()]);
+function readQuizQuestion(btn){if(currentQ)speakBtn(currentQ.q,btn);}
+function readQuizWord(el){if(currentQ)speakBtn(currentQ.d,el);}
+function renderQ(){
+  answered=false;currentQ=quizData[order[qi]];
+  document.getElementById('quiz-prompt').textContent=currentQ.q;
+  const disp=document.getElementById('quiz-display');disp.textContent=currentQ.d;disp.classList.remove('speaking');
+  const opts=document.getElementById('quiz-opts');opts.innerHTML='';
+  shuffle([...currentQ.opts]).forEach(opt=>{
+    const b=document.createElement('button');b.className='q-opt';b.textContent=opt;
+    b.onclick=()=>checkQ(opt,currentQ.correct,b);opts.appendChild(b);
+  });
+  document.getElementById('quiz-fb').style.display='none';
+  document.getElementById('next-btn').style.display='none';
+  setTimeout(()=>speakBtn(currentQ.q+'. The example is: '+currentQ.d,null),350);
+}
+function checkQ(chosen,correct,btn){
+  if(answered)return;answered=true;
+  const fb=document.getElementById('quiz-fb');
+  if(chosen===correct){score++;btn.classList.add('correct');fb.className='quiz-fb ok';fb.textContent='✓ Correct! '+correct;}
+  else{btn.classList.add('wrong');document.querySelectorAll('.q-opt').forEach(b=>{if(b.textContent===correct)b.classList.add('correct');});fb.className='quiz-fb err';fb.textContent='✗ The correct answer is: '+correct;}
+  fb.style.display='block';
+  speakBtn(fb.textContent.replace('✓ ','').replace('✗ The correct answer is: ','The correct answer is: '),null);
+  document.getElementById('next-btn').style.display='inline-block';
+  const t=qi+1;
+  document.getElementById('score-text').textContent='Score: '+score+' / '+t;
+  document.getElementById('score-fill').style.width=Math.round(score/t*100)+'%';
+}
+function nextQ(){qi++;if(qi>=order.length){qi=0;score=0;order=shuffle([...Array(quizData.length).keys()]);}renderQ();}
+
+// INIT
+if(window.speechSynthesis){if(speechSynthesis.onvoiceschanged!==undefined)speechSynthesis.onvoiceschanged=loadVoices;loadVoices();}
+buildPunctGrid();
+buildReadTable();
+buildVoicePractice();
+buildOxfordDemo();
+buildOxfordExamples();
+buildPracticePassages();
+buildGrandText();
+renderQ();
+</script>
+</body>
+</html>

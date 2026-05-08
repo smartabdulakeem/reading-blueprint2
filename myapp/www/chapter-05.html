@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 5 — Sight Words | The Reading Blueprint</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1C1A17;--paper:#FAF7F2;--cream:#F2EDE4;--gold:#B8860B;--gold-light:#F5E6B0;--rust:#C0392B;--forest:#2C5F2E;--blue:#1A4A7A;--muted:#7A7468;--border:rgba(28,26,23,0.12);--radius:10px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:var(--ink);min-height:100vh;}
+
+/* VOICE BAR */
+.voice-bar{background:var(--ink);padding:8px 1.5rem;display:flex;align-items:center;gap:10px;flex-wrap:wrap;position:sticky;top:0;z-index:200;box-shadow:0 2px 12px rgba(28,26,23,0.3);}
+.vb-brand{font-family:'Playfair Display',serif;color:var(--gold);font-size:13px;letter-spacing:1.5px;text-transform:uppercase;flex-shrink:0;margin-right:6px;}
+.vb-label{font-size:11px;font-weight:700;color:rgba(255,255,255,0.4);letter-spacing:1.5px;text-transform:uppercase;white-space:nowrap;flex-shrink:0;}
+.voice-select{min-width:150px;max-width:260px;padding:5px 26px 5px 9px;font-family:'Source Serif 4',serif;font-size:13px;border:1px solid rgba(255,255,255,0.15);border-radius:7px;background:rgba(255,255,255,0.08);color:#fff;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23B8860B' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 9px center;}
+.voice-select option{background:#1C1A17;color:#fff;}
+.speed-group{display:flex;align-items:center;gap:4px;flex-shrink:0;}
+.spd-label{font-size:11px;font-weight:700;color:rgba(255,255,255,0.4);letter-spacing:1px;text-transform:uppercase;margin-right:3px;}
+.spd-btn{padding:4px 10px;font-family:'Source Serif 4',serif;font-size:12px;font-weight:600;border:1px solid rgba(255,255,255,0.15);border-radius:6px;background:transparent;color:rgba(255,255,255,0.5);cursor:pointer;transition:all .15s;}
+.spd-btn.active{background:var(--gold);color:var(--ink);border-color:var(--gold);}
+.spd-btn:hover:not(.active){border-color:var(--gold);color:var(--gold);}
+.vtest{display:inline-flex;align-items:center;gap:5px;padding:5px 13px;font-family:'Source Serif 4',serif;font-size:12px;font-weight:600;border:1px solid rgba(184,134,11,0.5);border-radius:16px;background:rgba(184,134,11,0.12);color:var(--gold);cursor:pointer;transition:all .15s;flex-shrink:0;}
+.vtest:hover{background:rgba(184,134,11,0.22);}
+.vtest.speaking{background:rgba(192,57,43,0.2);border-color:var(--rust);color:#ff7b6b;}
+.vtest::before{content:"▶";font-size:9px;}
+.vtest.speaking::before{content:"◼";}
+.vsaved{font-size:11px;color:var(--gold);font-style:italic;flex-shrink:0;opacity:0;transition:opacity .3s;}
+.vsaved.show{opacity:1;}
+
+/* HERO */
+.chapter-hero{background:var(--ink);padding:3rem 2rem 2.5rem;text-align:center;border-bottom:3px solid var(--gold);position:relative;overflow:hidden;}
+.chapter-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(184,134,11,0.18) 0%,transparent 70%);}
+.ch-num{font-family:'Playfair Display',serif;font-size:12px;color:var(--gold);letter-spacing:4px;text-transform:uppercase;margin-bottom:12px;position:relative;}
+.ch-title{font-family:'Playfair Display',serif;font-size:clamp(26px,5vw,44px);color:#fff;line-height:1.15;margin-bottom:10px;position:relative;}
+.ch-sub{font-size:15px;color:rgba(255,255,255,0.5);font-style:italic;margin-bottom:1.5rem;position:relative;}
+.hero-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border:1.5px solid rgba(184,134,11,0.6);border-radius:24px;background:rgba(184,134,11,0.1);color:var(--gold);font-family:'Source Serif 4',serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;position:relative;}
+.hero-btn:hover{background:rgba(184,134,11,0.2);}
+.hero-btn.speaking{background:rgba(192,57,43,0.2);border-color:var(--rust);color:#ff7b6b;}
+.hero-btn::before{content:"▶";font-size:10px;}
+.hero-btn.speaking::before{content:"◼";}
+
+/* LAYOUT */
+.container{max-width:860px;margin:0 auto;padding:2rem 1.25rem;}
+.tabs-bar{display:flex;gap:4px;margin-bottom:2rem;background:var(--cream);padding:5px;border-radius:var(--radius);border:1px solid var(--border);flex-wrap:wrap;}
+.tab-btn{flex:1;min-width:80px;padding:8px 10px;font-family:'Source Serif 4',serif;font-size:13px;font-weight:600;border:none;border-radius:7px;background:transparent;color:var(--muted);cursor:pointer;transition:all .15s;text-align:center;white-space:nowrap;}
+.tab-btn.active{background:var(--ink);color:var(--gold);}
+.tab-btn:hover:not(.active){background:rgba(28,26,23,0.06);color:var(--ink);}
+.panel{display:none;}.panel.active{display:block;}
+
+/* SECTION BLOCKS */
+.sb{background:var(--cream);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem 1.75rem;margin-bottom:1.25rem;}
+.sb.gl{border-left:4px solid var(--gold);}
+.sb.rl{border-left:4px solid var(--rust);}
+.sb.fl{border-left:4px solid var(--forest);}
+.sb.bl{border-left:4px solid var(--blue);}
+.sec-num{font-size:11px;font-weight:600;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;}
+.sec-title{font-family:'Playfair Display',serif;font-size:20px;color:var(--ink);margin-bottom:10px;line-height:1.3;display:flex;align-items:center;flex-wrap:wrap;gap:8px;}
+.sec-body{font-size:15px;line-height:1.8;color:#3A3730;}
+.sec-body p{margin-bottom:10px;}
+
+/* LISTEN BUTTONS */
+.listen-btn{display:inline-flex;align-items:center;gap:5px;padding:4px 12px;font-family:'Source Serif 4',serif;font-size:12px;font-weight:600;border:1px solid var(--border);border-radius:16px;background:#fff;color:var(--muted);cursor:pointer;transition:all .15s;flex-shrink:0;}
+.listen-btn:hover{border-color:var(--gold);color:var(--gold);}
+.listen-btn.speaking{border-color:var(--rust);color:var(--rust);background:#fff5f5;}
+.listen-btn::before{content:"▶";font-size:9px;}
+.listen-btn.speaking::before{content:"◼";}
+
+/* BIG LISTEN */
+.big-listen{display:flex;align-items:center;gap:8px;padding:10px 18px;font-family:'Source Serif 4',serif;font-size:14px;font-weight:700;border:2px solid var(--gold);border-radius:20px;background:var(--gold-light);color:var(--ink);cursor:pointer;transition:all .2s;margin-top:12px;width:fit-content;}
+.big-listen:hover{background:#EDD97A;}
+.big-listen.speaking{background:#fce4e4;border-color:var(--rust);color:var(--rust);}
+.big-listen::before{content:"🔊";font-size:14px;}
+.big-listen.speaking::before{content:"⏹";}
+
+.callout{background:var(--gold-light);border:1px solid rgba(184,134,11,0.3);border-radius:var(--radius);padding:1rem 1.25rem;margin:1rem 0;font-size:14px;line-height:1.8;}
+.step-row{display:flex;align-items:flex-start;gap:10px;padding:8px 12px;border-radius:7px;background:var(--cream);font-size:14px;margin-bottom:6px;line-height:1.6;}
+.step-n{font-size:11px;font-weight:700;color:var(--gold);width:20px;flex-shrink:0;margin-top:2px;}
+
+/* SIGHT WORD GRID */
+.sw-level-hdr{display:flex;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap;}
+.sw-level-badge{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;padding:6px 16px;border-radius:20px;flex-shrink:0;}
+.sw-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(88px,1fr));gap:8px;margin-bottom:14px;}
+.sw-card{background:#fff;border:1.5px solid var(--border);border-radius:8px;padding:10px 6px;text-align:center;cursor:pointer;transition:all .15s;user-select:none;position:relative;}
+.sw-card:hover{border-color:var(--gold);background:var(--gold-light);transform:translateY(-2px);box-shadow:0 4px 12px rgba(184,134,11,0.15);}
+.sw-card.speaking{border-color:var(--rust);background:#fff5f5;}
+.sw-card.mastered{border-color:var(--forest);background:#EAF3DE;}
+.sw-card.mastered::after{content:"✓";position:absolute;top:3px;right:5px;font-size:10px;color:var(--forest);font-weight:700;}
+.sw-word{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--ink);}
+.sw-card.speaking .sw-word{color:var(--rust);}
+.sw-card.mastered .sw-word{color:var(--forest);}
+.sw-read-all{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;font-family:'Source Serif 4',serif;font-size:13px;font-weight:700;border:1.5px solid var(--ink);border-radius:20px;background:var(--ink);color:var(--gold);cursor:pointer;transition:all .15s;margin-bottom:10px;}
+.sw-read-all:hover{opacity:0.85;}
+.sw-read-all.speaking{background:var(--rust);border-color:var(--rust);}
+.sw-mastered-bar{font-size:12px;color:var(--muted);margin-bottom:8px;}
+
+/* FLASHCARD MODE */
+.flashcard-wrap{text-align:center;padding:1.5rem 0;}
+.fc-card{background:var(--ink);border-radius:16px;padding:3rem 2rem;margin:0 auto 1.5rem;max-width:320px;cursor:pointer;transition:all .2s;border:3px solid transparent;}
+.fc-card:hover{border-color:var(--gold);}
+.fc-card.speaking{border-color:var(--rust);}
+.fc-word{font-family:'Playfair Display',serif;font-size:64px;font-weight:700;color:var(--gold);line-height:1;}
+.fc-hint{font-size:13px;color:rgba(255,255,255,0.35);margin-top:10px;font-style:italic;}
+.fc-controls{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:1rem;}
+.fc-btn{padding:8px 18px;font-family:'Source Serif 4',serif;font-size:13px;font-weight:600;border-radius:20px;cursor:pointer;transition:all .15s;border:1.5px solid var(--border);}
+.fc-btn.prev{background:var(--cream);color:var(--muted);}
+.fc-btn.prev:hover{border-color:var(--ink);color:var(--ink);}
+.fc-btn.next{background:var(--ink);color:var(--gold);border-color:var(--ink);}
+.fc-btn.next:hover{opacity:0.85;}
+.fc-btn.mark{background:var(--forest);color:#fff;border-color:var(--forest);}
+.fc-btn.mark:hover{opacity:0.85;}
+.fc-btn.mark.done{background:#EAF3DE;color:var(--forest);border-color:var(--forest);}
+.fc-progress{font-size:13px;color:var(--muted);margin-bottom:0.5rem;}
+.fc-level-sel{display:flex;justify-content:center;gap:8px;margin-bottom:1.5rem;flex-wrap:wrap;}
+.fc-level-btn{padding:6px 16px;font-family:'Source Serif 4',serif;font-size:12px;font-weight:600;border:1.5px solid var(--border);border-radius:16px;background:var(--cream);color:var(--muted);cursor:pointer;transition:all .15s;}
+.fc-level-btn.active{background:var(--ink);color:var(--gold);border-color:var(--ink);}
+
+/* FOUR STEP METHOD */
+.method-steps{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin:1rem 0;}
+.method-step{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.2rem;text-align:center;}
+.method-step-num{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:var(--gold);margin-bottom:6px;}
+.method-step-label{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:4px;text-transform:uppercase;letter-spacing:1px;}
+.method-step-desc{font-size:13px;color:var(--muted);line-height:1.5;}
+.method-step-btn{display:inline-flex;align-items:center;gap:5px;padding:4px 12px;font-family:'Source Serif 4',serif;font-size:11px;font-weight:600;border:1px solid var(--border);border-radius:12px;background:var(--cream);color:var(--muted);cursor:pointer;transition:all .15s;margin-top:8px;}
+.method-step-btn:hover{border-color:var(--gold);color:var(--gold);}
+.method-step-btn.speaking{border-color:var(--rust);color:var(--rust);}
+.method-step-btn::before{content:"▶";font-size:8px;}
+.method-step-btn.speaking::before{content:"◼";}
+
+/* SENTENCES */
+.sent-box{background:#fff;border:1px solid var(--border);border-left:4px solid var(--forest);border-radius:var(--radius);padding:1rem 1.25rem;margin-bottom:10px;font-size:16px;line-height:2.2;display:flex;align-items:flex-start;gap:10px;}
+.sent-num{font-size:11px;font-weight:700;color:var(--gold);flex-shrink:0;margin-top:6px;min-width:18px;}
+.sent-text{flex:1;}
+.word-tap{cursor:pointer;border-radius:3px;padding:1px 2px;transition:background .1s;display:inline-block;}
+.word-tap:hover{background:var(--gold-light);}
+.word-tap.speaking{background:var(--gold-light);color:var(--gold);font-weight:600;}
+.sent-listen{flex-shrink:0;margin-top:4px;}
+
+/* GRAND PASSAGE */
+.grand-box{background:var(--ink);color:#fff;border-radius:var(--radius);padding:1.5rem 2rem;margin:1rem 0;font-size:17px;line-height:2.3;}
+.grand-box .word-tap{color:rgba(255,255,255,0.9);}
+.grand-box .word-tap:hover{background:rgba(184,134,11,0.3);}
+.grand-box .word-tap.speaking{background:rgba(184,134,11,0.4);color:var(--gold);}
+
+/* QUIZ */
+.quiz-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;max-width:580px;}
+.quiz-prompt-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:1rem;}
+.quiz-prompt{font-family:'Playfair Display',serif;font-size:17px;flex:1;line-height:1.4;}
+.quiz-display-wrap{text-align:center;margin-bottom:1.2rem;}
+.quiz-display{font-family:'Playfair Display',serif;font-size:52px;font-weight:700;color:var(--gold);padding:1rem;background:var(--cream);border-radius:var(--radius);letter-spacing:4px;display:block;width:100%;cursor:pointer;border:none;font-family:'Playfair Display',serif;}
+.quiz-display:hover{background:#EDD97A;}
+.quiz-display.speaking{background:#fce4e4;color:var(--rust);}
+.quiz-display-hint{font-size:12px;color:var(--muted);margin-top:5px;font-style:italic;}
+.quiz-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem;}
+.q-opt{padding:11px;font-family:'Source Serif 4',serif;font-size:13px;font-weight:600;border:1.5px solid var(--border);border-radius:8px;background:var(--cream);color:var(--ink);cursor:pointer;transition:all .15s;text-align:left;}
+.q-opt:hover{border-color:var(--gold);background:var(--gold-light);}
+.q-opt.correct{background:#EAF3DE;border-color:var(--forest);color:#27500A;}
+.q-opt.wrong{background:#FCEBEB;border-color:var(--rust);color:#791F1F;}
+.quiz-fb{font-size:14px;padding:10px 14px;border-radius:8px;margin-bottom:1rem;line-height:1.5;display:none;}
+.quiz-fb.ok{background:#EAF3DE;color:#27500A;}
+.quiz-fb.err{background:#FCEBEB;color:#791F1F;}
+.next-btn{padding:10px 24px;background:var(--ink);color:var(--gold);border:none;border-radius:20px;font-family:'Source Serif 4',serif;font-size:14px;font-weight:600;cursor:pointer;display:none;}
+.next-btn:hover{opacity:0.85;}
+.score-row{display:flex;align-items:center;gap:12px;margin-bottom:1.2rem;font-size:13px;color:var(--muted);}
+.score-track{flex:1;height:5px;background:var(--cream);border-radius:3px;overflow:hidden;}
+.score-fill{height:100%;background:var(--forest);border-radius:3px;transition:width .3s;}
+
+/* NAV */
+.ch-nav{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 0;border-top:1px solid var(--border);margin-top:2rem;flex-wrap:wrap;gap:10px;}
+.nav-lnk{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border:1px solid var(--border);border-radius:20px;font-size:13px;font-weight:600;color:var(--muted);background:var(--cream);text-decoration:none;transition:all .15s;}
+.nav-lnk:hover{border-color:var(--ink);color:var(--ink);}
+.nav-lnk.next{background:var(--ink);color:var(--gold);border-color:var(--ink);}
+.phase-badge{font-size:11px;background:var(--gold-light);color:var(--gold);border:1px solid rgba(184,134,11,0.3);padding:4px 12px;border-radius:12px;font-weight:600;}
+.home-btn{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(184,134,11,0.15);border:1.5px solid rgba(184,134,11,0.45);border-radius:8px;color:var(--gold);font-size:15px;cursor:pointer;transition:all .2s;text-decoration:none;flex-shrink:0;margin-right:4px;position:relative;}
+.home-btn:hover{background:rgba(184,134,11,0.3);border-color:var(--gold);transform:scale(1.08);}
+.home-btn::after{content:"Home";position:absolute;bottom:-26px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--gold);font-size:10px;padding:2px 7px;border-radius:4px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;border:1px solid rgba(184,134,11,0.3);}
+.home-btn:hover::after{opacity:1;}
+</style>
+</head>
+<body>
+
+<!-- VOICE BAR -->
+<div class="voice-bar">
+  <a class="home-btn" href="index.html" title="Back to Home">🏠</a>
+  <span class="vb-brand">The Reading Blueprint</span>
+  <span class="vb-label">🔊 Voice</span>
+  <select class="voice-select" id="voice-select" onchange="onVoiceChange()">
+    <option value="-1">Loading voices...</option>
+  </select>
+  <div class="speed-group">
+    <span class="spd-label">Speed</span>
+    <button class="spd-btn" data-rate="0.6" onclick="setSpeed(0.6,this)">Slow</button>
+    <button class="spd-btn active" data-rate="0.85" onclick="setSpeed(0.85,this)">Normal</button>
+    <button class="spd-btn" data-rate="1.1" onclick="setSpeed(1.1,this)">Fast</button>
+  </div>
+  <button class="vtest" onclick="testVoice(this)">Test voice</button>
+  <span class="vsaved" id="vsaved">✓ Saved</span>
+</div>
+
+<!-- HERO -->
+<div class="chapter-hero">
+  <div class="ch-num">Chapter 5 of 19</div>
+  <h1 class="ch-title">Sight Words:<br>The High-Frequency Foundation</h1>
+  <p class="ch-sub">The words that unlock the speed and flow of reading</p>
+  <button class="hero-btn" onclick="readHero(this)">Listen to introduction</button>
+</div>
+
+<div class="container">
+  <div class="tabs-bar">
+    <button class="tab-btn active" onclick="showPanel('learn',this)">① Learn</button>
+    <button class="tab-btn" onclick="showPanel('level1',this)">② Level 1</button>
+    <button class="tab-btn" onclick="showPanel('level2',this)">③ Level 2</button>
+    <button class="tab-btn" onclick="showPanel('flashcard',this)">④ Flashcards</button>
+    <button class="tab-btn" onclick="showPanel('sentences',this)">⑤ In Context</button>
+    <button class="tab-btn" onclick="showPanel('quiz',this)">⑥ Quiz</button>
+  </div>
+
+  <!-- ① LEARN -->
+  <div class="panel active" id="panel-learn">
+
+    <div class="sb gl">
+      <div class="sec-num">5.1</div>
+      <div class="sec-title">What Are Sight Words?
+        <button class="listen-btn" onclick="speakBtn('Section 5.1. What Are Sight Words?',this)">Listen to title</button>
+      </div>
+      <div class="sec-body">
+        <p>Sight words are words that appear <strong>extremely frequently</strong> in written English — so frequently that being able to read them <strong>instantly</strong>, without sounding them out, dramatically improves your reading speed and comprehension.</p>
+        <p>Some sight words follow regular phonics rules. Others contain <strong>irregular spellings</strong> that simply must be memorised.</p>
+      </div>
+      <button class="big-listen" onclick="speakBtn('Sight words are words that appear extremely frequently in written English. They appear so often that being able to read them instantly — without sounding them out — dramatically improves your reading speed and comprehension. Some sight words follow regular phonics rules. Others contain irregular spellings that must simply be memorised.',this)">Listen to explanation</button>
+    </div>
+
+    <div class="sb rl">
+      <div class="sec-num">The Big Idea</div>
+      <div class="sec-title">Why Sight Words Matter
+        <button class="listen-btn" onclick="speakBtn('The Big Idea. Why Sight Words Matter.',this)">Listen to title</button>
+      </div>
+      <div class="callout">
+        The goal is <strong>not</strong> to skip phonics and memorise everything. The goal is to have a core of <strong>instantly recognisable words</strong> so that your mental energy is freed up to decode the newer, less familiar words you encounter.<br><br>
+        Think of it this way: if you have to sound out "the", "and", "is", and "to" every time — your brain has no energy left to decode harder words. Sight words clear the runway so your brain can focus on what is new.
+      </div>
+      <button class="big-listen" onclick="speakBtn('The Big Idea. The goal is not to skip phonics and memorise everything. The goal is to have a core of instantly recognisable words so that your mental energy is freed up to decode the newer, less familiar words you encounter. Think of it this way: if you have to sound out the word "the", and the word "is", and the word "to" every single time you see them — your brain has no energy left to decode harder words. Sight words clear the runway so your brain can focus on what is new.',this)">Listen to the Big Idea</button>
+    </div>
+
+    <div class="sb fl">
+      <div class="sec-num">5.4 — The Four-Step Method</div>
+      <div class="sec-title">How to Learn a Sight Word
+        <button class="listen-btn" onclick="speakBtn('Section 5.4. The Four Step Method. How to Learn a Sight Word.',this)">Listen to title</button>
+      </div>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:1rem;">The most effective method combines multiple senses. Use all four steps for every new word. Tap each step to hear it explained.</p>
+      <div class="method-steps">
+        <div class="method-step">
+          <div class="method-step-num">1</div>
+          <div class="method-step-label">SEE IT</div>
+          <div class="method-step-desc">Look at the word carefully. Notice any unusual or irregular spelling.</div>
+          <button class="method-step-btn" onclick="speakBtn('Step 1: SEE IT. Look at the word carefully. Notice any unusual or irregular spelling. Study the shape of the word.',this)">▶ Hear step 1</button>
+        </div>
+        <div class="method-step">
+          <div class="method-step-num">2</div>
+          <div class="method-step-label">SAY IT</div>
+          <div class="method-step-desc">Say the word aloud clearly. Hear yourself say it.</div>
+          <button class="method-step-btn" onclick="speakBtn('Step 2: SAY IT. Say the word aloud clearly. Hear yourself say it. Your voice is your most powerful learning tool.',this)">▶ Hear step 2</button>
+        </div>
+        <div class="method-step">
+          <div class="method-step-num">3</div>
+          <div class="method-step-label">SPELL IT</div>
+          <div class="method-step-desc">Spell it aloud letter by letter while looking at it.</div>
+          <button class="method-step-btn" onclick="speakBtn('Step 3: SPELL IT. Spell the word aloud, letter by letter, while looking at it. This connects the visual shape of the word to the sequence of its letters.',this)">▶ Hear step 3</button>
+        </div>
+        <div class="method-step">
+          <div class="method-step-num">4</div>
+          <div class="method-step-label">WRITE IT</div>
+          <div class="method-step-desc">Write it from memory. Check your spelling. Repeat if wrong.</div>
+          <button class="method-step-btn" onclick="speakBtn('Step 4: WRITE IT. Write the word from memory. Check your spelling against the original. If you made a mistake, do all four steps again. Repetition builds mastery.',this)">▶ Hear step 4</button>
+        </div>
+      </div>
+      <button class="big-listen" onclick="speakBtn('The Four Step Method for learning any sight word. Step 1: SEE IT. Look at the word carefully and notice any unusual spelling. Step 2: SAY IT. Say the word aloud clearly. Step 3: SPELL IT. Spell it aloud letter by letter while looking at it. Step 4: WRITE IT. Write it from memory, check your spelling, and repeat the whole process if you made a mistake. Study 5 new sight words per day. Review all previously learned words each session before adding new ones.',this)">Listen to full method</button>
+    </div>
+
+    <div class="sb bl">
+      <div class="sec-num">Study Plan</div>
+      <div class="sec-title">How to Use This Chapter
+        <button class="listen-btn" onclick="speakBtn('Study Plan. How to Use This Chapter.',this)">Listen to title</button>
+      </div>
+      <div style="margin-top:10px;">
+        <div class="step-row"><span class="step-n">①</span>Go to <strong>Level 1</strong> tab. Tap each word to hear it. Use the Four Steps to learn each one.</div>
+        <div class="step-row"><span class="step-n">②</span>Go to <strong>Level 2</strong> tab. Repeat the same process.</div>
+        <div class="step-row"><span class="step-n">③</span>Use <strong>Flashcards</strong> to drill — see the word, try to say it, then tap to hear it.</div>
+        <div class="step-row"><span class="step-n">④</span>Read <strong>In Context</strong> — every sight word in real sentences. Tap any word to hear it.</div>
+        <div class="step-row"><span class="step-n">⑤</span>Take the <strong>Quiz</strong> — identify sight words and their uses.</div>
+      </div>
+      <button class="big-listen" onclick="speakBtn('Here is how to use this chapter. First, go to the Level 1 tab and tap each word to hear it. Use the Four Step Method — see it, say it, spell it, write it — for each word. Second, go to the Level 2 tab and repeat the same process. Third, use the Flashcard tab to drill — see the word, try to say it yourself, then tap to hear if you were right. Fourth, go to the In Context tab and read sight words inside real sentences. Tap any word to hear it. Fifth, take the Quiz to test yourself.',this)">Listen to study plan</button>
+    </div>
+  </div>
+
+  <!-- ② LEVEL 1 -->
+  <div class="panel" id="panel-level1">
+    <div class="sb gl">
+      <div class="sec-num">5.2 — Dolch Sight Words</div>
+      <div class="sec-title">Level 1 — Pre-Primer (40 Words)
+        <button class="listen-btn" onclick="speakBtn('Level 1. Pre-Primer Sight Words. 40 words.',this)">Listen to title</button>
+      </div>
+      <div class="sec-body">
+        <p>These 40 words account for an enormous percentage of all words a beginning reader encounters. <strong>Master these before moving to Phase 2.</strong></p>
+      </div>
+      <button class="big-listen" onclick="speakBtn('These 40 pre-primer sight words account for an enormous percentage of all words a beginning reader encounters. Your goal is to read every single one of them instantly — without having to sound them out. Tap any word to hear it. Mark it as mastered when you can say it immediately without hesitation.',this)">Listen to instructions</button>
+    </div>
+    <div class="sb bl" id="level1-section"></div>
+  </div>
+
+  <!-- ③ LEVEL 2 -->
+  <div class="panel" id="panel-level2">
+    <div class="sb gl">
+      <div class="sec-num">5.3 — Dolch Sight Words</div>
+      <div class="sec-title">Level 2 — Primer (52 Words)
+        <button class="listen-btn" onclick="speakBtn('Level 2. Primer Sight Words. 52 words.',this)">Listen to title</button>
+      </div>
+      <div class="sec-body">
+        <p>Once you have mastered Level 1, move to these 52 Primer words. Together, Levels 1 and 2 give you the foundation of fluent English reading.</p>
+      </div>
+      <button class="big-listen" onclick="speakBtn('Once you have mastered all 40 Level 1 words, move on to these 52 Primer words. Together, Level 1 and Level 2 give you the most powerful foundation for fluent English reading. Tap any word to hear it. Mark it as mastered when you can say it instantly without hesitation.',this)">Listen to instructions</button>
+    </div>
+    <div class="sb bl" id="level2-section"></div>
+  </div>
+
+  <!-- ④ FLASHCARDS -->
+  <div class="panel" id="panel-flashcard">
+    <div class="sb gl">
+      <div class="sec-num">Flashcard Drill</div>
+      <div class="sec-title">See · Try · Hear · Move On
+        <button class="listen-btn" onclick="speakBtn('Flashcard Drill. See the word. Try to say it yourself first. Then tap the card to hear it. Move to the next card.',this)">Listen to instructions</button>
+      </div>
+      <div class="sec-body">
+        <p>See the word. Try to say it yourself first. Then <strong>tap the card</strong> to hear it. This is the fastest way to build instant recognition.</p>
+      </div>
+      <button class="big-listen" onclick="speakBtn('How to use the flashcards. A word will appear on the card. Try to say it yourself first — do not tap yet. Then tap the card to hear the correct pronunciation. If you were right, mark it as mastered and move to the next card. If you were wrong, listen carefully, say it aloud three times, then move on. Regular drilling of these cards will build instant, automatic recognition.',this)">Listen to how flashcards work</button>
+    </div>
+    <div class="sb bl">
+      <div class="flashcard-wrap">
+        <div class="fc-level-sel" id="fc-level-sel">
+          <button class="fc-level-btn active" onclick="setFCLevel('all',this)">All Words</button>
+          <button class="fc-level-btn" onclick="setFCLevel('level1',this)">Level 1 Only</button>
+          <button class="fc-level-btn" onclick="setFCLevel('level2',this)">Level 2 Only</button>
+        </div>
+        <div class="fc-progress" id="fc-progress">Card 1 of 92</div>
+        <div class="fc-card" id="fc-card" onclick="speakFC()">
+          <div class="fc-word" id="fc-word">—</div>
+          <div class="fc-hint">Tap to hear this word</div>
+        </div>
+        <div class="fc-controls">
+          <button class="fc-btn prev" onclick="fcMove(-1)">← Previous</button>
+          <button class="fc-btn mark" id="fc-mark-btn" onclick="fcMark()">✓ Mastered</button>
+          <button class="fc-btn next" onclick="fcMove(1)">Next →</button>
+        </div>
+        <div style="font-size:13px;color:var(--muted);text-align:center;" id="fc-mastered-count">Mastered: 0</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑤ IN CONTEXT -->
+  <div class="panel" id="panel-sentences">
+    <div class="sb gl">
+      <div class="sec-num">5.5 — Sight Words in Context</div>
+      <div class="sec-title">Read Sight Words in Real Sentences
+        <button class="listen-btn" onclick="speakBtn('Section 5.5. Sight Words in Context. Reading sight words in complete sentences is essential for building automaticity — instant, effortless recognition.',this)">Listen to title</button>
+      </div>
+      <div class="sec-body">
+        <p>Reading sight words in complete sentences — not just in isolation — is essential for building <strong>automaticity</strong>: instant, effortless recognition.</p>
+      </div>
+      <button class="big-listen" onclick="speakBtn('Reading sight words in complete sentences, not just in isolation, is essential for building automaticity — that means instant, effortless recognition. Read each sentence aloud three times until it flows smoothly. Tap any individual word to hear it. Tap the listen button beside each sentence to hear the whole sentence read aloud.',this)">Listen to instructions</button>
+    </div>
+    <div class="sb fl">
+      <div class="sec-num">Practice Sentences — Tap Any Word or Sentence</div>
+      <div class="sec-title">Read Each Sentence Three Times
+        <button class="listen-btn" onclick="speakBtn('Read each sentence aloud three times until it flows smoothly without hesitation.',this)">Listen to instructions</button>
+      </div>
+      <div id="sentences-list" style="margin-top:1rem;"></div>
+    </div>
+    <div class="sb bl">
+      <div class="sec-num">Phase 1 Grand Assessment</div>
+      <div class="sec-title">The Phase 1 Passage
+        <button class="listen-btn" id="grand-listen-btn" onclick="readGrand(this)">Read full passage</button>
+      </div>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:1rem;">This passage uses sight words and all phonics patterns from Phase 1. Tap any word to hear it. Read it three times — each time more smoothly.</p>
+      <div class="grand-box" id="grand-text"></div>
+    </div>
+  </div>
+
+  <!-- ⑥ QUIZ -->
+  <div class="panel" id="panel-quiz">
+    <div class="sb gl">
+      <div class="sec-num">Chapter 5 — Assessment</div>
+      <div class="sec-title">Test Yourself
+        <button class="listen-btn" onclick="speakBtn('Chapter 5 Assessment. Test yourself. The word will appear in the box. Tap the box to hear it. Then answer the question.',this)">Listen to instructions</button>
+      </div>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:1.2rem;">Tap the <strong>word box</strong> to hear the word. Then choose the correct answer.</p>
+      <div class="quiz-card">
+        <div class="score-row">
+          <span id="score-text">Score: 0 / 0</span>
+          <div class="score-track"><div class="score-fill" id="score-fill" style="width:0%"></div></div>
+        </div>
+        <div class="quiz-prompt-row">
+          <p class="quiz-prompt" id="quiz-prompt">Loading...</p>
+          <button class="listen-btn" id="quiz-q-btn" onclick="readQuizQuestion(this)">Listen to question</button>
+        </div>
+        <div class="quiz-display-wrap">
+          <div class="quiz-display" id="quiz-display" onclick="readQuizWord(this)">—</div>
+          <div class="quiz-display-hint">Tap the word above to hear it spoken aloud</div>
+        </div>
+        <div class="quiz-opts" id="quiz-opts"></div>
+        <div class="quiz-fb" id="quiz-fb"></div>
+        <button class="next-btn" id="next-btn" onclick="nextQ()">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="ch-nav">
+    <a class="nav-lnk" href="chapter-04.html">← Chapter 4: Long Vowels</a>
+    <span class="phase-badge">Phase 1 Complete — Sound Foundations</span>
+    <a class="nav-lnk next" href="chapter-06.html">Chapter 6: Blends →</a>
+  </div>
+</div>
+
+<script>
+// =========================================================
+// VOICE ENGINE
+// =========================================================
+let voices=[],selectedVoiceIndex=-1,speechRate=0.85;
+function loadVoices(){
+  voices=window.speechSynthesis.getVoices();
+  const sel=document.getElementById('voice-select');
+  if(!voices.length)return;
+  const eng=voices.filter(v=>v.lang.startsWith('en'));
+  sel.innerHTML='<option value="-1">🔊 Browser default</option>';
+  eng.forEach(v=>{
+    const idx=voices.indexOf(v);
+    const o=document.createElement('option');
+    o.value=idx;
+    o.textContent=v.name+' ('+v.lang+')'+(v.localService?' ★':'');
+    sel.appendChild(o);
+  });
+  const sv=localStorage.getItem('rbVoiceIndex'),sr=localStorage.getItem('rbSpeechRate');
+  if(sv!=null){sel.value=sv;selectedVoiceIndex=parseInt(sv);}
+  if(sr!=null){speechRate=parseFloat(sr);document.querySelectorAll('.spd-btn').forEach(b=>b.classList.toggle('active',parseFloat(b.getAttribute('data-rate'))===speechRate));}
+}
+function onVoiceChange(){selectedVoiceIndex=parseInt(document.getElementById('voice-select').value);localStorage.setItem('rbVoiceIndex',selectedVoiceIndex);showSaved();}
+function setSpeed(r,btn){speechRate=r;localStorage.setItem('rbSpeechRate',r);document.querySelectorAll('.spd-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');showSaved();}
+function showSaved(){const s=document.getElementById('vsaved');s.classList.add('show');setTimeout(()=>s.classList.remove('show'),2000);}
+function applyVoice(u){u.rate=speechRate;if(selectedVoiceIndex>=0&&voices[selectedVoiceIndex]){u.voice=voices[selectedVoiceIndex];u.lang=voices[selectedVoiceIndex].lang;}else u.lang='en-GB';}
+function speakBtn(text,btn){
+  if(!window.speechSynthesis)return;
+  window.speechSynthesis.cancel();
+  document.querySelectorAll('.speaking').forEach(b=>b.classList.remove('speaking'));
+  const u=new SpeechSynthesisUtterance(text);applyVoice(u);
+  if(btn){btn.classList.add('speaking');u.onend=()=>btn.classList.remove('speaking');u.onerror=()=>btn.classList.remove('speaking');}
+  window.speechSynthesis.speak(u);
+}
+function sayWord(word,el){
+  if(!window.speechSynthesis)return;
+  window.speechSynthesis.cancel();
+  document.querySelectorAll('.speaking').forEach(b=>b.classList.remove('speaking'));
+  if(el)el.classList.add('speaking');
+  const u=new SpeechSynthesisUtterance(word);applyVoice(u);u.rate=speechRate*0.85;
+  if(el)u.onend=()=>el.classList.remove('speaking');
+  window.speechSynthesis.speak(u);
+}
+function testVoice(btn){speakBtn('Hello. This is your selected voice. I can run and jump. We can find the two cats. She went to look for help.',btn);}
+function readHero(btn){speakBtn('Chapter 5: Sight Words — The High-Frequency Foundation. Sight words are the most common words in the English language. Learning to recognise them instantly — without sounding them out — is one of the most important steps toward becoming a fluent, confident reader.',btn);}
+function showPanel(id,btn){
+  window.speechSynthesis&&window.speechSynthesis.cancel();
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(t=>t.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// =========================================================
+// SIGHT WORD DATA
+// =========================================================
+const level1Words=['a','and','away','big','blue','can','come','down','find','for','funny','go','help','here','I','in','is','it','jump','little','look','make','me','my','not','one','play','red','run','said','see','the','three','to','two','up','we','where','yellow','you'];
+const level2Words=['all','am','are','at','ate','be','black','brown','but','came','did','do','eat','four','get','good','have','he','into','like','must','new','no','now','on','our','out','please','pretty','ran','ride','saw','say','she','so','soon','that','there','they','this','too','under','want','was','well','went','what','white','who','will','with','yes'];
+const allWords=[...level1Words,...level2Words];
+const masteredSet=new Set(JSON.parse(localStorage.getItem('rbSWMastered')||'[]'));
+function saveMastered(){localStorage.setItem('rbSWMastered',JSON.stringify([...masteredSet]));}
+
+// =========================================================
+// BUILD WORD GRID
+// =========================================================
+function buildWordGrid(words,containerId,level){
+  const el=document.getElementById(containerId);
+  // read all button
+  const hdr=document.createElement('div');hdr.className='sw-level-hdr';
+  const readAll=document.createElement('button');readAll.className='sw-read-all';
+  readAll.textContent='▶ Read all '+words.length+' words aloud';
+  readAll.onclick=()=>readAllWords(words,readAll);
+  const masteredBar=document.createElement('div');masteredBar.className='sw-mastered-bar';
+  masteredBar.id=level+'-mastered-bar';
+  updateMasteredBar(words,level);
+  hdr.appendChild(readAll);hdr.appendChild(masteredBar);
+  el.appendChild(hdr);
+
+  const grid=document.createElement('div');grid.className='sw-grid';
+  words.forEach(w=>{
+    const card=document.createElement('div');
+    card.className='sw-card'+(masteredSet.has(w)?' mastered':'');
+    card.id='swcard-'+w;
+    const wEl=document.createElement('div');wEl.className='sw-word';wEl.textContent=w;
+    card.appendChild(wEl);
+    card.onclick=()=>{
+      sayWord(w,card);
+    };
+    card.ondblclick=()=>{
+      if(masteredSet.has(w)){masteredSet.delete(w);card.classList.remove('mastered');}
+      else{masteredSet.add(w);card.classList.add('mastered');}
+      saveMastered();updateMasteredBar(words,level);updateFCMasteredCount();
+    };
+    grid.appendChild(card);
+  });
+  el.appendChild(grid);
+
+  const hint=document.createElement('p');
+  hint.style.cssText='font-size:12px;color:var(--muted);margin-top:4px;font-style:italic;';
+  hint.textContent='Tap once to hear a word · Double-tap to mark it as mastered (✓)';
+  el.appendChild(hint);
+}
+function updateMasteredBar(words,level){
+  const el=document.getElementById(level+'-mastered-bar');
+  if(!el)return;
+  const count=words.filter(w=>masteredSet.has(w)).length;
+  el.textContent='Mastered: '+count+' / '+words.length;
+}
+function readAllWords(words,btn){
+  if(!window.speechSynthesis)return;
+  window.speechSynthesis.cancel();
+  btn.classList.add('speaking');
+  const text=words.join('. ');
+  const u=new SpeechSynthesisUtterance(text);
+  applyVoice(u);u.rate=speechRate*0.8;
+  u.onend=()=>btn.classList.remove('speaking');
+  u.onerror=()=>btn.classList.remove('speaking');
+  window.speechSynthesis.speak(u);
+}
+
+// =========================================================
+// FLASHCARD ENGINE
+// =========================================================
+let fcWords=[...allWords];let fcIdx=0;let fcMastered=new Set([...masteredSet]);
+function setFCLevel(level,btn){
+  document.querySelectorAll('.fc-level-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  if(level==='level1')fcWords=[...level1Words];
+  else if(level==='level2')fcWords=[...level2Words];
+  else fcWords=[...allWords];
+  fcIdx=0;renderFC();
+}
+function renderFC(){
+  const w=fcWords[fcIdx];
+  document.getElementById('fc-word').textContent=w;
+  document.getElementById('fc-progress').textContent='Card '+(fcIdx+1)+' of '+fcWords.length;
+  const markBtn=document.getElementById('fc-mark-btn');
+  if(masteredSet.has(w)){markBtn.textContent='✓ Mastered';markBtn.classList.add('done');}
+  else{markBtn.textContent='Mark as mastered';markBtn.classList.remove('done');}
+  updateFCMasteredCount();
+  // auto-speak after short delay
+  setTimeout(()=>sayWord(w,document.getElementById('fc-card')),400);
+}
+function speakFC(){sayWord(fcWords[fcIdx],document.getElementById('fc-card'));}
+function fcMove(dir){
+  fcIdx=(fcIdx+dir+fcWords.length)%fcWords.length;
+  renderFC();
+}
+function fcMark(){
+  const w=fcWords[fcIdx];
+  if(masteredSet.has(w)){masteredSet.delete(w);}
+  else{masteredSet.add(w);}
+  saveMastered();
+  // update card in word grid if visible
+  const card=document.getElementById('swcard-'+w);
+  if(card){if(masteredSet.has(w))card.classList.add('mastered');else card.classList.remove('mastered');}
+  updateMasteredBar(level1Words,'level1');
+  updateMasteredBar(level2Words,'level2');
+  renderFC();
+}
+function updateFCMasteredCount(){
+  const count=fcWords.filter(w=>masteredSet.has(w)).length;
+  document.getElementById('fc-mastered-count').textContent='Mastered: '+count+' / '+fcWords.length;
+}
+
+// =========================================================
+// SENTENCES
+// =========================================================
+const sentenceData=[
+  'I can run and jump.',
+  'The big red dog said no.',
+  'Come and play with me.',
+  'We can find the two cats.',
+  'She went to look for help.',
+  'He said he was not here.',
+  'What did you make for me?',
+  'All of us want to go out and play.',
+  'The little blue bird can fly and sing.',
+  'Look at me go up and down.',
+  'Do you see the funny yellow bus?',
+  'We said yes and ran to find them.',
+  'Is that one good or not?',
+  'She will ride and I will run.',
+  'Come in and sit down with us.',
+];
+function buildSentences(){
+  const el=document.getElementById('sentences-list');
+  sentenceData.forEach((s,i)=>{
+    const row=document.createElement('div');row.className='sent-box';
+    const num=document.createElement('div');num.className='sent-num';num.textContent=(i+1)+'.';
+    const txt=document.createElement('div');txt.className='sent-text';
+    s.split(' ').forEach(w=>{
+      const clean=w.replace(/[^a-zA-Z]/g,'');
+      const span=document.createElement('span');span.className='word-tap';span.textContent=w+' ';
+      span.onclick=()=>sayWord(clean,span);
+      txt.appendChild(span);
+    });
+    const btn=document.createElement('button');
+    btn.className='listen-btn sent-listen';btn.textContent='Listen';
+    btn.onclick=()=>speakBtn(s,btn);
+    row.appendChild(num);row.appendChild(txt);row.appendChild(btn);
+    el.appendChild(row);
+  });
+}
+
+// =========================================================
+// GRAND PASSAGE
+// =========================================================
+const grandPassage='I can run. I can jump. Look at me go. We can find the big red cat. She said it was here. Do you see the little dog? He is funny. Come and play with me. The yellow bus went up and down the road. All of us want to be good. We will look for the two blue birds. What did you make for me? I said yes. She ran and I ran too. We can do this.';
+function buildGrandText(){
+  const el=document.getElementById('grand-text');
+  grandPassage.split(' ').forEach(w=>{
+    const clean=w.replace(/[^a-zA-Z]/g,'');
+    const span=document.createElement('span');span.className='word-tap';span.textContent=w+' ';
+    span.onclick=()=>sayWord(clean,span);
+    el.appendChild(span);
+  });
+}
+function readGrand(btn){speakBtn(grandPassage,btn);}
+
+// =========================================================
+// QUIZ
+// =========================================================
+const quizData=[
+  {q:'What are sight words?',d:'the · and · is',correct:'Words so common they should be recognised instantly',opts:['Words so common they should be recognised instantly','Words that are very long and difficult','Words that always follow phonics rules','Words used only in stories']},
+  {q:'Which of these is a Level 1 sight word?',d:'jump',correct:'jump — it is a Dolch pre-primer word',opts:['jump — it is a Dolch pre-primer word','photograph — it is too complex','between — it is a higher level word','construct — it is a content word']},
+  {q:'What is the goal of learning sight words?',d:'the · for · to',correct:'To free up mental energy for decoding harder words',opts:['To free up mental energy for decoding harder words','To replace phonics instruction entirely','To memorise every word in the dictionary','To learn to spell perfectly']},
+  {q:'What does Step 2 of the Four-Step Method say to do?',d:'SAY IT',correct:'Say the word aloud clearly',opts:['Say the word aloud clearly','Write the word from memory','Spell it letter by letter','Look at the word carefully']},
+  {q:'Is this a sight word you should know by now?',d:'said',correct:'Yes — said is a Level 1 Dolch word',opts:['Yes — said is a Level 1 Dolch word','No — it is too advanced for Phase 1','No — it follows all phonics rules','Yes — but only for Level 3 learners']},
+  {q:'What does Step 4 of the Four-Step Method say to do?',d:'WRITE IT',correct:'Write the word from memory and check spelling',opts:['Write the word from memory and check spelling','Look at the word carefully','Say it aloud three times','Spell it backwards']},
+  {q:'Which word is irregular — it does NOT follow phonics rules?',d:'was',correct:'was — it is pronounced "woz", not "wass"',opts:['was — it is pronounced "woz", not "wass"','big — it follows the CVC rule perfectly','run — it is a regular CVC word','jump — it follows blending rules']},
+  {q:'How many Level 1 pre-primer sight words are there?',d:'Level 1',correct:'40 words',opts:['40 words','20 words','52 words','100 words']},
+  {q:'Is this a Level 2 primer sight word?',d:'please',correct:'Yes — please is a Dolch primer word',opts:['Yes — please is a Dolch primer word','No — it is a Level 1 word','No — it is not a Dolch word','Yes — but only for advanced learners']},
+  {q:'What is automaticity in reading?',d:'the · and · is',correct:'Instant, effortless word recognition without sounding out',opts:['Instant, effortless word recognition without sounding out','Reading very slowly and carefully','Sounding out every single word','Reading only short simple books']},
+];
+let qi=0,score=0,answered=false,currentQ=null;
+const shuffle=a=>a.sort(()=>Math.random()-.5);
+let order=shuffle([...Array(quizData.length).keys()]);
+function readQuizQuestion(btn){if(currentQ)speakBtn(currentQ.q,btn);}
+function readQuizWord(el){if(currentQ)sayWord(currentQ.d,el);}
+function renderQ(){
+  answered=false;
+  currentQ=quizData[order[qi]];
+  document.getElementById('quiz-prompt').textContent=currentQ.q;
+  const disp=document.getElementById('quiz-display');disp.textContent=currentQ.d;disp.classList.remove('speaking');
+  const opts=document.getElementById('quiz-opts');opts.innerHTML='';
+  shuffle([...currentQ.opts]).forEach(opt=>{
+    const b=document.createElement('button');b.className='q-opt';b.textContent=opt;
+    b.onclick=()=>checkQ(opt,currentQ.correct,b);opts.appendChild(b);
+  });
+  document.getElementById('quiz-fb').style.display='none';
+  document.getElementById('next-btn').style.display='none';
+  setTimeout(()=>speakBtn(currentQ.q+'. The word is: '+currentQ.d,null),350);
+}
+function checkQ(chosen,correct,btn){
+  if(answered)return;answered=true;
+  const fb=document.getElementById('quiz-fb');
+  if(chosen===correct){score++;btn.classList.add('correct');fb.className='quiz-fb ok';fb.textContent='✓ Correct! '+correct;}
+  else{btn.classList.add('wrong');document.querySelectorAll('.q-opt').forEach(b=>{if(b.textContent===correct)b.classList.add('correct');});fb.className='quiz-fb err';fb.textContent='✗ The correct answer is: '+correct;}
+  fb.style.display='block';
+  speakBtn(fb.textContent.replace('✓ ','').replace('✗ The correct answer is: ','The correct answer is: '),null);
+  document.getElementById('next-btn').style.display='inline-block';
+  const t=qi+1;
+  document.getElementById('score-text').textContent='Score: '+score+' / '+t;
+  document.getElementById('score-fill').style.width=Math.round(score/t*100)+'%';
+}
+function nextQ(){qi++;if(qi>=order.length){qi=0;score=0;order=shuffle([...Array(quizData.length).keys()]);}renderQ();}
+
+// =========================================================
+// INIT
+// =========================================================
+if(window.speechSynthesis){if(speechSynthesis.onvoiceschanged!==undefined)speechSynthesis.onvoiceschanged=loadVoices;loadVoices();}
+buildWordGrid(level1Words,'level1-section','level1');
+buildWordGrid(level2Words,'level2-section','level2');
+buildSentences();
+buildGrandText();
+renderFC();
+renderQ();
+</script>
+</body>
+</html>

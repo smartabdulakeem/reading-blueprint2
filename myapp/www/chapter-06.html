@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 6 — Consonant Blends | The Reading Blueprint</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1C1A17;--paper:#FAF7F2;--cream:#F2EDE4;--gold:#B8860B;--gold-light:#F5E6B0;--rust:#C0392B;--forest:#2C5F2E;--blue:#1A4A7A;--muted:#7A7468;--border:rgba(28,26,23,0.12);--radius:10px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:var(--ink);min-height:100vh;}
+.voice-bar{background:var(--ink);padding:8px 1.5rem;display:flex;align-items:center;gap:10px;flex-wrap:wrap;position:sticky;top:0;z-index:200;box-shadow:0 2px 12px rgba(28,26,23,0.3);}
+.vb-brand{font-family:'Playfair Display',serif;color:var(--gold);font-size:13px;letter-spacing:1.5px;text-transform:uppercase;flex-shrink:0;margin-right:6px;}
+.vb-label{font-size:11px;font-weight:700;color:rgba(255,255,255,0.4);letter-spacing:1.5px;text-transform:uppercase;white-space:nowrap;flex-shrink:0;}
+.voice-select{min-width:150px;max-width:260px;padding:5px 26px 5px 9px;font-family:'Source Serif 4',serif;font-size:13px;border:1px solid rgba(255,255,255,0.15);border-radius:7px;background:rgba(255,255,255,0.08);color:#fff;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23B8860B' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 9px center;}
+.voice-select option{background:#1C1A17;color:#fff;}
+.speed-group{display:flex;align-items:center;gap:4px;flex-shrink:0;}
+.spd-label{font-size:11px;font-weight:700;color:rgba(255,255,255,0.4);letter-spacing:1px;text-transform:uppercase;margin-right:3px;}
+.spd-btn{padding:4px 10px;font-family:'Source Serif 4',serif;font-size:12px;font-weight:600;border:1px solid rgba(255,255,255,0.15);border-radius:6px;background:transparent;color:rgba(255,255,255,0.5);cursor:pointer;transition:all .15s;}
+.spd-btn.active{background:var(--gold);color:var(--ink);border-color:var(--gold);}
+.spd-btn:hover:not(.active){border-color:var(--gold);color:var(--gold);}
+.vtest{display:inline-flex;align-items:center;gap:5px;padding:5px 13px;font-family:'Source Serif 4',serif;font-size:12px;font-weight:600;border:1px solid rgba(184,134,11,0.5);border-radius:16px;background:rgba(184,134,11,0.12);color:var(--gold);cursor:pointer;transition:all .15s;flex-shrink:0;}
+.vtest:hover{background:rgba(184,134,11,0.22);}
+.vtest.speaking{background:rgba(192,57,43,0.2);border-color:var(--rust);color:#ff7b6b;}
+.vtest::before{content:"▶";font-size:9px;}
+.vtest.speaking::before{content:"◼";}
+.vsaved{font-size:11px;color:var(--gold);font-style:italic;flex-shrink:0;opacity:0;transition:opacity .3s;}
+.vsaved.show{opacity:1;}
+.chapter-hero{background:var(--ink);padding:3rem 2rem 2.5rem;text-align:center;border-bottom:3px solid var(--gold);position:relative;overflow:hidden;}
+.chapter-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(184,134,11,0.18) 0%,transparent 70%);}
+.ch-num{font-family:'Playfair Display',serif;font-size:12px;color:var(--gold);letter-spacing:4px;text-transform:uppercase;margin-bottom:12px;position:relative;}
+.ch-title{font-family:'Playfair Display',serif;font-size:clamp(26px,5vw,44px);color:#fff;line-height:1.15;margin-bottom:10px;position:relative;}
+.ch-sub{font-size:15px;color:rgba(255,255,255,0.5);font-style:italic;margin-bottom:1.5rem;position:relative;}
+.hero-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border:1.5px solid rgba(184,134,11,0.6);border-radius:24px;background:rgba(184,134,11,0.1);color:var(--gold);font-family:'Source Serif 4',serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;position:relative;}
+.hero-btn:hover{background:rgba(184,134,11,0.2);}
+.hero-btn.speaking{background:rgba(192,57,43,0.2);border-color:var(--rust);color:#ff7b6b;}
+.hero-btn::before{content:"▶";font-size:10px;}
+.hero-btn.speaking::before{content:"◼";}
+.container{max-width:860px;margin:0 auto;padding:2rem 1.25rem;}
+.tabs-bar{display:flex;gap:4px;margin-bottom:2rem;background:var(--cream);padding:5px;border-radius:var(--radius);border:1px solid var(--border);flex-wrap:wrap;}
+.tab-btn{flex:1;min-width:80px;padding:8px 10px;font-family:'Source Serif 4',serif;font-size:13px;font-weight:600;border:none;border-radius:7px;background:transparent;color:var(--muted);cursor:pointer;transition:all .15s;text-align:center;white-space:nowrap;}
+.tab-btn.active{background:var(--ink);color:var(--gold);}
+.tab-btn:hover:not(.active){background:rgba(28,26,23,0.06);color:var(--ink);}
+.panel{display:none;}.panel.active{display:block;}
+.sb{background:var(--cream);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem 1.75rem;margin-bottom:1.25rem;}
+.sb.gl{border-left:4px solid var(--gold);}
+.sb.rl{border-left:4px solid var(--rust);}
+.sb.fl{border-left:4px solid var(--forest);}
+.sb.bl{border-left:4px solid var(--blue);}
+.sec-num{font-size:11px;font-weight:600;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;}
+.sec-title{font-family:'Playfair Display',serif;font-size:20px;color:var(--ink);margin-bottom:10px;line-height:1.3;display:flex;align-items:center;flex-wrap:wrap;gap:8px;}
+.sec-body{font-size:15px;line-height:1.8;color:#3A3730;}
+.sec-body p{margin-bottom:10px;}
+.listen-btn{display:inline-flex;align-items:center;gap:5px;padding:4px 12px;font-family:'Source Serif 4',serif;font-size:12px;font-weight:600;border:1px solid var(--border);border-radius:16px;background:#fff;color:var(--muted);cursor:pointer;transition:all .15s;flex-shrink:0;}
+.listen-btn:hover{border-color:var(--gold);color:var(--gold);}
+.listen-btn.speaking{border-color:var(--rust);color:var(--rust);background:#fff5f5;}
+.listen-btn::before{content:"▶";font-size:9px;}
+.listen-btn.speaking::before{content:"◼";}
+.big-listen{display:flex;align-items:center;gap:8px;padding:10px 18px;font-family:'Source Serif 4',serif;font-size:14px;font-weight:700;border:2px solid var(--gold);border-radius:20px;background:var(--gold-light);color:var(--ink);cursor:pointer;transition:all .2s;margin-top:12px;width:fit-content;}
+.big-listen:hover{background:#EDD97A;}
+.big-listen.speaking{background:#fce4e4;border-color:var(--rust);color:var(--rust);}
+.big-listen::before{content:"🔊";font-size:14px;}
+.big-listen.speaking::before{content:"⏹";}
+.callout{background:var(--gold-light);border:1px solid rgba(184,134,11,0.3);border-radius:var(--radius);padding:1rem 1.25rem;margin:1rem 0;font-size:14px;line-height:1.8;}
+.step-row{display:flex;align-items:flex-start;gap:10px;padding:8px 12px;border-radius:7px;background:var(--cream);font-size:14px;margin-bottom:6px;line-height:1.6;}
+.step-n{font-size:11px;font-weight:700;color:var(--gold);width:20px;flex-shrink:0;margin-top:2px;}
+
+/* BLEND GROUP SECTION */
+.blend-sec{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem 1.5rem;margin-bottom:14px;}
+.blend-hdr{display:flex;align-items:center;gap:14px;margin-bottom:14px;flex-wrap:wrap;}
+.blend-badge{font-family:'Playfair Display',serif;font-size:40px;font-weight:700;line-height:1;width:80px;flex-shrink:0;text-align:center;cursor:pointer;border-radius:8px;padding:4px;transition:all .15s;}
+.blend-badge:hover{background:var(--cream);}
+.blend-badge.speaking{background:#fff5f5;}
+.blend-info{flex:1;}
+.blend-name{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:3px;}
+.blend-desc{font-size:13px;color:var(--muted);font-style:italic;margin-bottom:6px;}
+.blend-sound-btn{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;font-family:'Source Serif 4',serif;font-size:13px;font-weight:700;border:2px solid;border-radius:20px;cursor:pointer;transition:all .15s;margin-top:4px;}
+.blend-sound-btn:hover{opacity:0.8;}
+.blend-sound-btn.speaking{background:#fce4e4 !important;border-color:var(--rust) !important;color:var(--rust) !important;}
+.blend-sound-btn::before{content:"🔊 ";font-size:13px;}
+.blend-sound-btn.speaking::before{content:"⏹ ";}
+.blend-rows{margin-bottom:12px;}
+.blend-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);flex-wrap:wrap;}
+.blend-row:last-child{border-bottom:none;}
+.blend-key{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;width:52px;flex-shrink:0;cursor:pointer;padding:4px 6px;border-radius:6px;transition:all .15s;}
+.blend-key:hover{background:var(--cream);}
+.blend-key.speaking{color:var(--rust);}
+.blend-sounds{font-size:12px;color:var(--muted);width:100px;flex-shrink:0;font-style:italic;}
+.blend-words{display:flex;flex-wrap:wrap;gap:6px;flex:1;}
+.bword{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;padding:5px 10px;border:1px solid var(--border);border-radius:6px;cursor:pointer;background:var(--cream);transition:all .15s;}
+.bword:hover{border-color:var(--gold);background:var(--gold-light);}
+.bword.speaking{border-color:var(--rust);background:#fff5f5;color:var(--rust);}
+
+/* CONTROLLED TEXT */
+.ct-label{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;margin-top:1rem;}
+.ct-box{background:var(--cream);border:1px solid var(--border);border-left:4px solid var(--forest);border-radius:var(--radius);padding:1rem 1.25rem;margin:6px 0;font-size:16px;line-height:2.3;}
+.word-tap{cursor:pointer;border-radius:3px;padding:1px 2px;transition:background .1s;display:inline-block;}
+.word-tap:hover{background:var(--gold-light);}
+.word-tap.speaking{background:var(--gold-light);color:var(--gold);font-weight:600;}
+.grand-box{background:var(--ink);color:#fff;border-radius:var(--radius);padding:1.5rem 2rem;margin:1rem 0;font-size:17px;line-height:2.3;}
+.grand-box .word-tap{color:rgba(255,255,255,0.9);}
+.grand-box .word-tap:hover{background:rgba(184,134,11,0.3);}
+.grand-box .word-tap.speaking{background:rgba(184,134,11,0.4);color:var(--gold);}
+
+/* BLEND vs DIGRAPH comparison */
+.compare-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:1rem 0;}
+.cmp-card{border-radius:var(--radius);padding:1.25rem;border:2px solid;}
+.cmp-card.blend-card{background:#EAF0F8;border-color:var(--blue);}
+.cmp-card.digraph-card{background:#FFF3E0;border-color:var(--gold);}
+.cmp-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;margin-bottom:8px;}
+.cmp-example{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;margin:8px 0;cursor:pointer;display:inline-block;padding:4px 8px;border-radius:6px;transition:all .15s;}
+.cmp-example:hover{opacity:0.75;}
+.cmp-example.speaking{color:var(--rust);}
+.cmp-rule{font-size:13px;color:var(--muted);line-height:1.6;}
+
+/* QUIZ */
+.quiz-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;max-width:580px;}
+.quiz-prompt-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:1rem;}
+.quiz-prompt{font-family:'Playfair Display',serif;font-size:17px;flex:1;line-height:1.4;}
+.quiz-display-wrap{text-align:center;margin-bottom:1.2rem;}
+.quiz-display{font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:var(--gold);padding:1rem;background:var(--cream);border-radius:var(--radius);letter-spacing:4px;display:block;width:100%;cursor:pointer;border:none;}
+.quiz-display:hover{background:#EDD97A;}
+.quiz-display.speaking{background:#fce4e4;color:var(--rust);}
+.quiz-display-hint{font-size:12px;color:var(--muted);margin-top:5px;font-style:italic;}
+.quiz-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem;}
+.q-opt{padding:11px;font-family:'Source Serif 4',serif;font-size:13px;font-weight:600;border:1.5px solid var(--border);border-radius:8px;background:var(--cream);color:var(--ink);cursor:pointer;transition:all .15s;text-align:left;}
+.q-opt:hover{border-color:var(--gold);background:var(--gold-light);}
+.q-opt.correct{background:#EAF3DE;border-color:var(--forest);color:#27500A;}
+.q-opt.wrong{background:#FCEBEB;border-color:var(--rust);color:#791F1F;}
+.quiz-fb{font-size:14px;padding:10px 14px;border-radius:8px;margin-bottom:1rem;line-height:1.5;display:none;}
+.quiz-fb.ok{background:#EAF3DE;color:#27500A;}
+.quiz-fb.err{background:#FCEBEB;color:#791F1F;}
+.next-btn{padding:10px 24px;background:var(--ink);color:var(--gold);border:none;border-radius:20px;font-family:'Source Serif 4',serif;font-size:14px;font-weight:600;cursor:pointer;display:none;}
+.next-btn:hover{opacity:0.85;}
+.score-row{display:flex;align-items:center;gap:12px;margin-bottom:1.2rem;font-size:13px;color:var(--muted);}
+.score-track{flex:1;height:5px;background:var(--cream);border-radius:3px;overflow:hidden;}
+.score-fill{height:100%;background:var(--forest);border-radius:3px;transition:width .3s;}
+.ch-nav{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 0;border-top:1px solid var(--border);margin-top:2rem;flex-wrap:wrap;gap:10px;}
+.nav-lnk{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border:1px solid var(--border);border-radius:20px;font-size:13px;font-weight:600;color:var(--muted);background:var(--cream);text-decoration:none;transition:all .15s;}
+.nav-lnk:hover{border-color:var(--ink);color:var(--ink);}
+.nav-lnk.next{background:var(--ink);color:var(--gold);border-color:var(--ink);}
+.phase-badge{font-size:11px;background:var(--gold-light);color:var(--gold);border:1px solid rgba(184,134,11,0.3);padding:4px 12px;border-radius:12px;font-weight:600;}
+@media(max-width:500px){.compare-row{grid-template-columns:1fr;}}
+.home-btn{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(184,134,11,0.15);border:1.5px solid rgba(184,134,11,0.45);border-radius:8px;color:var(--gold);font-size:15px;cursor:pointer;transition:all .2s;text-decoration:none;flex-shrink:0;margin-right:4px;position:relative;}
+.home-btn:hover{background:rgba(184,134,11,0.3);border-color:var(--gold);transform:scale(1.08);}
+.home-btn::after{content:"Home";position:absolute;bottom:-26px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--gold);font-size:10px;padding:2px 7px;border-radius:4px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;border:1px solid rgba(184,134,11,0.3);}
+.home-btn:hover::after{opacity:1;}
+</style>
+</head>
+<body>
+
+<div class="voice-bar">
+  <a class="home-btn" href="index.html" title="Back to Home">🏠</a>
+  <span class="vb-brand">The Reading Blueprint</span>
+  <span class="vb-label">🔊 Voice</span>
+  <select class="voice-select" id="voice-select" onchange="onVoiceChange()">
+    <option value="-1">Loading voices...</option>
+  </select>
+  <div class="speed-group">
+    <span class="spd-label">Speed</span>
+    <button class="spd-btn" data-rate="0.6" onclick="setSpeed(0.6,this)">Slow</button>
+    <button class="spd-btn active" data-rate="0.85" onclick="setSpeed(0.85,this)">Normal</button>
+    <button class="spd-btn" data-rate="1.1" onclick="setSpeed(1.1,this)">Fast</button>
+  </div>
+  <button class="vtest" onclick="testVoice(this)">Test voice</button>
+  <span class="vsaved" id="vsaved">✓ Saved</span>
+</div>
+
+<div class="chapter-hero">
+  <div class="ch-num">Chapter 6 of 19</div>
+  <h1 class="ch-title">Consonant Blends:<br>When Sounds Work Together</h1>
+  <p class="ch-sub">L-blends · R-blends · S-blends · Three-letter blends · Final blends</p>
+  <button class="hero-btn" onclick="readHero(this)">Listen to introduction</button>
+</div>
+
+<div class="container">
+  <div class="tabs-bar">
+    <button class="tab-btn active" onclick="showPanel('learn',this)">① Learn</button>
+    <button class="tab-btn" onclick="showPanel('lblends',this)">② L-Blends</button>
+    <button class="tab-btn" onclick="showPanel('rblends',this)">③ R-Blends</button>
+    <button class="tab-btn" onclick="showPanel('sblends',this)">④ S-Blends</button>
+    <button class="tab-btn" onclick="showPanel('final',this)">⑤ Final Blends</button>
+    <button class="tab-btn" onclick="showPanel('quiz',this)">⑥ Quiz</button>
+  </div>
+
+  <!-- ① LEARN -->
+  <div class="panel active" id="panel-learn">
+
+    <div class="sb gl">
+      <div class="sec-num">6.1</div>
+      <div class="sec-title">What Is a Consonant Blend?
+        <button class="listen-btn" onclick="speakBtn('Section 6.1. What Is a Consonant Blend?',this)">Listen to title</button>
+      </div>
+      <div class="sec-body">
+        <p>A consonant blend is <strong>two or three consonants</strong> that appear together in a word, where <strong>each consonant keeps its own individual sound</strong>. The sounds are not merged — they are blended together quickly and smoothly.</p>
+      </div>
+      <button class="big-listen" onclick="speakBtn('A consonant blend is two or three consonants that appear together in a word, where each consonant keeps its own individual sound. The sounds are not merged into a new sound — they are blended together quickly and smoothly, like two singers harmonising while each maintains their own note.',this)">Listen to explanation</button>
+    </div>
+
+    <div class="sb rl">
+      <div class="sec-num">The Blend Test</div>
+      <div class="sec-title">How to Identify a Blend
+        <button class="listen-btn" onclick="speakBtn('The Blend Test. How to Identify a Blend.',this)">Listen to title</button>
+      </div>
+      <div class="callout">
+        Say the word <strong>"black"</strong> slowly: <em>/b/ ... /l/ ... /a/ ... /k/</em><br>
+        You can still hear both <strong>/b/</strong> and <strong>/l/</strong> separately. That is a blend.<br><br>
+        Now compare with a <strong>digraph</strong>: say <em>"ship"</em> — you do NOT hear /s/ and /h/ separately. You hear one new sound: <strong>/sh/</strong>. That is a digraph — not a blend.<br><br>
+        <strong>Blend = each letter keeps its sound. &nbsp;|&nbsp; Digraph = two letters make one new sound.</strong>
+      </div>
+      <button class="big-listen" onclick="speakBtn('The Blend Test. Say the word black slowly — b, l, a, k. You can still hear both the b sound and the l sound separately. That is a blend. Now compare with a digraph. Say the word ship. You do NOT hear an s sound and an h sound separately. You hear one new sound: sh. That is a digraph — not a blend. The key rule is: a blend means each letter keeps its own sound. A digraph means two letters together make one completely new sound.',this)">Listen to the Blend Test</button>
+    </div>
+
+    <div class="sb fl">
+      <div class="sec-num">Blend vs Digraph — Side by Side</div>
+      <div class="sec-title">See the Difference
+        <button class="listen-btn" onclick="speakBtn('Blend versus Digraph. Side by side comparison.',this)">Listen to title</button>
+      </div>
+      <div class="compare-row">
+        <div class="cmp-card blend-card">
+          <div class="cmp-title" style="color:var(--blue);">BLEND</div>
+          <div class="cmp-example" style="color:var(--blue);" onclick="sayWord('black',this)">black</div>
+          <button class="listen-btn" style="margin-bottom:8px;" onclick="speakBtn('black. b — l — a — k. You can hear both the b and the l separately.',this)">Hear b+l</button>
+          <div class="cmp-rule">Two or more consonants — <strong>each keeps its own sound</strong>.<br>b + l = you hear /b/ AND /l/.</div>
+        </div>
+        <div class="cmp-card digraph-card">
+          <div class="cmp-title" style="color:var(--gold);">DIGRAPH</div>
+          <div class="cmp-example" style="color:var(--gold);" onclick="sayWord('ship',this)">ship</div>
+          <button class="listen-btn" style="margin-bottom:8px;" onclick="speakBtn('ship. sh makes one new sound — sh. You do not hear s and h separately.',this)">Hear sh</button>
+          <div class="cmp-rule">Two letters — <strong>one completely new sound</strong>.<br>s + h = /sh/ — neither original sound remains.</div>
+        </div>
+      </div>
+      <button class="big-listen" onclick="speakBtn('Listen carefully to these two words. First: black. B — L — A — K. You hear two separate sounds at the start: b and l. That is a blend. Second: ship. SH — I — P. The sh at the start is one new sound — you cannot hear an s or an h separately. That is a digraph. This is one of the most important distinctions in phonics.',this)">Listen to full comparison</button>
+    </div>
+
+    <div class="sb bl">
+      <div class="sec-num">Blend Families in This Chapter</div>
+      <div class="sec-title">What You Will Learn
+        <button class="listen-btn" onclick="speakBtn('Blend Families in This Chapter. What You Will Learn.',this)">Listen to title</button>
+      </div>
+      <div style="margin-top:10px;">
+        <div class="step-row"><span class="step-n">②</span><strong>L-Blends:</strong> bl, cl, fl, gl, pl, sl — consonant + L</div>
+        <div class="step-row"><span class="step-n">③</span><strong>R-Blends:</strong> br, cr, dr, fr, gr, pr, tr — consonant + R</div>
+        <div class="step-row"><span class="step-n">④</span><strong>S-Blends:</strong> sc/sk, sm, sn, sp, st, sw + three-letter blends</div>
+        <div class="step-row"><span class="step-n">⑤</span><strong>Final Blends:</strong> nd, nk, nt, ft, lp, mp, st — blends at the END of words</div>
+      </div>
+      <button class="big-listen" onclick="speakBtn('In this chapter you will learn four families of consonant blends. L-Blends: bl, cl, fl, gl, pl, sl — these are all consonant plus L combinations. R-Blends: br, cr, dr, fr, gr, pr, tr — consonant plus R. S-Blends: sc, sk, sm, sn, sp, st, sw — and three-letter blends like str, spl, spr. And Final Blends — blends that appear at the end of words, such as nd, nk, nt, ft, mp, and st.',this)">Listen to chapter overview</button>
+    </div>
+  </div>
+
+  <!-- ② L-BLENDS -->
+  <div class="panel" id="panel-lblends">
+    <div class="sb gl">
+      <div class="sec-num">6.2 — L-Blends</div>
+      <div class="sec-title">Consonant + L
+        <button class="listen-btn" onclick="speakBtn('Section 6.2. L-Blends. Consonant plus L.',this)">Listen to title</button>
+      </div>
+      <div class="sec-body"><p>In every L-blend, you hear the first consonant AND the /l/ sound. Neither disappears.</p></div>
+      <button class="big-listen" onclick="speakBtn('L-Blends. In every L-blend, you clearly hear the first consonant AND the L sound. Neither sound disappears. For example: bl — you hear b and l. cl — you hear c and l. fl — you hear f and l. Tap each blend to hear it, then tap the words to practise.',this)">Listen to L-blend rule</button>
+    </div>
+    <div id="lblends-container"></div>
+    <div class="sb fl" style="margin-top:8px;">
+      <div class="sec-num">L-Blend Controlled Text</div>
+      <div class="sec-title">Read Aloud
+        <button class="listen-btn" id="lct-btn" onclick="speakBtn('The frog sat on a flat black rock. The glad clan clapped. Slim slid on a slick slab. A blue flag flew over the glass. Clap if you can blend well.',this)">Read passage</button>
+      </div>
+      <div class="ct-box" id="lct-box"></div>
+    </div>
+  </div>
+
+  <!-- ③ R-BLENDS -->
+  <div class="panel" id="panel-rblends">
+    <div class="sb gl">
+      <div class="sec-num">6.3 — R-Blends</div>
+      <div class="sec-title">Consonant + R
+        <button class="listen-btn" onclick="speakBtn('Section 6.3. R-Blends. Consonant plus R.',this)">Listen to title</button>
+      </div>
+      <div class="sec-body"><p>In every R-blend, you hear the first consonant AND the /r/ sound together — smooth and fast.</p></div>
+      <button class="big-listen" onclick="speakBtn('R-Blends. In every R-blend, you clearly hear the first consonant AND the R sound together — smooth and fast. For example: br — you hear b and r. cr — you hear c and r. dr — you hear d and r. Tap each blend badge to hear it, then tap the words to practise.',this)">Listen to R-blend rule</button>
+    </div>
+    <div id="rblends-container"></div>
+    <div class="sb fl" style="margin-top:8px;">
+      <div class="sec-num">R-Blend Controlled Text</div>
+      <div class="sec-title">Read Aloud
+        <button class="listen-btn" id="rct-btn" onclick="speakBtn('Brad can swim and splash in the cold stream. The crab ran past the frog on the rock. Drag the trim drum to the front. A green frog grinned at the brown crab. Press the crop into the tray.',this)">Read passage</button>
+      </div>
+      <div class="ct-box" id="rct-box"></div>
+    </div>
+  </div>
+
+  <!-- ④ S-BLENDS -->
+  <div class="panel" id="panel-sblends">
+    <div class="sb gl">
+      <div class="sec-num">6.4 — S-Blends &amp; Three-Letter Blends</div>
+      <div class="sec-title">S + Consonant
+        <button class="listen-btn" onclick="speakBtn('Section 6.4. S-Blends and Three-Letter Blends. S plus consonant.',this)">Listen to title</button>
+      </div>
+      <div class="sec-body"><p>S-blends begin with /s/ followed by another consonant. Three-letter blends add a third sound — each one still individually heard.</p></div>
+      <button class="big-listen" onclick="speakBtn('S-Blends begin with the S sound followed by another consonant. For example: sm — s and m. sn — s and n. sp — s and p. st — s and t. sw — s and w. Three-letter blends add a third consonant sound. For example: str — s, t, and r. spl — s, p, and l. You can still hear every single sound separately in a blend.',this)">Listen to S-blend rule</button>
+    </div>
+    <div id="sblends-container"></div>
+    <div class="sb fl" style="margin-top:8px;">
+      <div class="sec-num">S-Blend Controlled Text</div>
+      <div class="sec-title">Read Aloud
+        <button class="listen-btn" id="sct-btn" onclick="speakBtn('A strong drum thrum split the still night. The small snail crept along the stem. Skip and spin on the spot. The string of stars stretched across the sky. Splash and swim in the stream.',this)">Read passage</button>
+      </div>
+      <div class="ct-box" id="sct-box"></div>
+    </div>
+  </div>
+
+  <!-- ⑤ FINAL BLENDS -->
+  <div class="panel" id="panel-final">
+    <div class="sb gl">
+      <div class="sec-num">6.6 — Final Blends</div>
+      <div class="sec-title">Blends at the End of Words
+        <button class="listen-btn" onclick="speakBtn('Section 6.6. Final Blends. Blends at the end of words.',this)">Listen to title</button>
+      </div>
+      <div class="sec-body"><p>Final blends appear at the <strong>end</strong> of a word. The same rule applies — you hear both consonant sounds clearly. They just come after the vowel instead of before it.</p></div>
+      <button class="big-listen" onclick="speakBtn('Final blends appear at the end of a word. The same rule applies — you hear both consonant sounds clearly. They just come after the vowel instead of before it. For example: the word band ends in n and d — you hear both. The word lamp ends in m and p — you hear both. Tap each blend to hear it, then tap the words.',this)">Listen to final blend rule</button>
+    </div>
+    <div id="final-container"></div>
+    <div class="sb fl" style="margin-top:8px;">
+      <div class="sec-num">Final Blend Controlled Text</div>
+      <div class="sec-title">Read Aloud
+        <button class="listen-btn" id="fct-btn" onclick="speakBtn('Frank did not shrink from the frost. The lamp went out with a soft thump. The band bent the last plank. Clamp the raft to the left post. The gust of wind sent dust past the tent.',this)">Read passage</button>
+      </div>
+      <div class="ct-box" id="fct-box"></div>
+    </div>
+    <div class="sb gl" style="margin-top:8px;">
+      <div class="sec-num">6.7 — Grand Blend Passage</div>
+      <div class="sec-title">All Blends Together
+        <button class="listen-btn" id="grand-btn" onclick="readGrand(this)">Read full passage</button>
+      </div>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:1rem;">This passage uses blends from all families. Tap any word to hear it.</p>
+      <div class="grand-box" id="grand-text"></div>
+    </div>
+  </div>
+
+  <!-- ⑥ QUIZ -->
+  <div class="panel" id="panel-quiz">
+    <div class="sb gl">
+      <div class="sec-num">Chapter 6 — Assessment</div>
+      <div class="sec-title">Test Yourself
+        <button class="listen-btn" onclick="speakBtn('Chapter 6 Assessment. Tap the word in the box to hear it. Then answer the question about consonant blends.',this)">Listen to instructions</button>
+      </div>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:1.2rem;">Tap the <strong>word box</strong> to hear it spoken. Then choose the correct answer.</p>
+      <div class="quiz-card">
+        <div class="score-row">
+          <span id="score-text">Score: 0 / 0</span>
+          <div class="score-track"><div class="score-fill" id="score-fill" style="width:0%"></div></div>
+        </div>
+        <div class="quiz-prompt-row">
+          <p class="quiz-prompt" id="quiz-prompt">Loading...</p>
+          <button class="listen-btn" id="quiz-q-btn" onclick="readQuizQuestion(this)">Listen to question</button>
+        </div>
+        <div class="quiz-display-wrap">
+          <div class="quiz-display" id="quiz-display" onclick="readQuizWord(this)">—</div>
+          <div class="quiz-display-hint">Tap the word above to hear it</div>
+        </div>
+        <div class="quiz-opts" id="quiz-opts"></div>
+        <div class="quiz-fb" id="quiz-fb"></div>
+        <button class="next-btn" id="next-btn" onclick="nextQ()">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="ch-nav">
+    <a class="nav-lnk" href="chapter-05.html">← Chapter 5: Sight Words</a>
+    <span class="phase-badge">Phase 2 — Cracking the Code</span>
+    <a class="nav-lnk next" href="chapter-07.html">Chapter 7: Digraphs →</a>
+  </div>
+</div>
+
+<script>
+// VOICE ENGINE
+let voices=[],selectedVoiceIndex=-1,speechRate=0.85;
+function loadVoices(){
+  voices=window.speechSynthesis.getVoices();
+  const sel=document.getElementById('voice-select');
+  if(!voices.length)return;
+  const eng=voices.filter(v=>v.lang.startsWith('en'));
+  sel.innerHTML='<option value="-1">🔊 Browser default</option>';
+  eng.forEach(v=>{const idx=voices.indexOf(v);const o=document.createElement('option');o.value=idx;o.textContent=v.name+' ('+v.lang+')'+(v.localService?' ★':'');sel.appendChild(o);});
+  const sv=localStorage.getItem('rbVoiceIndex'),sr=localStorage.getItem('rbSpeechRate');
+  if(sv!=null){sel.value=sv;selectedVoiceIndex=parseInt(sv);}
+  if(sr!=null){speechRate=parseFloat(sr);document.querySelectorAll('.spd-btn').forEach(b=>b.classList.toggle('active',parseFloat(b.getAttribute('data-rate'))===speechRate));}
+}
+function onVoiceChange(){selectedVoiceIndex=parseInt(document.getElementById('voice-select').value);localStorage.setItem('rbVoiceIndex',selectedVoiceIndex);showSaved();}
+function setSpeed(r,btn){speechRate=r;localStorage.setItem('rbSpeechRate',r);document.querySelectorAll('.spd-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');showSaved();}
+function showSaved(){const s=document.getElementById('vsaved');s.classList.add('show');setTimeout(()=>s.classList.remove('show'),2000);}
+function applyVoice(u){u.rate=speechRate;if(selectedVoiceIndex>=0&&voices[selectedVoiceIndex]){u.voice=voices[selectedVoiceIndex];u.lang=voices[selectedVoiceIndex].lang;}else u.lang='en-GB';}
+function speakBtn(text,btn){
+  if(!window.speechSynthesis)return;
+  window.speechSynthesis.cancel();
+  document.querySelectorAll('.speaking').forEach(b=>b.classList.remove('speaking'));
+  const u=new SpeechSynthesisUtterance(text);applyVoice(u);
+  if(btn){btn.classList.add('speaking');u.onend=()=>btn.classList.remove('speaking');u.onerror=()=>btn.classList.remove('speaking');}
+  window.speechSynthesis.speak(u);
+}
+function sayWord(word,el){
+  if(!window.speechSynthesis)return;
+  window.speechSynthesis.cancel();
+  document.querySelectorAll('.speaking').forEach(b=>b.classList.remove('speaking'));
+  if(el)el.classList.add('speaking');
+  const u=new SpeechSynthesisUtterance(word);applyVoice(u);u.rate=speechRate*0.85;
+  if(el)u.onend=()=>el.classList.remove('speaking');
+  window.speechSynthesis.speak(u);
+}
+function testVoice(btn){speakBtn('Hello. This is your selected voice. The frog sat on a flat black rock. Brad swam in the cold stream.',btn);}
+function readHero(btn){speakBtn('Chapter 6: Consonant Blends — When Sounds Work Together. A consonant blend is two or three consonants that appear together in a word, where each consonant keeps its own individual sound. You will learn L-blends, R-blends, S-blends, three-letter blends, and final blends.',btn);}
+function showPanel(id,btn){
+  window.speechSynthesis&&window.speechSynthesis.cancel();
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(t=>t.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// BLEND DATA
+const blendData={
+  lblends:[
+    {blend:'bl',color:'#B8860B',sounds:'/b/ + /l/',soundText:'bl — b and l. bl. bl.',words:['black','blue','blend','blink','blast','blow','bled','blot']},
+    {blend:'cl',color:'#C0392B',sounds:'/k/ + /l/',soundText:'cl — c and l. cl. cl.',words:['clap','class','clip','clock','close','club','clam','clod']},
+    {blend:'fl',color:'#2C5F2E',sounds:'/f/ + /l/',soundText:'fl — f and l. fl. fl.',words:['flag','flat','fling','flip','flow','flock','fled','flop']},
+    {blend:'gl',color:'#1A4A7A',sounds:'/g/ + /l/',soundText:'gl — g and l. gl. gl.',words:['glad','glass','glow','glue','glide','glen','glob','glint']},
+    {blend:'pl',color:'#6A0DAD',sounds:'/p/ + /l/',soundText:'pl — p and l. pl. pl.',words:['plan','plate','play','plug','plow','plop','plum','plot']},
+    {blend:'sl',color:'#7A7468',sounds:'/s/ + /l/',soundText:'sl — s and l. sl. sl.',words:['slab','slam','slap','slip','slow','sled','slim','slot']},
+  ],
+  rblends:[
+    {blend:'br',color:'#B8860B',sounds:'/b/ + /r/',soundText:'br — b and r. br. br.',words:['brag','brain','brim','broke','bring','brush','bred','brat']},
+    {blend:'cr',color:'#C0392B',sounds:'/k/ + /r/',soundText:'cr — c and r. cr. cr.',words:['crab','crack','cram','crop','cross','cry','crest','crisp']},
+    {blend:'dr',color:'#2C5F2E',sounds:'/d/ + /r/',soundText:'dr — d and r. dr. dr.',words:['drag','drip','drop','drum','dream','dress','drill','drift']},
+    {blend:'fr',color:'#1A4A7A',sounds:'/f/ + /r/',soundText:'fr — f and r. fr. fr.',words:['frog','from','front','fresh','frame','free','fret','frill']},
+    {blend:'gr',color:'#6A0DAD',sounds:'/g/ + /r/',soundText:'gr — g and r. gr. gr.',words:['grab','grin','grip','grit','grow','green','graft','grub']},
+    {blend:'pr',color:'#C0392B',sounds:'/p/ + /r/',soundText:'pr — p and r. pr. pr.',words:['press','prick','prop','proud','pray','pram','prank','prim']},
+    {blend:'tr',color:'#7A7468',sounds:'/t/ + /r/',soundText:'tr — t and r. tr. tr.',words:['tram','trap','trim','trip','trot','train','trek','trust']},
+  ],
+  sblends:[
+    {blend:'sm',color:'#B8860B',sounds:'/s/ + /m/',soundText:'sm — s and m. sm. sm.',words:['small','smash','smell','smile','smoke','smug','smock','smelt']},
+    {blend:'sn',color:'#C0392B',sounds:'/s/ + /n/',soundText:'sn — s and n. sn. sn.',words:['snag','snap','snip','snob','snug','sniff','snore','snack']},
+    {blend:'sp',color:'#2C5F2E',sounds:'/s/ + /p/',soundText:'sp — s and p. sp. sp.',words:['span','spin','spit','spot','spud','spill','sped','spend']},
+    {blend:'st',color:'#1A4A7A',sounds:'/s/ + /t/',soundText:'st — s and t. st. st.',words:['stab','stem','stick','stop','stub','star','step','sting']},
+    {blend:'sw',color:'#6A0DAD',sounds:'/s/ + /w/',soundText:'sw — s and w. sw. sw.',words:['swam','swim','swig','swift','swing','swop','swept','swell']},
+    {blend:'str',color:'#7A7468',sounds:'/s/+/t/+/r/',soundText:'str — s, t, and r. str. str.',words:['strap','string','strip','stress','stream','strong','struck','stride']},
+    {blend:'spl',color:'#B8860B',sounds:'/s/+/p/+/l/',soundText:'spl — s, p, and l. spl. spl.',words:['splash','split','spleen','splay']},
+    {blend:'spr',color:'#2C5F2E',sounds:'/s/+/p/+/r/',soundText:'spr — s, p, and r. spr. spr.',words:['spring','sprint','spread','sprig','sprat','spree']},
+  ],
+  finalBlends:[
+    {blend:'nd',color:'#B8860B',sounds:'/n/ + /d/',soundText:'nd — n and d at the end. nd. nd.',words:['band','bend','bond','find','hand','send','kind','wind']},
+    {blend:'nk',color:'#C0392B',sounds:'/n/ + /k/',soundText:'nk — n and k at the end. nk. nk.',words:['bank','bunk','drink','honk','pink','rank','sank','think']},
+    {blend:'nt',color:'#2C5F2E',sounds:'/n/ + /t/',soundText:'nt — n and t at the end. nt. nt.',words:['bent','dent','hunt','mint','rent','font','rant','tent']},
+    {blend:'ft',color:'#1A4A7A',sounds:'/f/ + /t/',soundText:'ft — f and t at the end. ft. ft.',words:['deft','gift','left','loft','raft','soft','draft','swift']},
+    {blend:'mp',color:'#6A0DAD',sounds:'/m/ + /p/',soundText:'mp — m and p at the end. mp. mp.',words:['bump','camp','dump','lamp','pump','stamp','crimp','clamp']},
+    {blend:'st',color:'#7A7468',sounds:'/s/ + /t/',soundText:'st — s and t at the end. st. st.',words:['best','dust','fast','fist','gust','last','mist','past']},
+  ]
+};
+
+function buildBlendSection(data,containerId){
+  const el=document.getElementById(containerId);
+  data.forEach(b=>{
+    const sec=document.createElement('div');sec.className='blend-sec';
+    const hdr=document.createElement('div');hdr.className='blend-hdr';
+    const badge=document.createElement('div');
+    badge.className='blend-badge';badge.style.color=b.color;badge.textContent=b.blend;
+    badge.title='Tap to hear blend name';
+    badge.onclick=()=>sayWord(b.blend,badge);
+    hdr.appendChild(badge);
+    const info=document.createElement('div');info.className='blend-info';
+    const name=document.createElement('div');name.className='blend-name';name.textContent='Sounds: '+b.sounds;
+    const sndBtn=document.createElement('button');
+    sndBtn.className='blend-sound-btn';
+    sndBtn.style.cssText='border-color:'+b.color+';color:'+b.color+';background:white;';
+    sndBtn.textContent='Hear the blend: '+b.blend;
+    sndBtn.onclick=()=>speakBtn(b.soundText,sndBtn);
+    info.appendChild(name);info.appendChild(sndBtn);
+    hdr.appendChild(info);sec.appendChild(hdr);
+    const wordsDiv=document.createElement('div');wordsDiv.className='blend-words';
+    b.words.forEach(w=>{
+      const span=document.createElement('span');span.className='bword';span.textContent=w;
+      span.onclick=()=>sayWord(w,span);
+      wordsDiv.appendChild(span);
+    });
+    const readAllBtn=document.createElement('button');
+    readAllBtn.className='listen-btn';readAllBtn.style.marginTop='10px';
+    readAllBtn.textContent='Read all words';
+    readAllBtn.onclick=()=>speakBtn(b.words.join('. '),readAllBtn);
+    sec.appendChild(wordsDiv);sec.appendChild(readAllBtn);
+    el.appendChild(sec);
+  });
+}
+
+function buildCTBox(id,text){
+  const el=document.getElementById(id);
+  text.split(' ').forEach(w=>{
+    const clean=w.replace(/[^a-zA-Z]/g,'');
+    const span=document.createElement('span');span.className='word-tap';span.textContent=w+' ';
+    span.onclick=()=>sayWord(clean,span);
+    el.appendChild(span);
+  });
+}
+
+const grandPassage='The frog sat on a flat black rock by the stream. Brad and Frank swam past the green bank. A small snail crept along the stem of a plant. The strong drum thrum split the still night air. Slim slid on a slick slab and grabbed the strap. The crab ran from the trap and hid in the sand. Three brave men swam across the green stretch and climbed the cliff.';
+function buildGrandText(){
+  const el=document.getElementById('grand-text');
+  grandPassage.split(' ').forEach(w=>{
+    const clean=w.replace(/[^a-zA-Z]/g,'');
+    const span=document.createElement('span');span.className='word-tap';span.textContent=w+' ';
+    span.onclick=()=>sayWord(clean,span);
+    el.appendChild(span);
+  });
+}
+function readGrand(btn){speakBtn(grandPassage,btn);}
+
+// QUIZ
+const quizData=[
+  {q:'What is a consonant blend?',d:'black',correct:'Two or more consonants where each keeps its own sound',opts:['Two or more consonants where each keeps its own sound','Two letters that make one new sound','A vowel followed by a consonant','A silent letter at the end of a word']},
+  {q:'Which blend is at the start of this word?',d:'flag',correct:'fl — an L-blend',opts:['fl — an L-blend','fr — an R-blend','sl — an L-blend','st — an S-blend']},
+  {q:'Which blend is at the start of this word?',d:'drum',correct:'dr — an R-blend',opts:['dr — an R-blend','bl — an L-blend','gr — an R-blend','tr — an R-blend']},
+  {q:'Which blend is at the start of this word?',d:'strap',correct:'str — a three-letter S-blend',opts:['str — a three-letter S-blend','st — a two-letter S-blend','tr — an R-blend','spr — a three-letter blend']},
+  {q:'Where is the blend in this word?',d:'band',correct:'At the end — nd is a final blend',opts:['At the end — nd is a final blend','At the start — ba is a blend','In the middle — an is a blend','There is no blend in this word']},
+  {q:'Which blend is at the end of this word?',d:'lamp',correct:'mp — a final blend',opts:['mp — a final blend','la — a starting blend','lm — a middle blend','am — a vowel blend']},
+  {q:'What is the blend in this word?',d:'frog',correct:'fr — an R-blend',opts:['fr — an R-blend','fl — an L-blend','gr — an R-blend','tr — an R-blend']},
+  {q:'What is the blend at the start of this word?',d:'swim',correct:'sw — an S-blend',opts:['sw — an S-blend','sm — an S-blend','sl — an L-blend','str — a three-letter blend']},
+  {q:'How is a blend different from a digraph?',d:'sh vs sl',correct:'A blend keeps each sound separate; a digraph makes one new sound',opts:['A blend keeps each sound separate; a digraph makes one new sound','A blend makes one new sound; a digraph keeps two sounds','They are the same thing','A blend always has three letters']},
+  {q:'Which of these is a three-letter blend?',d:'spl',correct:'spl — you hear s, p, and l separately',opts:['spl — you hear s, p, and l separately','sh — this is a digraph','cl — this is a two-letter blend','nd — this is a final blend']},
+];
+let qi=0,score=0,answered=false,currentQ=null;
+const shuffle=a=>a.sort(()=>Math.random()-.5);
+let order=shuffle([...Array(quizData.length).keys()]);
+function readQuizQuestion(btn){if(currentQ)speakBtn(currentQ.q,btn);}
+function readQuizWord(el){if(currentQ)sayWord(currentQ.d,el);}
+function renderQ(){
+  answered=false;currentQ=quizData[order[qi]];
+  document.getElementById('quiz-prompt').textContent=currentQ.q;
+  const disp=document.getElementById('quiz-display');disp.textContent=currentQ.d;disp.classList.remove('speaking');
+  const opts=document.getElementById('quiz-opts');opts.innerHTML='';
+  shuffle([...currentQ.opts]).forEach(opt=>{
+    const b=document.createElement('button');b.className='q-opt';b.textContent=opt;
+    b.onclick=()=>checkQ(opt,currentQ.correct,b);opts.appendChild(b);
+  });
+  document.getElementById('quiz-fb').style.display='none';
+  document.getElementById('next-btn').style.display='none';
+  setTimeout(()=>speakBtn(currentQ.q+'. The word is: '+currentQ.d,null),350);
+}
+function checkQ(chosen,correct,btn){
+  if(answered)return;answered=true;
+  const fb=document.getElementById('quiz-fb');
+  if(chosen===correct){score++;btn.classList.add('correct');fb.className='quiz-fb ok';fb.textContent='✓ Correct! '+correct;}
+  else{btn.classList.add('wrong');document.querySelectorAll('.q-opt').forEach(b=>{if(b.textContent===correct)b.classList.add('correct');});fb.className='quiz-fb err';fb.textContent='✗ The correct answer is: '+correct;}
+  fb.style.display='block';
+  speakBtn(fb.textContent.replace('✓ ','').replace('✗ The correct answer is: ','The correct answer is: '),null);
+  document.getElementById('next-btn').style.display='inline-block';
+  const t=qi+1;
+  document.getElementById('score-text').textContent='Score: '+score+' / '+t;
+  document.getElementById('score-fill').style.width=Math.round(score/t*100)+'%';
+}
+function nextQ(){qi++;if(qi>=order.length){qi=0;score=0;order=shuffle([...Array(quizData.length).keys()]);}renderQ();}
+
+// INIT
+if(window.speechSynthesis){if(speechSynthesis.onvoiceschanged!==undefined)speechSynthesis.onvoiceschanged=loadVoices;loadVoices();}
+buildBlendSection(blendData.lblends,'lblends-container');
+buildBlendSection(blendData.rblends,'rblends-container');
+buildBlendSection(blendData.sblends,'sblends-container');
+buildBlendSection(blendData.finalBlends,'final-container');
+buildCTBox('lct-box','The frog sat on a flat black rock. The glad clan clapped. Slim slid on a slick slab. A blue flag flew over the glass. Clap if you can blend well.');
+buildCTBox('rct-box','Brad can swim in the cold stream. The crab ran past the frog on the rock. Drag the trim drum to the front. A green frog grinned at the brown crab. Press the crop into the tray.');
+buildCTBox('sct-box','A strong drum thrum split the still night. The small snail crept along the stem. Skip and spin on the spot. The string of stars stretched across the sky. Splash and swim in the stream.');
+buildCTBox('fct-box','Frank did not shrink from the frost. The lamp went out with a soft thump. The band bent the last plank. Clamp the raft to the left post. The gust of wind sent dust past the tent.');
+buildGrandText();
+renderQ();
+</script>
+</body>
+</html>

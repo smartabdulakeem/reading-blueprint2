@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 8 — Phonograms | The Reading Blueprint</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1C1A17;--paper:#FAF7F2;--cream:#F2EDE4;--gold:#B8860B;--gold-light:#F5E6B0;--rust:#C0392B;--forest:#2C5F2E;--blue:#1A4A7A;--purple:#6A0DAD;--muted:#7A7468;--border:rgba(28,26,23,0.12);--radius:10px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:var(--ink);min-height:100vh;}
+.voice-bar{background:var(--ink);padding:8px 1.5rem;display:flex;align-items:center;gap:10px;flex-wrap:wrap;position:sticky;top:0;z-index:200;box-shadow:0 2px 12px rgba(28,26,23,0.3);}
+.vb-brand{font-family:'Playfair Display',serif;color:var(--gold);font-size:13px;letter-spacing:1.5px;text-transform:uppercase;flex-shrink:0;margin-right:6px;}
+.vb-label{font-size:11px;font-weight:700;color:rgba(255,255,255,0.4);letter-spacing:1.5px;text-transform:uppercase;white-space:nowrap;flex-shrink:0;}
+.voice-select{min-width:150px;max-width:260px;padding:5px 26px 5px 9px;font-family:'Source Serif 4',serif;font-size:13px;border:1px solid rgba(255,255,255,0.15);border-radius:7px;background:rgba(255,255,255,0.08);color:#fff;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23B8860B' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 9px center;}
+.voice-select option{background:#1C1A17;color:#fff;}
+.speed-group{display:flex;align-items:center;gap:4px;flex-shrink:0;}
+.spd-label{font-size:11px;font-weight:700;color:rgba(255,255,255,0.4);letter-spacing:1px;text-transform:uppercase;margin-right:3px;}
+.spd-btn{padding:4px 10px;font-family:'Source Serif 4',serif;font-size:12px;font-weight:600;border:1px solid rgba(255,255,255,0.15);border-radius:6px;background:transparent;color:rgba(255,255,255,0.5);cursor:pointer;transition:all .15s;}
+.spd-btn.active{background:var(--gold);color:var(--ink);border-color:var(--gold);}
+.spd-btn:hover:not(.active){border-color:var(--gold);color:var(--gold);}
+.vtest{display:inline-flex;align-items:center;gap:5px;padding:5px 13px;font-family:'Source Serif 4',serif;font-size:12px;font-weight:600;border:1px solid rgba(184,134,11,0.5);border-radius:16px;background:rgba(184,134,11,0.12);color:var(--gold);cursor:pointer;transition:all .15s;flex-shrink:0;}
+.vtest:hover{background:rgba(184,134,11,0.22);}
+.vtest.speaking{background:rgba(192,57,43,0.2);border-color:var(--rust);color:#ff7b6b;}
+.vtest::before{content:"▶";font-size:9px;}
+.vtest.speaking::before{content:"◼";}
+.vsaved{font-size:11px;color:var(--gold);font-style:italic;flex-shrink:0;opacity:0;transition:opacity .3s;}
+.vsaved.show{opacity:1;}
+.chapter-hero{background:var(--ink);padding:3rem 2rem 2.5rem;text-align:center;border-bottom:3px solid var(--gold);position:relative;overflow:hidden;}
+.chapter-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(184,134,11,0.18) 0%,transparent 70%);}
+.ch-num{font-family:'Playfair Display',serif;font-size:12px;color:var(--gold);letter-spacing:4px;text-transform:uppercase;margin-bottom:12px;position:relative;}
+.ch-title{font-family:'Playfair Display',serif;font-size:clamp(26px,5vw,44px);color:#fff;line-height:1.15;margin-bottom:10px;position:relative;}
+.ch-sub{font-size:15px;color:rgba(255,255,255,0.5);font-style:italic;margin-bottom:1.5rem;position:relative;}
+.hero-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border:1.5px solid rgba(184,134,11,0.6);border-radius:24px;background:rgba(184,134,11,0.1);color:var(--gold);font-family:'Source Serif 4',serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;position:relative;}
+.hero-btn:hover{background:rgba(184,134,11,0.2);}
+.hero-btn.speaking{background:rgba(192,57,43,0.2);border-color:var(--rust);color:#ff7b6b;}
+.hero-btn::before{content:"▶";font-size:10px;}
+.hero-btn.speaking::before{content:"◼";}
+.container{max-width:860px;margin:0 auto;padding:2rem 1.25rem;}
+.tabs-bar{display:flex;gap:4px;margin-bottom:2rem;background:var(--cream);padding:5px;border-radius:var(--radius);border:1px solid var(--border);flex-wrap:wrap;}
+.tab-btn{flex:1;min-width:80px;padding:8px 10px;font-family:'Source Serif 4',serif;font-size:13px;font-weight:600;border:none;border-radius:7px;background:transparent;color:var(--muted);cursor:pointer;transition:all .15s;text-align:center;white-space:nowrap;}
+.tab-btn.active{background:var(--ink);color:var(--gold);}
+.tab-btn:hover:not(.active){background:rgba(28,26,23,0.06);color:var(--ink);}
+.panel{display:none;}.panel.active{display:block;}
+.sb{background:var(--cream);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem 1.75rem;margin-bottom:1.25rem;}
+.sb.gl{border-left:4px solid var(--gold);}
+.sb.rl{border-left:4px solid var(--rust);}
+.sb.fl{border-left:4px solid var(--forest);}
+.sb.bl{border-left:4px solid var(--blue);}
+.sb.pl{border-left:4px solid var(--purple);}
+.sec-num{font-size:11px;font-weight:600;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;}
+.sec-title{font-family:'Playfair Display',serif;font-size:20px;color:var(--ink);margin-bottom:10px;line-height:1.3;display:flex;align-items:center;flex-wrap:wrap;gap:8px;}
+.sec-body{font-size:15px;line-height:1.8;color:#3A3730;}
+.sec-body p{margin-bottom:10px;}
+.listen-btn{display:inline-flex;align-items:center;gap:5px;padding:4px 12px;font-family:'Source Serif 4',serif;font-size:12px;font-weight:600;border:1px solid var(--border);border-radius:16px;background:#fff;color:var(--muted);cursor:pointer;transition:all .15s;flex-shrink:0;}
+.listen-btn:hover{border-color:var(--gold);color:var(--gold);}
+.listen-btn.speaking{border-color:var(--rust);color:var(--rust);background:#fff5f5;}
+.listen-btn::before{content:"▶";font-size:9px;}
+.listen-btn.speaking::before{content:"◼";}
+.big-listen{display:flex;align-items:center;gap:8px;padding:10px 18px;font-family:'Source Serif 4',serif;font-size:14px;font-weight:700;border:2px solid var(--gold);border-radius:20px;background:var(--gold-light);color:var(--ink);cursor:pointer;transition:all .2s;margin-top:12px;width:fit-content;}
+.big-listen:hover{background:#EDD97A;}
+.big-listen.speaking{background:#fce4e4;border-color:var(--rust);color:var(--rust);}
+.big-listen::before{content:"🔊";font-size:14px;}
+.big-listen.speaking::before{content:"⏹";}
+.callout{background:var(--gold-light);border:1px solid rgba(184,134,11,0.3);border-radius:var(--radius);padding:1rem 1.25rem;margin:1rem 0;font-size:14px;line-height:1.8;}
+.step-row{display:flex;align-items:flex-start;gap:10px;padding:8px 12px;border-radius:7px;background:var(--cream);font-size:14px;margin-bottom:6px;line-height:1.6;}
+.step-n{font-size:11px;font-weight:700;color:var(--gold);width:20px;flex-shrink:0;margin-top:2px;}
+
+/* PHONOGRAM FAMILY SECTION */
+.pg-sec{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem 1.5rem;margin-bottom:14px;}
+.pg-hdr{display:flex;align-items:center;gap:14px;margin-bottom:12px;flex-wrap:wrap;}
+.pg-badge{font-family:'Playfair Display',serif;font-size:40px;font-weight:700;line-height:1;min-width:90px;text-align:center;cursor:pointer;border-radius:8px;padding:6px 10px;transition:all .15s;border:2px solid var(--border);}
+.pg-badge:hover{background:var(--cream);}
+.pg-badge.speaking{background:#fff5f5;}
+.pg-info{flex:1;}
+.pg-sound-label{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:2px;}
+.pg-desc{font-size:13px;color:var(--muted);font-style:italic;margin-bottom:6px;}
+.pg-sound-btn{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;font-family:'Source Serif 4',serif;font-size:13px;font-weight:700;border:2px solid;border-radius:20px;cursor:pointer;transition:all .15s;}
+.pg-sound-btn:hover{opacity:0.8;}
+.pg-sound-btn.speaking{background:#fce4e4 !important;border-color:var(--rust) !important;color:var(--rust) !important;}
+.pg-sound-btn::before{content:"🔊 ";}
+.pg-sound-btn.speaking::before{content:"⏹ ";}
+.word-family-grid{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:10px;}
+.wfcard{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;padding:7px 13px;border:1px solid var(--border);border-radius:8px;cursor:pointer;background:var(--cream);transition:all .15s;user-select:none;}
+.wfcard:hover{background:var(--gold-light);border-color:var(--gold);transform:translateY(-1px);}
+.wfcard.speaking{border-color:var(--rust);background:#fff5f5;color:var(--rust);}
+
+/* SPEED DRILL */
+.speed-drill{background:var(--ink);border-radius:var(--radius);padding:1.5rem;margin:1rem 0;text-align:center;}
+.sd-title{font-family:'Playfair Display',serif;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;}
+.sd-words{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:1rem;}
+.sdword{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:rgba(255,255,255,0.8);padding:6px 12px;border:1px solid rgba(255,255,255,0.1);border-radius:7px;cursor:pointer;transition:all .15s;}
+.sdword:hover{background:rgba(184,134,11,0.2);border-color:var(--gold);}
+.sdword.speaking{color:var(--gold);border-color:var(--gold);background:rgba(184,134,11,0.15);}
+.sd-read-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 20px;font-family:'Source Serif 4',serif;font-size:13px;font-weight:700;border:1.5px solid var(--gold);border-radius:20px;background:transparent;color:var(--gold);cursor:pointer;transition:all .15s;}
+.sd-read-btn:hover{background:rgba(184,134,11,0.15);}
+.sd-read-btn.speaking{background:rgba(192,57,43,0.2);border-color:var(--rust);color:#ff9b8a;}
+.sd-read-btn::before{content:"▶ ";}
+.sd-read-btn.speaking::before{content:"⏹ ";}
+
+/* CONTROLLED TEXT */
+.ct-label{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;margin-top:1rem;}
+.ct-box{background:var(--cream);border:1px solid var(--border);border-left:4px solid var(--forest);border-radius:var(--radius);padding:1rem 1.25rem;margin:6px 0;font-size:16px;line-height:2.3;}
+.word-tap{cursor:pointer;border-radius:3px;padding:1px 2px;transition:background .1s;display:inline-block;}
+.word-tap:hover{background:var(--gold-light);}
+.word-tap.speaking{background:var(--gold-light);color:var(--gold);font-weight:600;}
+.grand-box{background:var(--ink);color:#fff;border-radius:var(--radius);padding:1.5rem 2rem;margin:1rem 0;font-size:17px;line-height:2.3;}
+.grand-box .word-tap{color:rgba(255,255,255,0.9);}
+.grand-box .word-tap:hover{background:rgba(184,134,11,0.3);}
+.grand-box .word-tap.speaking{background:rgba(184,134,11,0.4);color:var(--gold);}
+
+/* QUIZ */
+.quiz-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;max-width:580px;}
+.quiz-prompt-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:1rem;}
+.quiz-prompt{font-family:'Playfair Display',serif;font-size:17px;flex:1;line-height:1.4;}
+.quiz-display-wrap{text-align:center;margin-bottom:1.2rem;}
+.quiz-display{font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:var(--gold);padding:1rem;background:var(--cream);border-radius:var(--radius);letter-spacing:4px;display:block;width:100%;cursor:pointer;border:none;}
+.quiz-display:hover{background:#EDD97A;}
+.quiz-display.speaking{background:#fce4e4;color:var(--rust);}
+.quiz-display-hint{font-size:12px;color:var(--muted);margin-top:5px;font-style:italic;}
+.quiz-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem;}
+.q-opt{padding:11px;font-family:'Source Serif 4',serif;font-size:13px;font-weight:600;border:1.5px solid var(--border);border-radius:8px;background:var(--cream);color:var(--ink);cursor:pointer;transition:all .15s;text-align:left;}
+.q-opt:hover{border-color:var(--gold);background:var(--gold-light);}
+.q-opt.correct{background:#EAF3DE;border-color:var(--forest);color:#27500A;}
+.q-opt.wrong{background:#FCEBEB;border-color:var(--rust);color:#791F1F;}
+.quiz-fb{font-size:14px;padding:10px 14px;border-radius:8px;margin-bottom:1rem;line-height:1.5;display:none;}
+.quiz-fb.ok{background:#EAF3DE;color:#27500A;}
+.quiz-fb.err{background:#FCEBEB;color:#791F1F;}
+.next-btn{padding:10px 24px;background:var(--ink);color:var(--gold);border:none;border-radius:20px;font-family:'Source Serif 4',serif;font-size:14px;font-weight:600;cursor:pointer;display:none;}
+.next-btn:hover{opacity:0.85;}
+.score-row{display:flex;align-items:center;gap:12px;margin-bottom:1.2rem;font-size:13px;color:var(--muted);}
+.score-track{flex:1;height:5px;background:var(--cream);border-radius:3px;overflow:hidden;}
+.score-fill{height:100%;background:var(--forest);border-radius:3px;transition:width .3s;}
+.ch-nav{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 0;border-top:1px solid var(--border);margin-top:2rem;flex-wrap:wrap;gap:10px;}
+.nav-lnk{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border:1px solid var(--border);border-radius:20px;font-size:13px;font-weight:600;color:var(--muted);background:var(--cream);text-decoration:none;transition:all .15s;}
+.nav-lnk:hover{border-color:var(--ink);color:var(--ink);}
+.nav-lnk.next{background:var(--ink);color:var(--gold);border-color:var(--ink);}
+.phase-badge{font-size:11px;background:var(--gold-light);color:var(--gold);border:1px solid rgba(184,134,11,0.3);padding:4px 12px;border-radius:12px;font-weight:600;}
+.home-btn{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(184,134,11,0.15);border:1.5px solid rgba(184,134,11,0.45);border-radius:8px;color:var(--gold);font-size:15px;cursor:pointer;transition:all .2s;text-decoration:none;flex-shrink:0;margin-right:4px;position:relative;}
+.home-btn:hover{background:rgba(184,134,11,0.3);border-color:var(--gold);transform:scale(1.08);}
+.home-btn::after{content:"Home";position:absolute;bottom:-26px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--gold);font-size:10px;padding:2px 7px;border-radius:4px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;border:1px solid rgba(184,134,11,0.3);}
+.home-btn:hover::after{opacity:1;}
+</style>
+</head>
+<body>
+
+<div class="voice-bar">
+  <a class="home-btn" href="index.html" title="Back to Home">🏠</a>
+  <span class="vb-brand">The Reading Blueprint</span>
+  <span class="vb-label">🔊 Voice</span>
+  <select class="voice-select" id="voice-select" onchange="onVoiceChange()">
+    <option value="-1">Loading voices...</option>
+  </select>
+  <div class="speed-group">
+    <span class="spd-label">Speed</span>
+    <button class="spd-btn" data-rate="0.6" onclick="setSpeed(0.6,this)">Slow</button>
+    <button class="spd-btn active" data-rate="0.85" onclick="setSpeed(0.85,this)">Normal</button>
+    <button class="spd-btn" data-rate="1.1" onclick="setSpeed(1.1,this)">Fast</button>
+  </div>
+  <button class="vtest" onclick="testVoice(this)">Test voice</button>
+  <span class="vsaved" id="vsaved">✓ Saved</span>
+</div>
+
+<div class="chapter-hero">
+  <div class="ch-num">Chapter 8 of 19</div>
+  <h1 class="ch-title">Phonograms:<br>The Master Pattern Library</h1>
+  <p class="ch-sub">Short Vowel Families · Long Vowel Families · R-Controlled · Diphthongs</p>
+  <button class="hero-btn" onclick="readHero(this)">Listen to introduction</button>
+</div>
+
+<div class="container">
+  <div class="tabs-bar">
+    <button class="tab-btn active" onclick="showPanel('learn',this)">① Learn</button>
+    <button class="tab-btn" onclick="showPanel('shortvowel',this)">② Short Vowel</button>
+    <button class="tab-btn" onclick="showPanel('longvowel',this)">③ Long Vowel</button>
+    <button class="tab-btn" onclick="showPanel('rcontrolled',this)">④ R-Controlled</button>
+    <button class="tab-btn" onclick="showPanel('diphthong',this)">⑤ Diphthongs</button>
+    <button class="tab-btn" onclick="showPanel('quiz',this)">⑥ Quiz</button>
+  </div>
+
+  <!-- ① LEARN -->
+  <div class="panel active" id="panel-learn">
+    <div class="sb gl">
+      <div class="sec-num">8.1</div>
+      <div class="sec-title">What Is a Phonogram?
+        <button class="listen-btn" onclick="speakBtn('Section 8.1. What Is a Phonogram?',this)">Listen to title</button>
+      </div>
+      <div class="sec-body">
+        <p>A phonogram is a <strong>letter or group of letters</strong> that consistently represents a particular sound. Phonograms are the <strong>repeating patterns</strong> of English — the building blocks that appear again and again across thousands of words.</p>
+      </div>
+      <button class="big-listen" onclick="speakBtn('A phonogram is a letter or group of letters that consistently represents a particular sound. Phonograms are the repeating patterns of English — the building blocks that appear again and again across thousands of words. Mastering phonograms means mastering the repeating architecture of the language.',this)">Listen to explanation</button>
+    </div>
+
+    <div class="sb rl">
+      <div class="sec-num">The Big Idea</div>
+      <div class="sec-title">Why Phonograms Are Powerful
+        <button class="listen-btn" onclick="speakBtn('The Big Idea. Why Phonograms Are Powerful.',this)">Listen to title</button>
+      </div>
+      <div class="callout">
+        Once you know the phonogram <strong>-at</strong>, you automatically unlock:<br>
+        <em>bat, cat, fat, hat, mat, pat, rat, sat, that, flat, brat, splat</em> — and dozens more.<br><br>
+        One pattern. Dozens of words. <strong>That is the power of phonograms.</strong>
+      </div>
+      <button class="big-listen" onclick="speakBtn('Here is why phonograms are so powerful. Once you know just one phonogram — for example, the pattern A T — you automatically unlock an entire word family: bat, cat, fat, hat, mat, pat, rat, sat, that, flat, brat, splat — and dozens more. One pattern gives you dozens of words instantly. That is the power of phonograms. In this chapter you will master word families built on short vowel phonograms, long vowel phonograms, R-controlled vowel phonograms, and diphthong phonograms.',this)">Listen to the Big Idea</button>
+    </div>
+
+    <div class="sb fl">
+      <div class="sec-num">Four Phonogram Groups</div>
+      <div class="sec-title">What You Will Master
+        <button class="listen-btn" onclick="speakBtn('Four Phonogram Groups. What You Will Master.',this)">Listen to title</button>
+      </div>
+      <div style="margin-top:10px;">
+        <div class="step-row"><span class="step-n">②</span><strong>Short Vowel Families:</strong> -at, -an, -en, -it, -in, -ot, -og, -ug, -un and more</div>
+        <div class="step-row"><span class="step-n">③</span><strong>Long Vowel Families:</strong> -ake, -ame, -ide, -ine, -ode, -ole, -ail, -eet, -ood and more</div>
+        <div class="step-row"><span class="step-n">④</span><strong>R-Controlled:</strong> -ar, -er, -ir, -or, -ur — the Bossy R patterns</div>
+        <div class="step-row"><span class="step-n">⑤</span><strong>Diphthongs:</strong> oi/oy and ou/ow — gliding vowel sounds</div>
+      </div>
+      <button class="big-listen" onclick="speakBtn('In this chapter you will master four groups of phonograms. Group 2: Short Vowel Families — patterns like AT, AN, EN, IT, IN, OT, OG, UG, and UN. Group 3: Long Vowel Families — patterns like AKE, AME, IDE, INE, ODE, OLE, AIL, EET, and OON. Group 4: R-Controlled phonograms — AR, ER, IR, OR, and UR, also called the Bossy R patterns. Group 5: Diphthongs — OI and OY, and OU and OW — these are gliding vowel sounds.',this)">Listen to chapter overview</button>
+    </div>
+  </div>
+
+  <!-- ② SHORT VOWEL FAMILIES -->
+  <div class="panel" id="panel-shortvowel">
+    <div class="sb gl">
+      <div class="sec-num">8.2 — Short Vowel Word Families</div>
+      <div class="sec-title">CVC Phonograms
+        <button class="listen-btn" onclick="speakBtn('Section 8.2. Short Vowel Word Families. CVC Phonograms.',this)">Listen to title</button>
+      </div>
+      <div class="sec-body"><p>Each family below shares the same ending pattern. Tap the pattern badge to hear it. Tap the sound button to hear the pattern spoken clearly. Tap any word to hear it.</p></div>
+      <button class="big-listen" onclick="speakBtn('Short vowel word families. Each family shares the same ending pattern. Once you learn the pattern, you can read every word in the family. Tap the large pattern letters to hear the pattern name. Tap the sound button to hear the pattern in context. Then tap individual words to practise reading each one.',this)">Listen to instructions</button>
+    </div>
+    <div id="short-vowel-container"></div>
+    <div class="sb fl">
+      <div class="sec-num">Short Vowel Speed Drill</div>
+      <div class="sec-title">Read as Fast as You Can
+        <button class="listen-btn" onclick="speakBtn('Short Vowel Speed Drill. Read each word as fast as you can. Tap any word to hear it first if you need help.',this)">Listen to instructions</button>
+      </div>
+      <div class="speed-drill">
+        <div class="sd-title">Speed Drill — Short Vowel Families</div>
+        <div class="sd-words" id="sv-speed-words"></div>
+        <button class="sd-read-btn" onclick="readSpeedDrill('sv',this)">Read all words</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ③ LONG VOWEL FAMILIES -->
+  <div class="panel" id="panel-longvowel">
+    <div class="sb gl">
+      <div class="sec-num">8.3 — Long Vowel Phonograms</div>
+      <div class="sec-title">Silent E and Vowel Team Families
+        <button class="listen-btn" onclick="speakBtn('Section 8.3. Long Vowel Phonograms. Silent E and Vowel Team Families.',this)">Listen to title</button>
+      </div>
+      <div class="sec-body"><p>These word families use the Silent E pattern or Vowel Teams to produce a long vowel sound. Tap the pattern badge to hear it. Tap the sound button to hear it in context. Tap any word to hear it.</p></div>
+      <button class="big-listen" onclick="speakBtn('Long vowel phonograms. These word families use the silent E pattern or vowel teams to produce a long vowel sound. For example, the AKE family: bake, cake, lake, make, rake, take, wake. Every word ends in A-K-E. Once you learn the pattern you can read them all.',this)">Listen to instructions</button>
+    </div>
+    <div id="long-vowel-container"></div>
+    <div class="sb fl">
+      <div class="sec-num">Long Vowel Speed Drill</div>
+      <div class="sec-title">Read as Fast as You Can
+        <button class="listen-btn" onclick="speakBtn('Long Vowel Speed Drill. Read each word as fast as you can.',this)">Listen to instructions</button>
+      </div>
+      <div class="speed-drill">
+        <div class="sd-title">Speed Drill — Long Vowel Families</div>
+        <div class="sd-words" id="lv-speed-words"></div>
+        <button class="sd-read-btn" onclick="readSpeedDrill('lv',this)">Read all words</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ④ R-CONTROLLED -->
+  <div class="panel" id="panel-rcontrolled">
+    <div class="sb gl">
+      <div class="sec-num">8.4 — R-Controlled Vowel Phonograms</div>
+      <div class="sec-title">The Bossy R
+        <button class="listen-btn" onclick="speakBtn('Section 8.4. R-Controlled Vowel Phonograms. The Bossy R.',this)">Listen to title</button>
+      </div>
+      <div class="sec-body">
+        <p>When a vowel is followed by the letter R, the R <strong>changes the vowel's sound</strong>. The vowel is neither fully short nor fully long — it is pulled toward the R. These are called <strong>R-controlled vowels</strong>, or the Bossy R.</p>
+      </div>
+      <div class="callout">
+        <strong>The Bossy R Rule:</strong> When R follows a vowel, the R takes control. The vowel can no longer say its short or long sound — the R bosses it into a new sound entirely.
+      </div>
+      <button class="big-listen" onclick="speakBtn('The Bossy R. When a vowel is followed by the letter R, the R changes the vowel sound completely. The vowel is neither fully short nor fully long — it is pulled toward the R into a new sound. For example: the word car. The A normally says short A or long A — but with the R after it, it says ar. The word her — the E says er. The word bird — the I says er. The word corn — the O says or. The word burn — the U says er. These are called R-controlled vowels.',this)">Listen to the Bossy R rule</button>
+    </div>
+    <div id="r-controlled-container"></div>
+    <div class="sb fl">
+      <div class="sec-num">R-Controlled Controlled Text</div>
+      <div class="sec-title">Read Aloud
+        <button class="listen-btn" onclick="speakBtn('The bird sat on a far branch. Her sharp claws gripped the bark. The storm turned the corn field brown. Kurt hurt his arm on the sharp farm gate. The first fern grew near the large dark barn.',this)">Read passage</button>
+      </div>
+      <div class="ct-box" id="rc-ct-box"></div>
+    </div>
+  </div>
+
+  <!-- ⑤ DIPHTHONGS -->
+  <div class="panel" id="panel-diphthong">
+    <div class="sb gl">
+      <div class="sec-num">8.5 — Diphthong Phonograms</div>
+      <div class="sec-title">Gliding Vowel Sounds
+        <button class="listen-btn" onclick="speakBtn('Section 8.5. Diphthong Phonograms. Gliding Vowel Sounds.',this)">Listen to title</button>
+      </div>
+      <div class="sec-body">
+        <p>A diphthong is a vowel sound that <strong>starts in one position and glides to another</strong> within the same syllable. Your mouth actually moves as you say the sound.</p>
+      </div>
+      <div class="callout">
+        <strong>Two main diphthongs:</strong><br>
+        <strong>oi / oy</strong> — as in oil, coin, boy, toy. Your mouth starts open and glides upward.<br>
+        <strong>ou / ow</strong> — as in out, cloud, cow, brown. Your mouth starts open and rounds into a circle.
+      </div>
+      <button class="big-listen" onclick="speakBtn('A diphthong is a vowel sound that starts in one position and glides to another within the same syllable. Your mouth actually moves as you say it. There are two main diphthongs in English. The first is OI and OY — as in oil, coin, boy, toy. Your mouth starts open and glides upward. The second is OU and OW — as in out, cloud, cow, brown. Your mouth starts open and rounds into a circle at the end.',this)">Listen to diphthong explanation</button>
+    </div>
+    <div id="diphthong-container"></div>
+    <div class="sb fl">
+      <div class="sec-num">Diphthong Controlled Text</div>
+      <div class="sec-title">Read Aloud
+        <button class="listen-btn" onclick="speakBtn('The boy found oil in the ground. The cow joined the loud crowd. Roy pointed at the brown cloud. The coin bounced on the moist soil. How did the hound get out of the town?',this)">Read passage</button>
+      </div>
+      <div class="ct-box" id="diph-ct-box"></div>
+      <div class="sb gl" style="margin-top:1rem;padding:1.25rem;">
+        <div class="sec-num">Grand Phonogram Passage</div>
+        <div class="sec-title">All Patterns Together
+          <button class="listen-btn" id="grand-btn" onclick="readGrand(this)">Read full passage</button>
+        </div>
+        <p style="font-size:14px;color:var(--muted);margin-bottom:1rem;">This passage uses all four phonogram groups. Tap any word to hear it.</p>
+        <div class="grand-box" id="grand-text"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑥ QUIZ -->
+  <div class="panel" id="panel-quiz">
+    <div class="sb gl">
+      <div class="sec-num">Chapter 8 — Assessment</div>
+      <div class="sec-title">Test Yourself
+        <button class="listen-btn" onclick="speakBtn('Chapter 8 Assessment. Tap the word or pattern in the box to hear it. Then answer the question.',this)">Listen to instructions</button>
+      </div>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:1.2rem;">Tap the <strong>word box</strong> to hear it. Then choose the correct answer.</p>
+      <div class="quiz-card">
+        <div class="score-row">
+          <span id="score-text">Score: 0 / 0</span>
+          <div class="score-track"><div class="score-fill" id="score-fill" style="width:0%"></div></div>
+        </div>
+        <div class="quiz-prompt-row">
+          <p class="quiz-prompt" id="quiz-prompt">Loading...</p>
+          <button class="listen-btn" id="quiz-q-btn" onclick="readQuizQuestion(this)">Listen to question</button>
+        </div>
+        <div class="quiz-display-wrap">
+          <div class="quiz-display" id="quiz-display" onclick="readQuizWord(this)">—</div>
+          <div class="quiz-display-hint">Tap the word above to hear it</div>
+        </div>
+        <div class="quiz-opts" id="quiz-opts"></div>
+        <div class="quiz-fb" id="quiz-fb"></div>
+        <button class="next-btn" id="next-btn" onclick="nextQ()">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="ch-nav">
+    <a class="nav-lnk" href="chapter-07.html">← Chapter 7: Digraphs</a>
+    <span class="phase-badge">Phase 2 — Cracking the Code</span>
+    <a class="nav-lnk next" href="chapter-09.html">Chapter 9: Syllable Types →</a>
+  </div>
+</div>
+
+<script>
+// VOICE ENGINE
+let voices=[],selectedVoiceIndex=-1,speechRate=0.85;
+function loadVoices(){
+  voices=window.speechSynthesis.getVoices();
+  const sel=document.getElementById('voice-select');
+  if(!voices.length)return;
+  const eng=voices.filter(v=>v.lang.startsWith('en'));
+  sel.innerHTML='<option value="-1">🔊 Browser default</option>';
+  eng.forEach(v=>{const idx=voices.indexOf(v);const o=document.createElement('option');o.value=idx;o.textContent=v.name+' ('+v.lang+')'+(v.localService?' ★':'');sel.appendChild(o);});
+  const sv=localStorage.getItem('rbVoiceIndex'),sr=localStorage.getItem('rbSpeechRate');
+  if(sv!=null){sel.value=sv;selectedVoiceIndex=parseInt(sv);}
+  if(sr!=null){speechRate=parseFloat(sr);document.querySelectorAll('.spd-btn').forEach(b=>b.classList.toggle('active',parseFloat(b.getAttribute('data-rate'))===speechRate));}
+}
+function onVoiceChange(){selectedVoiceIndex=parseInt(document.getElementById('voice-select').value);localStorage.setItem('rbVoiceIndex',selectedVoiceIndex);showSaved();}
+function setSpeed(r,btn){speechRate=r;localStorage.setItem('rbSpeechRate',r);document.querySelectorAll('.spd-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');showSaved();}
+function showSaved(){const s=document.getElementById('vsaved');s.classList.add('show');setTimeout(()=>s.classList.remove('show'),2000);}
+function applyVoice(u){u.rate=speechRate;if(selectedVoiceIndex>=0&&voices[selectedVoiceIndex]){u.voice=voices[selectedVoiceIndex];u.lang=voices[selectedVoiceIndex].lang;}else u.lang='en-GB';}
+function speakBtn(text,btn){
+  if(!window.speechSynthesis)return;
+  window.speechSynthesis.cancel();
+  document.querySelectorAll('.speaking').forEach(b=>b.classList.remove('speaking'));
+  const u=new SpeechSynthesisUtterance(text);applyVoice(u);
+  if(btn){btn.classList.add('speaking');u.onend=()=>btn.classList.remove('speaking');u.onerror=()=>btn.classList.remove('speaking');}
+  window.speechSynthesis.speak(u);
+}
+function sayWord(word,el){
+  if(!window.speechSynthesis)return;
+  window.speechSynthesis.cancel();
+  document.querySelectorAll('.speaking').forEach(b=>b.classList.remove('speaking'));
+  if(el)el.classList.add('speaking');
+  const u=new SpeechSynthesisUtterance(word);applyVoice(u);u.rate=speechRate*0.85;
+  if(el)u.onend=()=>el.classList.remove('speaking');
+  window.speechSynthesis.speak(u);
+}
+function testVoice(btn){speakBtn('Hello. This is your selected voice for The Reading Blueprint. The cat sat on the mat. The rain fell on the trail. The bird sat on a far branch.',btn);}
+function readHero(btn){speakBtn('Chapter 8: Phonograms — The Master Pattern Library. A phonogram is a letter or group of letters that consistently represents a particular sound. Mastering phonograms means mastering the repeating architecture of English. Once you know one pattern, you unlock dozens of words instantly.',btn);}
+function showPanel(id,btn){
+  window.speechSynthesis&&window.speechSynthesis.cancel();
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(t=>t.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// PHONOGRAM DATA
+const shortVowelFamilies=[
+  {pg:'-at',color:'#B8860B',sound:'short A — /at/',soundText:'The AT family. All these words end in AT. bat. cat. hat. mat. rat. sat.',words:['bat','cat','fat','hat','mat','pat','rat','sat','that','flat','brat','chat','scat','splat']},
+  {pg:'-an',color:'#C0392B',sound:'short A — /an/',soundText:'The AN family. All these words end in AN. ban. can. fan. man. pan. ran. tan. van.',words:['ban','can','fan','man','pan','ran','tan','van','plan','scan','than','span','clan','bran']},
+  {pg:'-en',color:'#2C5F2E',sound:'short E — /en/',soundText:'The EN family. All these words end in EN. ben. den. hen. men. pen. ten.',words:['den','hen','men','pen','ten','then','when','glen','wren','yen','open','often']},
+  {pg:'-it',color:'#1A4A7A',sound:'short I — /it/',soundText:'The IT family. All these words end in IT. bit. fit. hit. sit. wit.',words:['bit','fit','hit','kit','lit','pit','sit','wit','grit','spit','knit','slit','quit','split']},
+  {pg:'-in',color:'#6A0DAD',sound:'short I — /in/',soundText:'The IN family. All these words end in IN. bin. fin. pin. tin. win.',words:['bin','fin','kin','pin','sin','tin','win','chin','shin','spin','thin','grin','twin','skin']},
+  {pg:'-ot',color:'#B8860B',sound:'short O — /ot/',soundText:'The OT family. All these words end in OT. dot. got. hot. lot. not. pot.',words:['dot','got','hot','jot','lot','not','pot','rot','tot','blot','shot','trot','knot','slot']},
+  {pg:'-ug',color:'#C0392B',sound:'short U — /ug/',soundText:'The UG family. All these words end in UG. bug. dug. hug. jug. mug. rug.',words:['bug','dug','hug','jug','lug','mug','pug','rug','tug','drug','plug','shrug','slug','snug']},
+  {pg:'-un',color:'#2C5F2E',sound:'short U — /un/',soundText:'The UN family. All these words end in UN. bun. fun. gun. run. sun.',words:['bun','fun','gun','nun','pun','run','sun','spun','stun','shun','begun','outrun']},
+];
+
+const longVowelFamilies=[
+  {pg:'-ake',color:'#B8860B',sound:'long A — /ake/',soundText:'The AKE family. Long A sound. bake. cake. lake. make. rake. take. wake.',words:['bake','cake','fake','lake','make','rake','sake','take','wake','flake','shake','stake','brake','snake']},
+  {pg:'-ame',color:'#C0392B',sound:'long A — /ame/',soundText:'The AME family. Long A sound. came. game. name. same. tame.',words:['came','dame','fame','game','name','same','tame','blame','flame','frame','shame','claim']},
+  {pg:'-ide',color:'#2C5F2E',sound:'long I — /ide/',soundText:'The IDE family. Long I sound. hide. ride. side. tide. wide.',words:['hide','ride','side','tide','wide','bride','glide','pride','slide','stride','guide','snide']},
+  {pg:'-ine',color:'#1A4A7A',sound:'long I — /ine/',soundText:'The INE family. Long I sound. dine. fine. line. mine. nine. pine. vine. wine.',words:['dine','fine','line','mine','nine','pine','vine','wine','brine','shrine','spine','swine','twine','whine']},
+  {pg:'-ole',color:'#6A0DAD',sound:'long O — /ole/',soundText:'The OLE family. Long O sound. hole. mole. pole. role. sole. whole.',words:['hole','mole','pole','role','sole','stole','whole','dole','knoll','scroll','troll','console']},
+  {pg:'-ail',color:'#B8860B',sound:'long A — /ail/',soundText:'The AIL family. Vowel team AI. Long A sound. bail. fail. hail. mail. nail. sail. tail.',words:['bail','fail','hail','jail','mail','nail','pail','rail','sail','tail','trail','snail','quail','frail']},
+  {pg:'-eet',color:'#C0392B',sound:'long E — /eet/',soundText:'The EET family. Vowel team EE. Long E sound. feet. greet. meet. sheet. street. sweet.',words:['feet','greet','meet','sheet','sleet','street','sweet','tweet','fleet','beet','treet','steel']},
+  {pg:'-oon',color:'#2C5F2E',sound:'long OO — /oon/',soundText:'The OON family. Long OO sound. boon. moon. noon. soon. spoon. bloom.',words:['boon','moon','noon','soon','spoon','bloom','groom','zoom','cartoon','baboon','cocoon','harpoon']},
+];
+
+const rControlledFamilies=[
+  {pg:'-ar',color:'#B8860B',sound:'/ar/ — R-controlled A',soundText:'The AR family. ar sound. bar. car. far. jar. star. barn. farm. park.',words:['bar','car','far','jar','star','barn','farm','harm','park','yarn','sharp','charm','cart','dark','mark','spark']},
+  {pg:'-er',color:'#C0392B',sound:'/er/ — R-controlled E',soundText:'The ER family. er sound. her. fern. verb. stern. term. clerk. nerve.',words:['her','fern','verb','stern','term','clerk','nerve','serve','verse','merge','perch','perky']},
+  {pg:'-ir',color:'#2C5F2E',sound:'/er/ — R-controlled I',soundText:'The IR family. er sound. bird. girl. sir. stir. shirt. birth. dirt. firm.',words:['bird','girl','sir','stir','third','shirt','birth','dirt','firm','first','swirl','twirl','chirp','quirk']},
+  {pg:'-or',color:'#1A4A7A',sound:'/or/ — R-controlled O',soundText:'The OR family. or sound. for. nor. horn. born. corn. fort. form. port. sort.',words:['for','nor','horn','born','corn','fort','form','port','sort','torn','worn','storm','sport','north','short','torch']},
+  {pg:'-ur',color:'#6A0DAD',sound:'/er/ — R-controlled U',soundText:'The UR family. er sound. blur. fur. purr. spur. burn. curl. hurt. nurse. surf. turn.',words:['blur','cur','fur','purr','spur','burn','curl','hurt','nurse','surf','turn','burst','churn','blurt','lurk','murky']},
+];
+
+const diphthongFamilies=[
+  {pg:'oi/oy',color:'#B8860B',sound:'/oi/ — glides upward',soundText:'The OI and OY diphthong. Your mouth starts open and glides upward. oil. soil. foil. coin. join. joy. boy. toy. enjoy.',words:['oil','soil','foil','coin','join','point','void','joy','boy','toy','coy','employ','royal','loyal','boil','coil','hoist','moist','noise','voice']},
+  {pg:'ou/ow',color:'#C0392B',sound:'/ow/ — rounds into circle',soundText:'The OU and OW diphthong. Your mouth starts open and rounds into a circle. out. ouch. loud. cloud. found. round. cow. how. now. crowd. brown.',words:['out','ouch','loud','cloud','found','round','sound','bound','cow','how','now','crowd','brown','town','gown','crown','power','tower','flower','shower']},
+];
+
+function buildPGSection(data,containerId){
+  const el=document.getElementById(containerId);
+  data.forEach(pg=>{
+    const sec=document.createElement('div');sec.className='pg-sec';
+    const hdr=document.createElement('div');hdr.className='pg-hdr';
+    const badge=document.createElement('div');
+    badge.className='pg-badge';badge.style.color=pg.color;badge.style.borderColor=pg.color+'44';
+    badge.textContent=pg.pg;badge.onclick=()=>sayWord(pg.pg.replace('-',''),badge);
+    hdr.appendChild(badge);
+    const info=document.createElement('div');info.className='pg-info';
+    const sl=document.createElement('div');sl.className='pg-sound-label';sl.textContent='Sound: '+pg.sound;
+    const desc=document.createElement('div');desc.className='pg-desc';desc.textContent='Word family — '+pg.words.length+' example words';
+    const sndBtn=document.createElement('button');
+    sndBtn.className='pg-sound-btn';
+    sndBtn.style.cssText='border-color:'+pg.color+';color:'+pg.color+';background:white;';
+    sndBtn.textContent='Hear the pattern: '+pg.pg;
+    sndBtn.onclick=()=>speakBtn(pg.soundText,sndBtn);
+    info.appendChild(sl);info.appendChild(desc);info.appendChild(sndBtn);
+    hdr.appendChild(info);sec.appendChild(hdr);
+    const grid=document.createElement('div');grid.className='word-family-grid';
+    pg.words.forEach(w=>{
+      const card=document.createElement('div');card.className='wfcard';card.style.borderColor=pg.color+'55';
+      card.textContent=w;card.onclick=()=>sayWord(w,card);
+      grid.appendChild(card);
+    });
+    const readAllBtn=document.createElement('button');
+    readAllBtn.className='listen-btn';readAllBtn.style.margin='6px 0 2px';
+    readAllBtn.textContent='Read all words';
+    readAllBtn.onclick=()=>speakBtn(pg.words.join('. '),readAllBtn);
+    sec.appendChild(grid);sec.appendChild(readAllBtn);
+    el.appendChild(sec);
+  });
+}
+
+// SPEED DRILL WORDS
+const svSpeedWords='cat|bat|rat|flat|brat|hit|bit|sit|grit|spit|bug|dug|hug|plug|shrug|man|fan|ran|plan|scan|dot|hot|pot|blot|shot|fun|run|sun|spun|stun'.split('|');
+const lvSpeedWords='make|take|lake|flake|shake|kite|bite|fine|wine|shine|bake|cake|rake|brake|snake|sail|mail|hail|trail|snail|feet|greet|meet|sheet|street|moon|spoon|bloom|zoom|cartoon'.split('|');
+
+function buildSpeedDrill(words,containerId){
+  const el=document.getElementById(containerId);
+  words.forEach(w=>{
+    const span=document.createElement('span');span.className='sdword';span.textContent=w;
+    span.onclick=()=>sayWord(w,span);el.appendChild(span);
+  });
+}
+function readSpeedDrill(type,btn){
+  const words=type==='sv'?svSpeedWords:lvSpeedWords;
+  speakBtn(words.join('. '),btn);
+}
+
+function buildCTBox(id,text){
+  const el=document.getElementById(id);if(!el)return;
+  text.split(' ').forEach(w=>{
+    const clean=w.replace(/[^a-zA-Z]/g,'');
+    const span=document.createElement('span');span.className='word-tap';span.textContent=w+' ';
+    span.onclick=()=>sayWord(clean,span);el.appendChild(span);
+  });
+}
+
+const grandPassage='The cat sat on the flat mat. Jane made a cake by the lake. The bird sat on a far branch near the farm. The boy found oil in the brown soil. Her sharp claws gripped the bark of the dark tree. Mike can ride his bike on the fine trail. The hound ran out of the loud town and found the moist ground. Kurt hurt his arm near the corn barn. A star shone in the clear night sky. Joy spun and twirled in the bright moonlight.';
+function buildGrandText(){
+  const el=document.getElementById('grand-text');if(!el)return;
+  grandPassage.split(' ').forEach(w=>{
+    const clean=w.replace(/[^a-zA-Z]/g,'');
+    const span=document.createElement('span');span.className='word-tap';span.textContent=w+' ';
+    span.onclick=()=>sayWord(clean,span);el.appendChild(span);
+  });
+}
+function readGrand(btn){speakBtn(grandPassage,btn);}
+
+// QUIZ
+const quizData=[
+  {q:'What is a phonogram?',d:'-at',correct:'A letter or group of letters that consistently represents a sound',opts:['A letter or group of letters that consistently represents a sound','A type of silent letter','A two-letter blend','A word with more than two syllables']},
+  {q:'Which word belongs to the -at phonogram family?',d:'-at family',correct:'splat — it ends in the AT pattern',opts:['splat — it ends in the AT pattern','slide — it ends in IDE','moon — it ends in OON','bird — it has an R-controlled vowel']},
+  {q:'Which word belongs to the -ake phonogram family?',d:'flake',correct:'flake — fl + ake',opts:['flake — fl + ake','flute — long U sound','floor — oo vowel team','blade — long A but different ending']},
+  {q:'What type of vowel sound is in this word?',d:'bird',correct:'R-controlled — ir says the er sound',opts:['R-controlled — ir says the er sound','Short I — as in sit','Long I — as in bite','Diphthong — gliding sound']},
+  {q:'What type of vowel sound is in this word?',d:'corn',correct:'R-controlled — or says the or sound',opts:['R-controlled — or says the or sound','Short O — as in hot','Long O — as in home','Diphthong — gliding sound']},
+  {q:'Which word contains a diphthong?',d:'oil',correct:'oil — oi is a diphthong that glides upward',opts:['oil — oi is a diphthong that glides upward','sit — short I vowel','cake — long A vowel','corn — R-controlled vowel']},
+  {q:'The OU in this word is a diphthong. What sound does it make?',d:'cloud',correct:'/ow/ — mouth starts open, rounds into a circle',opts:['/ow/ — mouth starts open, rounds into a circle','/oo/ — long OO as in moon','/o/ — short O as in hot','/oh/ — long O as in home']},
+  {q:'Which word has an R-controlled vowel?',d:'farm',correct:'farm — the ar is R-controlled',opts:['farm — the ar is R-controlled','flat — short A vowel','flame — long A vowel','fail — vowel team AI']},
+  {q:'Which phonogram family does this word belong to?',d:'shine',correct:'-ine family — long I sound',opts:['-ine family — long I sound','-ane family — long A sound','-one family — long O sound','-une family — long U sound']},
+  {q:'What makes the diphthong sound special?',d:'oi/ow',correct:'The vowel sound glides from one position to another',opts:['The vowel sound glides from one position to another','It is always spelled with two identical letters','It only appears at the end of words','It always makes a long vowel sound']},
+];
+let qi=0,score=0,answered=false,currentQ=null;
+const shuffle=a=>a.sort(()=>Math.random()-.5);
+let order=shuffle([...Array(quizData.length).keys()]);
+function readQuizQuestion(btn){if(currentQ)speakBtn(currentQ.q,btn);}
+function readQuizWord(el){if(currentQ)sayWord(currentQ.d,el);}
+function renderQ(){
+  answered=false;currentQ=quizData[order[qi]];
+  document.getElementById('quiz-prompt').textContent=currentQ.q;
+  const disp=document.getElementById('quiz-display');disp.textContent=currentQ.d;disp.classList.remove('speaking');
+  const opts=document.getElementById('quiz-opts');opts.innerHTML='';
+  shuffle([...currentQ.opts]).forEach(opt=>{
+    const b=document.createElement('button');b.className='q-opt';b.textContent=opt;
+    b.onclick=()=>checkQ(opt,currentQ.correct,b);opts.appendChild(b);
+  });
+  document.getElementById('quiz-fb').style.display='none';
+  document.getElementById('next-btn').style.display='none';
+  setTimeout(()=>speakBtn(currentQ.q+'. The word or pattern is: '+currentQ.d,null),350);
+}
+function checkQ(chosen,correct,btn){
+  if(answered)return;answered=true;
+  const fb=document.getElementById('quiz-fb');
+  if(chosen===correct){score++;btn.classList.add('correct');fb.className='quiz-fb ok';fb.textContent='✓ Correct! '+correct;}
+  else{btn.classList.add('wrong');document.querySelectorAll('.q-opt').forEach(b=>{if(b.textContent===correct)b.classList.add('correct');});fb.className='quiz-fb err';fb.textContent='✗ The correct answer is: '+correct;}
+  fb.style.display='block';
+  speakBtn(fb.textContent.replace('✓ ','').replace('✗ The correct answer is: ','The correct answer is: '),null);
+  document.getElementById('next-btn').style.display='inline-block';
+  const t=qi+1;
+  document.getElementById('score-text').textContent='Score: '+score+' / '+t;
+  document.getElementById('score-fill').style.width=Math.round(score/t*100)+'%';
+}
+function nextQ(){qi++;if(qi>=order.length){qi=0;score=0;order=shuffle([...Array(quizData.length).keys()]);}renderQ();}
+
+// INIT
+if(window.speechSynthesis){if(speechSynthesis.onvoiceschanged!==undefined)speechSynthesis.onvoiceschanged=loadVoices;loadVoices();}
+buildPGSection(shortVowelFamilies,'short-vowel-container');
+buildPGSection(longVowelFamilies,'long-vowel-container');
+buildPGSection(rControlledFamilies,'r-controlled-container');
+buildPGSection(diphthongFamilies,'diphthong-container');
+buildSpeedDrill(svSpeedWords,'sv-speed-words');
+buildSpeedDrill(lvSpeedWords,'lv-speed-words');
+buildCTBox('rc-ct-box','The bird sat on a far branch. Her sharp claws gripped the bark. The storm turned the corn field brown. Kurt hurt his arm on the sharp farm gate. The first fern grew near the large dark barn.');
+buildCTBox('diph-ct-box','The boy found oil in the ground. The cow joined the loud crowd. Roy pointed at the brown cloud. The coin bounced on the moist soil. How did the hound get out of the town?');
+buildGrandText();
+renderQ();
+</script>
+</body>
+</html>

@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 15 — Paragraph Structure | The Reading Blueprint</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1C1A17;--paper:#FAF7F2;--cream:#F2EDE4;--gold:#B8860B;--gold-light:#F5E6B0;--rust:#C0392B;--forest:#2C5F2E;--blue:#1A4A7A;--purple:#6A0DAD;--muted:#7A7468;--border:rgba(28,26,23,0.12);--radius:10px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:var(--ink);min-height:100vh;}
+.voice-bar{background:var(--ink);padding:8px 1.5rem;display:flex;align-items:center;gap:10px;flex-wrap:wrap;position:sticky;top:0;z-index:200;box-shadow:0 2px 12px rgba(28,26,23,0.3);}
+.vb-brand{font-family:'Playfair Display',serif;color:var(--gold);font-size:13px;letter-spacing:1.5px;text-transform:uppercase;flex-shrink:0;margin-right:6px;}
+.home-btn{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(184,134,11,0.15);border:1.5px solid rgba(184,134,11,0.45);border-radius:8px;color:var(--gold);font-size:15px;cursor:pointer;transition:all .2s;text-decoration:none;flex-shrink:0;margin-right:4px;position:relative;}
+.home-btn:hover{background:rgba(184,134,11,0.3);border-color:var(--gold);transform:scale(1.08);}
+.home-btn::after{content:"Home";position:absolute;bottom:-26px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--gold);font-size:10px;padding:2px 7px;border-radius:4px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;border:1px solid rgba(184,134,11,0.3);}
+.home-btn:hover::after{opacity:1;}
+.vb-label{font-size:11px;font-weight:700;color:rgba(255,255,255,0.4);letter-spacing:1.5px;text-transform:uppercase;white-space:nowrap;flex-shrink:0;}
+.voice-select{min-width:150px;max-width:260px;padding:5px 26px 5px 9px;font-family:'Source Serif 4',serif;font-size:13px;border:1px solid rgba(255,255,255,0.15);border-radius:7px;background:rgba(255,255,255,0.08);color:#fff;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23B8860B' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 9px center;}
+.voice-select option{background:#1C1A17;color:#fff;}
+.speed-group{display:flex;align-items:center;gap:4px;flex-shrink:0;}
+.spd-label{font-size:11px;font-weight:700;color:rgba(255,255,255,0.4);letter-spacing:1px;text-transform:uppercase;margin-right:3px;}
+.spd-btn{padding:4px 10px;font-family:'Source Serif 4',serif;font-size:12px;font-weight:600;border:1px solid rgba(255,255,255,0.15);border-radius:6px;background:transparent;color:rgba(255,255,255,0.5);cursor:pointer;transition:all .15s;}
+.spd-btn.active{background:var(--gold);color:var(--ink);border-color:var(--gold);}
+.spd-btn:hover:not(.active){border-color:var(--gold);color:var(--gold);}
+.vtest{display:inline-flex;align-items:center;gap:5px;padding:5px 13px;font-family:'Source Serif 4',serif;font-size:12px;font-weight:600;border:1px solid rgba(184,134,11,0.5);border-radius:16px;background:rgba(184,134,11,0.12);color:var(--gold);cursor:pointer;transition:all .15s;flex-shrink:0;}
+.vtest:hover{background:rgba(184,134,11,0.22);}
+.vtest.speaking{background:rgba(192,57,43,0.2);border-color:var(--rust);color:#ff7b6b;}
+.vtest::before{content:"▶";font-size:9px;}
+.vtest.speaking::before{content:"◼";}
+.vsaved{font-size:11px;color:var(--gold);font-style:italic;flex-shrink:0;opacity:0;transition:opacity .3s;}
+.vsaved.show{opacity:1;}
+.chapter-hero{background:var(--ink);padding:3rem 2rem 2.5rem;text-align:center;border-bottom:3px solid var(--gold);position:relative;overflow:hidden;}
+.chapter-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(184,134,11,0.18) 0%,transparent 70%);}
+.ch-num{font-family:'Playfair Display',serif;font-size:12px;color:var(--gold);letter-spacing:4px;text-transform:uppercase;margin-bottom:12px;position:relative;}
+.ch-title{font-family:'Playfair Display',serif;font-size:clamp(26px,5vw,44px);color:#fff;line-height:1.15;margin-bottom:10px;position:relative;}
+.ch-sub{font-size:15px;color:rgba(255,255,255,0.5);font-style:italic;margin-bottom:1.5rem;position:relative;}
+.hero-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border:1.5px solid rgba(184,134,11,0.6);border-radius:24px;background:rgba(184,134,11,0.1);color:var(--gold);font-family:'Source Serif 4',serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;position:relative;}
+.hero-btn:hover{background:rgba(184,134,11,0.2);}
+.hero-btn.speaking{background:rgba(192,57,43,0.2);border-color:var(--rust);color:#ff7b6b;}
+.hero-btn::before{content:"▶";font-size:10px;}
+.hero-btn.speaking::before{content:"◼";}
+.container{max-width:860px;margin:0 auto;padding:2rem 1.25rem;}
+.tabs-bar{display:flex;gap:4px;margin-bottom:2rem;background:var(--cream);padding:5px;border-radius:var(--radius);border:1px solid var(--border);flex-wrap:wrap;}
+.tab-btn{flex:1;min-width:80px;padding:8px 10px;font-family:'Source Serif 4',serif;font-size:13px;font-weight:600;border:none;border-radius:7px;background:transparent;color:var(--muted);cursor:pointer;transition:all .15s;text-align:center;white-space:nowrap;}
+.tab-btn.active{background:var(--ink);color:var(--gold);}
+.tab-btn:hover:not(.active){background:rgba(28,26,23,0.06);color:var(--ink);}
+.panel{display:none;}.panel.active{display:block;}
+.sb{background:var(--cream);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem 1.75rem;margin-bottom:1.25rem;}
+.sb.gl{border-left:4px solid var(--gold);}
+.sb.rl{border-left:4px solid var(--rust);}
+.sb.fl{border-left:4px solid var(--forest);}
+.sb.bl{border-left:4px solid var(--blue);}
+.sb.pl{border-left:4px solid var(--purple);}
+.sec-num{font-size:11px;font-weight:600;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;}
+.sec-title{font-family:'Playfair Display',serif;font-size:20px;color:var(--ink);margin-bottom:10px;line-height:1.3;display:flex;align-items:center;flex-wrap:wrap;gap:8px;}
+.sec-body{font-size:15px;line-height:1.8;color:#3A3730;}
+.sec-body p{margin-bottom:10px;}
+.listen-btn{display:inline-flex;align-items:center;gap:5px;padding:4px 12px;font-family:'Source Serif 4',serif;font-size:12px;font-weight:600;border:1px solid var(--border);border-radius:16px;background:#fff;color:var(--muted);cursor:pointer;transition:all .15s;flex-shrink:0;}
+.listen-btn:hover{border-color:var(--gold);color:var(--gold);}
+.listen-btn.speaking{border-color:var(--rust);color:var(--rust);background:#fff5f5;}
+.listen-btn::before{content:"▶";font-size:9px;}
+.listen-btn.speaking::before{content:"◼";}
+.big-listen{display:flex;align-items:center;gap:8px;padding:10px 18px;font-family:'Source Serif 4',serif;font-size:14px;font-weight:700;border:2px solid var(--gold);border-radius:20px;background:var(--gold-light);color:var(--ink);cursor:pointer;transition:all .2s;margin-top:12px;width:fit-content;}
+.big-listen:hover{background:#EDD97A;}
+.big-listen.speaking{background:#fce4e4;border-color:var(--rust);color:var(--rust);}
+.big-listen::before{content:"🔊";font-size:14px;}
+.big-listen.speaking::before{content:"⏹";}
+.callout{background:var(--gold-light);border:1px solid rgba(184,134,11,0.3);border-radius:var(--radius);padding:1rem 1.25rem;margin:1rem 0;font-size:14px;line-height:1.8;}
+.step-row{display:flex;align-items:flex-start;gap:10px;padding:8px 12px;border-radius:7px;background:var(--cream);font-size:14px;margin-bottom:6px;line-height:1.6;}
+.step-n{font-size:11px;font-weight:700;color:var(--gold);width:20px;flex-shrink:0;margin-top:2px;}
+
+/* PARAGRAPH ANATOMY */
+.para-box{background:var(--ink);border-radius:var(--radius);padding:1.75rem 2rem;margin:1rem 0;}
+.para-title{font-family:'Playfair Display',serif;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;text-align:center;}
+.para-part{border-radius:8px;padding:1rem 1.25rem;margin-bottom:10px;cursor:pointer;transition:all .15s;}
+.para-part:hover{opacity:0.85;}
+.para-part.speaking{outline:2px solid var(--rust);}
+.para-topic{background:rgba(184,134,11,0.2);border-left:4px solid var(--gold);}
+.para-body{background:rgba(26,74,122,0.2);border-left:4px solid var(--blue);}
+.para-concluding{background:rgba(44,95,46,0.2);border-left:4px solid var(--forest);}
+.para-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;}
+.para-topic .para-label{color:var(--gold);}
+.para-body .para-label{color:#6FA3D8;}
+.para-concluding .para-label{color:#7ed98a;}
+.para-text{font-family:'Playfair Display',serif;font-size:16px;font-weight:400;color:#fff;line-height:1.7;}
+
+/* TRANSITIONS TABLE */
+.trans-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);margin:1rem 0;}
+.trans-table th{padding:9px 14px;font-family:'Source Serif 4',serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;background:var(--ink);color:var(--gold);}
+.trans-table td{padding:8px 14px;border-bottom:1px solid var(--border);background:#fff;font-size:14px;cursor:pointer;vertical-align:top;}
+.trans-table td.func-cell{font-weight:700;color:var(--blue);width:160px;}
+.trans-table td.words-cell{font-family:'Playfair Display',serif;font-size:13px;color:var(--muted);}
+.trans-table td:hover{background:var(--gold-light);}
+.trans-table tr:last-child td{border-bottom:none;}
+
+/* DICTO-COMP STEPS */
+.dc-steps{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px;margin:1rem 0;}
+.dc-step{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.2rem;text-align:center;cursor:pointer;transition:all .15s;border-top:4px solid;}
+.dc-step:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(28,26,23,0.08);}
+.dc-step.speaking{outline:2px solid var(--rust);}
+.dc-num{font-family:'Playfair Display',serif;font-size:48px;font-weight:700;line-height:1;margin-bottom:8px;}
+.dc-name{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px;}
+.dc-desc{font-size:13px;color:var(--muted);line-height:1.5;}
+
+/* DICTO-COMP PASSAGE */
+.dc-passage{background:var(--ink);border-radius:var(--radius);padding:1.75rem 2rem;margin:1rem 0;font-size:17px;line-height:1.9;color:#fff;}
+.word-tap{cursor:pointer;border-radius:3px;padding:1px 2px;transition:background .1s;display:inline-block;}
+.word-tap:hover{background:rgba(184,134,11,0.3);}
+.word-tap.speaking{background:rgba(184,134,11,0.4);color:var(--gold);font-weight:600;}
+
+/* PHASE 3 COMPLETION */
+.phase-complete-box{background:var(--ink);border-radius:var(--radius);padding:2rem;text-align:center;margin:1rem 0;border:2px solid var(--gold);}
+.pc-title{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--gold);margin-bottom:12px;}
+.pc-sub{font-size:15px;color:rgba(255,255,255,0.6);margin-bottom:1.5rem;font-style:italic;}
+.pc-items{list-style:none;text-align:left;max-width:480px;margin:0 auto 1.5rem;}
+.pc-items li{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.08);font-size:14px;color:rgba(255,255,255,0.8);line-height:1.5;cursor:pointer;}
+.pc-items li:last-child{border-bottom:none;}
+.pc-items li:hover{color:#fff;}
+.pc-check{color:var(--gold);font-size:14px;flex-shrink:0;}
+
+/* QUIZ */
+.quiz-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;max-width:580px;}
+.quiz-prompt-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:1rem;}
+.quiz-prompt{font-family:'Playfair Display',serif;font-size:16px;flex:1;line-height:1.4;}
+.quiz-display-wrap{text-align:center;margin-bottom:1.2rem;}
+.quiz-display{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--gold);padding:1rem;background:var(--cream);border-radius:var(--radius);letter-spacing:1px;display:block;width:100%;cursor:pointer;border:none;line-height:1.5;}
+.quiz-display:hover{background:#EDD97A;}
+.quiz-display.speaking{background:#fce4e4;color:var(--rust);}
+.quiz-display-hint{font-size:12px;color:var(--muted);margin-top:5px;font-style:italic;}
+.quiz-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem;}
+.q-opt{padding:11px;font-family:'Source Serif 4',serif;font-size:13px;font-weight:600;border:1.5px solid var(--border);border-radius:8px;background:var(--cream);color:var(--ink);cursor:pointer;transition:all .15s;text-align:left;}
+.q-opt:hover{border-color:var(--gold);background:var(--gold-light);}
+.q-opt.correct{background:#EAF3DE;border-color:var(--forest);color:#27500A;}
+.q-opt.wrong{background:#FCEBEB;border-color:var(--rust);color:#791F1F;}
+.quiz-fb{font-size:14px;padding:10px 14px;border-radius:8px;margin-bottom:1rem;line-height:1.5;display:none;}
+.quiz-fb.ok{background:#EAF3DE;color:#27500A;}
+.quiz-fb.err{background:#FCEBEB;color:#791F1F;}
+.next-btn{padding:10px 24px;background:var(--ink);color:var(--gold);border:none;border-radius:20px;font-family:'Source Serif 4',serif;font-size:14px;font-weight:600;cursor:pointer;display:none;}
+.next-btn:hover{opacity:0.85;}
+.score-row{display:flex;align-items:center;gap:12px;margin-bottom:1.2rem;font-size:13px;color:var(--muted);}
+.score-track{flex:1;height:5px;background:var(--cream);border-radius:3px;overflow:hidden;}
+.score-fill{height:100%;background:var(--forest);border-radius:3px;transition:width .3s;}
+.ch-nav{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 0;border-top:1px solid var(--border);margin-top:2rem;flex-wrap:wrap;gap:10px;}
+.nav-lnk{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border:1px solid var(--border);border-radius:20px;font-size:13px;font-weight:600;color:var(--muted);background:var(--cream);text-decoration:none;transition:all .15s;}
+.nav-lnk:hover{border-color:var(--ink);color:var(--ink);}
+.nav-lnk.next{background:var(--ink);color:var(--gold);border-color:var(--ink);}
+.phase-badge{font-size:11px;background:var(--gold-light);color:var(--gold);border:1px solid rgba(184,134,11,0.3);padding:4px 12px;border-radius:12px;font-weight:600;}
+</style>
+</head>
+<body>
+
+<div class="voice-bar">
+  <a class="home-btn" href="index.html">🏠</a>
+  <span class="vb-brand">The Reading Blueprint</span>
+  <span class="vb-label">🔊 Voice</span>
+  <select class="voice-select" id="voice-select" onchange="onVoiceChange()">
+    <option value="-1">Loading voices...</option>
+  </select>
+  <div class="speed-group">
+    <span class="spd-label">Speed</span>
+    <button class="spd-btn" data-rate="0.6" onclick="setSpeed(0.6,this)">Slow</button>
+    <button class="spd-btn active" data-rate="0.85" onclick="setSpeed(0.85,this)">Normal</button>
+    <button class="spd-btn" data-rate="1.1" onclick="setSpeed(1.1,this)">Fast</button>
+  </div>
+  <button class="vtest" onclick="testVoice(this)">Test voice</button>
+  <span class="vsaved" id="vsaved">✓ Saved</span>
+</div>
+
+<div class="chapter-hero">
+  <div class="ch-num">Chapter 15 of 19</div>
+  <h1 class="ch-title">Paragraph Structure<br>& the Dicto-Comp Method</h1>
+  <p class="ch-sub">Topic sentences · Body sentences · Transitions · The most powerful reading exercise</p>
+  <button class="hero-btn" onclick="readHero(this)">Listen to introduction</button>
+</div>
+
+<div class="container">
+  <div class="tabs-bar">
+    <button class="tab-btn active" onclick="showPanel('learn',this)">① Learn</button>
+    <button class="tab-btn" onclick="showPanel('anatomy',this)">② Paragraph Anatomy</button>
+    <button class="tab-btn" onclick="showPanel('transitions',this)">③ Transitions</button>
+    <button class="tab-btn" onclick="showPanel('dictocomp',this)">④ Dicto-Comp</button>
+    <button class="tab-btn" onclick="showPanel('phase3',this)">⑤ Phase 3 Review</button>
+    <button class="tab-btn" onclick="showPanel('quiz',this)">⑥ Quiz</button>
+  </div>
+
+  <!-- ① LEARN -->
+  <div class="panel active" id="panel-learn">
+    <div class="sb gl">
+      <div class="sec-num">15.1</div>
+      <div class="sec-title">The Anatomy of a Paragraph
+        <button class="listen-btn" onclick="speakBtn('Section 15.1. The Anatomy of a Paragraph.',this)">Listen to title</button>
+      </div>
+      <div class="sec-body">
+        <p>A paragraph is the <strong>fundamental unit of organised writing</strong>. Every well-formed paragraph has three elements: a <strong>topic sentence</strong> that announces the main idea, <strong>body sentences</strong> that develop and support that idea, and a <strong>concluding sentence</strong> that wraps up the paragraph or transitions to the next.</p>
+      </div>
+      <button class="big-listen" onclick="speakBtn('A paragraph is the fundamental unit of organised writing. Every well-formed paragraph has three elements. First: a topic sentence that announces the main idea of the paragraph — it tells the reader what the paragraph is about. Second: body sentences that develop and support that main idea with evidence, examples, or explanation. Third: a concluding sentence that wraps up the paragraph\'s idea or transitions smoothly to the next paragraph.',this)">Listen to explanation</button>
+    </div>
+
+    <div class="sb rl">
+      <div class="sec-num">The Big Idea</div>
+      <div class="sec-title">Three Parts — One Unit of Thought
+        <button class="listen-btn" onclick="speakBtn('The Big Idea. Three parts, one unit of thought.',this)">Listen to title</button>
+      </div>
+      <div class="callout">
+        Think of a paragraph like a <strong>sandwich</strong>:<br><br>
+        🍞 <strong>Topic sentence</strong> — the top slice: announces what is inside.<br>
+        🥗 <strong>Body sentences</strong> — the filling: the evidence, examples, and explanation.<br>
+        🍞 <strong>Concluding sentence</strong> — the bottom slice: holds it together and completes the thought.<br><br>
+        Without any one of the three, the sandwich — the paragraph — falls apart.
+      </div>
+      <button class="big-listen" onclick="speakBtn('The Big Idea. Think of a paragraph like a sandwich. The topic sentence is the top slice of bread — it announces what is inside. The body sentences are the filling — the evidence, examples, and explanation that develop the main idea. The concluding sentence is the bottom slice — it holds everything together and completes the thought. Without any one of the three, the paragraph falls apart.',this)">Listen to the Big Idea</button>
+    </div>
+
+    <div class="sb fl">
+      <div class="sec-num">Chapter Goals</div>
+      <div class="sec-title">What You Will Master
+        <button class="listen-btn" onclick="speakBtn('Chapter Goals.',this)">Listen to title</button>
+      </div>
+      <div style="margin-top:10px;">
+        <div class="step-row"><span class="step-n">✓</span>The three parts of a paragraph — topic, body, concluding sentences</div>
+        <div class="step-row"><span class="step-n">✓</span>Transition words organised by function</div>
+        <div class="step-row"><span class="step-n">✓</span>The Dicto-Comp method — the most powerful reading and writing exercise</div>
+        <div class="step-row"><span class="step-n">✓</span>Phase 3 mastery checklist — confirming you are ready for Phase 4</div>
+      </div>
+      <button class="big-listen" onclick="speakBtn('By the end of this chapter you will master: the three parts of a paragraph — topic sentence, body sentences, and concluding sentence. Transition words organised by function. The Dicto-Comp method — the most powerful combined reading, listening, and writing exercise in this book. And the Phase 3 mastery checklist — confirming you are ready for Phase 4.',this)">Listen to goals</button>
+    </div>
+  </div>
+
+  <!-- ② PARAGRAPH ANATOMY -->
+  <div class="panel" id="panel-anatomy">
+    <div class="sb gl">
+      <div class="sec-num">15.1 — Paragraph in Action</div>
+      <div class="sec-title">A Real Paragraph — Labelled
+        <button class="listen-btn" onclick="speakBtn('A real paragraph, broken into its three parts. Tap each coloured section to hear it read aloud and identified.',this)">Listen to title</button>
+      </div>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:1rem;">Tap any coloured section to hear it read aloud and identified. Gold = topic sentence. Blue = body sentences. Green = concluding sentence.</p>
+      <button class="big-listen" onclick="speakBtn('Paragraph anatomy. This paragraph is colour coded. The gold section is the topic sentence — it announces the main idea. The blue section contains the body sentences — these develop and support the main idea with evidence and explanation. The green section is the concluding sentence — it wraps up the paragraph and signals what comes next.',this)">Listen to anatomy explanation</button>
+    </div>
+    <div class="sb bl">
+      <div class="para-box" id="para-anatomy-box">
+        <div class="para-title">Tap any section to hear it identified</div>
+      </div>
+    </div>
+    <div class="sb fl">
+      <div class="sec-num">Write Your Own — Practice Prompts</div>
+      <div class="sec-title">Topic Sentence First
+        <button class="listen-btn" onclick="speakBtn('Practice writing your own paragraphs. Start with the topic sentence — it must announce clearly what the paragraph is about. Then write three body sentences that support it. Then write a concluding sentence.',this)">Listen to instructions</button>
+      </div>
+      <div id="para-prompts"></div>
+    </div>
+  </div>
+
+  <!-- ③ TRANSITIONS -->
+  <div class="panel" id="panel-transitions">
+    <div class="sb gl">
+      <div class="sec-num">15.2 — Transition Words</div>
+      <div class="sec-title">The Signposts of Writing
+        <button class="listen-btn" onclick="speakBtn('Section 15.2. Transition Words. The signposts of writing.',this)">Listen to title</button>
+      </div>
+      <div class="sec-body">
+        <p>Transition words guide the reader from one idea to the next, <strong>signalling the relationship</strong> between sentences and paragraphs. Without them, writing feels choppy and disconnected. With them, ideas flow naturally.</p>
+      </div>
+      <button class="big-listen" onclick="speakBtn('Transition words guide the reader from one idea to the next, signalling the relationship between sentences and paragraphs. Without them, writing feels choppy and disconnected. With them, ideas flow naturally. There are seven main functions that transition words serve: addition, contrast, cause and effect, example, time and sequence, emphasis, and summary.',this)">Listen to explanation</button>
+    </div>
+    <div class="sb bl">
+      <div class="sec-num">Seven Functions — Tap Any Row to Hear Examples</div>
+      <table class="trans-table" id="trans-table">
+        <thead><tr><th>Function</th><th>Transition Words</th></tr></thead>
+        <tbody id="trans-body"></tbody>
+      </table>
+    </div>
+    <div class="sb fl">
+      <div class="sec-num">Transitions in Context — Tap Any Sentence</div>
+      <div class="sec-title">See Them Working
+        <button class="listen-btn" onclick="speakBtn('Read each example. Notice how the transition word signals the relationship between the two ideas. Tap any sentence to hear it.',this)">Listen to instructions</button>
+      </div>
+      <div id="trans-examples"></div>
+    </div>
+  </div>
+
+  <!-- ④ DICTO-COMP -->
+  <div class="panel" id="panel-dictocomp">
+    <div class="sb gl">
+      <div class="sec-num">15.3 — The Dicto-Comp Method</div>
+      <div class="sec-title">The Most Powerful Exercise in This Book
+        <button class="listen-btn" onclick="speakBtn('Section 15.3. The Dicto-Comp Method. The most powerful exercise in this book.',this)">Listen to title</button>
+      </div>
+      <div class="sec-body">
+        <p>Dicto-comp is one of the most powerful exercises for simultaneously developing <strong>reading comprehension, listening, grammar, vocabulary, and writing</strong>. It works in four steps.</p>
+      </div>
+      <button class="big-listen" onclick="speakBtn('The Dicto-Comp method. Dicto-comp is one of the most powerful exercises for simultaneously developing reading comprehension, listening, grammar, vocabulary, and writing — all at once. Here is how it works in four steps. Step 1: Read and Listen. A passage is read aloud to you — or you read it silently — while you listen carefully for the main ideas, structure, and vocabulary. Do not take notes yet. Step 2: Discuss. Without looking at the text, discuss with yourself or a partner the main ideas, the order of events, and key words you remember. Step 3: Reconstruct. Write the passage from memory in your own words. Your version does not need to be identical, but it must preserve the meaning, structure, and key vocabulary of the original. Step 4: Compare and Correct. Compare your reconstruction to the original. Note differences in vocabulary, grammar, structure, and completeness. Correct your version and study the differences carefully.',this)">Listen to full method</button>
+    </div>
+    <div class="sb bl">
+      <div class="sec-num">The Four Steps — Tap Any Card</div>
+      <div class="dc-steps" id="dc-steps"></div>
+    </div>
+    <div class="sb fl">
+      <div class="sec-num">Dicto-Comp Practice Passage — The Amazon</div>
+      <div class="sec-title">Step 1: Listen Carefully
+        <button class="listen-btn" id="dc-btn" onclick="readDictoComp(this)">Read passage aloud</button>
+      </div>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:1rem;">
+        <strong>Instructions:</strong> Listen to the passage twice. Do not write yet. Then close this tab and reconstruct it from memory in your own words. Then come back to compare.
+      </p>
+      <div class="dc-passage" id="dc-passage"></div>
+      <div style="margin-top:1rem;">
+        <div class="step-row"><span class="step-n">1</span><strong>Read and Listen:</strong> Tap "Read passage aloud" above. Listen carefully — no writing yet.</div>
+        <div class="step-row"><span class="step-n">2</span><strong>Discuss:</strong> Close the page. What were the main ideas? What key facts do you remember?</div>
+        <div class="step-row"><span class="step-n">3</span><strong>Reconstruct:</strong> Write the passage from memory in your own words.</div>
+        <div class="step-row"><span class="step-n">4</span><strong>Compare:</strong> Return here. Tap any sentence to hear it. Compare your version to the original.</div>
+      </div>
+      <button class="big-listen" onclick="speakBtn('Step 1: Read and Listen. Tap the read passage button and listen carefully. Do not write anything yet. Just listen for the main ideas, the structure, and the key vocabulary. After listening twice, close the page. In step 2: Discuss with yourself — what were the main ideas? What order did they come in? What key words do you remember? In step 3: Reconstruct the passage from memory in your own words. Your version does not need to match word for word, but it must capture the meaning. In step 4: Come back and compare. Tap any sentence to hear it. Study the differences between your version and the original.',this)">Listen to all four steps</button>
+    </div>
+  </div>
+
+  <!-- ⑤ PHASE 3 REVIEW -->
+  <div class="panel" id="panel-phase3">
+    <div class="sb gl">
+      <div class="sec-num">Phase 3 — Completion</div>
+      <div class="sec-title">You Have Built the Architecture of Meaning
+        <button class="listen-btn" onclick="speakBtn('Phase 3 Completion. You have built the Architecture of Meaning.',this)">Listen to title</button>
+      </div>
+      <div class="sec-body">
+        <p>Completing Phase 3 means you now understand not just <em>how words sound</em> but <em>how they mean</em> — how meaning is built from morphemes, organised into sentences, structured in paragraphs, and connected by grammar.</p>
+        <p><strong>Phase 4</strong> takes you to the final destination: fluent, expressive, deeply comprehending reading — where literacy becomes a true superpower.</p>
+      </div>
+      <button class="big-listen" onclick="speakBtn('Congratulations on completing Phase 3: Architecture of Meaning. You now understand not just how words sound, but how they mean. You know how meaning is built from morphemes, organised into sentences, structured in paragraphs, and connected by grammar and punctuation. Phase 4 takes you to the final destination: fluent, expressive, and deeply comprehending reading — where literacy becomes a true superpower.',this)">Listen to Phase 3 completion</button>
+    </div>
+    <div class="sb bl">
+      <div class="phase-complete-box">
+        <div class="pc-title">Phase 3 Mastery Checklist</div>
+        <div class="pc-sub">Tap any item to hear it. Confirm you can do each one before moving to Phase 4.</div>
+        <ul class="pc-items" id="phase3-checklist"></ul>
+        <button class="big-listen" onclick="readPhase3Checklist(this)">Listen to full checklist</button>
+      </div>
+    </div>
+    <div class="sb rl" style="margin-top:4px;">
+      <div class="sec-num">What Awaits in Phase 4</div>
+      <div class="sec-title">Achieving Fluency
+        <button class="listen-btn" onclick="speakBtn('What awaits in Phase 4: Achieving Fluency.',this)">Listen to title</button>
+      </div>
+      <div style="margin-top:10px;">
+        <div class="step-row"><span class="step-n">16</span><strong>Reading Comprehension:</strong> Five levels of understanding — literal, inferential, structural, evaluative, applied</div>
+        <div class="step-row"><span class="step-n">17</span><strong>Prosody and Intonation:</strong> The music of reading — rhythm, stress, pitch, phrasing</div>
+        <div class="step-row"><span class="step-n">18</span><strong>Vocabulary Development:</strong> Building word wealth — tiers, context clues, word maps</div>
+        <div class="step-row"><span class="step-n">19</span><strong>The Expert Reader:</strong> Metacognition, text structure, critical reading, lifelong literacy</div>
+      </div>
+      <button class="big-listen" onclick="speakBtn('Phase 4: Achieving Fluency. Chapter 16 covers Reading Comprehension — five levels of understanding: literal, inferential, structural, evaluative, and applied. Chapter 17 covers Prosody and Intonation — the music of reading, including rhythm, stress, pitch, and phrasing. Chapter 18 covers Vocabulary Development — building your word wealth through tiers, context clues, and word maps. Chapter 19: The Expert Reader — metacognition, text structure recognition, critical reading, and building a lifelong reading practice.',this)">Listen to Phase 4 preview</button>
+    </div>
+  </div>
+
+  <!-- ⑥ QUIZ -->
+  <div class="panel" id="panel-quiz">
+    <div class="sb gl">
+      <div class="sec-num">Chapter 15 — Assessment</div>
+      <div class="sec-title">Test Yourself
+        <button class="listen-btn" onclick="speakBtn('Chapter 15 Assessment. Tap the sentence or phrase in the box to hear it. Then answer the question.',this)">Listen to instructions</button>
+      </div>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:1.2rem;">Tap the <strong>display box</strong> to hear it. Then choose the correct answer.</p>
+      <div class="quiz-card">
+        <div class="score-row">
+          <span id="score-text">Score: 0 / 0</span>
+          <div class="score-track"><div class="score-fill" id="score-fill" style="width:0%"></div></div>
+        </div>
+        <div class="quiz-prompt-row">
+          <p class="quiz-prompt" id="quiz-prompt">Loading...</p>
+          <button class="listen-btn" onclick="readQuizQuestion(this)">Listen to question</button>
+        </div>
+        <div class="quiz-display-wrap">
+          <div class="quiz-display" id="quiz-display" onclick="readQuizWord(this)">—</div>
+          <div class="quiz-display-hint">Tap above to hear it</div>
+        </div>
+        <div class="quiz-opts" id="quiz-opts"></div>
+        <div class="quiz-fb" id="quiz-fb"></div>
+        <button class="next-btn" id="next-btn" onclick="nextQ()">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="ch-nav">
+    <a class="nav-lnk" href="chapter-14.html">← Chapter 14: Punctuation</a>
+    <span class="phase-badge">Phase 4 — Achieving Fluency</span>
+    <a class="nav-lnk next" href="chapter-16.html">Chapter 16: Comprehension →</a>
+  </div>
+</div>
+
+<script>
+let voices=[],selectedVoiceIndex=-1,speechRate=0.85;
+function loadVoices(){
+  voices=window.speechSynthesis.getVoices();
+  const sel=document.getElementById('voice-select');
+  if(!voices.length)return;
+  const eng=voices.filter(v=>v.lang.startsWith('en'));
+  sel.innerHTML='<option value="-1">🔊 Browser default</option>';
+  eng.forEach(v=>{const idx=voices.indexOf(v);const o=document.createElement('option');o.value=idx;o.textContent=v.name+' ('+v.lang+')'+(v.localService?' ★':'');sel.appendChild(o);});
+  const sv=localStorage.getItem('rbVoiceIndex'),sr=localStorage.getItem('rbSpeechRate');
+  if(sv!=null){sel.value=sv;selectedVoiceIndex=parseInt(sv);}
+  if(sr!=null){speechRate=parseFloat(sr);document.querySelectorAll('.spd-btn').forEach(b=>b.classList.toggle('active',parseFloat(b.getAttribute('data-rate'))===speechRate));}
+}
+function onVoiceChange(){selectedVoiceIndex=parseInt(document.getElementById('voice-select').value);localStorage.setItem('rbVoiceIndex',selectedVoiceIndex);showSaved();}
+function setSpeed(r,btn){speechRate=r;localStorage.setItem('rbSpeechRate',r);document.querySelectorAll('.spd-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');showSaved();}
+function showSaved(){const s=document.getElementById('vsaved');s.classList.add('show');setTimeout(()=>s.classList.remove('show'),2000);}
+function applyVoice(u){u.rate=speechRate;if(selectedVoiceIndex>=0&&voices[selectedVoiceIndex]){u.voice=voices[selectedVoiceIndex];u.lang=voices[selectedVoiceIndex].lang;}else u.lang='en-GB';}
+function speakBtn(text,btn){
+  if(!window.speechSynthesis)return;
+  window.speechSynthesis.cancel();
+  document.querySelectorAll('.speaking').forEach(b=>b.classList.remove('speaking'));
+  const u=new SpeechSynthesisUtterance(text);applyVoice(u);
+  if(btn){btn.classList.add('speaking');u.onend=()=>btn.classList.remove('speaking');u.onerror=()=>btn.classList.remove('speaking');}
+  window.speechSynthesis.speak(u);
+}
+function sayWord(word,el){
+  if(!window.speechSynthesis)return;
+  window.speechSynthesis.cancel();
+  document.querySelectorAll('.speaking').forEach(b=>b.classList.remove('speaking'));
+  if(el)el.classList.add('speaking');
+  const u=new SpeechSynthesisUtterance(word);applyVoice(u);u.rate=speechRate*0.85;
+  if(el)u.onend=()=>el.classList.remove('speaking');
+  window.speechSynthesis.speak(u);
+}
+function testVoice(btn){speakBtn('Hello. This is your selected voice. Regular physical exercise produces significant cognitive benefits.',btn);}
+function readHero(btn){speakBtn('Chapter 15: Paragraph Structure and the Dicto-Comp Method. A paragraph is the fundamental unit of organised writing. In this chapter you will master the three parts of a paragraph, transition words, and the Dicto-Comp method — the most powerful combined reading and writing exercise in this entire book.',btn);}
+function showPanel(id,btn){
+  window.speechSynthesis&&window.speechSynthesis.cancel();
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(t=>t.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// PARAGRAPH ANATOMY BOX
+const paraData={
+  topic:{text:'Regular physical exercise produces significant cognitive benefits.',label:'Topic Sentence — announces the main idea'},
+  body:[
+    'Studies show that aerobic exercise increases blood flow to the prefrontal cortex, enhancing focus and decision-making.',
+    'Additionally, regular movement triggers the release of brain-derived neurotrophic factor — a protein that strengthens neural connections and supports memory formation.',
+    'Even moderate activity, such as a thirty-minute walk, measurably improves mood and reduces stress hormones.',
+  ],
+  concluding:{text:'The evidence is clear: movement is not a distraction from learning — it is a prerequisite for it.',label:'Concluding Sentence — wraps up and reinforces the main idea'},
+};
+function buildParaAnatomy(){
+  const el=document.getElementById('para-anatomy-box');
+  // topic
+  const t=document.createElement('div');t.className='para-part para-topic';
+  t.innerHTML=`<div class="para-label">Topic Sentence</div><div class="para-text">${paraData.topic.text}</div>`;
+  t.onclick=()=>{
+    document.querySelectorAll('.para-part.speaking').forEach(p=>p.classList.remove('speaking'));
+    t.classList.add('speaking');
+    const u=new SpeechSynthesisUtterance('Topic sentence: '+paraData.topic.text+'. '+paraData.topic.label);applyVoice(u);
+    u.onend=()=>t.classList.remove('speaking');window.speechSynthesis.cancel();window.speechSynthesis.speak(u);
+  };
+  el.appendChild(t);
+  // body
+  const b=document.createElement('div');b.className='para-part para-body';
+  b.innerHTML=`<div class="para-label">Body Sentences — evidence, examples, explanation</div>
+    <div class="para-text">${paraData.body.join(' ')}</div>`;
+  b.onclick=()=>{
+    document.querySelectorAll('.para-part.speaking').forEach(p=>p.classList.remove('speaking'));
+    b.classList.add('speaking');
+    const u=new SpeechSynthesisUtterance('Body sentences: '+paraData.body.join(' '));applyVoice(u);
+    u.onend=()=>b.classList.remove('speaking');window.speechSynthesis.cancel();window.speechSynthesis.speak(u);
+  };
+  el.appendChild(b);
+  // concluding
+  const c=document.createElement('div');c.className='para-part para-concluding';
+  c.innerHTML=`<div class="para-label">Concluding Sentence</div><div class="para-text">${paraData.concluding.text}</div>`;
+  c.onclick=()=>{
+    document.querySelectorAll('.para-part.speaking').forEach(p=>p.classList.remove('speaking'));
+    c.classList.add('speaking');
+    const u=new SpeechSynthesisUtterance('Concluding sentence: '+paraData.concluding.text+'. '+paraData.concluding.label);applyVoice(u);
+    u.onend=()=>c.classList.remove('speaking');window.speechSynthesis.cancel();window.speechSynthesis.speak(u);
+  };
+  el.appendChild(c);
+}
+
+// PARAGRAPH PROMPTS
+const paraPrompts=[
+  'Write a paragraph about why reading is important.',
+  'Write a paragraph about your favourite place.',
+  'Write a paragraph explaining how to learn a new skill.',
+  'Write a paragraph about a person you admire.',
+];
+function buildParaPrompts(){
+  const el=document.getElementById('para-prompts');
+  paraPrompts.forEach((p,i)=>{
+    const wrap=document.createElement('div');
+    wrap.style.cssText='background:#fff;border:1px solid var(--border);border-left:4px solid var(--gold);border-radius:var(--radius);padding:1rem 1.25rem;margin-bottom:10px;display:flex;align-items:center;gap:12px;cursor:pointer;';
+    const num=document.createElement('div');num.style.cssText='font-family:Playfair Display,serif;font-size:28px;font-weight:700;color:var(--gold);flex-shrink:0;';num.textContent=(i+1)+'.';
+    const text=document.createElement('div');text.style.cssText='font-size:15px;flex:1;';text.textContent=p;
+    const btn=document.createElement('button');btn.className='listen-btn';btn.style.flexShrink='0';
+    btn.textContent='Read prompt';btn.onclick=(e)=>{e.stopPropagation();speakBtn(p,btn);};
+    wrap.onclick=()=>speakBtn(p,null);
+    wrap.appendChild(num);wrap.appendChild(text);wrap.appendChild(btn);el.appendChild(wrap);
+  });
+}
+
+// TRANSITIONS TABLE
+const transData=[
+  {func:'Addition',words:'furthermore, in addition, moreover, also, besides, likewise, similarly'},
+  {func:'Contrast',words:'however, on the other hand, nevertheless, although, despite, yet, still, whereas'},
+  {func:'Cause / Effect',words:'therefore, consequently, as a result, thus, hence, because, since, so that'},
+  {func:'Example',words:'for example, for instance, specifically, in particular, such as, namely, to illustrate'},
+  {func:'Time / Sequence',words:'first, second, finally, next, then, afterward, subsequently, previously, meanwhile'},
+  {func:'Emphasis',words:'indeed, in fact, certainly, above all, most importantly, clearly, without doubt'},
+  {func:'Summary',words:'in conclusion, in summary, to sum up, overall, in short, ultimately, to conclude'},
+];
+function buildTransTable(){
+  const tbody=document.getElementById('trans-body');
+  transData.forEach(row=>{
+    const tr=document.createElement('tr');
+    const tf=document.createElement('td');tf.className='func-cell';tf.textContent=row.func;
+    tf.onclick=()=>speakBtn('Transition function: '+row.func+'. Words: '+row.words,tf);
+    const tw=document.createElement('td');tw.className='words-cell';tw.textContent=row.words;
+    tw.onclick=()=>speakBtn(row.words,tw);
+    tr.appendChild(tf);tr.appendChild(tw);tbody.appendChild(tr);
+  });
+}
+
+// TRANSITION EXAMPLES
+const transExamples=[
+  {sent:'She trained every day. However, the injury set her back by three months.',note:'Contrast — "However" signals the unexpected turn'},
+  {sent:'The study ran for six months. Furthermore, it included participants from twelve countries.',note:'Addition — "Furthermore" adds supporting information'},
+  {sent:'First, gather your materials. Then, read the instructions carefully. Finally, begin.',note:'Sequence — "First", "Then", "Finally" order the steps'},
+  {sent:'He did not study. As a result, he failed the examination.',note:'Cause/Effect — "As a result" signals what happened because of the first event'},
+  {sent:'Many animals migrate seasonally. For example, the Arctic tern travels from pole to pole.',note:'Example — "For example" introduces a specific illustration'},
+  {sent:'In conclusion, the evidence strongly supports the original hypothesis.',note:'Summary — "In conclusion" signals the paragraph is ending'},
+];
+function buildTransExamples(){
+  const el=document.getElementById('trans-examples');
+  transExamples.forEach(ex=>{
+    const wrap=document.createElement('div');
+    wrap.style.cssText='background:#fff;border:1px solid var(--border);border-left:4px solid var(--blue);border-radius:var(--radius);padding:1rem 1.25rem;margin-bottom:10px;';
+    const sent=document.createElement('div');
+    sent.style.cssText='font-family:Playfair Display,serif;font-size:16px;font-weight:700;color:var(--ink);margin-bottom:6px;cursor:pointer;';
+    sent.textContent=ex.sent;sent.onclick=()=>speakBtn(ex.sent,sent);
+    const note=document.createElement('div');note.style.cssText='font-size:12px;color:var(--muted);font-style:italic;margin-bottom:6px;';
+    note.textContent='🔗 '+ex.note;
+    const btn=document.createElement('button');btn.className='listen-btn';
+    btn.textContent='Hear sentence';btn.onclick=()=>speakBtn(ex.sent,btn);
+    wrap.appendChild(sent);wrap.appendChild(note);wrap.appendChild(btn);el.appendChild(wrap);
+  });
+}
+
+// DICTO-COMP STEPS
+const dcSteps=[
+  {num:'1',name:'Read & Listen',color:'#B8860B',desc:'A passage is read aloud. Listen for main ideas, structure, and vocabulary. Do NOT take notes yet.',
+   audio:'Step 1: Read and Listen. A passage is read aloud to you. Listen carefully for the main ideas, the structure, and the key vocabulary. Do not take notes yet — just listen and absorb.'},
+  {num:'2',name:'Discuss',color:'#1A4A7A',desc:'Without looking at the text, discuss the main ideas, order of events, and key words you remember.',
+   audio:'Step 2: Discuss. Without looking at the text, discuss with yourself or a partner the main ideas, the order they came in, and key words you remember. This activates your memory.'},
+  {num:'3',name:'Reconstruct',color:'#2C5F2E',desc:'Write the passage from memory in your own words. Preserve the meaning, structure, and key vocabulary.',
+   audio:'Step 3: Reconstruct. Write the passage from memory in your own words. Your version does not need to be identical to the original, but it must preserve the meaning, structure, and key vocabulary.'},
+  {num:'4',name:'Compare',color:'#C0392B',desc:'Compare your reconstruction to the original. Note differences in vocabulary, grammar, and completeness. Correct and study.',
+   audio:'Step 4: Compare and Correct. Compare your reconstruction to the original. Note every difference — in vocabulary, grammar, structure, and completeness. Correct your version. Study the differences carefully. These differences are your learning targets.'},
+];
+function buildDCSteps(){
+  const el=document.getElementById('dc-steps');
+  dcSteps.forEach(s=>{
+    const card=document.createElement('div');card.className='dc-step';card.style.borderTopColor=s.color;
+    card.innerHTML=`<div class="dc-num" style="color:${s.color};">${s.num}</div>
+      <div class="dc-name" style="color:${s.color};">${s.name}</div>
+      <div class="dc-desc">${s.desc}</div>`;
+    card.onclick=()=>{
+      document.querySelectorAll('.dc-step.speaking').forEach(c=>c.classList.remove('speaking'));
+      card.classList.add('speaking');
+      const u=new SpeechSynthesisUtterance(s.audio);applyVoice(u);
+      u.onend=()=>card.classList.remove('speaking');window.speechSynthesis.cancel();window.speechSynthesis.speak(u);
+    };
+    el.appendChild(card);
+  });
+}
+
+// DICTO-COMP PASSAGE
+const dcText='The Amazon rainforest is often called the lungs of the Earth. It covers more than five and a half million square kilometres, stretching across nine South American countries. The forest produces roughly twenty percent of the world\'s oxygen and absorbs vast quantities of carbon dioxide, making it one of the planet\'s most important tools for regulating climate. Yet the Amazon faces a serious threat: deforestation. Every year, thousands of square kilometres of forest are cleared for cattle ranching, soy farming, and logging. Scientists warn that if this rate of destruction continues, the Amazon could reach a tipping point — a moment where damaged sections of the forest can no longer sustain themselves and begin to transform into dry savanna. The loss of the Amazon would not be a regional tragedy. It would be a global catastrophe.';
+function buildDCPassage(){
+  const el=document.getElementById('dc-passage');
+  dcText.split(' ').forEach(w=>{
+    const clean=w.replace(/[^a-zA-Z]/g,'');
+    const span=document.createElement('span');span.className='word-tap';span.textContent=w+' ';
+    span.onclick=()=>sayWord(clean||w,span);el.appendChild(span);
+  });
+}
+function readDictoComp(btn){speakBtn(dcText,btn);}
+
+// PHASE 3 CHECKLIST
+const phase3Items=[
+  'Identify the prefix, root, and suffix in any given word and state the meaning of each',
+  'Define all eight parts of speech and identify them correctly in a sentence',
+  'Classify any sentence as simple, compound, complex, or compound-complex',
+  'Identify the subject and predicate of any sentence, however complex',
+  'Recognise and correct fragments, run-ons, comma splices, and dangling modifiers',
+  'Name and correctly use all 12 punctuation marks',
+  'Explain the purpose of the Oxford comma with a clear example',
+  'Identify the topic sentence, body sentences, and concluding sentence of any paragraph',
+  'Use at least five transition words from three different functional categories',
+  'Complete a full Dicto-Comp exercise — listen, reconstruct, and compare',
+];
+function buildPhase3Checklist(){
+  const el=document.getElementById('phase3-checklist');
+  phase3Items.forEach(item=>{
+    const li=document.createElement('li');
+    const check=document.createElement('span');check.className='pc-check';check.textContent='☐';
+    const text=document.createElement('span');text.textContent=item;
+    li.appendChild(check);li.appendChild(text);
+    li.onclick=()=>speakBtn(item,null);
+    el.appendChild(li);
+  });
+}
+function readPhase3Checklist(btn){speakBtn('Phase 3 Mastery Checklist. '+phase3Items.join('. '),btn);}
+
+// QUIZ
+const quizData=[
+  {q:'What are the three parts of a well-formed paragraph?',d:'Topic · Body · Concluding',correct:'Topic sentence, body sentences, and concluding sentence',opts:['Topic sentence, body sentences, and concluding sentence','Introduction, argument, and conclusion','Claim, evidence, and rebuttal','Subject, predicate, and object']},
+  {q:'What is the purpose of a topic sentence?',d:'Regular exercise...',correct:'To announce the main idea of the paragraph',opts:['To announce the main idea of the paragraph','To provide evidence for the argument','To summarise the paragraph','To introduce a quotation']},
+  {q:'Which transition word signals CONTRAST?',d:'however',correct:'However — signals an unexpected or opposing idea',opts:['However — signals an unexpected or opposing idea','Furthermore — adds information','Therefore — shows a result','For example — introduces an illustration']},
+  {q:'Which transition word signals CAUSE and EFFECT?',d:'therefore',correct:'Therefore — signals a result following from a cause',opts:['Therefore — signals a result following from a cause','However — signals contrast','In addition — adds information','For instance — gives an example']},
+  {q:'Which transition word signals ADDITION?',d:'furthermore',correct:'Furthermore — adds supporting information',opts:['Furthermore — adds supporting information','Nevertheless — signals contrast','As a result — shows effect','In conclusion — signals a summary']},
+  {q:'What is Step 1 of the Dicto-Comp method?',d:'Dicto-Comp Step 1',correct:'Read and Listen — absorb the passage without taking notes',opts:['Read and Listen — absorb the passage without taking notes','Write the passage from memory immediately','Compare your version to the original','Summarise the passage in one sentence']},
+  {q:'What is Step 3 of the Dicto-Comp method?',d:'Dicto-Comp Step 3',correct:'Reconstruct — write the passage from memory in your own words',opts:['Reconstruct — write the passage from memory in your own words','Read the passage aloud three times','Compare and correct your version','Discuss the main ideas with a partner']},
+  {q:'What does a concluding sentence do?',d:'Paragraph ending',correct:'Wraps up the paragraph\'s idea or transitions to the next',opts:['Wraps up the paragraph\'s idea or transitions to the next','Introduces the main idea for the first time','Provides the key evidence','Begins the next paragraph\'s argument']},
+  {q:'What is the body of a paragraph?',d:'Body sentences',correct:'Sentences that develop and support the main idea with evidence',opts:['Sentences that develop and support the main idea with evidence','The first and last sentence of the paragraph','The transition words used throughout','The topic sentence and concluding sentence together']},
+  {q:'Which transition function does "in conclusion" serve?',d:'in conclusion',correct:'Summary — signals the paragraph or essay is ending',opts:['Summary — signals the paragraph or essay is ending','Contrast — signals an opposing idea','Addition — adds information','Sequence — shows the next step']},
+];
+let qi=0,score=0,answered=false,currentQ=null;
+const shuffle=a=>a.sort(()=>Math.random()-.5);
+let order=shuffle([...Array(quizData.length).keys()]);
+function readQuizQuestion(btn){if(currentQ)speakBtn(currentQ.q,btn);}
+function readQuizWord(el){if(currentQ)speakBtn(currentQ.d,el);}
+function renderQ(){
+  answered=false;currentQ=quizData[order[qi]];
+  document.getElementById('quiz-prompt').textContent=currentQ.q;
+  const disp=document.getElementById('quiz-display');disp.textContent=currentQ.d;disp.classList.remove('speaking');
+  const opts=document.getElementById('quiz-opts');opts.innerHTML='';
+  shuffle([...currentQ.opts]).forEach(opt=>{
+    const b=document.createElement('button');b.className='q-opt';b.textContent=opt;
+    b.onclick=()=>checkQ(opt,currentQ.correct,b);opts.appendChild(b);
+  });
+  document.getElementById('quiz-fb').style.display='none';
+  document.getElementById('next-btn').style.display='none';
+  setTimeout(()=>speakBtn(currentQ.q+'. The example is: '+currentQ.d,null),350);
+}
+function checkQ(chosen,correct,btn){
+  if(answered)return;answered=true;
+  const fb=document.getElementById('quiz-fb');
+  if(chosen===correct){score++;btn.classList.add('correct');fb.className='quiz-fb ok';fb.textContent='✓ Correct! '+correct;}
+  else{btn.classList.add('wrong');document.querySelectorAll('.q-opt').forEach(b=>{if(b.textContent===correct)b.classList.add('correct');});fb.className='quiz-fb err';fb.textContent='✗ The correct answer is: '+correct;}
+  fb.style.display='block';
+  speakBtn(fb.textContent.replace('✓ ','').replace('✗ The correct answer is: ','The correct answer is: '),null);
+  document.getElementById('next-btn').style.display='inline-block';
+  const t=qi+1;
+  document.getElementById('score-text').textContent='Score: '+score+' / '+t;
+  document.getElementById('score-fill').style.width=Math.round(score/t*100)+'%';
+}
+function nextQ(){qi++;if(qi>=order.length){qi=0;score=0;order=shuffle([...Array(quizData.length).keys()]);}renderQ();}
+
+// INIT
+if(window.speechSynthesis){if(speechSynthesis.onvoiceschanged!==undefined)speechSynthesis.onvoiceschanged=loadVoices;loadVoices();}
+buildParaAnatomy();
+buildParaPrompts();
+buildTransTable();
+buildTransExamples();
+buildDCSteps();
+buildDCPassage();
+buildPhase3Checklist();
+renderQ();
+</script>
+</body>
+</html>

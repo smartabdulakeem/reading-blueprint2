@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 18 — Vocabulary Development | The Reading Blueprint</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1C1A17;--paper:#FAF7F2;--cream:#F2EDE4;--gold:#B8860B;--gold-light:#F5E6B0;--rust:#C0392B;--forest:#2C5F2E;--blue:#1A4A7A;--purple:#6A0DAD;--muted:#7A7468;--border:rgba(28,26,23,0.12);--radius:10px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:var(--ink);min-height:100vh;}
+.voice-bar{background:var(--ink);padding:8px 1.5rem;display:flex;align-items:center;gap:10px;flex-wrap:wrap;position:sticky;top:0;z-index:200;box-shadow:0 2px 12px rgba(28,26,23,0.3);}
+.vb-brand{font-family:'Playfair Display',serif;color:var(--gold);font-size:13px;letter-spacing:1.5px;text-transform:uppercase;flex-shrink:0;margin-right:6px;}
+.home-btn{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(184,134,11,0.15);border:1.5px solid rgba(184,134,11,0.45);border-radius:8px;color:var(--gold);font-size:15px;cursor:pointer;transition:all .2s;text-decoration:none;flex-shrink:0;margin-right:4px;position:relative;}
+.home-btn:hover{background:rgba(184,134,11,0.3);border-color:var(--gold);transform:scale(1.08);}
+.home-btn::after{content:"Home";position:absolute;bottom:-26px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--gold);font-size:10px;padding:2px 7px;border-radius:4px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;border:1px solid rgba(184,134,11,0.3);}
+.home-btn:hover::after{opacity:1;}
+.vb-label{font-size:11px;font-weight:700;color:rgba(255,255,255,0.4);letter-spacing:1.5px;text-transform:uppercase;white-space:nowrap;flex-shrink:0;}
+.voice-select{min-width:150px;max-width:260px;padding:5px 26px 5px 9px;font-family:'Source Serif 4',serif;font-size:13px;border:1px solid rgba(255,255,255,0.15);border-radius:7px;background:rgba(255,255,255,0.08);color:#fff;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23B8860B' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 9px center;}
+.voice-select option{background:#1C1A17;color:#fff;}
+.speed-group{display:flex;align-items:center;gap:4px;flex-shrink:0;}
+.spd-label{font-size:11px;font-weight:700;color:rgba(255,255,255,0.4);letter-spacing:1px;text-transform:uppercase;margin-right:3px;}
+.spd-btn{padding:4px 10px;font-family:'Source Serif 4',serif;font-size:12px;font-weight:600;border:1px solid rgba(255,255,255,0.15);border-radius:6px;background:transparent;color:rgba(255,255,255,0.5);cursor:pointer;transition:all .15s;}
+.spd-btn.active{background:var(--gold);color:var(--ink);border-color:var(--gold);}
+.spd-btn:hover:not(.active){border-color:var(--gold);color:var(--gold);}
+.vtest{display:inline-flex;align-items:center;gap:5px;padding:5px 13px;font-family:'Source Serif 4',serif;font-size:12px;font-weight:600;border:1px solid rgba(184,134,11,0.5);border-radius:16px;background:rgba(184,134,11,0.12);color:var(--gold);cursor:pointer;transition:all .15s;flex-shrink:0;}
+.vtest:hover{background:rgba(184,134,11,0.22);}
+.vtest.speaking{background:rgba(192,57,43,0.2);border-color:var(--rust);color:#ff7b6b;}
+.vtest::before{content:"▶";font-size:9px;}
+.vtest.speaking::before{content:"◼";}
+.vsaved{font-size:11px;color:var(--gold);font-style:italic;flex-shrink:0;opacity:0;transition:opacity .3s;}
+.vsaved.show{opacity:1;}
+.chapter-hero{background:var(--ink);padding:3rem 2rem 2.5rem;text-align:center;border-bottom:3px solid var(--gold);position:relative;overflow:hidden;}
+.chapter-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(184,134,11,0.18) 0%,transparent 70%);}
+.ch-num{font-family:'Playfair Display',serif;font-size:12px;color:var(--gold);letter-spacing:4px;text-transform:uppercase;margin-bottom:12px;position:relative;}
+.ch-title{font-family:'Playfair Display',serif;font-size:clamp(26px,5vw,44px);color:#fff;line-height:1.15;margin-bottom:10px;position:relative;}
+.ch-sub{font-size:15px;color:rgba(255,255,255,0.5);font-style:italic;margin-bottom:1.5rem;position:relative;}
+.hero-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border:1.5px solid rgba(184,134,11,0.6);border-radius:24px;background:rgba(184,134,11,0.1);color:var(--gold);font-family:'Source Serif 4',serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;position:relative;}
+.hero-btn:hover{background:rgba(184,134,11,0.2);}
+.hero-btn.speaking{background:rgba(192,57,43,0.2);border-color:var(--rust);color:#ff7b6b;}
+.hero-btn::before{content:"▶";font-size:10px;}
+.hero-btn.speaking::before{content:"◼";}
+.container{max-width:860px;margin:0 auto;padding:2rem 1.25rem;}
+.tabs-bar{display:flex;gap:4px;margin-bottom:2rem;background:var(--cream);padding:5px;border-radius:var(--radius);border:1px solid var(--border);flex-wrap:wrap;}
+.tab-btn{flex:1;min-width:80px;padding:8px 10px;font-family:'Source Serif 4',serif;font-size:13px;font-weight:600;border:none;border-radius:7px;background:transparent;color:var(--muted);cursor:pointer;transition:all .15s;text-align:center;white-space:nowrap;}
+.tab-btn.active{background:var(--ink);color:var(--gold);}
+.tab-btn:hover:not(.active){background:rgba(28,26,23,0.06);color:var(--ink);}
+.panel{display:none;}.panel.active{display:block;}
+.sb{background:var(--cream);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem 1.75rem;margin-bottom:1.25rem;}
+.sb.gl{border-left:4px solid var(--gold);}
+.sb.rl{border-left:4px solid var(--rust);}
+.sb.fl{border-left:4px solid var(--forest);}
+.sb.bl{border-left:4px solid var(--blue);}
+.sb.pl{border-left:4px solid var(--purple);}
+.sec-num{font-size:11px;font-weight:600;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;}
+.sec-title{font-family:'Playfair Display',serif;font-size:20px;color:var(--ink);margin-bottom:10px;line-height:1.3;display:flex;align-items:center;flex-wrap:wrap;gap:8px;}
+.sec-body{font-size:15px;line-height:1.8;color:#3A3730;}
+.sec-body p{margin-bottom:10px;}
+.listen-btn{display:inline-flex;align-items:center;gap:5px;padding:4px 12px;font-family:'Source Serif 4',serif;font-size:12px;font-weight:600;border:1px solid var(--border);border-radius:16px;background:#fff;color:var(--muted);cursor:pointer;transition:all .15s;flex-shrink:0;}
+.listen-btn:hover{border-color:var(--gold);color:var(--gold);}
+.listen-btn.speaking{border-color:var(--rust);color:var(--rust);background:#fff5f5;}
+.listen-btn::before{content:"▶";font-size:9px;}
+.listen-btn.speaking::before{content:"◼";}
+.big-listen{display:flex;align-items:center;gap:8px;padding:10px 18px;font-family:'Source Serif 4',serif;font-size:14px;font-weight:700;border:2px solid var(--gold);border-radius:20px;background:var(--gold-light);color:var(--ink);cursor:pointer;transition:all .2s;margin-top:12px;width:fit-content;}
+.big-listen:hover{background:#EDD97A;}
+.big-listen.speaking{background:#fce4e4;border-color:var(--rust);color:var(--rust);}
+.big-listen::before{content:"🔊";font-size:14px;}
+.big-listen.speaking::before{content:"⏹";}
+.callout{background:var(--gold-light);border:1px solid rgba(184,134,11,0.3);border-radius:var(--radius);padding:1rem 1.25rem;margin:1rem 0;font-size:14px;line-height:1.8;}
+.step-row{display:flex;align-items:flex-start;gap:10px;padding:8px 12px;border-radius:7px;background:var(--cream);font-size:14px;margin-bottom:6px;line-height:1.6;}
+.step-n{font-size:11px;font-weight:700;color:var(--gold);width:24px;flex-shrink:0;margin-top:2px;}
+
+/* TIER CARDS */
+.tier-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin:1rem 0;}
+.tier-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;border-top:5px solid;cursor:pointer;transition:all .15s;}
+.tier-card:hover{transform:translateY(-2px);box-shadow:0 4px 14px rgba(28,26,23,0.08);}
+.tier-card.speaking{outline:2px solid var(--rust);}
+.tier-num{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;}
+.tier-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;margin-bottom:6px;}
+.tier-desc{font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:8px;}
+.tier-examples{font-family:'Playfair Display',serif;font-size:13px;color:var(--muted);font-style:italic;}
+
+/* ACADEMIC WORD LIST */
+.awl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px;margin:1rem 0;}
+.awl-card{background:#fff;border:1px solid var(--border);border-radius:7px;padding:8px 10px;cursor:pointer;transition:all .15s;text-align:center;}
+.awl-card:hover{background:var(--gold-light);border-color:var(--gold);}
+.awl-card.speaking{border-color:var(--rust);background:#fff5f5;}
+.awl-word{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:var(--blue);margin-bottom:2px;}
+.awl-pos{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;}
+
+/* CONTEXT CLUE TYPES */
+.cc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin:1rem 0;}
+.cc-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.2rem;border-left:4px solid;cursor:pointer;transition:all .15s;}
+.cc-card:hover{background:var(--cream);}
+.cc-card.speaking{outline:2px solid var(--rust);}
+.cc-type{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;}
+.cc-def{font-size:13px;color:var(--muted);margin-bottom:8px;line-height:1.5;}
+.cc-example{font-family:'Playfair Display',serif;font-size:14px;font-weight:700;line-height:1.6;margin-bottom:6px;}
+.cc-signal{font-size:11px;color:var(--muted);font-style:italic;}
+
+/* WORD MAP */
+.word-map{background:var(--ink);border-radius:var(--radius);padding:1.75rem;margin:1rem 0;}
+.wm-title{font-family:'Playfair Display',serif;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;text-align:center;}
+.wm-grid{display:grid;grid-template-columns:1fr auto 1fr;grid-template-rows:auto auto auto;gap:10px;align-items:center;}
+.wm-center{grid-column:2;grid-row:2;text-align:center;}
+.wm-center-word{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--gold);padding:12px 20px;background:rgba(184,134,11,0.15);border:2px solid rgba(184,134,11,0.5);border-radius:10px;cursor:pointer;display:inline-block;}
+.wm-center-word:hover{background:rgba(184,134,11,0.25);}
+.wm-center-word.speaking{color:var(--rust);}
+.wm-box{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:10px 14px;cursor:pointer;transition:all .15s;}
+.wm-box:hover{background:rgba(184,134,11,0.15);border-color:rgba(184,134,11,0.4);}
+.wm-box.speaking{border-color:var(--rust);}
+.wm-label{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:5px;}
+.wm-content{font-size:13px;color:rgba(255,255,255,0.8);line-height:1.6;}
+.wm-tl{grid-column:1;grid-row:1;}
+.wm-tr{grid-column:3;grid-row:1;}
+.wm-bl{grid-column:1;grid-row:3;}
+.wm-br{grid-column:3;grid-row:3;}
+.wm-arrow-h{grid-row:2;font-size:20px;color:rgba(184,134,11,0.5);text-align:center;}
+.wm-arrow-left{grid-column:1;grid-row:2;text-align:right;padding-right:8px;font-size:20px;color:rgba(184,134,11,0.5);}
+.wm-arrow-right{grid-column:3;grid-row:2;text-align:left;padding-left:8px;font-size:20px;color:rgba(184,134,11,0.5);}
+
+/* CT */
+.word-tap{cursor:pointer;border-radius:3px;padding:1px 2px;transition:background .1s;display:inline-block;}
+.word-tap:hover{background:var(--gold-light);}
+.word-tap.speaking{background:var(--gold-light);color:var(--gold);font-weight:600;}
+.ct-box{background:var(--cream);border:1px solid var(--border);border-left:4px solid var(--forest);border-radius:var(--radius);padding:1rem 1.25rem;margin:6px 0;font-size:16px;line-height:2.3;}
+
+/* QUIZ */
+.quiz-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;max-width:580px;}
+.quiz-prompt-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:1rem;}
+.quiz-prompt{font-family:'Playfair Display',serif;font-size:16px;flex:1;line-height:1.4;}
+.quiz-display-wrap{text-align:center;margin-bottom:1.2rem;}
+.quiz-display{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--gold);padding:1rem;background:var(--cream);border-radius:var(--radius);letter-spacing:2px;display:block;width:100%;cursor:pointer;border:none;line-height:1.4;}
+.quiz-display:hover{background:#EDD97A;}
+.quiz-display.speaking{background:#fce4e4;color:var(--rust);}
+.quiz-display-hint{font-size:12px;color:var(--muted);margin-top:5px;font-style:italic;}
+.quiz-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem;}
+.q-opt{padding:11px;font-family:'Source Serif 4',serif;font-size:13px;font-weight:600;border:1.5px solid var(--border);border-radius:8px;background:var(--cream);color:var(--ink);cursor:pointer;transition:all .15s;text-align:left;}
+.q-opt:hover{border-color:var(--gold);background:var(--gold-light);}
+.q-opt.correct{background:#EAF3DE;border-color:var(--forest);color:#27500A;}
+.q-opt.wrong{background:#FCEBEB;border-color:var(--rust);color:#791F1F;}
+.quiz-fb{font-size:14px;padding:10px 14px;border-radius:8px;margin-bottom:1rem;line-height:1.5;display:none;}
+.quiz-fb.ok{background:#EAF3DE;color:#27500A;}
+.quiz-fb.err{background:#FCEBEB;color:#791F1F;}
+.next-btn{padding:10px 24px;background:var(--ink);color:var(--gold);border:none;border-radius:20px;font-family:'Source Serif 4',serif;font-size:14px;font-weight:600;cursor:pointer;display:none;}
+.next-btn:hover{opacity:0.85;}
+.score-row{display:flex;align-items:center;gap:12px;margin-bottom:1.2rem;font-size:13px;color:var(--muted);}
+.score-track{flex:1;height:5px;background:var(--cream);border-radius:3px;overflow:hidden;}
+.score-fill{height:100%;background:var(--forest);border-radius:3px;transition:width .3s;}
+.ch-nav{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 0;border-top:1px solid var(--border);margin-top:2rem;flex-wrap:wrap;gap:10px;}
+.nav-lnk{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border:1px solid var(--border);border-radius:20px;font-size:13px;font-weight:600;color:var(--muted);background:var(--cream);text-decoration:none;transition:all .15s;}
+.nav-lnk:hover{border-color:var(--ink);color:var(--ink);}
+.nav-lnk.next{background:var(--ink);color:var(--gold);border-color:var(--ink);}
+.phase-badge{font-size:11px;background:var(--gold-light);color:var(--gold);border:1px solid rgba(184,134,11,0.3);padding:4px 12px;border-radius:12px;font-weight:600;}
+</style>
+</head>
+<body>
+
+<div class="voice-bar">
+  <a class="home-btn" href="index.html">🏠</a>
+  <span class="vb-brand">The Reading Blueprint</span>
+  <span class="vb-label">🔊 Voice</span>
+  <select class="voice-select" id="voice-select" onchange="onVoiceChange()">
+    <option value="-1">Loading voices...</option>
+  </select>
+  <div class="speed-group">
+    <span class="spd-label">Speed</span>
+    <button class="spd-btn" data-rate="0.6" onclick="setSpeed(0.6,this)">Slow</button>
+    <button class="spd-btn active" data-rate="0.85" onclick="setSpeed(0.85,this)">Normal</button>
+    <button class="spd-btn" data-rate="1.1" onclick="setSpeed(1.1,this)">Fast</button>
+  </div>
+  <button class="vtest" onclick="testVoice(this)">Test voice</button>
+  <span class="vsaved" id="vsaved">✓ Saved</span>
+</div>
+
+<div class="chapter-hero">
+  <div class="ch-num">Chapter 18 of 19</div>
+  <h1 class="ch-title">Vocabulary Development:<br>Building Your Word Wealth</h1>
+  <p class="ch-sub">The Four Tiers · Academic Word List · Context Clues · Word Maps</p>
+  <button class="hero-btn" onclick="readHero(this)">Listen to introduction</button>
+</div>
+
+<div class="container">
+  <div class="tabs-bar">
+    <button class="tab-btn active" onclick="showPanel('learn',this)">① Learn</button>
+    <button class="tab-btn" onclick="showPanel('tiers',this)">② Four Tiers</button>
+    <button class="tab-btn" onclick="showPanel('awl',this)">③ Academic Words</button>
+    <button class="tab-btn" onclick="showPanel('context',this)">④ Context Clues</button>
+    <button class="tab-btn" onclick="showPanel('wordmap',this)">⑤ Word Maps</button>
+    <button class="tab-btn" onclick="showPanel('quiz',this)">⑥ Quiz</button>
+  </div>
+
+  <!-- ① LEARN -->
+  <div class="panel active" id="panel-learn">
+    <div class="sb gl">
+      <div class="sec-num">18.1</div>
+      <div class="sec-title">Why Vocabulary Is the Engine of Reading
+        <button class="listen-btn" onclick="speakBtn('Section 18.1. Why Vocabulary Is the Engine of Reading.',this)">Listen to title</button>
+      </div>
+      <div class="sec-body">
+        <p>You can decode every word in a sentence and still not understand it — if you do not know what the words mean. <strong>Vocabulary is the engine of comprehension.</strong></p>
+        <p>Research consistently shows that a reader's vocabulary size is one of the strongest predictors of reading comprehension, academic success, and lifelong earning potential. Word wealth is real wealth.</p>
+      </div>
+      <button class="big-listen" onclick="speakBtn('You can decode every word in a sentence and still not understand it — if you do not know what the words mean. Vocabulary is the engine of comprehension. Research consistently shows that a reader\'s vocabulary size is one of the strongest predictors of reading comprehension, academic success, and lifelong earning potential. Word wealth is real wealth. The average educated adult knows between 20,000 and 35,000 words. But here is the remarkable fact: you do not have to memorise all of them one by one. Once you understand the systems — the tiers, the roots, the context clue strategies — vocabulary grows almost automatically as you read.',this)">Listen to explanation</button>
+    </div>
+
+    <div class="sb rl">
+      <div class="sec-num">The Big Idea</div>
+      <div class="sec-title">Systems Over Lists
+        <button class="listen-btn" onclick="speakBtn('The Big Idea. Systems over lists.',this)">Listen to title</button>
+      </div>
+      <div class="callout">
+        The old approach: memorise long lists of words and definitions.<br>
+        The result: words forgotten within a week.<br><br>
+        <strong>The smart approach:</strong> understand the system — tiers, morphemes, context clues, and word maps. Build vocabulary <em>organically</em> through reading. Words learned in context stick for life.
+      </div>
+      <button class="big-listen" onclick="speakBtn('The Big Idea: Systems Over Lists. The old approach was to memorise long lists of words and definitions. The result: words forgotten within a week with no connection to real usage. The smart approach is to understand the system. Learn the vocabulary tiers, so you know which words to prioritise. Use your knowledge of morphemes — prefixes, roots, suffixes — to decode unfamiliar words. Use context clue strategies to define words from the sentences around them. And use word maps to build deep, lasting connections to new vocabulary. Words learned in context and with connections stick for life.',this)">Listen to the Big Idea</button>
+    </div>
+
+    <div class="sb fl">
+      <div class="sec-num">Chapter Goals</div>
+      <div class="sec-title">What You Will Master
+        <button class="listen-btn" onclick="speakBtn('Chapter Goals.',this)">Listen to title</button>
+      </div>
+      <div style="margin-top:10px;">
+        <div class="step-row"><span class="step-n">✓</span>The four vocabulary tiers — what each one is and why Tier 2 matters most</div>
+        <div class="step-row"><span class="step-n">✓</span>60 essential Tier 2 academic words — tappable, with part of speech</div>
+        <div class="step-row"><span class="step-n">✓</span>Four context clue strategies — how to define unknown words without a dictionary</div>
+        <div class="step-row"><span class="step-n">✓</span>The Word Map — a complete vocabulary acquisition tool</div>
+      </div>
+      <button class="big-listen" onclick="speakBtn('By the end of this chapter you will master: the four vocabulary tiers and why Tier 2 is the highest priority for academic and reading success. 60 essential Tier 2 academic words. Four context clue strategies for defining unknown words without a dictionary. And the Word Map — a complete vocabulary acquisition tool that builds deep, lasting word knowledge.',this)">Listen to goals</button>
+    </div>
+  </div>
+
+  <!-- ② FOUR TIERS -->
+  <div class="panel" id="panel-tiers">
+    <div class="sb gl">
+      <div class="sec-num">18.2 — The Four Vocabulary Tiers</div>
+      <div class="sec-title">Not All Words Are Equal
+        <button class="listen-btn" onclick="speakBtn('Section 18.2. The Four Vocabulary Tiers. Not all words are equal.',this)">Listen to title</button>
+      </div>
+      <div class="sec-body"><p>Vocabulary researchers have organised all words into four tiers based on frequency, specificity, and instructional value. Understanding the tiers tells you <strong>which words to focus on first</strong>.</p></div>
+      <button class="big-listen" onclick="speakBtn('The Four Vocabulary Tiers. Vocabulary researchers have organised all words into four tiers based on frequency, specificity, and instructional value. Tier 1: Basic words — simple, everyday words that most people learn through conversation. Tier 2: Academic words — high-frequency words used across academic subjects and formal writing. These are the most important tier for reading comprehension. Tier 3: Domain-specific words — technical terms used in specific subjects or professions. Tier 4: Rare and archaic words — words rarely used in modern contexts. The highest priority for reading success is Tier 2.',this)">Listen to all four tiers</button>
+    </div>
+    <div class="tier-grid" id="tier-grid"></div>
+    <div class="sb bl" style="margin-top:4px;">
+      <div class="sec-num">Why Tier 2 Is the Priority</div>
+      <div class="sec-title">The Sweet Spot for Learning
+        <button class="listen-btn" onclick="speakBtn('Why Tier 2 is the priority. Tier 2 words are the sweet spot for vocabulary instruction.',this)">Listen to title</button>
+      </div>
+      <div class="sec-body">
+        <p>Tier 2 words are found across <strong>all subject areas and academic texts</strong>. They appear in science, history, literature, business, and law — but are rarely taught directly. A student who knows Tier 2 words deeply has a massive advantage in every subject.</p>
+        <p>Examples of Tier 2 words that unlock understanding: <em>analyse, consequence, contrast, evaluate, infer, justify, significant, subsequent, accumulate, ambiguous.</em></p>
+      </div>
+      <button class="big-listen" onclick="speakBtn('Why Tier 2 is the priority. Tier 2 words appear across all subject areas and academic texts. They are found in science, history, literature, business, and law. They are high-frequency in academic contexts but are rarely taught directly. A student who knows Tier 2 words deeply has a massive advantage in every subject. Here are some examples: analyse, consequence, contrast, evaluate, infer, justify, significant, subsequent, accumulate, ambiguous, coherent, validate, undermine, explicit, implicit, hypothetical, substantial.',this)">Listen to Tier 2 explanation</button>
+    </div>
+  </div>
+
+  <!-- ③ ACADEMIC WORD LIST -->
+  <div class="panel" id="panel-awl">
+    <div class="sb gl">
+      <div class="sec-num">18.3 — 60 Essential Tier 2 Academic Words</div>
+      <div class="sec-title">Tap Any Word to Hear It
+        <button class="listen-btn" onclick="speakBtn('60 essential Tier 2 academic words. Tap any word to hear it spoken. Learn these words deeply — not just their definitions, but their use in sentences.',this)">Listen to instructions</button>
+      </div>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:1rem;">Tap any word to hear it. These are high-priority Tier 2 words that appear across academic reading in all subjects.</p>
+      <button class="big-listen" onclick="readAllAWL(this)">Listen to all 60 words</button>
+    </div>
+    <div class="awl-grid" id="awl-grid"></div>
+    <div class="sb fl" style="margin-top:8px;">
+      <div class="sec-num">Academic Words in Context</div>
+      <div class="sec-title">See Them Working in Sentences
+        <button class="listen-btn" onclick="speakBtn('Academic words in context. Each sentence below uses one or more Tier 2 academic words. Tap any word to hear it.',this)">Listen to instructions</button>
+      </div>
+      <div id="awl-sentences"></div>
+    </div>
+  </div>
+
+  <!-- ④ CONTEXT CLUES -->
+  <div class="panel" id="panel-context">
+    <div class="sb gl">
+      <div class="sec-num">18.4 — Context Clue Strategies</div>
+      <div class="sec-title">Define Words Without a Dictionary
+        <button class="listen-btn" onclick="speakBtn('Section 18.4. Context Clue Strategies. How to define unknown words without a dictionary.',this)">Listen to title</button>
+      </div>
+      <div class="sec-body">
+        <p>A context clue is information in the <strong>surrounding sentences</strong> that helps you infer the meaning of an unfamiliar word. Skilled readers use four types of context clues automatically.</p>
+      </div>
+      <button class="big-listen" onclick="speakBtn('A context clue is information in the surrounding text that helps you figure out the meaning of an unfamiliar word. Skilled readers use context clues automatically — they do not stop reading every time they encounter an unknown word. There are four main types of context clues. Type 1: Definition — the author directly defines the word. Type 2: Synonym — a nearby word with a similar meaning provides the clue. Type 3: Antonym — a contrasting word or phrase reveals the meaning by showing what the word is not. Type 4: Inference — the general sense of the sentence and your prior knowledge allow you to figure out the meaning.',this)">Listen to context clue overview</button>
+    </div>
+    <div class="cc-grid" id="cc-grid"></div>
+    <div class="sb fl" style="margin-top:4px;">
+      <div class="sec-num">Context Clue Practice — Tap Any Sentence</div>
+      <div class="sec-title">Find the Clue — Define the Word
+        <button class="listen-btn" onclick="speakBtn('Context Clue Practice. For each sentence, find the context clue and use it to define the underlined word. Tap any sentence to hear it. Then tap Show Clue to check your analysis.',this)">Listen to instructions</button>
+      </div>
+      <div id="cc-practice"></div>
+    </div>
+  </div>
+
+  <!-- ⑤ WORD MAP -->
+  <div class="panel" id="panel-wordmap">
+    <div class="sb gl">
+      <div class="sec-num">18.5 — The Word Map</div>
+      <div class="sec-title">A Complete Vocabulary Tool
+        <button class="listen-btn" onclick="speakBtn('Section 18.5. The Word Map. A complete vocabulary acquisition tool.',this)">Listen to title</button>
+      </div>
+      <div class="sec-body">
+        <p>A Word Map builds <strong>deep, lasting knowledge</strong> of a new word by connecting it to its definition, part of speech, example sentences, related words, antonyms, and visual association. Tap any section to hear it.</p>
+      </div>
+      <button class="big-listen" onclick="speakBtn('The Word Map. A word map builds deep, lasting knowledge of a new word by connecting it to multiple types of information at once. The centre holds the target word. Surrounding it: the definition, a sentence using the word, related words and forms, antonyms or opposites, the part of speech, and optionally a visual or personal association. Creating a word map forces deep processing — and deep processing is what creates lasting memory.',this)">Listen to Word Map explanation</button>
+    </div>
+    <div class="sb bl">
+      <div class="sec-num">Example Word Map — TENACIOUS — Tap Any Section</div>
+      <div class="word-map" id="word-map-box">
+        <div class="wm-title">Word Map: TENACIOUS — Tap any section to hear it</div>
+        <div class="wm-grid" id="wm-grid"></div>
+      </div>
+    </div>
+    <div class="sb fl" style="margin-top:4px;">
+      <div class="sec-num">How to Make Your Own Word Map</div>
+      <div class="sec-title">Five Steps
+        <button class="listen-btn" onclick="speakBtn('How to make your own word map. Five steps.',this)">Listen to title</button>
+      </div>
+      <div style="margin-top:10px;">
+        <div class="step-row"><span class="step-n">1</span>Write the <strong>target word</strong> in the centre. Say it aloud three times.</div>
+        <div class="step-row"><span class="step-n">2</span>Write the <strong>part of speech</strong> and a clear, simple <strong>definition</strong> in your own words.</div>
+        <div class="step-row"><span class="step-n">3</span>Write an <strong>original sentence</strong> using the word in a meaningful context.</div>
+        <div class="step-row"><span class="step-n">4</span>List <strong>related words and forms</strong> (tenacious → tenacity, tenaciously).</div>
+        <div class="step-row"><span class="step-n">5</span>List <strong>antonyms</strong> — knowing what a word is NOT deepens your understanding of what it IS.</div>
+      </div>
+      <button class="big-listen" onclick="speakBtn('How to make your own Word Map. Step 1: Write the target word in the centre and say it aloud three times. Hearing your own voice say a new word builds memory. Step 2: Write the part of speech and a clear, simple definition in your own words — not copied from the dictionary. Step 3: Write an original sentence using the word in a meaningful personal context. Step 4: List related words and forms. For example: tenacious leads to tenacity, tenaciously, and tenaciously. Step 5: List antonyms. Knowing what a word is not deepens your understanding of what it is.',this)">Listen to all five steps</button>
+    </div>
+  </div>
+
+  <!-- ⑥ QUIZ -->
+  <div class="panel" id="panel-quiz">
+    <div class="sb gl">
+      <div class="sec-num">Chapter 18 — Assessment</div>
+      <div class="sec-title">Test Yourself
+        <button class="listen-btn" onclick="speakBtn('Chapter 18 Assessment. Tap the word in the box to hear it. Then answer the question.',this)">Listen to instructions</button>
+      </div>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:1.2rem;">Tap the <strong>word box</strong> to hear it. Then choose the correct answer.</p>
+      <div class="quiz-card">
+        <div class="score-row">
+          <span id="score-text">Score: 0 / 0</span>
+          <div class="score-track"><div class="score-fill" id="score-fill" style="width:0%"></div></div>
+        </div>
+        <div class="quiz-prompt-row">
+          <p class="quiz-prompt" id="quiz-prompt">Loading...</p>
+          <button class="listen-btn" onclick="readQuizQuestion(this)">Listen to question</button>
+        </div>
+        <div class="quiz-display-wrap">
+          <div class="quiz-display" id="quiz-display" onclick="readQuizWord(this)">—</div>
+          <div class="quiz-display-hint">Tap the word above to hear it</div>
+        </div>
+        <div class="quiz-opts" id="quiz-opts"></div>
+        <div class="quiz-fb" id="quiz-fb"></div>
+        <button class="next-btn" id="next-btn" onclick="nextQ()">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="ch-nav">
+    <a class="nav-lnk" href="chapter-17.html">← Chapter 17: Prosody</a>
+    <span class="phase-badge">Phase 4 — Achieving Fluency</span>
+    <a class="nav-lnk next" href="chapter-19.html">Chapter 19: The Expert Reader →</a>
+  </div>
+</div>
+
+<script>
+let voices=[],selectedVoiceIndex=-1,speechRate=0.85;
+function loadVoices(){
+  voices=window.speechSynthesis.getVoices();
+  const sel=document.getElementById('voice-select');
+  if(!voices.length)return;
+  const eng=voices.filter(v=>v.lang.startsWith('en'));
+  sel.innerHTML='<option value="-1">🔊 Browser default</option>';
+  eng.forEach(v=>{const idx=voices.indexOf(v);const o=document.createElement('option');o.value=idx;o.textContent=v.name+' ('+v.lang+')'+(v.localService?' ★':'');sel.appendChild(o);});
+  const sv=localStorage.getItem('rbVoiceIndex'),sr=localStorage.getItem('rbSpeechRate');
+  if(sv!=null){sel.value=sv;selectedVoiceIndex=parseInt(sv);}
+  if(sr!=null){speechRate=parseFloat(sr);document.querySelectorAll('.spd-btn').forEach(b=>b.classList.toggle('active',parseFloat(b.getAttribute('data-rate'))===speechRate));}
+}
+function onVoiceChange(){selectedVoiceIndex=parseInt(document.getElementById('voice-select').value);localStorage.setItem('rbVoiceIndex',selectedVoiceIndex);showSaved();}
+function setSpeed(r,btn){speechRate=r;localStorage.setItem('rbSpeechRate',r);document.querySelectorAll('.spd-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');showSaved();}
+function showSaved(){const s=document.getElementById('vsaved');s.classList.add('show');setTimeout(()=>s.classList.remove('show'),2000);}
+function applyVoice(u){u.rate=speechRate;if(selectedVoiceIndex>=0&&voices[selectedVoiceIndex]){u.voice=voices[selectedVoiceIndex];u.lang=voices[selectedVoiceIndex].lang;}else u.lang='en-GB';}
+function speakBtn(text,btn){
+  if(!window.speechSynthesis)return;
+  window.speechSynthesis.cancel();
+  document.querySelectorAll('.speaking').forEach(b=>b.classList.remove('speaking'));
+  const u=new SpeechSynthesisUtterance(text);applyVoice(u);
+  if(btn){btn.classList.add('speaking');u.onend=()=>btn.classList.remove('speaking');u.onerror=()=>btn.classList.remove('speaking');}
+  window.speechSynthesis.speak(u);
+}
+function sayWord(word,el){
+  if(!window.speechSynthesis)return;
+  window.speechSynthesis.cancel();
+  document.querySelectorAll('.speaking').forEach(b=>b.classList.remove('speaking'));
+  if(el)el.classList.add('speaking');
+  const u=new SpeechSynthesisUtterance(word);applyVoice(u);u.rate=speechRate*0.85;
+  if(el)u.onend=()=>el.classList.remove('speaking');
+  window.speechSynthesis.speak(u);
+}
+function testVoice(btn){speakBtn('Hello. This is your selected voice. Vocabulary is the engine of reading comprehension.',btn);}
+function readHero(btn){speakBtn('Chapter 18: Vocabulary Development — Building Your Word Wealth. Vocabulary is the engine of comprehension. In this chapter you will master the four vocabulary tiers, 60 essential academic words, four context clue strategies, and the Word Map — a complete tool for building deep, lasting word knowledge.',btn);}
+function showPanel(id,btn){
+  window.speechSynthesis&&window.speechSynthesis.cancel();
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(t=>t.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// TIER DATA
+const tierData=[
+  {num:'Tier 1',name:'Basic Words',color:'#B8860B',
+   desc:'Simple, everyday words learned through conversation. Rarely need direct instruction.',
+   examples:'cat, run, happy, big, water, home, eat, fast',
+   audio:'Tier 1: Basic Words. Simple, everyday words that most people learn through conversation and daily life. These rarely need direct instruction because they are encountered constantly. Examples: cat, run, happy, big, water, home, eat, fast.'},
+  {num:'Tier 2',name:'Academic Words',color:'#1A4A7A',
+   desc:'High-frequency words across all academic subjects. The highest priority for instruction.',
+   examples:'analyse, significant, consequence, evaluate, contrast, infer',
+   audio:'Tier 2: Academic Words. These are high-frequency words used across all academic subjects and formal writing. They are the highest priority for vocabulary instruction because knowing them unlocks comprehension across every discipline. Examples: analyse, significant, consequence, evaluate, contrast, infer, justify, substantial.'},
+  {num:'Tier 3',name:'Domain Words',color:'#2C5F2E',
+   desc:'Technical terms specific to one subject or profession. Important within that field.',
+   examples:'osmosis, photosynthesis, mitosis, litigation, amortisation',
+   audio:'Tier 3: Domain-Specific Words. These are technical terms specific to one subject or profession. They are important within their field but rarely appear outside it. Examples: osmosis and photosynthesis in biology, litigation and tort in law, amortisation in finance.'},
+  {num:'Tier 4',name:'Rare / Archaic',color:'#7A7468',
+   desc:'Words rarely used in modern contexts. Encountered mainly in historical texts.',
+   examples:'forsooth, hitherto, thenceforth, prithee, perchance',
+   audio:'Tier 4: Rare and Archaic Words. Words rarely used in modern contexts. You will mainly encounter them in historical texts, Shakespeare, or formal legal language. Examples: forsooth, hitherto, thenceforth, prithee, perchance.'},
+];
+function buildTierGrid(){
+  const el=document.getElementById('tier-grid');
+  tierData.forEach(t=>{
+    const card=document.createElement('div');card.className='tier-card';card.style.borderTopColor=t.color;
+    card.innerHTML=`<div class="tier-num" style="color:${t.color};">${t.num}</div>
+      <div class="tier-name" style="color:${t.color};">${t.name}</div>
+      <div class="tier-desc">${t.desc}</div>
+      <div class="tier-examples">${t.examples}</div>`;
+    card.onclick=()=>{
+      document.querySelectorAll('.tier-card.speaking').forEach(c=>c.classList.remove('speaking'));
+      card.classList.add('speaking');
+      const u=new SpeechSynthesisUtterance(t.audio);applyVoice(u);
+      u.onend=()=>card.classList.remove('speaking');window.speechSynthesis.cancel();window.speechSynthesis.speak(u);
+    };
+    el.appendChild(card);
+  });
+}
+
+// AWL — 60 TIER 2 WORDS
+const awlWords=[
+  {w:'analyse',pos:'v'},{w:'approach',pos:'v/n'},{w:'area',pos:'n'},{w:'assess',pos:'v'},
+  {w:'assume',pos:'v'},{w:'authority',pos:'n'},{w:'benefit',pos:'n/v'},{w:'concept',pos:'n'},
+  {w:'consequence',pos:'n'},{w:'consistent',pos:'adj'},{w:'constitute',pos:'v'},{w:'context',pos:'n'},
+  {w:'contrast',pos:'n/v'},{w:'contribute',pos:'v'},{w:'create',pos:'v'},{w:'data',pos:'n'},
+  {w:'define',pos:'v'},{w:'derive',pos:'v'},{w:'distribute',pos:'v'},{w:'economy',pos:'n'},
+  {w:'environment',pos:'n'},{w:'establish',pos:'v'},{w:'evaluate',pos:'v'},{w:'evident',pos:'adj'},
+  {w:'factor',pos:'n'},{w:'function',pos:'n/v'},{w:'identify',pos:'v'},{w:'impact',pos:'n/v'},
+  {w:'indicate',pos:'v'},{w:'individual',pos:'n/adj'},{w:'interpret',pos:'v'},{w:'infer',pos:'v'},
+  {w:'involve',pos:'v'},{w:'issue',pos:'n'},{w:'justify',pos:'v'},{w:'maintain',pos:'v'},
+  {w:'method',pos:'n'},{w:'occur',pos:'v'},{w:'perceive',pos:'v'},{w:'policy',pos:'n'},
+  {w:'principle',pos:'n'},{w:'process',pos:'n/v'},{w:'require',pos:'v'},{w:'research',pos:'n/v'},
+  {w:'respond',pos:'v'},{w:'role',pos:'n'},{w:'section',pos:'n'},{w:'significant',pos:'adj'},
+  {w:'similar',pos:'adj'},{w:'source',pos:'n'},{w:'specific',pos:'adj'},{w:'structure',pos:'n/v'},
+  {w:'subsequent',pos:'adj'},{w:'theory',pos:'n'},{w:'undermine',pos:'v'},{w:'valid',pos:'adj'},
+  {w:'variable',pos:'n/adj'},{w:'ambiguous',pos:'adj'},{w:'coherent',pos:'adj'},{w:'accumulate',pos:'v'},
+];
+function buildAWL(){
+  const el=document.getElementById('awl-grid');
+  awlWords.forEach(aw=>{
+    const card=document.createElement('div');card.className='awl-card';
+    card.innerHTML=`<div class="awl-word">${aw.w}</div><div class="awl-pos">${aw.pos}</div>`;
+    card.onclick=()=>sayWord(aw.w,card);
+    el.appendChild(card);
+  });
+}
+function readAllAWL(btn){speakBtn(awlWords.map(w=>w.w).join('. '),btn);}
+
+// AWL SENTENCES
+const awlSentences=[
+  'The researcher had to analyse the data carefully before drawing any conclusions.',
+  'The policy was significant because it affected every individual in the region.',
+  'Scientists infer the age of fossils from the context of the rock layer.',
+  'The consistent pattern across all cases was evident in the final report.',
+  'Her argument was coherent and well-structured, but her evidence was ambiguous.',
+  'Subsequent research undermined the original theory and required a new approach.',
+];
+function buildAWLSentences(){
+  const el=document.getElementById('awl-sentences');
+  awlSentences.forEach((s,i)=>{
+    const wrap=document.createElement('div');
+    wrap.style.cssText='background:#fff;border:1px solid var(--border);border-left:4px solid var(--blue);border-radius:var(--radius);padding:1rem 1.25rem;margin-bottom:10px;display:flex;align-items:flex-start;gap:10px;';
+    const num=document.createElement('div');num.style.cssText='font-family:Playfair Display,serif;font-size:18px;font-weight:700;color:var(--gold);flex-shrink:0;';num.textContent=(i+1)+'.';
+    const txt=document.createElement('div');txt.style.flex='1';
+    s.split(' ').forEach(w=>{
+      const clean=w.replace(/[^a-zA-Z]/g,'');
+      const span=document.createElement('span');span.className='word-tap';span.textContent=w+' ';
+      span.onclick=()=>sayWord(clean,span);txt.appendChild(span);
+    });
+    const btn=document.createElement('button');btn.className='listen-btn';btn.style.flexShrink='0';
+    btn.textContent='Listen';btn.onclick=()=>speakBtn(s,btn);
+    wrap.appendChild(num);wrap.appendChild(txt);wrap.appendChild(btn);el.appendChild(wrap);
+  });
+}
+
+// CONTEXT CLUE TYPES
+const ccTypes=[
+  {type:'Definition',color:'#B8860B',
+   def:'The author directly defines the word — often using "is", "means", "refers to", or setting it off with commas or dashes.',
+   example:'"Photosynthesis, the process by which plants convert sunlight into food, is essential for life."',
+   signal:'Signal words: is, means, refers to, is defined as, that is, in other words',
+   audio:'Context Clue Type 1: Definition. The author directly defines the word in the same sentence. Signal words include: is, means, refers to, is defined as, that is, in other words. Example: Photosynthesis, the process by which plants convert sunlight into food, is essential for life.'},
+  {type:'Synonym',color:'#1A4A7A',
+   def:'A word with a similar meaning appears nearby — giving you a parallel version of the unknown word.',
+   example:'"She was tenacious — as persistent and determined as anyone he had ever met."',
+   signal:'Signal words: also known as, or, similarly, in the same way, like, as',
+   audio:'Context Clue Type 2: Synonym. A nearby word with a similar meaning provides the clue. Signal words include: also known as, or, similarly, like, as. Example: She was tenacious — as persistent and determined as anyone he had ever met. Persistent and determined help you understand tenacious.'},
+  {type:'Antonym',color:'#2C5F2E',
+   def:'A contrasting word or phrase reveals what the unknown word is NOT — letting you figure out what it IS.',
+   example:'"Unlike his gregarious brother, Marcus was reserved and rarely spoke in groups."',
+   signal:'Signal words: unlike, but, however, in contrast, on the other hand, whereas',
+   audio:'Context Clue Type 3: Antonym. A contrasting word reveals what the unknown word is not. Signal words include: unlike, but, however, in contrast, on the other hand. Example: Unlike his gregarious brother, Marcus was reserved and rarely spoke in groups. Reserved is the opposite of gregarious, so gregarious means outgoing and sociable.'},
+  {type:'Inference',color:'#6A0DAD',
+   def:'No direct clue is given — but the general sense of the sentence and your prior knowledge allow you to infer the meaning.',
+   example:'"The surgeon\'s deft hands moved with extraordinary precision, never wasting a single motion."',
+   signal:'No signal words — use the overall context and logic of the sentence',
+   audio:'Context Clue Type 4: Inference. No direct clue is given. You use the general sense of the sentence and your prior knowledge to infer the meaning. Example: The surgeon\'s deft hands moved with extraordinary precision, never wasting a single motion. From the context — surgeon, precision, no wasted motion — you can infer that deft means skilful or highly capable.'},
+];
+function buildContextClues(){
+  const el=document.getElementById('cc-grid');
+  ccTypes.forEach(cc=>{
+    const card=document.createElement('div');card.className='cc-card';card.style.borderLeftColor=cc.color;
+    card.innerHTML=`<div class="cc-type" style="color:${cc.color};">${cc.type}</div>
+      <div class="cc-def">${cc.def}</div>
+      <div class="cc-example">${cc.example}</div>
+      <div class="cc-signal">${cc.signal}</div>`;
+    card.onclick=()=>{
+      document.querySelectorAll('.cc-card.speaking').forEach(c=>c.classList.remove('speaking'));
+      card.classList.add('speaking');
+      const u=new SpeechSynthesisUtterance(cc.audio);applyVoice(u);
+      u.onend=()=>card.classList.remove('speaking');window.speechSynthesis.cancel();window.speechSynthesis.speak(u);
+    };
+    el.appendChild(card);
+  });
+}
+
+// CONTEXT CLUE PRACTICE
+const ccPractice=[
+  {sent:'The philanthropist, a person who donates generously to charitable causes, was widely respected.',word:'philanthropist',clue:'Definition clue — "a person who donates generously to charitable causes" directly defines the word.',answer:'A person who donates generously to charitable causes.',audio:'The philanthropist, a person who donates generously to charitable causes, was widely respected.'},
+  {sent:'The new policy was inimical to progress; it had the same harmful effects as its predecessor.',word:'inimical',clue:'Synonym clue — "harmful effects" parallels the meaning of inimical.',answer:'Harmful, damaging, or hostile to something.',audio:'The new policy was inimical to progress; it had the same harmful effects as its predecessor.'},
+  {sent:'Unlike the verbose speaker who talked for hours, the moderator was admirably concise.',word:'verbose',clue:'Antonym clue — "concise" is the opposite; verbose must mean using too many words.',answer:'Using far more words than necessary; long-winded.',audio:'Unlike the verbose speaker who talked for hours, the moderator was admirably concise.'},
+  {sent:'The ancient manuscript was so fragile that the archaeologist held it with trembling hands, barely breathing.',word:'fragile',clue:'Inference clue — trembling hands and barely breathing signal extreme delicacy.',answer:'Easily broken or damaged; delicate.',audio:'The ancient manuscript was so fragile that the archaeologist held it with trembling hands, barely breathing.'},
+];
+function buildCCPractice(){
+  const el=document.getElementById('cc-practice');
+  ccPractice.forEach(p=>{
+    const wrap=document.createElement('div');
+    wrap.style.cssText='background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;margin-bottom:12px;';
+    const sent=document.createElement('div');sent.style.cssText='font-family:Playfair Display,serif;font-size:16px;font-weight:700;color:var(--ink);margin-bottom:8px;cursor:pointer;';
+    sent.textContent=p.sent;sent.onclick=()=>speakBtn(p.audio,sent);
+    const target=document.createElement('div');target.style.cssText='font-size:12px;font-weight:700;color:var(--gold);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;';
+    target.textContent='Target word: '+p.word;
+    const clueDiv=document.createElement('div');clueDiv.style.cssText='font-size:13px;color:var(--muted);margin-bottom:6px;font-style:italic;display:none;';
+    clueDiv.textContent='Clue: '+p.clue;
+    const ansDiv=document.createElement('div');ansDiv.style.cssText='font-size:14px;color:var(--forest);font-weight:600;padding:8px 12px;background:#EAF3DE;border-radius:6px;display:none;';
+    ansDiv.textContent='Meaning: '+p.answer;
+    const toggleBtn=document.createElement('button');toggleBtn.className='listen-btn';toggleBtn.style.marginTop='4px';
+    toggleBtn.textContent='▶ Show clue & answer';
+    let shown=false;
+    toggleBtn.onclick=()=>{
+      shown=!shown;
+      clueDiv.style.display=shown?'block':'none';
+      ansDiv.style.display=shown?'block':'none';
+      toggleBtn.textContent=shown?'▼ Hide':'▶ Show clue & answer';
+      if(shown)speakBtn(p.clue+'. The meaning of '+p.word+' is: '+p.answer,null);
+    };
+    const listenBtn=document.createElement('button');listenBtn.className='listen-btn';listenBtn.style.marginLeft='6px';
+    listenBtn.textContent='Hear sentence';listenBtn.onclick=()=>speakBtn(p.audio,listenBtn);
+    wrap.appendChild(sent);wrap.appendChild(target);wrap.appendChild(clueDiv);wrap.appendChild(ansDiv);
+    const btnRow=document.createElement('div');btnRow.style.display='flex';btnRow.style.gap='6px';btnRow.style.marginTop='6px';
+    btnRow.appendChild(toggleBtn);btnRow.appendChild(listenBtn);wrap.appendChild(btnRow);
+    el.appendChild(wrap);
+  });
+}
+
+// WORD MAP — TENACIOUS
+const wmData={
+  word:'TENACIOUS',
+  boxes:[
+    {pos:'tl',label:'Definition',content:'Holding firmly to a position, purpose, or decision. Not giving up easily.',audio:'Definition of tenacious: holding firmly to a position, purpose, or decision. Not giving up easily.'},
+    {pos:'tr',label:'Part of Speech & Forms',content:'Adjective. tenacity (noun) · tenaciously (adverb) · tenaciously (adverb)',audio:'Tenacious is an adjective. Related forms: tenacity as a noun, tenaciously as an adverb.'},
+    {pos:'bl',label:'Example Sentence',content:'"Despite repeated setbacks, her tenacious pursuit of the goal never wavered."',audio:'Example sentence: Despite repeated setbacks, her tenacious pursuit of the goal never wavered.'},
+    {pos:'br',label:'Antonyms',content:'irresolute · weak-willed · yielding · vacillating · submissive',audio:'Antonyms of tenacious: irresolute, weak-willed, yielding, vacillating, submissive.'},
+  ]
+};
+function buildWordMap(){
+  const grid=document.getElementById('wm-grid');
+  const centerDiv=document.createElement('div');centerDiv.className='wm-center';
+  const centerWord=document.createElement('div');centerWord.className='wm-center-word';centerWord.textContent=wmData.word;
+  centerWord.onclick=()=>sayWord('tenacious',centerWord);
+  centerDiv.appendChild(centerWord);
+  const arrowLeft=document.createElement('div');arrowLeft.className='wm-arrow-left';arrowLeft.textContent='←';
+  const arrowRight=document.createElement('div');arrowRight.className='wm-arrow-right';arrowRight.textContent='→';
+  wmData.boxes.forEach(b=>{
+    const box=document.createElement('div');box.className='wm-box wm-'+b.pos;
+    box.innerHTML=`<div class="wm-label">${b.label}</div><div class="wm-content">${b.content}</div>`;
+    box.onclick=()=>{
+      document.querySelectorAll('.wm-box.speaking').forEach(c=>c.classList.remove('speaking'));
+      box.classList.add('speaking');
+      const u=new SpeechSynthesisUtterance(b.audio);applyVoice(u);
+      u.onend=()=>box.classList.remove('speaking');window.speechSynthesis.cancel();window.speechSynthesis.speak(u);
+    };
+    grid.appendChild(box);
+  });
+  grid.appendChild(arrowLeft);grid.appendChild(centerDiv);grid.appendChild(arrowRight);
+}
+
+// QUIZ
+const quizData=[
+  {q:'What does vocabulary size predict most strongly?',d:'Vocabulary',correct:'Reading comprehension, academic success, and lifelong potential',opts:['Reading comprehension, academic success, and lifelong potential','How fast a person can decode words','Whether a person likes to read','The size of a person\'s working memory']},
+  {q:'Which vocabulary tier contains everyday basic words?',d:'Tier 1',correct:'Tier 1 — simple words learned through conversation',opts:['Tier 1 — simple words learned through conversation','Tier 2 — academic words','Tier 3 — domain-specific terms','Tier 4 — rare and archaic words']},
+  {q:'Which vocabulary tier is the HIGHEST PRIORITY for instruction?',d:'Tier 2',correct:'Tier 2 — academic words used across all subjects',opts:['Tier 2 — academic words used across all subjects','Tier 1 — basic everyday words','Tier 3 — domain-specific terms','Tier 4 — rare and archaic words']},
+  {q:'What makes Tier 2 words the highest priority?',d:'analyse, significant, infer',correct:'They appear across all subjects but are rarely taught directly',opts:['They appear across all subjects but are rarely taught directly','They are the most difficult words to pronounce','They only appear in literary texts','They have the fewest letters']},
+  {q:'Which context clue type directly defines the word in the same sentence?',d:'Definition clue',correct:'Definition clue — uses signals like "is", "means", "refers to"',opts:['Definition clue — uses signals like "is", "means", "refers to"','Synonym clue — uses a similar word nearby','Antonym clue — uses a contrasting word','Inference clue — no direct signal is given']},
+  {q:'What type of context clue is used here? "Unlike the verbose speaker, the moderator was concise."',d:'verbose / concise',correct:'Antonym clue — "concise" contrasts with "verbose"',opts:['Antonym clue — "concise" contrasts with "verbose"','Definition clue — verbose is directly defined','Synonym clue — concise has the same meaning as verbose','Inference clue — no signal is present']},
+  {q:'What is a Word Map designed to do?',d:'Word Map',correct:'Build deep, lasting knowledge by connecting a word to multiple types of information',opts:['Build deep, lasting knowledge by connecting a word to multiple types of information','Help learners memorise spelling rules','Count the syllables in a word','Show the origin of a word']},
+  {q:'Which word is a Tier 2 academic word?',d:'evaluate',correct:'evaluate — used across all academic subjects',opts:['evaluate — used across all academic subjects','cat — a basic Tier 1 word','osmosis — a Tier 3 science term','forsooth — a Tier 4 archaic word']},
+  {q:'What do context clues allow a skilled reader to do?',d:'Context clue',correct:'Define unfamiliar words without stopping to use a dictionary',opts:['Define unfamiliar words without stopping to use a dictionary','Identify the part of speech of every word','Count the syllables in a word','Find words that sound similar']},
+  {q:'What is Step 3 of making a Word Map?',d:'Word Map Step 3',correct:'Write an original sentence using the word in a meaningful context',opts:['Write an original sentence using the word in a meaningful context','Write the definition copied from the dictionary','Draw a picture of the word','Write the word in all capital letters']},
+];
+let qi=0,score=0,answered=false,currentQ=null;
+const shuffle=a=>a.sort(()=>Math.random()-.5);
+let order=shuffle([...Array(quizData.length).keys()]);
+function readQuizQuestion(btn){if(currentQ)speakBtn(currentQ.q,btn);}
+function readQuizWord(el){if(currentQ)sayWord(currentQ.d,el);}
+function renderQ(){
+  answered=false;currentQ=quizData[order[qi]];
+  document.getElementById('quiz-prompt').textContent=currentQ.q;
+  const disp=document.getElementById('quiz-display');disp.textContent=currentQ.d;disp.classList.remove('speaking');
+  const opts=document.getElementById('quiz-opts');opts.innerHTML='';
+  shuffle([...currentQ.opts]).forEach(opt=>{
+    const b=document.createElement('button');b.className='q-opt';b.textContent=opt;
+    b.onclick=()=>checkQ(opt,currentQ.correct,b);opts.appendChild(b);
+  });
+  document.getElementById('quiz-fb').style.display='none';
+  document.getElementById('next-btn').style.display='none';
+  setTimeout(()=>speakBtn(currentQ.q+'. The topic is: '+currentQ.d,null),350);
+}
+function checkQ(chosen,correct,btn){
+  if(answered)return;answered=true;
+  const fb=document.getElementById('quiz-fb');
+  if(chosen===correct){score++;btn.classList.add('correct');fb.className='quiz-fb ok';fb.textContent='✓ Correct! '+correct;}
+  else{btn.classList.add('wrong');document.querySelectorAll('.q-opt').forEach(b=>{if(b.textContent===correct)b.classList.add('correct');});fb.className='quiz-fb err';fb.textContent='✗ The correct answer is: '+correct;}
+  fb.style.display='block';
+  speakBtn(fb.textContent.replace('✓ ','').replace('✗ The correct answer is: ','The correct answer is: '),null);
+  document.getElementById('next-btn').style.display='inline-block';
+  const t=qi+1;
+  document.getElementById('score-text').textContent='Score: '+score+' / '+t;
+  document.getElementById('score-fill').style.width=Math.round(score/t*100)+'%';
+}
+function nextQ(){qi++;if(qi>=order.length){qi=0;score=0;order=shuffle([...Array(quizData.length).keys()]);}renderQ();}
+
+// INIT
+if(window.speechSynthesis){if(speechSynthesis.onvoiceschanged!==undefined)speechSynthesis.onvoiceschanged=loadVoices;loadVoices();}
+buildTierGrid();
+buildAWL();
+buildAWLSentences();
+buildContextClues();
+buildCCPractice();
+buildWordMap();
+renderQ();
+</script>
+</body>
+</html>

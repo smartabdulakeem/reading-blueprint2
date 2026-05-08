@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 17 — Prosody & Intonation | The Reading Blueprint</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1C1A17;--paper:#FAF7F2;--cream:#F2EDE4;--gold:#B8860B;--gold-light:#F5E6B0;--rust:#C0392B;--forest:#2C5F2E;--blue:#1A4A7A;--purple:#6A0DAD;--muted:#7A7468;--border:rgba(28,26,23,0.12);--radius:10px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:var(--ink);min-height:100vh;}
+.voice-bar{background:var(--ink);padding:8px 1.5rem;display:flex;align-items:center;gap:10px;flex-wrap:wrap;position:sticky;top:0;z-index:200;box-shadow:0 2px 12px rgba(28,26,23,0.3);}
+.vb-brand{font-family:'Playfair Display',serif;color:var(--gold);font-size:13px;letter-spacing:1.5px;text-transform:uppercase;flex-shrink:0;margin-right:6px;}
+.home-btn{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(184,134,11,0.15);border:1.5px solid rgba(184,134,11,0.45);border-radius:8px;color:var(--gold);font-size:15px;cursor:pointer;transition:all .2s;text-decoration:none;flex-shrink:0;margin-right:4px;position:relative;}
+.home-btn:hover{background:rgba(184,134,11,0.3);border-color:var(--gold);transform:scale(1.08);}
+.home-btn::after{content:"Home";position:absolute;bottom:-26px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--gold);font-size:10px;padding:2px 7px;border-radius:4px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;border:1px solid rgba(184,134,11,0.3);}
+.home-btn:hover::after{opacity:1;}
+.vb-label{font-size:11px;font-weight:700;color:rgba(255,255,255,0.4);letter-spacing:1.5px;text-transform:uppercase;white-space:nowrap;flex-shrink:0;}
+.voice-select{min-width:150px;max-width:260px;padding:5px 26px 5px 9px;font-family:'Source Serif 4',serif;font-size:13px;border:1px solid rgba(255,255,255,0.15);border-radius:7px;background:rgba(255,255,255,0.08);color:#fff;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23B8860B' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 9px center;}
+.voice-select option{background:#1C1A17;color:#fff;}
+.speed-group{display:flex;align-items:center;gap:4px;flex-shrink:0;}
+.spd-label{font-size:11px;font-weight:700;color:rgba(255,255,255,0.4);letter-spacing:1px;text-transform:uppercase;margin-right:3px;}
+.spd-btn{padding:4px 10px;font-family:'Source Serif 4',serif;font-size:12px;font-weight:600;border:1px solid rgba(255,255,255,0.15);border-radius:6px;background:transparent;color:rgba(255,255,255,0.5);cursor:pointer;transition:all .15s;}
+.spd-btn.active{background:var(--gold);color:var(--ink);border-color:var(--gold);}
+.spd-btn:hover:not(.active){border-color:var(--gold);color:var(--gold);}
+.vtest{display:inline-flex;align-items:center;gap:5px;padding:5px 13px;font-family:'Source Serif 4',serif;font-size:12px;font-weight:600;border:1px solid rgba(184,134,11,0.5);border-radius:16px;background:rgba(184,134,11,0.12);color:var(--gold);cursor:pointer;transition:all .15s;flex-shrink:0;}
+.vtest:hover{background:rgba(184,134,11,0.22);}
+.vtest.speaking{background:rgba(192,57,43,0.2);border-color:var(--rust);color:#ff7b6b;}
+.vtest::before{content:"▶";font-size:9px;}
+.vtest.speaking::before{content:"◼";}
+.vsaved{font-size:11px;color:var(--gold);font-style:italic;flex-shrink:0;opacity:0;transition:opacity .3s;}
+.vsaved.show{opacity:1;}
+.chapter-hero{background:var(--ink);padding:3rem 2rem 2.5rem;text-align:center;border-bottom:3px solid var(--gold);position:relative;overflow:hidden;}
+.chapter-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(184,134,11,0.18) 0%,transparent 70%);}
+.ch-num{font-family:'Playfair Display',serif;font-size:12px;color:var(--gold);letter-spacing:4px;text-transform:uppercase;margin-bottom:12px;position:relative;}
+.ch-title{font-family:'Playfair Display',serif;font-size:clamp(26px,5vw,44px);color:#fff;line-height:1.15;margin-bottom:10px;position:relative;}
+.ch-sub{font-size:15px;color:rgba(255,255,255,0.5);font-style:italic;margin-bottom:1.5rem;position:relative;}
+.hero-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border:1.5px solid rgba(184,134,11,0.6);border-radius:24px;background:rgba(184,134,11,0.1);color:var(--gold);font-family:'Source Serif 4',serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;position:relative;}
+.hero-btn:hover{background:rgba(184,134,11,0.2);}
+.hero-btn.speaking{background:rgba(192,57,43,0.2);border-color:var(--rust);color:#ff7b6b;}
+.hero-btn::before{content:"▶";font-size:10px;}
+.hero-btn.speaking::before{content:"◼";}
+.container{max-width:860px;margin:0 auto;padding:2rem 1.25rem;}
+.tabs-bar{display:flex;gap:4px;margin-bottom:2rem;background:var(--cream);padding:5px;border-radius:var(--radius);border:1px solid var(--border);flex-wrap:wrap;}
+.tab-btn{flex:1;min-width:80px;padding:8px 10px;font-family:'Source Serif 4',serif;font-size:13px;font-weight:600;border:none;border-radius:7px;background:transparent;color:var(--muted);cursor:pointer;transition:all .15s;text-align:center;white-space:nowrap;}
+.tab-btn.active{background:var(--ink);color:var(--gold);}
+.tab-btn:hover:not(.active){background:rgba(28,26,23,0.06);color:var(--ink);}
+.panel{display:none;}.panel.active{display:block;}
+.sb{background:var(--cream);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem 1.75rem;margin-bottom:1.25rem;}
+.sb.gl{border-left:4px solid var(--gold);}
+.sb.rl{border-left:4px solid var(--rust);}
+.sb.fl{border-left:4px solid var(--forest);}
+.sb.bl{border-left:4px solid var(--blue);}
+.sb.pl{border-left:4px solid var(--purple);}
+.sec-num{font-size:11px;font-weight:600;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;}
+.sec-title{font-family:'Playfair Display',serif;font-size:20px;color:var(--ink);margin-bottom:10px;line-height:1.3;display:flex;align-items:center;flex-wrap:wrap;gap:8px;}
+.sec-body{font-size:15px;line-height:1.8;color:#3A3730;}
+.sec-body p{margin-bottom:10px;}
+.listen-btn{display:inline-flex;align-items:center;gap:5px;padding:4px 12px;font-family:'Source Serif 4',serif;font-size:12px;font-weight:600;border:1px solid var(--border);border-radius:16px;background:#fff;color:var(--muted);cursor:pointer;transition:all .15s;flex-shrink:0;}
+.listen-btn:hover{border-color:var(--gold);color:var(--gold);}
+.listen-btn.speaking{border-color:var(--rust);color:var(--rust);background:#fff5f5;}
+.listen-btn::before{content:"▶";font-size:9px;}
+.listen-btn.speaking::before{content:"◼";}
+.big-listen{display:flex;align-items:center;gap:8px;padding:10px 18px;font-family:'Source Serif 4',serif;font-size:14px;font-weight:700;border:2px solid var(--gold);border-radius:20px;background:var(--gold-light);color:var(--ink);cursor:pointer;transition:all .2s;margin-top:12px;width:fit-content;}
+.big-listen:hover{background:#EDD97A;}
+.big-listen.speaking{background:#fce4e4;border-color:var(--rust);color:var(--rust);}
+.big-listen::before{content:"🔊";font-size:14px;}
+.big-listen.speaking::before{content:"⏹";}
+.callout{background:var(--gold-light);border:1px solid rgba(184,134,11,0.3);border-radius:var(--radius);padding:1rem 1.25rem;margin:1rem 0;font-size:14px;line-height:1.8;}
+.step-row{display:flex;align-items:flex-start;gap:10px;padding:8px 12px;border-radius:7px;background:var(--cream);font-size:14px;margin-bottom:6px;line-height:1.6;}
+.step-n{font-size:11px;font-weight:700;color:var(--gold);width:28px;flex-shrink:0;margin-top:2px;}
+
+/* PROSODY ELEMENTS */
+.prosody-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin:1rem 0;}
+.prosody-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;border-top:4px solid;cursor:pointer;transition:all .15s;}
+.prosody-card:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(28,26,23,0.08);}
+.prosody-card.speaking{outline:2px solid var(--rust);}
+.pc-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;margin-bottom:4px;}
+.pc-what{font-size:13px;color:var(--muted);margin-bottom:8px;font-style:italic;}
+.pc-how{font-size:13px;line-height:1.6;color:var(--ink);}
+
+/* STRESS DEMO */
+.stress-demo{background:var(--ink);border-radius:var(--radius);padding:1.75rem 2rem;margin:1rem 0;}
+.sd-title{font-family:'Playfair Display',serif;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;text-align:center;}
+.stress-sent{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;justify-content:center;}
+.stress-word{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:rgba(255,255,255,0.5);padding:6px 10px;border-radius:6px;cursor:pointer;transition:all .15s;border:1px solid transparent;}
+.stress-word.stressed{color:#fff;border-color:rgba(184,134,11,0.4);background:rgba(184,134,11,0.15);}
+.stress-word:hover{border-color:rgba(184,134,11,0.6);}
+.stress-word.speaking{border-color:var(--rust);background:rgba(192,57,43,0.2);color:#ff9b8a;}
+
+/* INTONATION TABLE */
+.inton-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);margin:1rem 0;}
+.inton-table th{padding:9px 14px;font-family:'Source Serif 4',serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;background:var(--ink);color:var(--gold);}
+.inton-table td{padding:9px 14px;border-bottom:1px solid var(--border);background:#fff;font-size:14px;cursor:pointer;vertical-align:top;}
+.inton-table td.pattern-cell{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;width:160px;}
+.inton-table td.when-cell{color:var(--muted);font-size:13px;line-height:1.5;}
+.inton-table td:hover{background:var(--gold-light);}
+.inton-table tr:last-child td{border-bottom:none;}
+
+/* FLUENCY BENCHMARKS */
+.bench-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin:1rem 0;}
+.bench-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.2rem;cursor:pointer;transition:all .15s;}
+.bench-card:hover{background:var(--gold-light);border-color:var(--gold);}
+.bench-card.speaking{border-color:var(--rust);background:#fff5f5;}
+.bench-name{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--gold);margin-bottom:6px;}
+.bench-desc{font-size:13px;color:var(--muted);line-height:1.5;}
+
+/* FLUENCY PASSAGE */
+.fluency-box{background:var(--ink);border-radius:var(--radius);padding:1.75rem 2rem;margin:1rem 0;font-size:17px;line-height:2;color:#fff;}
+.word-tap{cursor:pointer;border-radius:3px;padding:1px 2px;transition:background .1s;display:inline-block;}
+.word-tap:hover{background:rgba(184,134,11,0.3);}
+.word-tap.speaking{background:rgba(184,134,11,0.4);color:var(--gold);font-weight:600;}
+
+/* PHRASING DEMO */
+.phrase-box{background:var(--ink);border-radius:var(--radius);padding:1.5rem 2rem;margin:1rem 0;}
+.phrase-title{font-family:'Playfair Display',serif;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;text-align:center;}
+.phrase-sent{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#fff;line-height:2;text-align:center;margin-bottom:10px;cursor:pointer;}
+.phrase-sent:hover{opacity:0.85;}
+.phrase-sent.speaking{color:var(--gold);}
+.phrase-chunk{display:inline-block;background:rgba(184,134,11,0.15);border:1px solid rgba(184,134,11,0.3);border-radius:6px;padding:2px 8px;margin:2px 3px;}
+
+/* QUIZ */
+.quiz-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;max-width:580px;}
+.quiz-prompt-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:1rem;}
+.quiz-prompt{font-family:'Playfair Display',serif;font-size:16px;flex:1;line-height:1.4;}
+.quiz-display-wrap{text-align:center;margin-bottom:1.2rem;}
+.quiz-display{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--gold);padding:1rem;background:var(--cream);border-radius:var(--radius);letter-spacing:1px;display:block;width:100%;cursor:pointer;border:none;line-height:1.5;}
+.quiz-display:hover{background:#EDD97A;}
+.quiz-display.speaking{background:#fce4e4;color:var(--rust);}
+.quiz-display-hint{font-size:12px;color:var(--muted);margin-top:5px;font-style:italic;}
+.quiz-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem;}
+.q-opt{padding:11px;font-family:'Source Serif 4',serif;font-size:13px;font-weight:600;border:1.5px solid var(--border);border-radius:8px;background:var(--cream);color:var(--ink);cursor:pointer;transition:all .15s;text-align:left;}
+.q-opt:hover{border-color:var(--gold);background:var(--gold-light);}
+.q-opt.correct{background:#EAF3DE;border-color:var(--forest);color:#27500A;}
+.q-opt.wrong{background:#FCEBEB;border-color:var(--rust);color:#791F1F;}
+.quiz-fb{font-size:14px;padding:10px 14px;border-radius:8px;margin-bottom:1rem;line-height:1.5;display:none;}
+.quiz-fb.ok{background:#EAF3DE;color:#27500A;}
+.quiz-fb.err{background:#FCEBEB;color:#791F1F;}
+.next-btn{padding:10px 24px;background:var(--ink);color:var(--gold);border:none;border-radius:20px;font-family:'Source Serif 4',serif;font-size:14px;font-weight:600;cursor:pointer;display:none;}
+.next-btn:hover{opacity:0.85;}
+.score-row{display:flex;align-items:center;gap:12px;margin-bottom:1.2rem;font-size:13px;color:var(--muted);}
+.score-track{flex:1;height:5px;background:var(--cream);border-radius:3px;overflow:hidden;}
+.score-fill{height:100%;background:var(--forest);border-radius:3px;transition:width .3s;}
+.ch-nav{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 0;border-top:1px solid var(--border);margin-top:2rem;flex-wrap:wrap;gap:10px;}
+.nav-lnk{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border:1px solid var(--border);border-radius:20px;font-size:13px;font-weight:600;color:var(--muted);background:var(--cream);text-decoration:none;transition:all .15s;}
+.nav-lnk:hover{border-color:var(--ink);color:var(--ink);}
+.nav-lnk.next{background:var(--ink);color:var(--gold);border-color:var(--ink);}
+.phase-badge{font-size:11px;background:var(--gold-light);color:var(--gold);border:1px solid rgba(184,134,11,0.3);padding:4px 12px;border-radius:12px;font-weight:600;}
+</style>
+</head>
+<body>
+
+<div class="voice-bar">
+  <a class="home-btn" href="index.html">🏠</a>
+  <span class="vb-brand">The Reading Blueprint</span>
+  <span class="vb-label">🔊 Voice</span>
+  <select class="voice-select" id="voice-select" onchange="onVoiceChange()">
+    <option value="-1">Loading voices...</option>
+  </select>
+  <div class="speed-group">
+    <span class="spd-label">Speed</span>
+    <button class="spd-btn" data-rate="0.6" onclick="setSpeed(0.6,this)">Slow</button>
+    <button class="spd-btn active" data-rate="0.85" onclick="setSpeed(0.85,this)">Normal</button>
+    <button class="spd-btn" data-rate="1.1" onclick="setSpeed(1.1,this)">Fast</button>
+  </div>
+  <button class="vtest" onclick="testVoice(this)">Test voice</button>
+  <span class="vsaved" id="vsaved">✓ Saved</span>
+</div>
+
+<div class="chapter-hero">
+  <div class="ch-num">Chapter 17 of 19</div>
+  <h1 class="ch-title">Prosody & Intonation:<br>The Music of Reading</h1>
+  <p class="ch-sub">Pace · Stress · Pitch · Phrasing — where accurate reading becomes fluent reading</p>
+  <button class="hero-btn" onclick="readHero(this)">Listen to introduction</button>
+</div>
+
+<div class="container">
+  <div class="tabs-bar">
+    <button class="tab-btn active" onclick="showPanel('learn',this)">① Learn</button>
+    <button class="tab-btn" onclick="showPanel('elements',this)">② Four Elements</button>
+    <button class="tab-btn" onclick="showPanel('stress',this)">③ Stress & Phrasing</button>
+    <button class="tab-btn" onclick="showPanel('intonation',this)">④ Intonation</button>
+    <button class="tab-btn" onclick="showPanel('fluency',this)">⑤ Fluency Practice</button>
+    <button class="tab-btn" onclick="showPanel('quiz',this)">⑥ Quiz</button>
+  </div>
+
+  <!-- ① LEARN -->
+  <div class="panel active" id="panel-learn">
+    <div class="sb gl">
+      <div class="sec-num">17.1</div>
+      <div class="sec-title">What Is Prosody?
+        <button class="listen-btn" onclick="speakBtn('Section 17.1. What Is Prosody?',this)">Listen to title</button>
+      </div>
+      <div class="sec-body">
+        <p>Prosody is the <strong>rhythm, stress, pitch, and intonation</strong> of spoken language. It is the music of reading aloud. A reader with good prosody does not just decode words correctly — they make the text <strong>come alive</strong>, reflecting meaning through vocal performance.</p>
+        <p>Prosody is the bridge between <strong>accurate reading</strong> and <strong>fluent reading</strong>.</p>
+      </div>
+      <button class="big-listen" onclick="speakBtn('Prosody is the rhythm, stress, pitch, and intonation of spoken language. It is the music of reading aloud. A reader with good prosody does not just decode words correctly — they make the text come alive, reflecting meaning through vocal performance. Research shows that prosody and comprehension are deeply connected. Readers who read with appropriate prosody almost always comprehend better than those who read in a flat, word-by-word monotone — because prosody reflects understanding.',this)">Listen to explanation</button>
+    </div>
+
+    <div class="sb rl">
+      <div class="sec-num">The Big Idea</div>
+      <div class="sec-title">Prosody = Comprehension Made Audible
+        <button class="listen-btn" onclick="speakBtn('The Big Idea. Prosody is comprehension made audible.',this)">Listen to title</button>
+      </div>
+      <div class="callout">
+        Research shows that prosody and comprehension are <strong>deeply connected</strong>. Readers who read with appropriate prosody almost always comprehend better than those who read in a flat, word-by-word monotone.<br><br>
+        Why? Because <strong>prosody reflects understanding</strong>. You cannot read with natural rhythm and expression if you do not understand what you are reading. The music reveals the meaning — to both reader and listener.
+      </div>
+      <button class="big-listen" onclick="speakBtn('The Big Idea. Prosody is comprehension made audible. When you read with natural rhythm, appropriate stress, and expressive intonation, it is proof that you understand what you are reading. A flat, word-by-word monotone is a sign that the reader is only decoding — not understanding. When the prosody flows, the comprehension is there.',this)">Listen to the Big Idea</button>
+    </div>
+
+    <div class="sb fl">
+      <div class="sec-num">Chapter Goals</div>
+      <div class="sec-title">What You Will Master
+        <button class="listen-btn" onclick="speakBtn('Chapter Goals.',this)">Listen to title</button>
+      </div>
+      <div style="margin-top:10px;">
+        <div class="step-row"><span class="step-n">✓</span>The four elements of prosody: pace, stress, pitch, phrasing</div>
+        <div class="step-row"><span class="step-n">✓</span>Sentence stress patterns — which words carry the stress and why</div>
+        <div class="step-row"><span class="step-n">✓</span>The four intonation patterns and when to use each</div>
+        <div class="step-row"><span class="step-n">✓</span>The five fluency benchmarks — measuring your reading progress</div>
+        <div class="step-row"><span class="step-n">✓</span>Read a demanding passage aloud with full prosodic control</div>
+      </div>
+      <button class="big-listen" onclick="speakBtn('By the end of this chapter you will master: the four elements of prosody — pace, stress, pitch, and phrasing. Sentence stress patterns — which words carry the stress and why. The four intonation patterns and when to use each. The five fluency benchmarks for measuring your reading progress. And reading a demanding passage aloud with full prosodic control.',this)">Listen to goals</button>
+    </div>
+  </div>
+
+  <!-- ② FOUR ELEMENTS -->
+  <div class="panel" id="panel-elements">
+    <div class="sb gl">
+      <div class="sec-num">17.2 — The Four Elements of Prosody</div>
+      <div class="sec-title">Pace · Stress · Pitch · Phrasing
+        <button class="listen-btn" onclick="speakBtn('Section 17.2. The four elements of prosody: Pace, Stress, Pitch, and Phrasing. Tap any card to hear it explained.',this)">Listen to title</button>
+      </div>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:1rem;">Tap any element card to hear a full explanation and example.</p>
+      <button class="big-listen" onclick="speakBtn('The four elements of prosody. First: Pace — the speed of reading. Slow down for important, complex, or emotional passages. Speed up for action, urgency, or comic effect. Second: Stress — emphasis on key words. The most important word in a sentence receives the most stress — said slightly louder and longer. Third: Pitch — high versus low voice. Questions often rise in pitch at the end. Definitive statements fall. Excitement rises. Sadness falls. Fourth: Phrasing — grouping words into meaning chunks. Good readers do not read word by word. They group words into meaningful phrases.',this)">Listen to all four elements</button>
+    </div>
+    <div class="prosody-grid" id="prosody-grid"></div>
+  </div>
+
+  <!-- ③ STRESS & PHRASING -->
+  <div class="panel" id="panel-stress">
+    <div class="sb gl">
+      <div class="sec-num">17.3 — Sentence Stress Patterns</div>
+      <div class="sec-title">Content Words vs Function Words
+        <button class="listen-btn" onclick="speakBtn('Section 17.3. Sentence Stress Patterns. Content words versus function words.',this)">Listen to title</button>
+      </div>
+      <div class="sec-body">
+        <p>In English, <strong>content words</strong> (nouns, main verbs, adjectives, adverbs) are typically stressed. <strong>Function words</strong> (articles, prepositions, auxiliary verbs, conjunctions, pronouns) are typically unstressed — spoken quickly and quietly.</p>
+      </div>
+      <div class="callout">
+        <strong>Content words</strong> carry the meaning — they get the stress.<br>
+        <strong>Function words</strong> carry the grammar — they stay quiet.<br><br>
+        Example: <em>"The TALL MAN WALKED SLOWLY down the NARROW STREET."</em><br>
+        the, down, the → unstressed. &nbsp;tall, man, walked, slowly, narrow, street → stressed.
+      </div>
+      <button class="big-listen" onclick="speakBtn('Sentence stress patterns. In English, content words are typically stressed — spoken louder and slightly longer. Content words include: nouns, main verbs, adjectives, and adverbs. Function words are typically unstressed — spoken quickly and quietly. Function words include: articles like the and a, prepositions, auxiliary verbs, conjunctions, and pronouns. Example: The TALL MAN WALKED SLOWLY down the NARROW STREET. The and down are unstressed. Tall, man, walked, slowly, narrow, and street are stressed.',this)">Listen to stress pattern rule</button>
+    </div>
+
+    <div class="sb bl">
+      <div class="sec-num">Stress Demo — Tap Any Word</div>
+      <div class="sec-title">Same Sentence — Different Meaning
+        <button class="listen-btn" onclick="speakBtn('The same sentence can mean different things depending on which word is stressed. Tap each version to hear the difference.',this)">Listen to instructions</button>
+      </div>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:1rem;">Tap any version to hear the sentence with that word stressed. Notice how the meaning shifts.</p>
+      <div class="stress-demo" id="stress-demo">
+        <div class="sd-title">I did not say he stole the money</div>
+      </div>
+    </div>
+
+    <div class="sb fl">
+      <div class="sec-num">Phrasing — Grouping Words into Chunks</div>
+      <div class="sec-title">Read in Phrases — Not Word by Word
+        <button class="listen-btn" onclick="speakBtn('Phrasing. Good readers do not read word by word. They group words into meaningful phrases. Tap each phrased sentence to hear how it sounds when read with natural chunking.',this)">Listen to title</button>
+      </div>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:1rem;">Each bracketed group [ ] is one phrase chunk. Tap the sentence to hear it read with natural phrasing.</p>
+      <div class="phrase-box" id="phrase-box">
+        <div class="phrase-title">Tap any sentence to hear it with natural phrasing</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ④ INTONATION -->
+  <div class="panel" id="panel-intonation">
+    <div class="sb gl">
+      <div class="sec-num">17.4 — Intonation Patterns</div>
+      <div class="sec-title">Four Patterns for Four Meanings
+        <button class="listen-btn" onclick="speakBtn('Section 17.4. Intonation Patterns. Four patterns for four meanings.',this)">Listen to title</button>
+      </div>
+      <div class="sec-body"><p>Intonation is the rise and fall of your voice across a sentence. Different intonation patterns signal different meanings — statement, question, hesitation, or incompleteness. Tap any row to hear it explained and demonstrated.</p></div>
+      <button class="big-listen" onclick="speakBtn('Intonation is the rise and fall of your voice across a sentence. There are four main intonation patterns. Falling intonation: your voice falls at the end. Used for statements, commands, and wh-questions. Rising intonation: your voice rises at the end. Used for yes-or-no questions and incomplete thoughts. Fall-rise intonation: voice falls then rises. Signals reservation or implied meaning. Level intonation: voice stays flat. Used for lists, formal speech, or incomplete thoughts.',this)">Listen to all four patterns</button>
+    </div>
+    <div class="sb bl">
+      <div class="sec-num">Intonation Pattern Table — Tap Any Row</div>
+      <table class="inton-table" id="inton-table">
+        <thead><tr><th>Pattern</th><th>When to Use It</th></tr></thead>
+        <tbody id="inton-body"></tbody>
+      </table>
+    </div>
+    <div class="sb fl">
+      <div class="sec-num">Hear the Difference — Tap Each Pair</div>
+      <div class="sec-title">Same Words — Different Intonation — Different Meaning
+        <button class="listen-btn" onclick="speakBtn('The same words can mean completely different things depending on the intonation pattern. Tap each example to hear the difference.',this)">Listen to instructions</button>
+      </div>
+      <div id="inton-pairs"></div>
+    </div>
+  </div>
+
+  <!-- ⑤ FLUENCY PRACTICE -->
+  <div class="panel" id="panel-fluency">
+    <div class="sb gl">
+      <div class="sec-num">17.5 — Fluency Practice Passage</div>
+      <div class="sec-title">Apply All Four Prosody Elements
+        <button class="listen-btn" id="fluency-read-btn" onclick="readFluency(this)">Read full passage</button>
+      </div>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:1rem;">Apply all four prosody elements: vary your pace, stress content words, use appropriate intonation, and group words into phrases. Tap any word to hear it. Then read it yourself and compare.</p>
+      <button class="big-listen" onclick="speakBtn('Instructions for the fluency practice passage. As you read this passage aloud, apply all four prosody elements. Vary your pace — slow down for emotional or important moments, speed up for urgency. Stress the content words — nouns, main verbs, adjectives, and adverbs. Use appropriate intonation — fall at statements, rise at questions. Group words into meaning chunks — do not read word by word.',this)">Listen to practice instructions</button>
+    </div>
+    <div class="fluency-box" id="fluency-box"></div>
+
+    <div class="sb bl" style="margin-top:1rem;">
+      <div class="sec-num">17.6 — The Five Fluency Benchmarks</div>
+      <div class="sec-title">Measuring Your Progress
+        <button class="listen-btn" onclick="speakBtn('Section 17.6. The Five Fluency Benchmarks. Use these to measure your reading progress monthly.',this)">Listen to title</button>
+      </div>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:1rem;">Test yourself monthly with a new passage. Tap any benchmark card to hear it explained.</p>
+      <button class="big-listen" onclick="speakBtn('The five fluency benchmarks. Use these to measure your reading progress. Test yourself monthly with a new passage of 250 to 300 words. Benchmark 1: Accuracy — reading 95 to 100 percent of words correctly without self-correction. Benchmark 2: Rate — reading at a pace that sounds conversational and natural. Benchmark 3: Expression — varying vocal pitch, stress, and pace to reflect meaning and emotion. Benchmark 4: Phrasing — grouping words into meaningful chunks, not reading word by word. Benchmark 5: Smoothness — reading with minimal hesitations, repetitions, or self-corrections.',this)">Listen to all five benchmarks</button>
+      <div class="bench-grid" id="bench-grid"></div>
+    </div>
+  </div>
+
+  <!-- ⑥ QUIZ -->
+  <div class="panel" id="panel-quiz">
+    <div class="sb gl">
+      <div class="sec-num">Chapter 17 — Assessment</div>
+      <div class="sec-title">Test Yourself
+        <button class="listen-btn" onclick="speakBtn('Chapter 17 Assessment. Tap the display box to hear the example. Then answer the question about prosody and intonation.',this)">Listen to instructions</button>
+      </div>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:1.2rem;">Tap the <strong>display box</strong> to hear the example. Then choose the correct answer.</p>
+      <div class="quiz-card">
+        <div class="score-row">
+          <span id="score-text">Score: 0 / 0</span>
+          <div class="score-track"><div class="score-fill" id="score-fill" style="width:0%"></div></div>
+        </div>
+        <div class="quiz-prompt-row">
+          <p class="quiz-prompt" id="quiz-prompt">Loading...</p>
+          <button class="listen-btn" onclick="readQuizQuestion(this)">Listen to question</button>
+        </div>
+        <div class="quiz-display-wrap">
+          <div class="quiz-display" id="quiz-display" onclick="readQuizWord(this)">—</div>
+          <div class="quiz-display-hint">Tap above to hear it</div>
+        </div>
+        <div class="quiz-opts" id="quiz-opts"></div>
+        <div class="quiz-fb" id="quiz-fb"></div>
+        <button class="next-btn" id="next-btn" onclick="nextQ()">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="ch-nav">
+    <a class="nav-lnk" href="chapter-16.html">← Chapter 16: Comprehension</a>
+    <span class="phase-badge">Phase 4 — Achieving Fluency</span>
+    <a class="nav-lnk next" href="chapter-18.html">Chapter 18: Vocabulary →</a>
+  </div>
+</div>
+
+<script>
+let voices=[],selectedVoiceIndex=-1,speechRate=0.85;
+function loadVoices(){
+  voices=window.speechSynthesis.getVoices();
+  const sel=document.getElementById('voice-select');
+  if(!voices.length)return;
+  const eng=voices.filter(v=>v.lang.startsWith('en'));
+  sel.innerHTML='<option value="-1">🔊 Browser default</option>';
+  eng.forEach(v=>{const idx=voices.indexOf(v);const o=document.createElement('option');o.value=idx;o.textContent=v.name+' ('+v.lang+')'+(v.localService?' ★':'');sel.appendChild(o);});
+  const sv=localStorage.getItem('rbVoiceIndex'),sr=localStorage.getItem('rbSpeechRate');
+  if(sv!=null){sel.value=sv;selectedVoiceIndex=parseInt(sv);}
+  if(sr!=null){speechRate=parseFloat(sr);document.querySelectorAll('.spd-btn').forEach(b=>b.classList.toggle('active',parseFloat(b.getAttribute('data-rate'))===speechRate));}
+}
+function onVoiceChange(){selectedVoiceIndex=parseInt(document.getElementById('voice-select').value);localStorage.setItem('rbVoiceIndex',selectedVoiceIndex);showSaved();}
+function setSpeed(r,btn){speechRate=r;localStorage.setItem('rbSpeechRate',r);document.querySelectorAll('.spd-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');showSaved();}
+function showSaved(){const s=document.getElementById('vsaved');s.classList.add('show');setTimeout(()=>s.classList.remove('show'),2000);}
+function applyVoice(u){u.rate=speechRate;if(selectedVoiceIndex>=0&&voices[selectedVoiceIndex]){u.voice=voices[selectedVoiceIndex];u.lang=voices[selectedVoiceIndex].lang;}else u.lang='en-GB';}
+function speakBtn(text,btn){
+  if(!window.speechSynthesis)return;
+  window.speechSynthesis.cancel();
+  document.querySelectorAll('.speaking').forEach(b=>b.classList.remove('speaking'));
+  const u=new SpeechSynthesisUtterance(text);applyVoice(u);
+  if(btn){btn.classList.add('speaking');u.onend=()=>btn.classList.remove('speaking');u.onerror=()=>btn.classList.remove('speaking');}
+  window.speechSynthesis.speak(u);
+}
+function sayWord(word,el){
+  if(!window.speechSynthesis)return;
+  window.speechSynthesis.cancel();
+  document.querySelectorAll('.speaking').forEach(b=>b.classList.remove('speaking'));
+  if(el)el.classList.add('speaking');
+  const u=new SpeechSynthesisUtterance(word);applyVoice(u);u.rate=speechRate*0.85;
+  if(el)u.onend=()=>el.classList.remove('speaking');
+  window.speechSynthesis.speak(u);
+}
+function testVoice(btn){speakBtn('Hello. This is your selected voice. There are nights when the sky seems impossibly large.',btn);}
+function readHero(btn){speakBtn('Chapter 17: Prosody and Intonation — The Music of Reading. Prosody is the rhythm, stress, pitch, and intonation of spoken language. It is the bridge between accurate reading and fluent reading. A reader with good prosody makes the text come alive.',btn);}
+function showPanel(id,btn){
+  window.speechSynthesis&&window.speechSynthesis.cancel();
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(t=>t.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// FOUR ELEMENTS
+const prosodyElements=[
+  {name:'Pace',color:'#B8860B',what:'Speed of reading',
+   how:'Slow down for important, complex, or emotional passages. Speed up for action, urgency, or comic effect. Vary pace to signal structure.',
+   audio:'Pace — the speed of your reading. Slow down for important, complex, or emotional passages. Your voice slowing signals to the listener: pay attention to this. Speed up for action, urgency, or comic effect. Varying your pace is one of the most powerful tools a reader has.'},
+  {name:'Stress',color:'#1A4A7A',what:'Emphasis on key words',
+   how:'The most important word or idea in a sentence receives the most stress — said slightly louder and longer. Stress shifts meaning.',
+   audio:'Stress — emphasis on key words. The most important word in a sentence receives the most stress — it is said slightly louder and slightly longer than the other words. Shifting the stress changes the meaning. For example: I did not say HE stole it — versus — I did not say he STOLE it. The meaning is completely different.'},
+  {name:'Pitch',color:'#2C5F2E',what:'High vs low voice',
+   how:'Questions often rise in pitch at the end. Definitive statements fall. Excitement rises. Sadness falls. Surprise spikes upward.',
+   audio:'Pitch — the high and low of your voice. Questions often rise in pitch at the end. Definitive statements fall. Excitement raises pitch. Sadness lowers it. Surprise spikes upward. Your pitch tells the listener how to feel about what you are saying.'},
+  {name:'Phrasing',color:'#C0392B',what:'Grouping words into meaning chunks',
+   how:'Good readers do not read word...by...word. They group words into meaningful phrases. Phrasing reveals the grammar and makes meaning clear.',
+   audio:'Phrasing — grouping words into meaning chunks. Good readers do not read word by word. They group words into meaningful phrases that reflect the grammar. For example: The old man — with the grey coat — walked slowly — toward the bridge. Each phrase chunk is read together with a slight pause between them. This makes the meaning clear and the reading natural.'},
+];
+function buildProsodyGrid(){
+  const el=document.getElementById('prosody-grid');
+  prosodyElements.forEach(pe=>{
+    const card=document.createElement('div');card.className='prosody-card';card.style.borderTopColor=pe.color;
+    card.innerHTML=`<div class="pc-name" style="color:${pe.color};">${pe.name}</div>
+      <div class="pc-what">${pe.what}</div>
+      <div class="pc-how">${pe.how}</div>`;
+    card.onclick=()=>{
+      document.querySelectorAll('.prosody-card.speaking').forEach(c=>c.classList.remove('speaking'));
+      card.classList.add('speaking');
+      const u=new SpeechSynthesisUtterance(pe.audio);applyVoice(u);
+      u.onend=()=>card.classList.remove('speaking');window.speechSynthesis.cancel();window.speechSynthesis.speak(u);
+    };
+    el.appendChild(card);
+  });
+}
+
+// STRESS DEMO
+const stressVersions=[
+  {stressed:'I',sent:'I did not say he stole the money.',meaning:'Someone else said it — not me.',audio:'I did not say he stole the money. Meaning: someone else said it, not me.'},
+  {stressed:'say',sent:'I did NOT SAY he stole the money.',meaning:'I implied or wrote it — but did not say it.',audio:'I did not say he stole the money. Meaning: I implied it or wrote it, but I did not actually say it.'},
+  {stressed:'he',sent:'I did not say HE stole the money.',meaning:'Someone else stole it — not him.',audio:'I did not say he stole the money. Meaning: someone else stole it, not him.'},
+  {stressed:'stole',sent:'I did not say he STOLE the money.',meaning:'He did something else with it — borrowed it perhaps.',audio:'I did not say he stole the money. Meaning: he did something else with the money — perhaps borrowed it.'},
+  {stressed:'money',sent:'I did not say he stole the MONEY.',meaning:'He stole something else — not the money.',audio:'I did not say he stole the money. Meaning: he stole something else, not specifically the money.'},
+];
+function buildStressDemo(){
+  const el=document.getElementById('stress-demo');
+  stressVersions.forEach(v=>{
+    const row=document.createElement('div');row.style.cssText='margin-bottom:10px;';
+    const sent=document.createElement('div');sent.className='stress-sent';
+    v.sent.split(' ').forEach(w=>{
+      const span=document.createElement('span');span.className='stress-word';
+      if(w.includes(v.stressed.toUpperCase())||w===v.stressed){span.classList.add('stressed');}
+      span.textContent=w;sent.appendChild(span);
+    });
+    const noteDiv=document.createElement('div');noteDiv.style.cssText='font-size:11px;color:rgba(255,255,255,0.35);font-style:italic;text-align:center;margin-bottom:6px;';
+    noteDiv.textContent='→ '+v.meaning;
+    const btn=document.createElement('button');btn.className='listen-btn';btn.style.cssText='display:flex;margin:0 auto 4px;';
+    btn.textContent='Hear this version';btn.onclick=()=>speakBtn(v.audio,btn);
+    row.appendChild(sent);row.appendChild(noteDiv);row.appendChild(btn);el.appendChild(row);
+  });
+}
+
+// PHRASING DEMO
+const phrasingSentences=[
+  {text:'The old man / with the grey coat / walked slowly / toward the bridge.',audio:'The old man — with the grey coat — walked slowly — toward the bridge.'},
+  {text:'She opened the letter / and read it / without changing expression.',audio:'She opened the letter — and read it — without changing expression.'},
+  {text:'The discovery of penicillin / changed the course / of modern medicine / forever.',audio:'The discovery of penicillin — changed the course — of modern medicine — forever.'},
+];
+function buildPhrasing(){
+  const el=document.getElementById('phrase-box');
+  phrasingSentences.forEach(ps=>{
+    const div=document.createElement('div');div.className='phrase-sent';
+    // highlight phrase chunks
+    const parts=ps.text.split('/');
+    parts.forEach((p,i)=>{
+      const span=document.createElement('span');span.className='phrase-chunk';span.textContent=p.trim();div.appendChild(span);
+      if(i<parts.length-1){const slash=document.createTextNode(' ');div.appendChild(slash);}
+    });
+    const btn=document.createElement('button');btn.className='listen-btn';btn.style.cssText='display:flex;margin:4px auto 14px;';
+    btn.textContent='Hear with phrasing';btn.onclick=()=>speakBtn(ps.audio,btn);
+    el.appendChild(div);el.appendChild(btn);
+  });
+}
+
+// INTONATION TABLE
+const intonData=[
+  {pattern:'Falling ↘',when:'Declarative statements, commands, exclamations, and wh-questions end with falling pitch. "She LEFT early." "Where did he GO?"',
+   audio:'Falling intonation. Your voice falls at the end of the sentence. Used for declarative statements, commands, exclamations, and wh-questions. Example: She left early. Where did he go?'},
+  {pattern:'Rising ↗',when:'Yes-or-no questions end with rising pitch. Also used to show a statement is incomplete or part of a list. "Did she LEAVE?" "Are you READY?"',
+   audio:'Rising intonation. Your voice rises at the end. Used for yes-or-no questions and to show a statement is incomplete or part of a list. Example: Did she leave? Are you ready?'},
+  {pattern:'Fall-Rise ↘↗',when:'Signals something more is implied — often hesitation, doubt, or reservation. "It was... interesting." (but I have reservations)',
+   audio:'Fall-rise intonation. Your voice falls then rises. Signals that something more is implied — often hesitation, doubt, or reservation. Example: It was... interesting. The fall-rise suggests you are not fully convinced.'},
+  {pattern:'Level →',when:'Used for incomplete thoughts, listing before the final item, or formal ceremonial speech. "First... second... third..."',
+   audio:'Level intonation. Your voice stays at the same pitch. Used for incomplete thoughts, listing items before the final one, or reading formally. Example: First... second... and third.'},
+];
+function buildIntonTable(){
+  const tbody=document.getElementById('inton-body');
+  intonData.forEach(row=>{
+    const tr=document.createElement('tr');
+    const tp=document.createElement('td');tp.className='pattern-cell';tp.style.color='var(--gold)';tp.textContent=row.pattern;
+    tp.onclick=()=>speakBtn(row.audio,tp);
+    const tw=document.createElement('td');tw.className='when-cell';tw.textContent=row.when;
+    tw.onclick=()=>speakBtn(row.audio,tw);
+    tr.appendChild(tp);tr.appendChild(tw);tbody.appendChild(tr);
+  });
+}
+
+// INTONATION PAIRS
+const intonPairs=[
+  {a:'She is coming.',b:'She is coming?',noteA:'Falling → Statement (she will come)',noteB:'Rising → Question (is she really coming?)',audioA:'She is coming.',audioB:'She is coming?'},
+  {a:'You did it.',b:'You did it?',noteA:'Falling → Congratulation or confirmation',noteB:'Rising → Surprise or disbelief',audioA:'You did it.',audioB:'You did it?'},
+  {a:'It was fine.',b:'It was... fine.',noteA:'Falling → Straightforward confirmation',noteB:'Fall-Rise → It was not really fine — implied reservation',audioA:'It was fine.',audioB:'It was fine.'},
+];
+function buildIntonPairs(){
+  const el=document.getElementById('inton-pairs');
+  intonPairs.forEach(pair=>{
+    const wrap=document.createElement('div');
+    wrap.style.cssText='display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;';
+    [{text:pair.a,note:pair.noteA,audio:pair.audioA,good:true},{text:pair.b,note:pair.noteB,audio:pair.audioB,good:false}].forEach(card=>{
+      const div=document.createElement('div');
+      div.style.cssText='background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1rem;cursor:pointer;transition:all .15s;';
+      const sent=document.createElement('div');
+      sent.style.cssText='font-family:Playfair Display,serif;font-size:18px;font-weight:700;color:var(--gold);margin-bottom:6px;';
+      sent.textContent=card.text;
+      const note=document.createElement('div');note.style.cssText='font-size:12px;color:var(--muted);font-style:italic;margin-bottom:6px;';
+      note.textContent=card.note;
+      const btn=document.createElement('button');btn.className='listen-btn';
+      btn.textContent='Hear it';btn.onclick=(e)=>{e.stopPropagation();speakBtn(card.audio,btn);};
+      div.appendChild(sent);div.appendChild(note);div.appendChild(btn);
+      div.onclick=()=>speakBtn(card.audio,div);
+      wrap.appendChild(div);
+    });
+    el.appendChild(wrap);
+  });
+}
+
+// FLUENCY PASSAGE
+const fluencyPassage='There are nights when the sky seems impossibly large. You stand in a field, tilt your head back, and the stars do not merely sparkle — they press down on you like a weight. Somewhere up there, light that left its source before human beings existed is only now arriving at your eyes. And you think: what does it mean to be so small? The question has no comfortable answer. But perhaps that is precisely the point. Perhaps the vastness is not meant to diminish us. Perhaps it is an invitation — to be curious, to be humble, and to look up.';
+function buildFluencyBox(){
+  const el=document.getElementById('fluency-box');
+  fluencyPassage.split(' ').forEach(w=>{
+    const clean=w.replace(/[^a-zA-Z]/g,'');
+    const span=document.createElement('span');span.className='word-tap';span.textContent=w+' ';
+    span.onclick=()=>sayWord(clean||w,span);el.appendChild(span);
+  });
+}
+function readFluency(btn){speakBtn(fluencyPassage,btn);}
+
+// BENCHMARKS
+const benchData=[
+  {name:'Accuracy',desc:'Reading 95–100% of words correctly without self-correction',
+   audio:'Fluency benchmark 1: Accuracy. Reading 95 to 100 percent of words correctly without self-correction. Below 95 percent accuracy suggests the text may be too difficult for fluent reading.'},
+  {name:'Rate',desc:'Reading at a pace that sounds conversational and natural — not rushed, not laboured',
+   audio:'Fluency benchmark 2: Rate. Reading at a pace that sounds conversational and natural. Not rushing through the text, and not struggling laboriously through each word.'},
+  {name:'Expression',desc:'Varying vocal pitch, stress, and pace to reflect meaning and emotion',
+   audio:'Fluency benchmark 3: Expression. Varying your vocal pitch, stress, and pace to reflect the meaning and emotion of the text. Flat monotone reading is a sign that expression is missing.'},
+  {name:'Phrasing',desc:'Grouping words into meaningful chunks — not reading word by word',
+   audio:'Fluency benchmark 4: Phrasing. Grouping words into meaningful chunks rather than reading word by word. Natural phrasing follows the grammatical structure of the sentence.'},
+  {name:'Smoothness',desc:'Reading with minimal hesitations, repetitions, or self-corrections',
+   audio:'Fluency benchmark 5: Smoothness. Reading with minimal hesitations, repetitions, or self-corrections. A smooth reader moves through the text without frequent stops or stumbles.'},
+];
+function buildBenchmarks(){
+  const el=document.getElementById('bench-grid');
+  benchData.forEach(b=>{
+    const card=document.createElement('div');card.className='bench-card';
+    card.innerHTML=`<div class="bench-name">${b.name}</div><div class="bench-desc">${b.desc}</div>`;
+    card.onclick=()=>{
+      document.querySelectorAll('.bench-card.speaking').forEach(c=>c.classList.remove('speaking'));
+      card.classList.add('speaking');
+      const u=new SpeechSynthesisUtterance(b.audio);applyVoice(u);
+      u.onend=()=>card.classList.remove('speaking');window.speechSynthesis.cancel();window.speechSynthesis.speak(u);
+    };
+    el.appendChild(card);
+  });
+}
+
+// QUIZ
+const quizData=[
+  {q:'What is prosody?',d:'Prosody',correct:'The rhythm, stress, pitch, and intonation of spoken language',opts:['The rhythm, stress, pitch, and intonation of spoken language','The speed at which words are decoded','The ability to read without mistakes','The process of identifying letter sounds']},
+  {q:'What is PACE in prosody?',d:'Pace',correct:'The speed of reading — varied to signal meaning and structure',opts:['The speed of reading — varied to signal meaning and structure','The volume of the voice','The rise and fall of pitch','The grouping of words into chunks']},
+  {q:'Which type of word is typically STRESSED in English?',d:'The TALL man WALKED',correct:'Content words — nouns, main verbs, adjectives, adverbs',opts:['Content words — nouns, main verbs, adjectives, adverbs','Function words — articles, prepositions, pronouns','Every word equally','Only the first word of each sentence']},
+  {q:'What does PHRASING mean in prosody?',d:'Phrasing',correct:'Grouping words into meaningful chunks — not reading word by word',opts:['Grouping words into meaningful chunks — not reading word by word','Reading very slowly and carefully','Emphasising every content word','Raising your voice at the end of each sentence']},
+  {q:'Which intonation pattern is used for yes-or-no questions?',d:'Are you ready?',correct:'Rising intonation — voice rises at the end',opts:['Rising intonation — voice rises at the end','Falling intonation — voice drops at the end','Level intonation — voice stays flat','Fall-rise — voice falls then rises']},
+  {q:'Which intonation pattern is used for declarative statements?',d:'She left early.',correct:'Falling intonation — voice drops at the end',opts:['Falling intonation — voice drops at the end','Rising intonation — voice rises at the end','Level intonation — voice stays flat','Fall-rise — implies a reservation']},
+  {q:'What does fall-rise intonation signal?',d:'It was... fine.',correct:'Hesitation, doubt, or reservation — something more is implied',opts:['Hesitation, doubt, or reservation — something more is implied','A strong, confident statement','A yes-or-no question','An incomplete list']},
+  {q:'What is Fluency Benchmark 2?',d:'Rate',correct:'Reading at a conversational and natural pace',opts:['Reading at a conversational and natural pace','Reading with 100% accuracy','Grouping words into phrases','Varying pitch and stress for expression']},
+  {q:'Why does prosody connect to comprehension?',d:'Prosody = Comprehension',correct:'Because prosody reflects understanding — you cannot read with natural expression if you do not understand the text',opts:['Because prosody reflects understanding — you cannot read with natural expression if you do not understand the text','Because faster reading always means better comprehension','Because louder reading helps memory retention','Because accurate decoding is the same as comprehension']},
+  {q:'What does PITCH mean in prosody?',d:'Pitch',correct:'The high and low of your voice — rises for questions, falls for statements',opts:['The high and low of your voice — rises for questions, falls for statements','The speed of your reading','The emphasis placed on key words','The grouping of words into chunks']},
+];
+let qi=0,score=0,answered=false,currentQ=null;
+const shuffle=a=>a.sort(()=>Math.random()-.5);
+let order=shuffle([...Array(quizData.length).keys()]);
+function readQuizQuestion(btn){if(currentQ)speakBtn(currentQ.q,btn);}
+function readQuizWord(el){if(currentQ)speakBtn(currentQ.d,el);}
+function renderQ(){
+  answered=false;currentQ=quizData[order[qi]];
+  document.getElementById('quiz-prompt').textContent=currentQ.q;
+  const disp=document.getElementById('quiz-display');disp.textContent=currentQ.d;disp.classList.remove('speaking');
+  const opts=document.getElementById('quiz-opts');opts.innerHTML='';
+  shuffle([...currentQ.opts]).forEach(opt=>{
+    const b=document.createElement('button');b.className='q-opt';b.textContent=opt;
+    b.onclick=()=>checkQ(opt,currentQ.correct,b);opts.appendChild(b);
+  });
+  document.getElementById('quiz-fb').style.display='none';
+  document.getElementById('next-btn').style.display='none';
+  setTimeout(()=>speakBtn(currentQ.q+'. The topic is: '+currentQ.d,null),350);
+}
+function checkQ(chosen,correct,btn){
+  if(answered)return;answered=true;
+  const fb=document.getElementById('quiz-fb');
+  if(chosen===correct){score++;btn.classList.add('correct');fb.className='quiz-fb ok';fb.textContent='✓ Correct! '+correct;}
+  else{btn.classList.add('wrong');document.querySelectorAll('.q-opt').forEach(b=>{if(b.textContent===correct)b.classList.add('correct');});fb.className='quiz-fb err';fb.textContent='✗ The correct answer is: '+correct;}
+  fb.style.display='block';
+  speakBtn(fb.textContent.replace('✓ ','').replace('✗ The correct answer is: ','The correct answer is: '),null);
+  document.getElementById('next-btn').style.display='inline-block';
+  const t=qi+1;
+  document.getElementById('score-text').textContent='Score: '+score+' / '+t;
+  document.getElementById('score-fill').style.width=Math.round(score/t*100)+'%';
+}
+function nextQ(){qi++;if(qi>=order.length){qi=0;score=0;order=shuffle([...Array(quizData.length).keys()]);}renderQ();}
+
+// INIT
+if(window.speechSynthesis){if(speechSynthesis.onvoiceschanged!==undefined)speechSynthesis.onvoiceschanged=loadVoices;loadVoices();}
+buildProsodyGrid();
+buildStressDemo();
+buildPhrasing();
+buildIntonTable();
+buildIntonPairs();
+buildFluencyBox();
+buildBenchmarks();
+renderQ();
+</script>
+</body>
+</html>

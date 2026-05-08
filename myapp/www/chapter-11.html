@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 11 — Morphemes | The Reading Blueprint</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1C1A17;--paper:#FAF7F2;--cream:#F2EDE4;--gold:#B8860B;--gold-light:#F5E6B0;--rust:#C0392B;--forest:#2C5F2E;--blue:#1A4A7A;--purple:#6A0DAD;--muted:#7A7468;--border:rgba(28,26,23,0.12);--radius:10px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:var(--ink);min-height:100vh;}
+.voice-bar{background:var(--ink);padding:8px 1.5rem;display:flex;align-items:center;gap:10px;flex-wrap:wrap;position:sticky;top:0;z-index:200;box-shadow:0 2px 12px rgba(28,26,23,0.3);}
+.vb-brand{font-family:'Playfair Display',serif;color:var(--gold);font-size:13px;letter-spacing:1.5px;text-transform:uppercase;flex-shrink:0;margin-right:6px;}
+.home-btn{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(184,134,11,0.15);border:1.5px solid rgba(184,134,11,0.45);border-radius:8px;color:var(--gold);font-size:15px;cursor:pointer;transition:all .2s;text-decoration:none;flex-shrink:0;margin-right:4px;position:relative;}
+.home-btn:hover{background:rgba(184,134,11,0.3);border-color:var(--gold);transform:scale(1.08);}
+.home-btn::after{content:"Home";position:absolute;bottom:-26px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--gold);font-size:10px;padding:2px 7px;border-radius:4px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;border:1px solid rgba(184,134,11,0.3);}
+.home-btn:hover::after{opacity:1;}
+.vb-label{font-size:11px;font-weight:700;color:rgba(255,255,255,0.4);letter-spacing:1.5px;text-transform:uppercase;white-space:nowrap;flex-shrink:0;}
+.voice-select{min-width:150px;max-width:260px;padding:5px 26px 5px 9px;font-family:'Source Serif 4',serif;font-size:13px;border:1px solid rgba(255,255,255,0.15);border-radius:7px;background:rgba(255,255,255,0.08);color:#fff;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23B8860B' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 9px center;}
+.voice-select option{background:#1C1A17;color:#fff;}
+.speed-group{display:flex;align-items:center;gap:4px;flex-shrink:0;}
+.spd-label{font-size:11px;font-weight:700;color:rgba(255,255,255,0.4);letter-spacing:1px;text-transform:uppercase;margin-right:3px;}
+.spd-btn{padding:4px 10px;font-family:'Source Serif 4',serif;font-size:12px;font-weight:600;border:1px solid rgba(255,255,255,0.15);border-radius:6px;background:transparent;color:rgba(255,255,255,0.5);cursor:pointer;transition:all .15s;}
+.spd-btn.active{background:var(--gold);color:var(--ink);border-color:var(--gold);}
+.spd-btn:hover:not(.active){border-color:var(--gold);color:var(--gold);}
+.vtest{display:inline-flex;align-items:center;gap:5px;padding:5px 13px;font-family:'Source Serif 4',serif;font-size:12px;font-weight:600;border:1px solid rgba(184,134,11,0.5);border-radius:16px;background:rgba(184,134,11,0.12);color:var(--gold);cursor:pointer;transition:all .15s;flex-shrink:0;}
+.vtest:hover{background:rgba(184,134,11,0.22);}
+.vtest.speaking{background:rgba(192,57,43,0.2);border-color:var(--rust);color:#ff7b6b;}
+.vtest::before{content:"▶";font-size:9px;}
+.vtest.speaking::before{content:"◼";}
+.vsaved{font-size:11px;color:var(--gold);font-style:italic;flex-shrink:0;opacity:0;transition:opacity .3s;}
+.vsaved.show{opacity:1;}
+.chapter-hero{background:var(--ink);padding:3rem 2rem 2.5rem;text-align:center;border-bottom:3px solid var(--gold);position:relative;overflow:hidden;}
+.chapter-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(184,134,11,0.18) 0%,transparent 70%);}
+.ch-num{font-family:'Playfair Display',serif;font-size:12px;color:var(--gold);letter-spacing:4px;text-transform:uppercase;margin-bottom:12px;position:relative;}
+.ch-title{font-family:'Playfair Display',serif;font-size:clamp(26px,5vw,44px);color:#fff;line-height:1.15;margin-bottom:10px;position:relative;}
+.ch-sub{font-size:15px;color:rgba(255,255,255,0.5);font-style:italic;margin-bottom:1.5rem;position:relative;}
+.hero-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border:1.5px solid rgba(184,134,11,0.6);border-radius:24px;background:rgba(184,134,11,0.1);color:var(--gold);font-family:'Source Serif 4',serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;position:relative;}
+.hero-btn:hover{background:rgba(184,134,11,0.2);}
+.hero-btn.speaking{background:rgba(192,57,43,0.2);border-color:var(--rust);color:#ff7b6b;}
+.hero-btn::before{content:"▶";font-size:10px;}
+.hero-btn.speaking::before{content:"◼";}
+.container{max-width:860px;margin:0 auto;padding:2rem 1.25rem;}
+.tabs-bar{display:flex;gap:4px;margin-bottom:2rem;background:var(--cream);padding:5px;border-radius:var(--radius);border:1px solid var(--border);flex-wrap:wrap;}
+.tab-btn{flex:1;min-width:80px;padding:8px 10px;font-family:'Source Serif 4',serif;font-size:13px;font-weight:600;border:none;border-radius:7px;background:transparent;color:var(--muted);cursor:pointer;transition:all .15s;text-align:center;white-space:nowrap;}
+.tab-btn.active{background:var(--ink);color:var(--gold);}
+.tab-btn:hover:not(.active){background:rgba(28,26,23,0.06);color:var(--ink);}
+.panel{display:none;}.panel.active{display:block;}
+.sb{background:var(--cream);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem 1.75rem;margin-bottom:1.25rem;}
+.sb.gl{border-left:4px solid var(--gold);}
+.sb.rl{border-left:4px solid var(--rust);}
+.sb.fl{border-left:4px solid var(--forest);}
+.sb.bl{border-left:4px solid var(--blue);}
+.sb.pl{border-left:4px solid var(--purple);}
+.sec-num{font-size:11px;font-weight:600;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;}
+.sec-title{font-family:'Playfair Display',serif;font-size:20px;color:var(--ink);margin-bottom:10px;line-height:1.3;display:flex;align-items:center;flex-wrap:wrap;gap:8px;}
+.sec-body{font-size:15px;line-height:1.8;color:#3A3730;}
+.sec-body p{margin-bottom:10px;}
+.listen-btn{display:inline-flex;align-items:center;gap:5px;padding:4px 12px;font-family:'Source Serif 4',serif;font-size:12px;font-weight:600;border:1px solid var(--border);border-radius:16px;background:#fff;color:var(--muted);cursor:pointer;transition:all .15s;flex-shrink:0;}
+.listen-btn:hover{border-color:var(--gold);color:var(--gold);}
+.listen-btn.speaking{border-color:var(--rust);color:var(--rust);background:#fff5f5;}
+.listen-btn::before{content:"▶";font-size:9px;}
+.listen-btn.speaking::before{content:"◼";}
+.big-listen{display:flex;align-items:center;gap:8px;padding:10px 18px;font-family:'Source Serif 4',serif;font-size:14px;font-weight:700;border:2px solid var(--gold);border-radius:20px;background:var(--gold-light);color:var(--ink);cursor:pointer;transition:all .2s;margin-top:12px;width:fit-content;}
+.big-listen:hover{background:#EDD97A;}
+.big-listen.speaking{background:#fce4e4;border-color:var(--rust);color:var(--rust);}
+.big-listen::before{content:"🔊";font-size:14px;}
+.big-listen.speaking::before{content:"⏹";}
+.callout{background:var(--gold-light);border:1px solid rgba(184,134,11,0.3);border-radius:var(--radius);padding:1rem 1.25rem;margin:1rem 0;font-size:14px;line-height:1.8;}
+.step-row{display:flex;align-items:flex-start;gap:10px;padding:8px 12px;border-radius:7px;background:var(--cream);font-size:14px;margin-bottom:6px;line-height:1.6;}
+.step-n{font-size:11px;font-weight:700;color:var(--gold);width:20px;flex-shrink:0;margin-top:2px;}
+
+/* WORD BUILDER */
+.word-builder{background:var(--ink);border-radius:var(--radius);padding:1.75rem;text-align:center;margin:1rem 0;}
+.wb-title{font-family:'Playfair Display',serif;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;}
+.wb-words{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;}
+.wb-card{background:rgba(255,255,255,0.06);border:1px solid rgba(184,134,11,0.2);border-radius:10px;padding:1.25rem 1.5rem;cursor:pointer;transition:all .15s;min-width:160px;text-align:left;}
+.wb-card:hover{background:rgba(184,134,11,0.12);border-color:var(--gold);}
+.wb-card.speaking{border-color:var(--rust);background:rgba(192,57,43,0.12);}
+.wb-whole{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#fff;margin-bottom:10px;}
+.wb-parts{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:6px;}
+.wb-part{font-size:11px;font-weight:700;padding:3px 8px;border-radius:10px;}
+.wb-part.prefix{background:rgba(192,57,43,0.35);color:#ff9b8a;}
+.wb-part.root{background:rgba(184,134,11,0.35);color:#FFD700;}
+.wb-part.suffix{background:rgba(44,95,46,0.35);color:#7ed98a;}
+.wb-meaning{font-size:11px;color:rgba(255,255,255,0.4);font-style:italic;}
+
+/* ROOT SECTION */
+.root-sec{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem 1.5rem;margin-bottom:12px;}
+.root-hdr{display:flex;align-items:center;gap:12px;margin-bottom:10px;flex-wrap:wrap;}
+.root-badge{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;min-width:90px;text-align:center;cursor:pointer;border-radius:8px;padding:6px;transition:all .15s;border:2px solid rgba(184,134,11,0.3);color:var(--gold);}
+.root-badge:hover{background:var(--cream);}
+.root-badge.speaking{background:#fff5f5;}
+.root-info{flex:1;}
+.root-meaning{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:2px;}
+.root-origin{font-size:12px;color:var(--muted);font-style:italic;margin-bottom:6px;}
+.root-words{display:flex;flex-wrap:wrap;gap:6px;}
+.rword{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;padding:5px 10px;border:1px solid var(--border);border-radius:6px;cursor:pointer;background:var(--cream);transition:all .15s;}
+.rword:hover{background:var(--gold-light);border-color:var(--gold);}
+.rword.speaking{border-color:var(--rust);background:#fff5f5;color:var(--rust);}
+
+/* MORPH TABLE */
+.morph-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--radius);overflow:hidden;margin:1rem 0;border:1px solid var(--border);}
+.morph-table th{padding:9px 14px;font-family:'Source Serif 4',serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;background:var(--ink);color:var(--gold);}
+.morph-table td{padding:8px 14px;border-bottom:1px solid var(--border);background:#fff;font-size:14px;cursor:pointer;}
+.morph-table td.morph-cell{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;}
+.morph-table td.mean-cell{font-weight:600;color:var(--blue);}
+.morph-table td.ex-cell{color:var(--muted);font-family:'Playfair Display',serif;font-size:13px;}
+.morph-table td:hover{background:var(--gold-light);}
+.morph-table tr:last-child td{border-bottom:none;}
+
+/* DECODE */
+.decode-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;margin-bottom:10px;display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap;}
+.decode-word{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--gold);cursor:pointer;padding:4px 8px;border-radius:6px;transition:all .15s;flex-shrink:0;}
+.decode-word:hover{background:var(--gold-light);}
+.decode-word.speaking{color:var(--rust);}
+.decode-body{flex:1;}
+.decode-analysis{font-size:14px;line-height:1.8;color:var(--muted);}
+.decode-analysis strong{color:var(--ink);}
+
+/* CT */
+.ct-box{background:var(--cream);border:1px solid var(--border);border-left:4px solid var(--forest);border-radius:var(--radius);padding:1rem 1.25rem;margin:6px 0;font-size:16px;line-height:2.3;}
+.word-tap{cursor:pointer;border-radius:3px;padding:1px 2px;transition:background .1s;display:inline-block;}
+.word-tap:hover{background:var(--gold-light);}
+.word-tap.speaking{background:var(--gold-light);color:var(--gold);font-weight:600;}
+
+/* QUIZ */
+.quiz-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;max-width:580px;}
+.quiz-prompt-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:1rem;}
+.quiz-prompt{font-family:'Playfair Display',serif;font-size:17px;flex:1;line-height:1.4;}
+.quiz-display-wrap{text-align:center;margin-bottom:1.2rem;}
+.quiz-display{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:var(--gold);padding:1rem;background:var(--cream);border-radius:var(--radius);letter-spacing:2px;display:block;width:100%;cursor:pointer;border:none;}
+.quiz-display:hover{background:#EDD97A;}
+.quiz-display.speaking{background:#fce4e4;color:var(--rust);}
+.quiz-display-hint{font-size:12px;color:var(--muted);margin-top:5px;font-style:italic;}
+.quiz-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem;}
+.q-opt{padding:11px;font-family:'Source Serif 4',serif;font-size:13px;font-weight:600;border:1.5px solid var(--border);border-radius:8px;background:var(--cream);color:var(--ink);cursor:pointer;transition:all .15s;text-align:left;}
+.q-opt:hover{border-color:var(--gold);background:var(--gold-light);}
+.q-opt.correct{background:#EAF3DE;border-color:var(--forest);color:#27500A;}
+.q-opt.wrong{background:#FCEBEB;border-color:var(--rust);color:#791F1F;}
+.quiz-fb{font-size:14px;padding:10px 14px;border-radius:8px;margin-bottom:1rem;line-height:1.5;display:none;}
+.quiz-fb.ok{background:#EAF3DE;color:#27500A;}
+.quiz-fb.err{background:#FCEBEB;color:#791F1F;}
+.next-btn{padding:10px 24px;background:var(--ink);color:var(--gold);border:none;border-radius:20px;font-family:'Source Serif 4',serif;font-size:14px;font-weight:600;cursor:pointer;display:none;}
+.next-btn:hover{opacity:0.85;}
+.score-row{display:flex;align-items:center;gap:12px;margin-bottom:1.2rem;font-size:13px;color:var(--muted);}
+.score-track{flex:1;height:5px;background:var(--cream);border-radius:3px;overflow:hidden;}
+.score-fill{height:100%;background:var(--forest);border-radius:3px;transition:width .3s;}
+.ch-nav{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 0;border-top:1px solid var(--border);margin-top:2rem;flex-wrap:wrap;gap:10px;}
+.nav-lnk{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border:1px solid var(--border);border-radius:20px;font-size:13px;font-weight:600;color:var(--muted);background:var(--cream);text-decoration:none;transition:all .15s;}
+.nav-lnk:hover{border-color:var(--ink);color:var(--ink);}
+.nav-lnk.next{background:var(--ink);color:var(--gold);border-color:var(--ink);}
+.phase-badge{font-size:11px;background:var(--gold-light);color:var(--gold);border:1px solid rgba(184,134,11,0.3);padding:4px 12px;border-radius:12px;font-weight:600;}
+</style>
+</head>
+<body>
+
+<div class="voice-bar">
+  <a class="home-btn" href="index.html" title="Back to Home">🏠</a>
+  <span class="vb-brand">The Reading Blueprint</span>
+  <span class="vb-label">🔊 Voice</span>
+  <select class="voice-select" id="voice-select" onchange="onVoiceChange()">
+    <option value="-1">Loading voices...</option>
+  </select>
+  <div class="speed-group">
+    <span class="spd-label">Speed</span>
+    <button class="spd-btn" data-rate="0.6" onclick="setSpeed(0.6,this)">Slow</button>
+    <button class="spd-btn active" data-rate="0.85" onclick="setSpeed(0.85,this)">Normal</button>
+    <button class="spd-btn" data-rate="1.1" onclick="setSpeed(1.1,this)">Fast</button>
+  </div>
+  <button class="vtest" onclick="testVoice(this)">Test voice</button>
+  <span class="vsaved" id="vsaved">✓ Saved</span>
+</div>
+
+<div class="chapter-hero">
+  <div class="ch-num">Chapter 11 of 19</div>
+  <h1 class="ch-title">Morphemes:<br>The Meaning Units of Language</h1>
+  <p class="ch-sub">Root Words · Prefixes · Suffixes — decode thousands of words instantly</p>
+  <button class="hero-btn" onclick="readHero(this)">Listen to introduction</button>
+</div>
+
+<div class="container">
+  <div class="tabs-bar">
+    <button class="tab-btn active" onclick="showPanel('learn',this)">① Learn</button>
+    <button class="tab-btn" onclick="showPanel('roots',this)">② Root Words</button>
+    <button class="tab-btn" onclick="showPanel('prefixes',this)">③ Prefixes</button>
+    <button class="tab-btn" onclick="showPanel('suffixes',this)">④ Suffixes</button>
+    <button class="tab-btn" onclick="showPanel('decode',this)">⑤ Decode</button>
+    <button class="tab-btn" onclick="showPanel('quiz',this)">⑥ Quiz</button>
+  </div>
+
+  <!-- ① LEARN -->
+  <div class="panel active" id="panel-learn">
+    <div class="sb gl">
+      <div class="sec-num">11.1</div>
+      <div class="sec-title">What Is a Morpheme?
+        <button class="listen-btn" onclick="speakBtn('Section 11.1. What Is a Morpheme?',this)">Listen to title</button>
+      </div>
+      <div class="sec-body">
+        <p>A morpheme is the <strong>smallest unit of meaning</strong> in language. It is not the smallest sound (that is a phoneme) and not the smallest letter (that is a grapheme). A morpheme is the smallest chunk of language that <strong>carries meaning on its own</strong>.</p>
+      </div>
+      <button class="big-listen" onclick="speakBtn('A morpheme is the smallest unit of meaning in language. It is not the smallest sound — that is a phoneme. It is not the smallest letter — that is a grapheme. A morpheme is the smallest chunk of language that carries meaning on its own. Knowing morphemes lets you decode and define thousands of unfamiliar words instantly — without a dictionary.',this)">Listen to explanation</button>
+    </div>
+
+    <div class="sb rl">
+      <div class="sec-num">The Big Idea</div>
+      <div class="sec-title">One Word — Three Morphemes
+        <button class="listen-btn" onclick="speakBtn('The Big Idea. One word, three morphemes.',this)">Listen to title</button>
+      </div>
+      <div class="callout">
+        The word <strong>unhappiness</strong> contains <strong>three morphemes</strong>:<br><br>
+        <strong style="color:var(--rust);">un-</strong> (prefix: "not") &nbsp;+&nbsp; <strong style="color:var(--gold);">happy</strong> (root: "glad") &nbsp;+&nbsp; <strong style="color:var(--forest);">-ness</strong> (suffix: "state of")<br><br>
+        = <em>the state of not being glad</em><br><br>
+        Learn the parts — decode any word.
+      </div>
+      <button class="big-listen" onclick="speakBtn('The Big Idea. Look at the word unhappiness. It contains three morphemes. The prefix un, meaning not. The root word happy, meaning glad. The suffix ness, meaning state of. Put them together: the state of not being glad. That is the full meaning of unhappiness — decoded from its parts without a dictionary. Once you learn the most common prefixes, root words, and suffixes, you can unlock thousands of words you have never seen before.',this)">Listen to the Big Idea</button>
+    </div>
+
+    <div class="sb fl">
+      <div class="sec-num">Three Types</div>
+      <div class="sec-title">Root · Prefix · Suffix
+        <button class="listen-btn" onclick="speakBtn('Three types of morpheme: Root Words, Prefixes, and Suffixes.',this)">Listen to title</button>
+      </div>
+      <div style="margin-top:10px;">
+        <div class="step-row"><span class="step-n">①</span><strong>Root Word:</strong> The base carrying the core meaning. All other morphemes attach to it. <em>act, port, vis, graph, struct</em></div>
+        <div class="step-row"><span class="step-n">②</span><strong>Prefix:</strong> Added to the <em>front</em> of a root — changes its meaning. <em>un-, re-, pre-, dis-, trans-</em></div>
+        <div class="step-row"><span class="step-n">③</span><strong>Suffix:</strong> Added to the <em>end</em> of a root — changes its grammatical function or meaning. <em>-tion, -ness, -er, -ly, -able</em></div>
+      </div>
+      <button class="big-listen" onclick="speakBtn('Three types of morpheme. First: Root Words — the base that carries the core meaning. All other morphemes attach to it. Examples: act, port, vis, graph. Second: Prefixes — added to the front of a root to change its meaning. Examples: un meaning not, re meaning again, pre meaning before, dis meaning not. Third: Suffixes — added to the end of a root to change its grammatical function or add meaning. Examples: tion meaning act of, ness meaning state of, er meaning one who does, ly meaning in a manner.',this)">Listen to all three types</button>
+    </div>
+
+    <div class="sb bl">
+      <div class="sec-num">Words Broken into Morphemes — Tap Any Card</div>
+      <div class="sec-title">See It in Action
+        <button class="listen-btn" onclick="speakBtn('Tap any word card to hear it broken down into its morphemes with full explanation.',this)">Listen to instructions</button>
+      </div>
+      <div class="word-builder">
+        <div class="wb-title">Tap a word — hear the breakdown</div>
+        <div class="wb-words" id="wb-words"></div>
+        <div style="display:flex;justify-content:center;gap:16px;margin-top:1.2rem;flex-wrap:wrap;">
+          <span style="font-size:12px;color:rgba(255,255,255,0.45);display:flex;align-items:center;gap:5px;"><span style="width:12px;height:12px;border-radius:3px;background:rgba(192,57,43,0.5);display:inline-block;"></span>Prefix</span>
+          <span style="font-size:12px;color:rgba(255,255,255,0.45);display:flex;align-items:center;gap:5px;"><span style="width:12px;height:12px;border-radius:3px;background:rgba(184,134,11,0.5);display:inline-block;"></span>Root</span>
+          <span style="font-size:12px;color:rgba(255,255,255,0.45);display:flex;align-items:center;gap:5px;"><span style="width:12px;height:12px;border-radius:3px;background:rgba(44,95,46,0.5);display:inline-block;"></span>Suffix</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ② ROOT WORDS -->
+  <div class="panel" id="panel-roots">
+    <div class="sb gl">
+      <div class="sec-num">11.2 — Root Words</div>
+      <div class="sec-title">The Core of Every Word
+        <button class="listen-btn" onclick="speakBtn('Section 11.2. Root Words. The core of every word. Tap any root badge to hear it. Tap the explanation button to hear all the words built from it.',this)">Listen to title</button>
+      </div>
+      <div class="sec-body"><p>The root carries the <strong>core meaning</strong>. Learning one root unlocks every word built from it. Tap any root badge to hear it. Tap any word to hear it.</p></div>
+      <button class="big-listen" onclick="speakBtn('Root words. The root is the core of every word — the part that carries the original meaning. For example, the root port means to carry. Once you know that, you can figure out: transport — carry across. import — carry in. export — carry out. portable — able to be carried. report — carry back. All of these words from one root.',this)">Listen to root word power</button>
+    </div>
+    <div id="roots-container"></div>
+  </div>
+
+  <!-- ③ PREFIXES -->
+  <div class="panel" id="panel-prefixes">
+    <div class="sb gl">
+      <div class="sec-num">11.3 — Prefixes</div>
+      <div class="sec-title">Builders at the Front
+        <button class="listen-btn" onclick="speakBtn('Section 11.3. Prefixes — builders at the front of a word.',this)">Listen to title</button>
+      </div>
+      <div class="sec-body"><p>A prefix is added to the <strong>front</strong> of a root word to change its meaning. Prefixes never stand alone. Tap any row to hear the prefix, its meaning, and examples.</p></div>
+      <button class="big-listen" onclick="speakBtn('Prefixes. A prefix is added to the front of a root word to change its meaning. For example: un means not. Add it to happy and you get unhappy. Add it to fair and you get unfair. Add it to kind and you get unkind. One prefix, dozens of words. Tap any row in the table to hear the prefix, its meaning, and example words.',this)">Listen to prefix explanation</button>
+    </div>
+    <div class="sb bl">
+      <div class="sec-num">Top 20 Prefixes — Tap Any Row to Hear It</div>
+      <table class="morph-table">
+        <thead><tr><th>Prefix</th><th>Meaning</th><th>Examples</th></tr></thead>
+        <tbody id="prefix-body"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ④ SUFFIXES -->
+  <div class="panel" id="panel-suffixes">
+    <div class="sb gl">
+      <div class="sec-num">11.4 — Suffixes</div>
+      <div class="sec-title">Builders at the End
+        <button class="listen-btn" onclick="speakBtn('Section 11.4. Suffixes — builders at the end of a word.',this)">Listen to title</button>
+      </div>
+      <div class="sec-body"><p>A suffix is added to the <strong>end</strong> of a root word. Suffixes change the word's grammatical function or add additional meaning. Tap any row to hear the suffix, its function, and examples.</p></div>
+      <button class="big-listen" onclick="speakBtn('Suffixes. A suffix is added to the end of a root word. Suffixes often change the grammatical category of a word. For example: the suffix tion means act of or state of. Add it to act and you get action. The suffix ness means state of. Add it to happy and you get happiness. The suffix er means one who does. Add it to teach and you get teacher. Tap any row in the table to hear it.',this)">Listen to suffix explanation</button>
+    </div>
+    <div class="sb bl">
+      <div class="sec-num">Top 20 Suffixes — Tap Any Row to Hear It</div>
+      <table class="morph-table">
+        <thead><tr><th>Suffix</th><th>Function</th><th>Examples</th></tr></thead>
+        <tbody id="suffix-body"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ⑤ DECODE -->
+  <div class="panel" id="panel-decode">
+    <div class="sb gl">
+      <div class="sec-num">11.5 — Morpheme Decoding Practice</div>
+      <div class="sec-title">Break It Down — Build the Meaning
+        <button class="listen-btn" onclick="speakBtn('Section 11.5. Morpheme Decoding Practice. Tap any word to hear it. Tap the analysis button to hear the full breakdown.',this)">Listen to title</button>
+      </div>
+      <div class="sec-body"><p>For each word, identify the prefix, root, and suffix — then build the meaning from the parts. Tap any word to hear it. Tap "Hear analysis" to hear the full breakdown spoken aloud.</p></div>
+      <button class="big-listen" onclick="speakBtn('Morpheme decoding practice. For each word, follow these steps. Step 1: tap the word to hear it. Step 2: identify the prefix at the front. Step 3: identify the root in the middle. Step 4: identify the suffix at the end. Step 5: combine the meanings to define the word. This is how expert readers decode words they have never seen before.',this)">Listen to instructions</button>
+    </div>
+    <div id="decode-cards"></div>
+    <div class="sb fl" style="margin-top:8px;">
+      <div class="sec-num">Morpheme-Rich Passage</div>
+      <div class="sec-title">Read Aloud
+        <button class="listen-btn" onclick="speakBtn('The transportation of goods required reconstruction of the entire road system. The inspector found the activity predictable but the outcome invisible. With determination she reconstructed the misunderstanding and transformed the interaction.',this)">Read passage</button>
+      </div>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:0.75rem;">Tap any word to hear it. Try to spot the prefixes, roots, and suffixes in the longer words.</p>
+      <div class="ct-box" id="morph-ct"></div>
+    </div>
+  </div>
+
+  <!-- ⑥ QUIZ -->
+  <div class="panel" id="panel-quiz">
+    <div class="sb gl">
+      <div class="sec-num">Chapter 11 — Assessment</div>
+      <div class="sec-title">Test Yourself
+        <button class="listen-btn" onclick="speakBtn('Chapter 11 Assessment. Tap the word in the box to hear it. Then answer the question about morphemes.',this)">Listen to instructions</button>
+      </div>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:1.2rem;">Tap the <strong>word box</strong> to hear it. Then choose the correct answer.</p>
+      <div class="quiz-card">
+        <div class="score-row">
+          <span id="score-text">Score: 0 / 0</span>
+          <div class="score-track"><div class="score-fill" id="score-fill" style="width:0%"></div></div>
+        </div>
+        <div class="quiz-prompt-row">
+          <p class="quiz-prompt" id="quiz-prompt">Loading...</p>
+          <button class="listen-btn" onclick="readQuizQuestion(this)">Listen to question</button>
+        </div>
+        <div class="quiz-display-wrap">
+          <div class="quiz-display" id="quiz-display" onclick="readQuizWord(this)">—</div>
+          <div class="quiz-display-hint">Tap the word above to hear it</div>
+        </div>
+        <div class="quiz-opts" id="quiz-opts"></div>
+        <div class="quiz-fb" id="quiz-fb"></div>
+        <button class="next-btn" id="next-btn" onclick="nextQ()">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="ch-nav">
+    <a class="nav-lnk" href="chapter-10.html">← Chapter 10: Silent Letters</a>
+    <span class="phase-badge">Phase 3 — Architecture of Meaning</span>
+    <a class="nav-lnk next" href="chapter-12.html">Chapter 12: Parts of Speech →</a>
+  </div>
+</div>
+
+<script>
+let voices=[],selectedVoiceIndex=-1,speechRate=0.85;
+function loadVoices(){
+  voices=window.speechSynthesis.getVoices();
+  const sel=document.getElementById('voice-select');
+  if(!voices.length)return;
+  const eng=voices.filter(v=>v.lang.startsWith('en'));
+  sel.innerHTML='<option value="-1">🔊 Browser default</option>';
+  eng.forEach(v=>{const idx=voices.indexOf(v);const o=document.createElement('option');o.value=idx;o.textContent=v.name+' ('+v.lang+')'+(v.localService?' ★':'');sel.appendChild(o);});
+  const sv=localStorage.getItem('rbVoiceIndex'),sr=localStorage.getItem('rbSpeechRate');
+  if(sv!=null){sel.value=sv;selectedVoiceIndex=parseInt(sv);}
+  if(sr!=null){speechRate=parseFloat(sr);document.querySelectorAll('.spd-btn').forEach(b=>b.classList.toggle('active',parseFloat(b.getAttribute('data-rate'))===speechRate));}
+}
+function onVoiceChange(){selectedVoiceIndex=parseInt(document.getElementById('voice-select').value);localStorage.setItem('rbVoiceIndex',selectedVoiceIndex);showSaved();}
+function setSpeed(r,btn){speechRate=r;localStorage.setItem('rbSpeechRate',r);document.querySelectorAll('.spd-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');showSaved();}
+function showSaved(){const s=document.getElementById('vsaved');s.classList.add('show');setTimeout(()=>s.classList.remove('show'),2000);}
+function applyVoice(u){u.rate=speechRate;if(selectedVoiceIndex>=0&&voices[selectedVoiceIndex]){u.voice=voices[selectedVoiceIndex];u.lang=voices[selectedVoiceIndex].lang;}else u.lang='en-GB';}
+function speakBtn(text,btn){
+  if(!window.speechSynthesis)return;
+  window.speechSynthesis.cancel();
+  document.querySelectorAll('.speaking').forEach(b=>b.classList.remove('speaking'));
+  const u=new SpeechSynthesisUtterance(text);applyVoice(u);
+  if(btn){btn.classList.add('speaking');u.onend=()=>btn.classList.remove('speaking');u.onerror=()=>btn.classList.remove('speaking');}
+  window.speechSynthesis.speak(u);
+}
+function sayWord(word,el){
+  if(!window.speechSynthesis)return;
+  window.speechSynthesis.cancel();
+  document.querySelectorAll('.speaking').forEach(b=>b.classList.remove('speaking'));
+  if(el)el.classList.add('speaking');
+  const u=new SpeechSynthesisUtterance(word);applyVoice(u);u.rate=speechRate*0.85;
+  if(el)u.onend=()=>el.classList.remove('speaking');
+  window.speechSynthesis.speak(u);
+}
+function testVoice(btn){speakBtn('Hello. This is your selected voice. Unhappiness has three morphemes: un, happy, and ness.',btn);}
+function readHero(btn){speakBtn('Chapter 11: Morphemes — The Meaning Units of Language. A morpheme is the smallest unit of meaning in language. Once you learn the most common prefixes, root words, and suffixes, you can decode and define thousands of unfamiliar words instantly.',btn);}
+function showPanel(id,btn){
+  window.speechSynthesis&&window.speechSynthesis.cancel();
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(t=>t.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// WORD BUILDER
+const wbWords=[
+  {word:'unhappiness',parts:[{t:'un-',type:'prefix',m:'not'},{t:'happy',type:'root',m:'glad'},{t:'-ness',type:'suffix',m:'state of'}],meaning:'state of not being glad'},
+  {word:'reconstruction',parts:[{t:'re-',type:'prefix',m:'again'},{t:'construct',type:'root',m:'build'},{t:'-ion',type:'suffix',m:'act of'}],meaning:'act of building again'},
+  {word:'transportation',parts:[{t:'trans-',type:'prefix',m:'across'},{t:'port',type:'root',m:'carry'},{t:'-ation',type:'suffix',m:'act of'}],meaning:'act of carrying across'},
+  {word:'invisible',parts:[{t:'in-',type:'prefix',m:'not'},{t:'vis',type:'root',m:'see'},{t:'-ible',type:'suffix',m:'capable of'}],meaning:'not capable of being seen'},
+  {word:'misunderstanding',parts:[{t:'mis-',type:'prefix',m:'wrongly'},{t:'understand',type:'root',m:'grasp meaning'},{t:'-ing',type:'suffix',m:'act of'}],meaning:'wrongly grasping meaning'},
+];
+function buildWordBuilder(){
+  const el=document.getElementById('wb-words');
+  wbWords.forEach(wb=>{
+    const card=document.createElement('div');card.className='wb-card';
+    const whole=document.createElement('div');whole.className='wb-whole';whole.textContent=wb.word;
+    const parts=document.createElement('div');parts.className='wb-parts';
+    wb.parts.forEach(p=>{
+      const sp=document.createElement('span');sp.className='wb-part '+p.type;
+      sp.textContent=p.t+' = "'+p.m+'"';parts.appendChild(sp);
+    });
+    const meaning=document.createElement('div');meaning.className='wb-meaning';meaning.textContent='→ '+wb.meaning;
+    card.appendChild(whole);card.appendChild(parts);card.appendChild(meaning);
+    card.onclick=()=>{
+      document.querySelectorAll('.wb-card.speaking').forEach(c=>c.classList.remove('speaking'));
+      card.classList.add('speaking');
+      const txt=wb.word+'. Parts: '+wb.parts.map(p=>p.t+', meaning '+p.m).join('. ')+'. Combined meaning: '+wb.meaning+'.';
+      const u=new SpeechSynthesisUtterance(txt);applyVoice(u);
+      u.onend=()=>card.classList.remove('speaking');
+      window.speechSynthesis.cancel();window.speechSynthesis.speak(u);
+    };
+    el.appendChild(card);
+  });
+}
+
+// ROOTS
+const rootsData=[
+  {root:'act',meaning:'to do',origin:'Latin',words:['action','actor','active','react','enact','transact','interact','activity']},
+  {root:'port',meaning:'to carry',origin:'Latin',words:['transport','import','export','portable','report','support','porter']},
+  {root:'dict',meaning:'to say / speak',origin:'Latin',words:['dictate','predict','verdict','contradict','diction','dictionary']},
+  {root:'vis',meaning:'to see',origin:'Latin',words:['vision','visible','visit','revise','supervise','visual','invisible','video']},
+  {root:'aud',meaning:'to hear',origin:'Latin',words:['audible','audience','audio','auditorium','inaudible','audition']},
+  {root:'graph',meaning:'to write',origin:'Greek',words:['graph','paragraph','autograph','photograph','biography','grammar']},
+  {root:'struct',meaning:'to build',origin:'Latin',words:['structure','construct','instruct','obstruct','reconstruct','instructor']},
+  {root:'spec',meaning:'to look / see',origin:'Latin',words:['spectacle','inspect','respect','suspect','prospect','spectacular']},
+];
+function buildRoots(){
+  const el=document.getElementById('roots-container');
+  rootsData.forEach(r=>{
+    const sec=document.createElement('div');sec.className='root-sec';
+    const hdr=document.createElement('div');hdr.className='root-hdr';
+    const badge=document.createElement('div');badge.className='root-badge';
+    badge.textContent=r.root;badge.onclick=()=>sayWord(r.root+'. Meaning: '+r.meaning,badge);
+    hdr.appendChild(badge);
+    const info=document.createElement('div');info.className='root-info';
+    const m=document.createElement('div');m.className='root-meaning';m.textContent='Meaning: '+r.meaning;
+    const o=document.createElement('div');o.className='root-origin';o.textContent='Origin: '+r.origin;
+    const sBtn=document.createElement('button');sBtn.className='listen-btn';sBtn.style.marginTop='4px';
+    sBtn.textContent='Hear root explained';
+    sBtn.onclick=()=>speakBtn('The root '+r.root+' comes from '+r.origin+' and means '+r.meaning+'. Words built from it include: '+r.words.join(', ')+'.',sBtn);
+    info.appendChild(m);info.appendChild(o);info.appendChild(sBtn);
+    hdr.appendChild(info);sec.appendChild(hdr);
+    const words=document.createElement('div');words.className='root-words';
+    r.words.forEach(w=>{
+      const sp=document.createElement('span');sp.className='rword';sp.textContent=w;
+      sp.onclick=()=>sayWord(w,sp);words.appendChild(sp);
+    });
+    const ra=document.createElement('button');ra.className='listen-btn';ra.style.marginTop='8px';
+    ra.textContent='Read all words';ra.onclick=()=>speakBtn(r.words.join('. '),ra);
+    sec.appendChild(words);sec.appendChild(ra);el.appendChild(sec);
+  });
+}
+
+// PREFIXES
+const prefixData=[
+  ['un-','not / reverse','unhappy, undo, unclear, unfair, unusual'],
+  ['re-','again','redo, return, rebuild, replay, reuse'],
+  ['pre-','before','preview, prepay, prevent, predict, preschool'],
+  ['dis-','not / away','disagree, disconnect, dislike, dismiss'],
+  ['mis-','wrongly','mistake, misplace, misread, mislead'],
+  ['non-','not','nonfiction, nonsense, nonstop, nonprofit'],
+  ['over-','too much / above','overdo, overflow, overlook, overpower'],
+  ['under-','too little / below','underestimate, underline, underpay'],
+  ['inter-','between','interact, international, interrupt, interview'],
+  ['trans-','across','transport, transform, translate, transfer'],
+  ['sub-','under / below','submarine, subtract, subway, submit'],
+  ['super-','above / beyond','superhero, supermarket, supervise'],
+  ['anti-','against','antibiotic, antidote, antisocial, antiwar'],
+  ['bi-','two','bicycle, bilingual, biweekly, bifocal'],
+  ['tri-','three','triangle, tricycle, trilogy, triple'],
+  ['multi-','many','multiply, multicolour, multilingual'],
+  ['semi-','half','semicircle, semifinal, semicolon'],
+  ['ex-','out / former','exit, exhale, exclude, export, exclaim'],
+  ['in-/im-','not / into','invisible, impossible, inject, include'],
+  ['co-/com-','together / with','cooperate, combine, connect, complete'],
+];
+function buildPrefixTable(){
+  const tbody=document.getElementById('prefix-body');
+  prefixData.forEach(([p,m,ex])=>{
+    const tr=document.createElement('tr');
+    const tp=document.createElement('td');tp.className='morph-cell';tp.style.color='var(--rust)';tp.textContent=p;
+    tp.onclick=()=>speakBtn('Prefix '+p+'. Meaning: '+m+'. Examples: '+ex,tp);
+    const tm=document.createElement('td');tm.className='mean-cell';tm.textContent=m;
+    tm.onclick=()=>speakBtn(p+' means '+m,tm);
+    const te=document.createElement('td');te.className='ex-cell';te.textContent=ex;
+    te.onclick=()=>speakBtn(ex,te);
+    tr.appendChild(tp);tr.appendChild(tm);tr.appendChild(te);tbody.appendChild(tr);
+  });
+}
+
+// SUFFIXES
+const suffixData=[
+  ['-tion/-sion','act of / state of (noun)','action, nation, decision, tension'],
+  ['-ment','result of / act of (noun)','movement, statement, government'],
+  ['-ness','state of (noun)','happiness, darkness, kindness, sadness'],
+  ['-er/-or','one who does (noun)','teacher, writer, actor, director'],
+  ['-ist','one who practises (noun)','artist, scientist, pianist, typist'],
+  ['-ity/-ty','state of / quality (noun)','ability, creativity, liberty, safety'],
+  ['-ful','full of (adjective)','helpful, powerful, grateful, careful'],
+  ['-less','without (adjective)','hopeless, careless, homeless, useless'],
+  ['-able/-ible','capable of (adjective)','readable, comfortable, flexible'],
+  ['-ous/-ious','full of (adjective)','dangerous, glorious, courageous'],
+  ['-ive','having quality of (adjective)','active, creative, destructive, massive'],
+  ['-al','relating to (adjective)','natural, musical, magical, cultural'],
+  ['-ic','relating to (adjective)','artistic, historic, realistic, dramatic'],
+  ['-ed','past tense (verb)','walked, talked, moved, played, helped'],
+  ['-ing','present participle (verb/noun)','running, playing, teaching, building'],
+  ['-ize/-ise','to make / become (verb)','organize, recognize, modernize'],
+  ['-ly','in a manner (adverb)','quickly, carefully, sadly, clearly'],
+  ['-ward','direction of (adverb)','forward, backward, upward, inward'],
+  ['-en','made of / become (verb/adj)','wooden, golden, strengthen, shorten'],
+  ['-ism','belief / practice (noun)','criticism, realism, patriotism'],
+];
+function buildSuffixTable(){
+  const tbody=document.getElementById('suffix-body');
+  suffixData.forEach(([s,f,ex])=>{
+    const tr=document.createElement('tr');
+    const ts=document.createElement('td');ts.className='morph-cell';ts.style.color='var(--forest)';ts.textContent=s;
+    ts.onclick=()=>speakBtn('Suffix '+s+'. Function: '+f+'. Examples: '+ex,ts);
+    const tf=document.createElement('td');tf.className='mean-cell';tf.textContent=f;
+    tf.onclick=()=>speakBtn(s+'. Function: '+f,tf);
+    const te=document.createElement('td');te.className='ex-cell';te.textContent=ex;
+    te.onclick=()=>speakBtn(ex,te);
+    tr.appendChild(ts);tr.appendChild(tf);tr.appendChild(te);tbody.appendChild(tr);
+  });
+}
+
+// DECODE CARDS
+const decodeWords=[
+  {word:'unpredictable',analysis:'un (not) + predict (foretell) + able (capable of) = not capable of being foretold'},
+  {word:'reconstruction',analysis:'re (again) + construct (build) + ion (act of) = act of building again'},
+  {word:'misunderstanding',analysis:'mis (wrongly) + understand (grasp meaning) + ing (act of) = wrongly grasping meaning'},
+  {word:'transportation',analysis:'trans (across) + port (carry) + ation (act of) = act of carrying across'},
+  {word:'invisible',analysis:'in (not) + vis (see) + ible (capable of) = not capable of being seen'},
+  {word:'disagreement',analysis:'dis (not) + agree (to consent) + ment (result of) = result of not agreeing'},
+  {word:'destructive',analysis:'de (opposite) + struct (build) + ive (having quality of) = having quality of tearing down'},
+  {word:'overspecialisation',analysis:'over (too much) + special (particular) + ise (to make) + ation (act of) = act of becoming too specialised'},
+];
+function buildDecodeCards(){
+  const el=document.getElementById('decode-cards');
+  decodeWords.forEach(dw=>{
+    const card=document.createElement('div');card.className='decode-card';
+    const word=document.createElement('div');word.className='decode-word';word.textContent=dw.word;
+    word.onclick=()=>sayWord(dw.word,word);
+    const body=document.createElement('div');body.className='decode-body';
+    const analysis=document.createElement('div');analysis.className='decode-analysis';
+    analysis.innerHTML=dw.analysis.replace(/\(([^)]+)\)/g,'(<strong>$1</strong>)');
+    const lb=document.createElement('button');lb.className='listen-btn';lb.style.marginTop='8px';
+    lb.textContent='Hear analysis';
+    lb.onclick=()=>speakBtn(dw.word+'. '+dw.analysis,lb);
+    body.appendChild(analysis);body.appendChild(lb);
+    card.appendChild(word);card.appendChild(body);el.appendChild(card);
+  });
+}
+
+// PASSAGE
+const morphPassage='The transportation of goods required reconstruction of the entire road system. The inspector found the activity predictable but the outcome invisible. With determination she reconstructed the misunderstanding and transformed the interaction.';
+function buildMorphCT(){
+  const el=document.getElementById('morph-ct');
+  morphPassage.split(' ').forEach(w=>{
+    const clean=w.replace(/[^a-zA-Z]/g,'');
+    const span=document.createElement('span');span.className='word-tap';span.textContent=w+' ';
+    span.onclick=()=>sayWord(clean,span);el.appendChild(span);
+  });
+}
+
+// QUIZ
+const quizData=[
+  {q:'What is a morpheme?',d:'unhappiness',correct:'The smallest unit of meaning in language',opts:['The smallest unit of meaning in language','The smallest unit of sound','A type of syllable','A letter group']},
+  {q:'How many morphemes does this word contain?',d:'unhappiness',correct:'Three — un + happy + ness',opts:['Three — un + happy + ness','Two — un + happiness','One — single root','Four morphemes']},
+  {q:'What does the prefix UN- mean?',d:'unkind',correct:'Not / reverse',opts:['Not / reverse','Again','Before','Across']},
+  {q:'What does the prefix RE- mean?',d:'rebuild',correct:'Again',opts:['Again','Not','Before','Between']},
+  {q:'What does the prefix TRANS- mean?',d:'transport',correct:'Across',opts:['Across','Under','Between','Against']},
+  {q:'What does the root PORT mean?',d:'export',correct:'To carry',opts:['To carry','To see','To speak','To build']},
+  {q:'What does the root VIS mean?',d:'invisible',correct:'To see',opts:['To see','To hear','To carry','To write']},
+  {q:'What does the suffix -NESS mean?',d:'darkness',correct:'State of',opts:['State of','Act of','One who does','Without']},
+  {q:'What does the suffix -LESS mean?',d:'hopeless',correct:'Without',opts:['Without','Full of','State of','Capable of']},
+  {q:'What is the prefix in this word?',d:'misunderstanding',correct:'mis- meaning wrongly',opts:['mis- meaning wrongly','under- meaning below','stand — the root','ing — the suffix']},
+];
+let qi=0,score=0,answered=false,currentQ=null;
+const shuffle=a=>a.sort(()=>Math.random()-.5);
+let order=shuffle([...Array(quizData.length).keys()]);
+function readQuizQuestion(btn){if(currentQ)speakBtn(currentQ.q,btn);}
+function readQuizWord(el){if(currentQ)sayWord(currentQ.d,el);}
+function renderQ(){
+  answered=false;currentQ=quizData[order[qi]];
+  document.getElementById('quiz-prompt').textContent=currentQ.q;
+  const disp=document.getElementById('quiz-display');disp.textContent=currentQ.d;disp.classList.remove('speaking');
+  const opts=document.getElementById('quiz-opts');opts.innerHTML='';
+  shuffle([...currentQ.opts]).forEach(opt=>{
+    const b=document.createElement('button');b.className='q-opt';b.textContent=opt;
+    b.onclick=()=>checkQ(opt,currentQ.correct,b);opts.appendChild(b);
+  });
+  document.getElementById('quiz-fb').style.display='none';
+  document.getElementById('next-btn').style.display='none';
+  setTimeout(()=>speakBtn(currentQ.q+'. The word is: '+currentQ.d,null),350);
+}
+function checkQ(chosen,correct,btn){
+  if(answered)return;answered=true;
+  const fb=document.getElementById('quiz-fb');
+  if(chosen===correct){score++;btn.classList.add('correct');fb.className='quiz-fb ok';fb.textContent='✓ Correct! '+correct;}
+  else{btn.classList.add('wrong');document.querySelectorAll('.q-opt').forEach(b=>{if(b.textContent===correct)b.classList.add('correct');});fb.className='quiz-fb err';fb.textContent='✗ The correct answer is: '+correct;}
+  fb.style.display='block';
+  speakBtn(fb.textContent.replace('✓ ','').replace('✗ The correct answer is: ','The correct answer is: '),null);
+  document.getElementById('next-btn').style.display='inline-block';
+  const t=qi+1;
+  document.getElementById('score-text').textContent='Score: '+score+' / '+t;
+  document.getElementById('score-fill').style.width=Math.round(score/t*100)+'%';
+}
+function nextQ(){qi++;if(qi>=order.length){qi=0;score=0;order=shuffle([...Array(quizData.length).keys()]);}renderQ();}
+
+// INIT
+if(window.speechSynthesis){if(speechSynthesis.onvoiceschanged!==undefined)speechSynthesis.onvoiceschanged=loadVoices;loadVoices();}
+buildWordBuilder();buildRoots();buildPrefixTable();buildSuffixTable();buildDecodeCards();buildMorphCT();renderQ();
+</script>
+</body>
+</html>

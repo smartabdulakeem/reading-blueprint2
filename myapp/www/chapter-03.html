@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 3 — Short Vowels & CVC | The Reading Blueprint</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1C1A17;--paper:#FAF7F2;--cream:#F2EDE4;--gold:#B8860B;--gold-light:#F5E6B0;--rust:#C0392B;--forest:#2C5F2E;--blue:#1A4A7A;--muted:#7A7468;--border:rgba(28,26,23,0.12);--radius:10px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:var(--ink);min-height:100vh;}
+.voice-bar{background:var(--ink);padding:8px 1.5rem;display:flex;align-items:center;gap:10px;flex-wrap:wrap;position:sticky;top:0;z-index:200;box-shadow:0 2px 12px rgba(28,26,23,0.3);}
+.vb-brand{font-family:'Playfair Display',serif;color:var(--gold);font-size:13px;letter-spacing:1.5px;text-transform:uppercase;flex-shrink:0;margin-right:6px;}
+.vb-label{font-size:11px;font-weight:700;color:rgba(255,255,255,0.4);letter-spacing:1.5px;text-transform:uppercase;white-space:nowrap;flex-shrink:0;}
+.voice-select{min-width:150px;max-width:260px;padding:5px 26px 5px 9px;font-family:'Source Serif 4',serif;font-size:13px;border:1px solid rgba(255,255,255,0.15);border-radius:7px;background:rgba(255,255,255,0.08);color:#fff;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23B8860B' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 9px center;}
+.voice-select option{background:#1C1A17;color:#fff;}
+.speed-group{display:flex;align-items:center;gap:4px;flex-shrink:0;}
+.spd-label{font-size:11px;font-weight:700;color:rgba(255,255,255,0.4);letter-spacing:1px;text-transform:uppercase;margin-right:3px;}
+.spd-btn{padding:4px 10px;font-family:'Source Serif 4',serif;font-size:12px;font-weight:600;border:1px solid rgba(255,255,255,0.15);border-radius:6px;background:transparent;color:rgba(255,255,255,0.5);cursor:pointer;transition:all .15s;}
+.spd-btn.active{background:var(--gold);color:var(--ink);border-color:var(--gold);}
+.spd-btn:hover:not(.active){border-color:var(--gold);color:var(--gold);}
+.vtest{display:inline-flex;align-items:center;gap:5px;padding:5px 13px;font-family:'Source Serif 4',serif;font-size:12px;font-weight:600;border:1px solid rgba(184,134,11,0.5);border-radius:16px;background:rgba(184,134,11,0.12);color:var(--gold);cursor:pointer;transition:all .15s;flex-shrink:0;}
+.vtest:hover{background:rgba(184,134,11,0.22);}
+.vtest.speaking{background:rgba(192,57,43,0.2);border-color:var(--rust);color:#ff7b6b;}
+.vtest::before{content:"▶";font-size:9px;}
+.vtest.speaking::before{content:"◼";}
+.vsaved{font-size:11px;color:var(--gold);font-style:italic;flex-shrink:0;opacity:0;transition:opacity .3s;}
+.vsaved.show{opacity:1;}
+.chapter-hero{background:var(--ink);padding:3rem 2rem 2.5rem;text-align:center;border-bottom:3px solid var(--gold);position:relative;overflow:hidden;}
+.chapter-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(184,134,11,0.18) 0%,transparent 70%);}
+.ch-num{font-family:'Playfair Display',serif;font-size:12px;color:var(--gold);letter-spacing:4px;text-transform:uppercase;margin-bottom:12px;position:relative;}
+.ch-title{font-family:'Playfair Display',serif;font-size:clamp(26px,5vw,44px);color:#fff;line-height:1.15;margin-bottom:10px;position:relative;}
+.ch-sub{font-size:15px;color:rgba(255,255,255,0.5);font-style:italic;margin-bottom:1.5rem;position:relative;}
+.hero-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border:1.5px solid rgba(184,134,11,0.6);border-radius:24px;background:rgba(184,134,11,0.1);color:var(--gold);font-family:'Source Serif 4',serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;position:relative;}
+.hero-btn:hover{background:rgba(184,134,11,0.2);}
+.hero-btn.speaking{background:rgba(192,57,43,0.2);border-color:var(--rust);color:#ff7b6b;}
+.hero-btn::before{content:"▶";font-size:10px;}
+.hero-btn.speaking::before{content:"◼";}
+.container{max-width:860px;margin:0 auto;padding:2rem 1.25rem;}
+.tabs-bar{display:flex;gap:4px;margin-bottom:2rem;background:var(--cream);padding:5px;border-radius:var(--radius);border:1px solid var(--border);flex-wrap:wrap;}
+.tab-btn{flex:1;min-width:80px;padding:8px 10px;font-family:'Source Serif 4',serif;font-size:13px;font-weight:600;border:none;border-radius:7px;background:transparent;color:var(--muted);cursor:pointer;transition:all .15s;text-align:center;white-space:nowrap;}
+.tab-btn.active{background:var(--ink);color:var(--gold);}
+.tab-btn:hover:not(.active){background:rgba(28,26,23,0.06);color:var(--ink);}
+.panel{display:none;}.panel.active{display:block;}
+.sb{background:var(--cream);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem 1.75rem;margin-bottom:1.25rem;}
+.sb.gl{border-left:4px solid var(--gold);}
+.sb.rl{border-left:4px solid var(--rust);}
+.sb.fl{border-left:4px solid var(--forest);}
+.sec-num{font-size:11px;font-weight:600;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;}
+.sec-title{font-family:'Playfair Display',serif;font-size:20px;color:var(--ink);margin-bottom:10px;line-height:1.3;}
+.sec-body{font-size:15px;line-height:1.8;color:#3A3730;}
+.sec-body p{margin-bottom:10px;}
+.listen-btn{display:inline-flex;align-items:center;gap:5px;padding:4px 12px;font-family:'Source Serif 4',serif;font-size:12px;font-weight:600;border:1px solid var(--border);border-radius:16px;background:#fff;color:var(--muted);cursor:pointer;transition:all .15s;margin-left:8px;vertical-align:middle;}
+.listen-btn:hover{border-color:var(--gold);color:var(--gold);}
+.listen-btn.speaking{border-color:var(--rust);color:var(--rust);background:#fff5f5;}
+.listen-btn::before{content:"▶";font-size:9px;}
+.listen-btn.speaking::before{content:"◼";}
+.callout{background:var(--gold-light);border:1px solid rgba(184,134,11,0.3);border-radius:var(--radius);padding:1rem 1.25rem;margin:1rem 0;font-size:14px;line-height:1.7;}
+.step-row{display:flex;align-items:flex-start;gap:10px;padding:8px 12px;border-radius:7px;background:var(--cream);font-size:14px;margin-bottom:6px;line-height:1.6;}
+.step-n{font-size:11px;font-weight:700;color:var(--gold);width:20px;flex-shrink:0;margin-top:2px;}
+/* CVC RULE */
+.cvc-rule{background:var(--ink);color:#fff;border-radius:var(--radius);padding:1.5rem;text-align:center;margin:1rem 0;}
+.cvc-formula{font-family:'Playfair Display',serif;font-size:clamp(24px,4vw,40px);font-weight:700;letter-spacing:8px;color:var(--gold);margin-bottom:8px;}
+.cvc-sub{font-size:12px;color:rgba(255,255,255,0.45);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;}
+.cvc-examples{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;}
+.cvc-ex{background:rgba(255,255,255,0.07);border:1px solid rgba(184,134,11,0.3);border-radius:8px;padding:10px 16px;text-align:center;cursor:pointer;transition:all .15s;}
+.cvc-ex:hover{background:rgba(184,134,11,0.15);}
+.cvc-ex.speaking{background:rgba(192,57,43,0.2);}
+.cvc-word{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#fff;}
+.cvc-break{font-size:11px;color:rgba(255,255,255,0.4);margin-top:4px;letter-spacing:1px;}
+/* VOWEL SECTIONS */
+.vowel-sec{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem 1.5rem;margin-bottom:14px;}
+.vs-hdr{display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap;}
+.vs-letter{font-family:'Playfair Display',serif;font-size:44px;font-weight:700;line-height:1;width:54px;flex-shrink:0;text-align:center;}
+.vs-info{flex:1;}
+.vs-sound{font-size:16px;font-weight:600;color:var(--ink);}
+.vs-desc{font-size:13px;color:var(--muted);font-style:italic;}
+.vs-mouth{font-size:12px;color:var(--muted);margin-top:4px;padding:3px 10px;background:var(--cream);border-radius:6px;display:inline-block;}
+.word-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(72px,1fr));gap:7px;margin-bottom:12px;}
+.wcard{background:var(--cream);border:1px solid var(--border);border-radius:7px;padding:8px 4px;text-align:center;cursor:pointer;transition:all .15s;user-select:none;}
+.wcard:hover{border-color:var(--gold);background:var(--gold-light);transform:translateY(-1px);}
+.wcard.speaking{border-color:var(--rust);background:#fff5f5;}
+.wcard-word{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;}
+/* CONTROLLED TEXT */
+.ct-box{background:var(--cream);border:1px solid var(--border);border-left:4px solid var(--forest);border-radius:var(--radius);padding:1rem 1.25rem;margin:8px 0;font-size:16px;line-height:2.2;}
+.word-tap{cursor:pointer;border-radius:3px;padding:1px 2px;transition:background .1s;display:inline-block;}
+.word-tap:hover{background:var(--gold-light);}
+.word-tap.speaking{background:var(--gold-light);color:var(--gold);font-weight:600;}
+/* MINIMAL PAIRS */
+.pair-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px;margin:1rem 0;}
+.pair-card{background:#fff;border:1px solid var(--border);border-radius:8px;padding:1rem;display:flex;align-items:center;justify-content:space-around;}
+.pair-word{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;cursor:pointer;padding:5px 11px;border-radius:7px;transition:all .15s;}
+.pair-word:hover{background:var(--gold-light);color:var(--gold);}
+.pair-word.speaking{background:#fff5f5;color:var(--rust);}
+.pair-vs{font-size:12px;color:var(--muted);font-style:italic;}
+/* MISSING VOWEL */
+.mv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;margin:1rem 0;}
+.mv-card{background:#fff;border:1px solid var(--border);border-radius:8px;padding:1rem;}
+.mv-word{font-family:'Playfair Display',serif;font-size:30px;font-weight:700;text-align:center;margin-bottom:10px;letter-spacing:5px;cursor:pointer;}
+.mv-blank{border-bottom:2px solid var(--gold);color:var(--gold);display:inline-block;min-width:22px;text-align:center;}
+.mv-opts{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;}
+.mv-opt{padding:5px 12px;border:1.5px solid var(--border);border-radius:6px;font-family:'Playfair Display',serif;font-size:15px;font-weight:700;cursor:pointer;background:var(--cream);color:var(--ink);transition:all .15s;}
+.mv-opt:hover{border-color:var(--gold);background:var(--gold-light);}
+.mv-opt.correct{background:#EAF3DE;border-color:var(--forest);color:var(--forest);}
+.mv-opt.wrong{background:#FCEBEB;border-color:var(--rust);color:var(--rust);animation:shake .3s;}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.mv-result{text-align:center;font-size:13px;margin-top:8px;font-weight:600;min-height:18px;}
+/* GRAND TEXT */
+.grand-box{background:var(--ink);color:#fff;border-radius:var(--radius);padding:1.5rem 2rem;margin:1rem 0;font-size:17px;line-height:2.3;}
+.grand-box .word-tap{color:rgba(255,255,255,0.9);}
+.grand-box .word-tap:hover{background:rgba(184,134,11,0.3);}
+.grand-box .word-tap.speaking{background:rgba(184,134,11,0.4);color:var(--gold);}
+/* QUIZ */
+.quiz-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;max-width:580px;}
+.quiz-prompt{font-family:'Playfair Display',serif;font-size:17px;margin-bottom:1rem;}
+.quiz-display{font-family:'Playfair Display',serif;font-size:48px;font-weight:700;color:var(--gold);text-align:center;padding:1rem;background:var(--cream);border-radius:var(--radius);margin-bottom:1.2rem;letter-spacing:4px;}
+.quiz-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem;}
+.q-opt{padding:11px;font-family:'Source Serif 4',serif;font-size:13px;font-weight:600;border:1.5px solid var(--border);border-radius:8px;background:var(--cream);color:var(--ink);cursor:pointer;transition:all .15s;}
+.q-opt:hover{border-color:var(--gold);background:var(--gold-light);}
+.q-opt.correct{background:#EAF3DE;border-color:var(--forest);color:#27500A;}
+.q-opt.wrong{background:#FCEBEB;border-color:var(--rust);color:#791F1F;}
+.quiz-fb{font-size:14px;padding:10px 14px;border-radius:8px;margin-bottom:1rem;line-height:1.5;display:none;}
+.quiz-fb.ok{background:#EAF3DE;color:#27500A;}
+.quiz-fb.err{background:#FCEBEB;color:#791F1F;}
+.next-btn{padding:10px 24px;background:var(--ink);color:var(--gold);border:none;border-radius:20px;font-family:'Source Serif 4',serif;font-size:14px;font-weight:600;cursor:pointer;display:none;}
+.next-btn:hover{opacity:0.85;}
+.score-row{display:flex;align-items:center;gap:12px;margin-bottom:1.2rem;font-size:13px;color:var(--muted);}
+.score-track{flex:1;height:5px;background:var(--cream);border-radius:3px;overflow:hidden;}
+.score-fill{height:100%;background:var(--forest);border-radius:3px;transition:width .3s;}
+.ch-nav{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 0;border-top:1px solid var(--border);margin-top:2rem;flex-wrap:wrap;gap:10px;}
+.nav-lnk{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border:1px solid var(--border);border-radius:20px;font-size:13px;font-weight:600;color:var(--muted);background:var(--cream);text-decoration:none;transition:all .15s;}
+.nav-lnk:hover{border-color:var(--ink);color:var(--ink);}
+.nav-lnk.next{background:var(--ink);color:var(--gold);border-color:var(--ink);}
+.phase-badge{font-size:11px;background:var(--gold-light);color:var(--gold);border:1px solid rgba(184,134,11,0.3);padding:4px 12px;border-radius:12px;font-weight:600;}
+.home-btn{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(184,134,11,0.15);border:1.5px solid rgba(184,134,11,0.45);border-radius:8px;color:var(--gold);font-size:15px;cursor:pointer;transition:all .2s;text-decoration:none;flex-shrink:0;margin-right:4px;position:relative;}
+.home-btn:hover{background:rgba(184,134,11,0.3);border-color:var(--gold);transform:scale(1.08);}
+.home-btn::after{content:"Home";position:absolute;bottom:-26px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--gold);font-size:10px;padding:2px 7px;border-radius:4px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;border:1px solid rgba(184,134,11,0.3);}
+.home-btn:hover::after{opacity:1;}
+</style>
+</head>
+<body>
+
+<div class="voice-bar">
+  <a class="home-btn" href="index.html" title="Back to Home">🏠</a>
+  <span class="vb-brand">The Reading Blueprint</span>
+  <span class="vb-label">🔊 Voice</span>
+  <select class="voice-select" id="voice-select" onchange="onVoiceChange()">
+    <option value="-1">Loading voices...</option>
+  </select>
+  <div class="speed-group">
+    <span class="spd-label">Speed</span>
+    <button class="spd-btn" data-rate="0.6" onclick="setSpeed(0.6,this)">Slow</button>
+    <button class="spd-btn active" data-rate="0.85" onclick="setSpeed(0.85,this)">Normal</button>
+    <button class="spd-btn" data-rate="1.1" onclick="setSpeed(1.1,this)">Fast</button>
+  </div>
+  <button class="vtest" onclick="testVoice(this)">Test voice</button>
+  <span class="vsaved" id="vsaved">✓ Saved</span>
+</div>
+
+<div class="chapter-hero">
+  <div class="ch-num">Chapter 3 of 19</div>
+  <h1 class="ch-title">Short Vowel Sounds &<br>the CVC Pattern</h1>
+  <p class="ch-sub">The formula that unlocks your first 500 words</p>
+  <button class="hero-btn" id="hero-btn" onclick="readHero(this)">Listen to introduction</button>
+</div>
+
+<div class="container">
+  <div class="tabs-bar">
+    <button class="tab-btn active" onclick="showPanel('learn',this)">① Learn</button>
+    <button class="tab-btn" onclick="showPanel('vowels',this)">② Short Vowels</button>
+    <button class="tab-btn" onclick="showPanel('pairs',this)">③ Minimal Pairs</button>
+    <button class="tab-btn" onclick="showPanel('missing',this)">④ Missing Vowel</button>
+    <button class="tab-btn" onclick="showPanel('read',this)">⑤ Read Aloud</button>
+    <button class="tab-btn" onclick="showPanel('quiz',this)">⑥ Quiz</button>
+  </div>
+
+  <!-- LEARN -->
+  <div class="panel active" id="panel-learn">
+    <div class="sb gl">
+      <div class="sec-num">3.1</div>
+      <h2 class="sec-title">The CVC Pattern
+        <button class="listen-btn" onclick="speakBtn('CVC stands for Consonant-Vowel-Consonant. It is the most fundamental word pattern in beginning English reading — the pattern that will unlock your first 500 words. The CVC Rule: in a CVC word, the vowel in the middle always makes its short sound.',this)">Listen</button>
+      </h2>
+      <div class="sec-body"><p><strong>CVC</strong> stands for <strong>Consonant–Vowel–Consonant</strong>. It is the most fundamental word pattern in beginning English reading — the pattern that will unlock your first 500 words.</p></div>
+      <div class="cvc-rule">
+        <div class="cvc-formula">C — V — C</div>
+        <div class="cvc-sub">Consonant · Vowel · Consonant</div>
+        <div class="callout" style="background:rgba(184,134,11,0.15);border-color:rgba(184,134,11,0.3);color:rgba(255,255,255,0.9);margin-bottom:1.2rem;">
+          <strong style="color:var(--gold);">The CVC Rule:</strong> In a CVC word, the middle vowel <strong style="color:var(--gold);">always makes its SHORT sound.</strong>
+        </div>
+        <div class="cvc-examples">
+          <div class="cvc-ex" onclick="sayWord('cat',this)"><div class="cvc-word">cat</div><div class="cvc-break">/k/ + /a/ + /t/</div></div>
+          <div class="cvc-ex" onclick="sayWord('sit',this)"><div class="cvc-word">sit</div><div class="cvc-break">/s/ + /i/ + /t/</div></div>
+          <div class="cvc-ex" onclick="sayWord('hop',this)"><div class="cvc-word">hop</div><div class="cvc-break">/h/ + /o/ + /p/</div></div>
+          <div class="cvc-ex" onclick="sayWord('bed',this)"><div class="cvc-word">bed</div><div class="cvc-break">/b/ + /e/ + /d/</div></div>
+          <div class="cvc-ex" onclick="sayWord('run',this)"><div class="cvc-word">run</div><div class="cvc-break">/r/ + /u/ + /n/</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="sb rl">
+      <div class="sec-num">How to Read a CVC Word</div>
+      <h2 class="sec-title">Step by Step
+        <button class="listen-btn" onclick="speakBtn('How to read a CVC word. Step 1: find the middle letter. Is it A, E, I, O, or U? Step 2: that is your vowel. It makes its short sound. Step 3: sound out left to right using Controlled Blending. Step 4: blend all three sounds together to read the word.',this)">Listen</button>
+      </h2>
+      <div style="margin-top:10px;">
+        <div class="step-row"><span class="step-n">1</span>Find the <strong>middle letter</strong> — is it A, E, I, O, or U?</div>
+        <div class="step-row"><span class="step-n">2</span>That is your vowel. It makes its <strong>short sound</strong>.</div>
+        <div class="step-row"><span class="step-n">3</span>Sound out from <strong>left to right</strong> using Controlled Blending.</div>
+        <div class="step-row"><span class="step-n">4</span><strong>Blend</strong> all three sounds together to read the word.</div>
+      </div>
+    </div>
+    <div class="sb fl">
+      <div class="sec-num">Chapter Goals</div>
+      <h2 class="sec-title">What You Will Master
+        <button class="listen-btn" onclick="speakBtn('After this chapter you will master: the CVC rule, all 5 short vowel sounds, minimal pairs, the missing vowel exercise, and reading a full paragraph using only CVC words.',this)">Listen</button>
+      </h2>
+      <div style="margin-top:10px;">
+        <div class="step-row"><span class="step-n">✓</span>The CVC rule — vowel in the middle = short sound</div>
+        <div class="step-row"><span class="step-n">✓</span>All 5 short vowels: /a/ /e/ /i/ /o/ /u/ with full word families</div>
+        <div class="step-row"><span class="step-n">✓</span>Minimal pairs — words that differ by only one vowel sound</div>
+        <div class="step-row"><span class="step-n">✓</span>The Missing Vowel exercise — choose the right short vowel</div>
+        <div class="step-row"><span class="step-n">✓</span>Read a full CVC paragraph smoothly and confidently</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHORT VOWELS -->
+  <div class="panel" id="panel-vowels">
+    <p style="font-size:14px;color:var(--muted);margin-bottom:1.2rem;">Tap any word to hear it. The coloured letter is the short vowel sound. Use the Listen button to hear each rule explained.</p>
+    <div id="vowel-sections"></div>
+  </div>
+
+  <!-- MINIMAL PAIRS -->
+  <div class="panel" id="panel-pairs">
+    <div class="sb gl">
+      <div class="sec-num">3.7 — Minimal Pairs</div>
+      <h2 class="sec-title">Hearing the Difference
+        <button class="listen-btn" onclick="speakBtn('Minimal pairs are words that differ by only one sound. Tap each word to hear the difference. Notice how changing just the vowel completely changes the meaning of the word.',this)">Listen</button>
+      </h2>
+      <div class="sec-body"><p>Tap each word in a pair and notice the vowel change. Your ear must learn to hear the difference between /a/, /e/, /i/, /o/, and /u/.</p></div>
+      <div class="pair-grid" id="pair-grid"></div>
+    </div>
+  </div>
+
+  <!-- MISSING VOWEL -->
+  <div class="panel" id="panel-missing">
+    <div class="sb gl">
+      <div class="sec-num">3.8 — Missing Vowel Exercise</div>
+      <h2 class="sec-title">Fill in the Vowel
+        <button class="listen-btn" onclick="speakBtn('Tap the word to hear it, then tap the correct missing vowel from the options below. Use what you know about short vowel sounds to choose the right one.',this)">Listen</button>
+      </h2>
+      <div class="sec-body"><p>Tap the word to hear it spoken, then choose the correct missing vowel. Use the sound to guide you.</p></div>
+      <div class="mv-grid" id="mv-grid"></div>
+    </div>
+  </div>
+
+  <!-- READ ALOUD -->
+  <div class="panel" id="panel-read">
+    <div class="sb fl">
+      <div class="sec-num">3.9 — The Grand Passage: All 5 Short Vowels</div>
+      <h2 class="sec-title">The Big Test
+        <button class="listen-btn" id="grand-listen-btn" onclick="readGrand(this)">Read full passage</button>
+      </h2>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:1rem;">Every word uses only CVC patterns with short vowels. Tap any word to hear it. Read the whole passage aloud three times — each time a little faster.</p>
+      <div class="grand-box" id="grand-text"></div>
+      <p style="font-size:13px;color:var(--muted);margin-top:1rem;"><strong>Practice goal:</strong> Three reads. First — slow and careful. Second — smoother. Third — natural pace. Record yourself on the third read.</p>
+    </div>
+    <div class="sb gl">
+      <div class="sec-num">Earlier passages — one vowel at a time</div>
+      <h2 class="sec-title">Build Up Gradually
+        <button class="listen-btn" onclick="speakBtn('These shorter passages each focus on one or two vowels. Master each one before combining them all in the grand passage.',this)">Listen</button>
+      </h2>
+      <div id="mini-texts"></div>
+    </div>
+  </div>
+
+  <!-- QUIZ -->
+  <div class="panel" id="panel-quiz">
+    <div class="sb gl">
+      <div class="sec-num">Chapter 3 — Assessment</div>
+      <h2 class="sec-title" style="margin-bottom:1.2rem;">Test Yourself</h2>
+      <div class="quiz-card">
+        <div class="score-row">
+          <span id="score-text">Score: 0 / 0</span>
+          <div class="score-track"><div class="score-fill" id="score-fill" style="width:0%"></div></div>
+        </div>
+        <p class="quiz-prompt" id="quiz-prompt">Loading...</p>
+        <div class="quiz-display" id="quiz-display">—</div>
+        <div class="quiz-opts" id="quiz-opts"></div>
+        <div class="quiz-fb" id="quiz-fb"></div>
+        <button class="next-btn" id="next-btn" onclick="nextQ()">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="ch-nav">
+    <a class="nav-lnk" href="chapter-02.html">← Chapter 2: Vowels & Consonants</a>
+    <span class="phase-badge">Phase 1 — Sound Foundations</span>
+    <a class="nav-lnk next" href="chapter-04.html">Chapter 4: Long Vowels →</a>
+  </div>
+</div>
+
+<script>
+// VOICE ENGINE
+let voices=[],selectedVoiceIndex=-1,speechRate=0.85;
+function loadVoices(){
+  voices=window.speechSynthesis.getVoices();
+  const sel=document.getElementById('voice-select');
+  if(!voices.length)return;
+  const eng=voices.filter(v=>v.lang.startsWith('en'));
+  sel.innerHTML='<option value="-1">🔊 Browser default</option>';
+  eng.forEach(v=>{const idx=voices.indexOf(v);const o=document.createElement('option');o.value=idx;o.textContent=v.name+' ('+v.lang+')'+(v.localService?' ★':'');sel.appendChild(o);});
+  const sv=localStorage.getItem('rbVoiceIndex'),sr=localStorage.getItem('rbSpeechRate');
+  if(sv!=null){sel.value=sv;selectedVoiceIndex=parseInt(sv);}
+  if(sr!=null){speechRate=parseFloat(sr);document.querySelectorAll('.spd-btn').forEach(b=>b.classList.toggle('active',parseFloat(b.getAttribute('data-rate'))===speechRate));}
+}
+function onVoiceChange(){selectedVoiceIndex=parseInt(document.getElementById('voice-select').value);localStorage.setItem('rbVoiceIndex',selectedVoiceIndex);showSaved();}
+function setSpeed(r,btn){speechRate=r;localStorage.setItem('rbSpeechRate',r);document.querySelectorAll('.spd-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');showSaved();}
+function showSaved(){const s=document.getElementById('vsaved');s.classList.add('show');setTimeout(()=>s.classList.remove('show'),2000);}
+function applyVoice(u){u.rate=speechRate;if(selectedVoiceIndex>=0&&voices[selectedVoiceIndex]){u.voice=voices[selectedVoiceIndex];u.lang=voices[selectedVoiceIndex].lang;}else u.lang='en-GB';}
+function speakBtn(text,btn){
+  if(!window.speechSynthesis)return;
+  window.speechSynthesis.cancel();
+  document.querySelectorAll('.speaking').forEach(b=>b.classList.remove('speaking'));
+  const u=new SpeechSynthesisUtterance(text);applyVoice(u);
+  if(btn){btn.classList.add('speaking');u.onend=()=>btn.classList.remove('speaking');u.onerror=()=>btn.classList.remove('speaking');}
+  window.speechSynthesis.speak(u);
+}
+function sayWord(word,el){
+  if(!window.speechSynthesis)return;
+  window.speechSynthesis.cancel();
+  document.querySelectorAll('.speaking').forEach(b=>b.classList.remove('speaking'));
+  if(el){el.classList.add('speaking');}
+  const u=new SpeechSynthesisUtterance(word);applyVoice(u);u.rate=speechRate*0.88;
+  if(el)u.onend=()=>el.classList.remove('speaking');
+  window.speechSynthesis.speak(u);
+}
+function testVoice(btn){speakBtn('Hello. This is your selected voice. The fat cat sat on a big rug.',btn);}
+function readHero(btn){speakBtn('Chapter 3: Short Vowel Sounds and the CVC Pattern. CVC stands for Consonant-Vowel-Consonant. This is the formula that unlocks your first 500 words. When the middle letter of a three-letter word is a vowel, it almost always makes its short sound.',btn);}
+function showPanel(id,btn){
+  window.speechSynthesis&&window.speechSynthesis.cancel();
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(t=>t.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// VOWEL DATA
+const vowelData=[
+  {v:'A',sound:'/a/ — Short A',desc:'Wide, bright, open sound',mouth:'Jaw drops wide, tongue low and flat',color:'#B8860B',
+   words:['hat','mat','cat','ran','man','can','bad','sad','mad','tap','cap','map'],
+   ct:'Tap the fat cat on the mat. Dad has a tan van. The man ran fast. A rat sat on the wax.',
+   rule:'Short A. The sound is a as in ant. Open your mouth wide, jaw drops, tongue low and flat. Examples: hat, mat, cat, ran, man, can, bad, sad, tap, cap.'},
+  {v:'E',sound:'/e/ — Short E',desc:'Middle, flat, even sound',mouth:'Lips spread slightly, tongue mid-height',color:'#C0392B',
+   words:['bed','red','fed','hen','ten','pen','set','get','wet','beg','leg','peg'],
+   ct:'The hen sat on the bed. Ned has a red pen. The wet pet is in the net. Ted led the hen to the den.',
+   rule:'Short E. The sound is e as in egg. Lips spread slightly as if beginning to smile, tongue mid-height. Examples: bed, red, hen, ten, pen, set, get, wet, leg.'},
+  {v:'I',sound:'/i/ — Short I',desc:'High, crisp, clipped sound',mouth:'Lips spread wide, tongue near roof of mouth',color:'#1A4A7A',
+   words:['sit','bit','hit','big','pig','fig','win','pin','tin','lip','tip','rip'],
+   ct:'The big pig sat in the pen. Tim hit the pin with a bat. Sid can sit and dig a bit. The thin tin lid fit the bin.',
+   rule:'Short I. The sound is i as in igloo. Lips spread further, tongue rises near the roof of the mouth. A quick, clipped sound. Examples: sit, bit, hit, big, pig, win, pin, lip.'},
+  {v:'O',sound:'/o/ — Short O',desc:'Round, back, brief sound',mouth:'Lips form small circle, tongue pulled back',color:'#2C5F2E',
+   words:['hot','pot','dot','dog','log','fog','top','hop','mop','rob','sob','cod'],
+   ct:'The dog sat on the log. Tom got a hot pot. Bob hid on top of the fog. A frog can hop to the dock.',
+   rule:'Short O. The sound is o as in on. Lips form a small rounded circle, tongue pulled back. A brief dropped sound. Examples: hot, pot, dog, log, top, hop, mop.'},
+  {v:'U',sound:'/u/ — Short U',desc:'Relaxed, soft, low sound',mouth:'Lips slightly rounded and relaxed',color:'#7B4F12',
+   words:['bus','sun','run','cut','but','nut','cup','pup','mud','bud','hug','bug'],
+   ct:'The pup ran in the mud. Bud cut the rug. The sun hit the red bus. A bug sat on the wet log. Tim cut a big nut.',
+   rule:'Short U. The sound is u as in up. The most relaxed vowel. Mouth barely open, lips loose. It sounds like uh. Examples: bus, sun, run, cut, nut, cup, pup, mud, bug.'},
+];
+
+function buildVowelSections(){
+  const el=document.getElementById('vowel-sections');
+  vowelData.forEach(vd=>{
+    const sec=document.createElement('div');
+    sec.className='vowel-sec';
+    // header
+    const hdr=document.createElement('div');
+    hdr.className='vs-hdr';
+    hdr.innerHTML=`
+      <div class="vs-letter" style="color:${vd.color}">${vd.v}</div>
+      <div class="vs-info">
+        <div class="vs-sound">${vd.sound} <button class="listen-btn" onclick="speakBtn('${vd.rule}',this)">Listen to rule</button></div>
+        <div class="vs-desc">${vd.desc}</div>
+        <div class="vs-mouth">👄 ${vd.mouth}</div>
+      </div>`;
+    sec.appendChild(hdr);
+    // word grid
+    const grid=document.createElement('div');
+    grid.className='word-grid';
+    vd.words.forEach(w=>{
+      const card=document.createElement('div');
+      card.className='wcard';
+      const vi=w.toLowerCase().indexOf(vd.v.toLowerCase());
+      const highlighted=w.split('').map((c,i)=>i===vi?`<span style="color:${vd.color};font-weight:800;">${c}</span>`:c).join('');
+      card.innerHTML=`<div class="wcard-word">${highlighted}</div>`;
+      card.onclick=()=>sayWord(w,card);
+      grid.appendChild(card);
+    });
+    sec.appendChild(grid);
+    // controlled text
+    const ctLabel=document.createElement('div');
+    ctLabel.style.cssText='font-size:11px;font-weight:700;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;';
+    ctLabel.textContent='Controlled text';
+    const ctBox=document.createElement('div');
+    ctBox.className='ct-box';
+    vd.ct.split(' ').forEach(w=>{
+      const clean=w.replace(/[^a-zA-Z]/g,'');
+      const span=document.createElement('span');
+      span.className='word-tap';
+      span.textContent=w+' ';
+      span.onclick=()=>sayWord(clean,span);
+      ctBox.appendChild(span);
+    });
+    const readBtn=document.createElement('button');
+    readBtn.className='listen-btn';
+    readBtn.style.marginTop='8px';
+    readBtn.textContent='Read passage';
+    readBtn.onclick=()=>speakBtn(vd.ct,readBtn);
+    sec.appendChild(ctLabel);
+    sec.appendChild(ctBox);
+    sec.appendChild(readBtn);
+    el.appendChild(sec);
+  });
+}
+
+// MINIMAL PAIRS
+const pairs=[['cat','cut'],['bit','bat'],['hot','hit'],['mud','mad'],['pin','pen'],['cot','cut'],['bet','bit'],['hop','hip'],['bug','bag'],['run','ran'],['top','tip'],['bin','ban'],['tin','tan'],['bed','bid'],['leg','log']];
+function buildPairs(){
+  const el=document.getElementById('pair-grid');
+  pairs.forEach(([w1,w2])=>{
+    const card=document.createElement('div');
+    card.className='pair-card';
+    const p1=document.createElement('div');p1.className='pair-word';p1.textContent=w1;p1.onclick=()=>sayWord(w1,p1);
+    const vs=document.createElement('div');vs.className='pair-vs';vs.textContent='vs';
+    const p2=document.createElement('div');p2.className='pair-word';p2.textContent=w2;p2.onclick=()=>sayWord(w2,p2);
+    card.appendChild(p1);card.appendChild(vs);card.appendChild(p2);
+    el.appendChild(card);
+  });
+}
+
+// MISSING VOWEL
+const mvData=[
+  {t:'h_t',ans:'o',opts:['a','e','i','o','u'],map:{a:'hat',e:'het',i:'hit',o:'hot',u:'hut'}},
+  {t:'b_g',ans:'i',opts:['a','e','i','o','u'],map:{a:'bag',e:'beg',i:'big',o:'bog',u:'bug'}},
+  {t:'p_n',ans:'i',opts:['a','e','i','o','u'],map:{a:'pan',e:'pen',i:'pin',o:'pon',u:'pun'}},
+  {t:'r_n',ans:'u',opts:['a','e','u'],map:{a:'ran',e:'ren',u:'run'}},
+  {t:'c_t',ans:'a',opts:['a','o','u'],map:{a:'cat',o:'cot',u:'cut'}},
+  {t:'t_p',ans:'o',opts:['a','i','o','u'],map:{a:'tap',i:'tip',o:'top',u:'tup'}},
+  {t:'s_t',ans:'i',opts:['a','e','i','o'],map:{a:'sat',e:'set',i:'sit',o:'sot'}},
+  {t:'l_g',ans:'e',opts:['e','o','u'],map:{e:'leg',o:'log',u:'lug'}},
+];
+function buildMissingVowel(){
+  const el=document.getElementById('mv-grid');
+  mvData.forEach((item,idx)=>{
+    const parts=item.t.split('_');
+    const card=document.createElement('div');card.className='mv-card';
+    const wordEl=document.createElement('div');wordEl.className='mv-word';
+    wordEl.id='mvw-'+idx;
+    wordEl.innerHTML=parts[0]+'<span class="mv-blank" id="mvb-'+idx+'">_</span>'+parts[1];
+    wordEl.onclick=()=>sayWord(item.map[item.ans],null);
+    wordEl.title='Tap to hear the word';
+    const optsEl=document.createElement('div');optsEl.className='mv-opts';
+    item.opts.forEach(opt=>{
+      const btn=document.createElement('button');btn.className='mv-opt';btn.textContent=opt;
+      btn.onclick=()=>{
+        const blank=document.getElementById('mvb-'+idx);
+        const res=document.getElementById('mvr-'+idx);
+        if(opt===item.ans){
+          btn.classList.add('correct');
+          blank.textContent=opt;blank.style.color='var(--forest)';
+          res.textContent='✓ '+item.map[opt]+' — correct!';res.style.color='var(--forest)';
+          sayWord(item.map[opt],null);
+          optsEl.querySelectorAll('.mv-opt').forEach(b=>{b.disabled=true;b.style.cursor='default';});
+        }else{
+          btn.classList.add('wrong');
+          res.textContent='Try again — that makes "'+( item.map[opt]||'?')+'"';res.style.color='var(--rust)';
+          setTimeout(()=>btn.classList.remove('wrong'),400);
+        }
+      };
+      optsEl.appendChild(btn);
+    });
+    const resEl=document.createElement('div');resEl.className='mv-result';resEl.id='mvr-'+idx;
+    card.appendChild(wordEl);card.appendChild(optsEl);card.appendChild(resEl);
+    el.appendChild(card);
+  });
+}
+
+// GRAND TEXT
+const grandPassage='The fat cat sat on a big rug. Ben ran past the red bus. The pup got mud on its leg. Tim and Pam sat in the hot sun. A big bug bit the dog on the lip. Dan cut the wet log with an ax. The hen hid in the fog. Bob did not run but he did hop. Liz fed the pig a fig. Sam sat, Gus sat, and the cat sat on the mat.';
+function buildGrandText(){
+  const el=document.getElementById('grand-text');
+  grandPassage.split(' ').forEach(w=>{
+    const clean=w.replace(/[^a-zA-Z]/g,'');
+    const span=document.createElement('span');span.className='word-tap';span.textContent=w+' ';
+    span.onclick=()=>sayWord(clean,span);
+    el.appendChild(span);
+  });
+}
+function readGrand(btn){speakBtn(grandPassage,btn);}
+
+// MINI TEXTS
+const miniTexts=[
+  {label:'Short A only',text:'Tap the fat cat on the mat. Dad has a tan van. The man ran fast.'},
+  {label:'Short A + E',text:'The hen sat on the bed. Ned has a red pen. The wet pet is in the net.'},
+  {label:'Short A + E + I',text:'The big pig sat in the pen. Tim hit the pin with a bat. Sid can sit and dig a bit.'},
+  {label:'Short A + E + I + O',text:'The dog sat on the log. Tom got a hot pot. A frog can hop to the dock.'},
+];
+function buildMiniTexts(){
+  const el=document.getElementById('mini-texts');
+  miniTexts.forEach(mt=>{
+    const wrap=document.createElement('div');wrap.style.marginBottom='1.2rem;';
+    const lbl=document.createElement('div');lbl.style.cssText='font-size:11px;font-weight:700;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;margin-top:1rem;';lbl.textContent=mt.label;
+    const box=document.createElement('div');box.className='ct-box';
+    mt.text.split(' ').forEach(w=>{
+      const clean=w.replace(/[^a-zA-Z]/g,'');
+      const span=document.createElement('span');span.className='word-tap';span.textContent=w+' ';
+      span.onclick=()=>sayWord(clean,span);
+      box.appendChild(span);
+    });
+    const btn=document.createElement('button');btn.className='listen-btn';btn.style.marginTop='8px';btn.textContent='Read passage';
+    btn.onclick=()=>speakBtn(mt.text,btn);
+    wrap.appendChild(lbl);wrap.appendChild(box);wrap.appendChild(btn);
+    el.appendChild(wrap);
+  });
+}
+
+// QUIZ
+const quizData=[
+  {q:'What does the CVC rule say about the middle vowel?',d:'CVC',correct:'It makes its SHORT sound',opts:['It makes its SHORT sound','It makes its LONG sound','It is silent','It says its name']},
+  {q:'Which short vowel sound is in this word?',d:'cat',correct:'/a/ as in ant',opts:['/a/ as in ant','/e/ as in egg','/i/ as in igloo','/u/ as in up']},
+  {q:'Which short vowel sound is in this word?',d:'sit',correct:'/i/ as in igloo',opts:['/a/ as in ant','/i/ as in igloo','/o/ as in on','/u/ as in up']},
+  {q:'Which short vowel sound is in this word?',d:'hot',correct:'/o/ as in on',opts:['/a/ as in ant','/e/ as in egg','/o/ as in on','/u/ as in up']},
+  {q:'Which short vowel sound is in this word?',d:'run',correct:'/u/ as in up',opts:['/a/ as in ant','/i/ as in igloo','/o/ as in on','/u/ as in up']},
+  {q:'Which short vowel sound is in this word?',d:'bed',correct:'/e/ as in egg',opts:['/a/ as in ant','/e/ as in egg','/i/ as in igloo','/o/ as in on']},
+  {q:'Is "cake" a CVC word?',d:'cake',correct:'No — it has a silent E at the end',opts:['Yes — Consonant-Vowel-Consonant','No — it has a silent E at the end','No — it has no vowel','Yes — the vowel is short']},
+  {q:'Is "dog" a CVC word?',d:'dog',correct:'Yes — d + o + g',opts:['Yes — d + o + g','No — D is not a consonant','No — it has two vowels','Yes — but the vowel is long']},
+  {q:'What is the short vowel sound in "mud"?',d:'mud',correct:'/u/ — short U',opts:['/u/ — short U','/o/ — short O','/a/ — short A','/e/ — short E']},
+  {q:'What type of sound does the vowel make in a CVC word?',d:'C V C',correct:'Short',opts:['Short','Long','Silent','R-controlled']},
+];
+let qi=0,score=0,answered=false;
+const shuffle=a=>a.sort(()=>Math.random()-.5);
+let order=shuffle([...Array(quizData.length).keys()]);
+function renderQ(){
+  answered=false;
+  const q=quizData[order[qi]];
+  document.getElementById('quiz-prompt').textContent=q.q;
+  document.getElementById('quiz-display').textContent=q.d;
+  const opts=document.getElementById('quiz-opts');opts.innerHTML='';
+  shuffle([...q.opts]).forEach(opt=>{
+    const b=document.createElement('button');b.className='q-opt';b.textContent=opt;
+    b.onclick=()=>checkQ(opt,q.correct,b);
+    opts.appendChild(b);
+  });
+  document.getElementById('quiz-fb').style.display='none';
+  document.getElementById('next-btn').style.display='none';
+  setTimeout(()=>sayWord(q.d,null),350);
+}
+function checkQ(chosen,correct,btn){
+  if(answered)return;answered=true;
+  const fb=document.getElementById('quiz-fb');
+  if(chosen===correct){score++;btn.classList.add('correct');fb.className='quiz-fb ok';fb.textContent='✓ Correct! '+correct;}
+  else{btn.classList.add('wrong');document.querySelectorAll('.q-opt').forEach(b=>{if(b.textContent===correct)b.classList.add('correct');});fb.className='quiz-fb err';fb.textContent='✗ The correct answer is: '+correct;}
+  fb.style.display='block';
+  speakBtn(fb.textContent.replace('✓ ','').replace('✗ ',''),null);
+  document.getElementById('next-btn').style.display='inline-block';
+  const t=qi+1;
+  document.getElementById('score-text').textContent='Score: '+score+' / '+t;
+  document.getElementById('score-fill').style.width=Math.round(score/t*100)+'%';
+}
+function nextQ(){qi++;if(qi>=order.length){qi=0;score=0;order=shuffle([...Array(quizData.length).keys()]);}renderQ();}
+
+// INIT
+if(window.speechSynthesis){if(speechSynthesis.onvoiceschanged!==undefined)speechSynthesis.onvoiceschanged=loadVoices;loadVoices();}
+buildVowelSections();
+buildGrandText();
+buildMiniTexts();
+buildPairs();
+buildMissingVowel();
+renderQ();
+</script>
+</body>
+</html>

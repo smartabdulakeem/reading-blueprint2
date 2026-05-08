@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 12 — Parts of Speech | The Reading Blueprint</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1C1A17;--paper:#FAF7F2;--cream:#F2EDE4;--gold:#B8860B;--gold-light:#F5E6B0;--rust:#C0392B;--forest:#2C5F2E;--blue:#1A4A7A;--purple:#6A0DAD;--muted:#7A7468;--border:rgba(28,26,23,0.12);--radius:10px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:var(--ink);min-height:100vh;}
+.voice-bar{background:var(--ink);padding:8px 1.5rem;display:flex;align-items:center;gap:10px;flex-wrap:wrap;position:sticky;top:0;z-index:200;box-shadow:0 2px 12px rgba(28,26,23,0.3);}
+.vb-brand{font-family:'Playfair Display',serif;color:var(--gold);font-size:13px;letter-spacing:1.5px;text-transform:uppercase;flex-shrink:0;margin-right:6px;}
+.home-btn{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(184,134,11,0.15);border:1.5px solid rgba(184,134,11,0.45);border-radius:8px;color:var(--gold);font-size:15px;cursor:pointer;transition:all .2s;text-decoration:none;flex-shrink:0;margin-right:4px;position:relative;}
+.home-btn:hover{background:rgba(184,134,11,0.3);border-color:var(--gold);transform:scale(1.08);}
+.home-btn::after{content:"Home";position:absolute;bottom:-26px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--gold);font-size:10px;padding:2px 7px;border-radius:4px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;border:1px solid rgba(184,134,11,0.3);}
+.home-btn:hover::after{opacity:1;}
+.vb-label{font-size:11px;font-weight:700;color:rgba(255,255,255,0.4);letter-spacing:1.5px;text-transform:uppercase;white-space:nowrap;flex-shrink:0;}
+.voice-select{min-width:150px;max-width:260px;padding:5px 26px 5px 9px;font-family:'Source Serif 4',serif;font-size:13px;border:1px solid rgba(255,255,255,0.15);border-radius:7px;background:rgba(255,255,255,0.08);color:#fff;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23B8860B' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 9px center;}
+.voice-select option{background:#1C1A17;color:#fff;}
+.speed-group{display:flex;align-items:center;gap:4px;flex-shrink:0;}
+.spd-label{font-size:11px;font-weight:700;color:rgba(255,255,255,0.4);letter-spacing:1px;text-transform:uppercase;margin-right:3px;}
+.spd-btn{padding:4px 10px;font-family:'Source Serif 4',serif;font-size:12px;font-weight:600;border:1px solid rgba(255,255,255,0.15);border-radius:6px;background:transparent;color:rgba(255,255,255,0.5);cursor:pointer;transition:all .15s;}
+.spd-btn.active{background:var(--gold);color:var(--ink);border-color:var(--gold);}
+.spd-btn:hover:not(.active){border-color:var(--gold);color:var(--gold);}
+.vtest{display:inline-flex;align-items:center;gap:5px;padding:5px 13px;font-family:'Source Serif 4',serif;font-size:12px;font-weight:600;border:1px solid rgba(184,134,11,0.5);border-radius:16px;background:rgba(184,134,11,0.12);color:var(--gold);cursor:pointer;transition:all .15s;flex-shrink:0;}
+.vtest:hover{background:rgba(184,134,11,0.22);}
+.vtest.speaking{background:rgba(192,57,43,0.2);border-color:var(--rust);color:#ff7b6b;}
+.vtest::before{content:"▶";font-size:9px;}
+.vtest.speaking::before{content:"◼";}
+.vsaved{font-size:11px;color:var(--gold);font-style:italic;flex-shrink:0;opacity:0;transition:opacity .3s;}
+.vsaved.show{opacity:1;}
+.chapter-hero{background:var(--ink);padding:3rem 2rem 2.5rem;text-align:center;border-bottom:3px solid var(--gold);position:relative;overflow:hidden;}
+.chapter-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(184,134,11,0.18) 0%,transparent 70%);}
+.ch-num{font-family:'Playfair Display',serif;font-size:12px;color:var(--gold);letter-spacing:4px;text-transform:uppercase;margin-bottom:12px;position:relative;}
+.ch-title{font-family:'Playfair Display',serif;font-size:clamp(26px,5vw,44px);color:#fff;line-height:1.15;margin-bottom:10px;position:relative;}
+.ch-sub{font-size:15px;color:rgba(255,255,255,0.5);font-style:italic;margin-bottom:1.5rem;position:relative;}
+.hero-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border:1.5px solid rgba(184,134,11,0.6);border-radius:24px;background:rgba(184,134,11,0.1);color:var(--gold);font-family:'Source Serif 4',serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;position:relative;}
+.hero-btn:hover{background:rgba(184,134,11,0.2);}
+.hero-btn.speaking{background:rgba(192,57,43,0.2);border-color:var(--rust);color:#ff7b6b;}
+.hero-btn::before{content:"▶";font-size:10px;}
+.hero-btn.speaking::before{content:"◼";}
+.container{max-width:860px;margin:0 auto;padding:2rem 1.25rem;}
+.tabs-bar{display:flex;gap:4px;margin-bottom:2rem;background:var(--cream);padding:5px;border-radius:var(--radius);border:1px solid var(--border);flex-wrap:wrap;}
+.tab-btn{flex:1;min-width:80px;padding:8px 10px;font-family:'Source Serif 4',serif;font-size:13px;font-weight:600;border:none;border-radius:7px;background:transparent;color:var(--muted);cursor:pointer;transition:all .15s;text-align:center;white-space:nowrap;}
+.tab-btn.active{background:var(--ink);color:var(--gold);}
+.tab-btn:hover:not(.active){background:rgba(28,26,23,0.06);color:var(--ink);}
+.panel{display:none;}.panel.active{display:block;}
+.sb{background:var(--cream);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem 1.75rem;margin-bottom:1.25rem;}
+.sb.gl{border-left:4px solid var(--gold);}
+.sb.rl{border-left:4px solid var(--rust);}
+.sb.fl{border-left:4px solid var(--forest);}
+.sb.bl{border-left:4px solid var(--blue);}
+.sb.pl{border-left:4px solid var(--purple);}
+.sec-num{font-size:11px;font-weight:600;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;}
+.sec-title{font-family:'Playfair Display',serif;font-size:20px;color:var(--ink);margin-bottom:10px;line-height:1.3;display:flex;align-items:center;flex-wrap:wrap;gap:8px;}
+.sec-body{font-size:15px;line-height:1.8;color:#3A3730;}
+.sec-body p{margin-bottom:10px;}
+.listen-btn{display:inline-flex;align-items:center;gap:5px;padding:4px 12px;font-family:'Source Serif 4',serif;font-size:12px;font-weight:600;border:1px solid var(--border);border-radius:16px;background:#fff;color:var(--muted);cursor:pointer;transition:all .15s;flex-shrink:0;}
+.listen-btn:hover{border-color:var(--gold);color:var(--gold);}
+.listen-btn.speaking{border-color:var(--rust);color:var(--rust);background:#fff5f5;}
+.listen-btn::before{content:"▶";font-size:9px;}
+.listen-btn.speaking::before{content:"◼";}
+.big-listen{display:flex;align-items:center;gap:8px;padding:10px 18px;font-family:'Source Serif 4',serif;font-size:14px;font-weight:700;border:2px solid var(--gold);border-radius:20px;background:var(--gold-light);color:var(--ink);cursor:pointer;transition:all .2s;margin-top:12px;width:fit-content;}
+.big-listen:hover{background:#EDD97A;}
+.big-listen.speaking{background:#fce4e4;border-color:var(--rust);color:var(--rust);}
+.big-listen::before{content:"🔊";font-size:14px;}
+.big-listen.speaking::before{content:"⏹";}
+.callout{background:var(--gold-light);border:1px solid rgba(184,134,11,0.3);border-radius:var(--radius);padding:1rem 1.25rem;margin:1rem 0;font-size:14px;line-height:1.8;}
+.step-row{display:flex;align-items:flex-start;gap:10px;padding:8px 12px;border-radius:7px;background:var(--cream);font-size:14px;margin-bottom:6px;line-height:1.6;}
+.step-n{font-size:11px;font-weight:700;color:var(--gold);width:20px;flex-shrink:0;margin-top:2px;}
+
+/* POS CARDS — overview grid */
+.pos-overview{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px;margin:1rem 0;}
+.pos-card{border-radius:var(--radius);padding:1.1rem 1.25rem;border-top:4px solid;background:#fff;border:1px solid var(--border);cursor:pointer;transition:all .15s;}
+.pos-card:hover{transform:translateY(-2px);box-shadow:0 4px 14px rgba(28,26,23,0.08);}
+.pos-card.speaking{outline:2px solid var(--rust);}
+.pos-num{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;}
+.pos-name{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;margin-bottom:4px;}
+.pos-def{font-size:12px;color:var(--muted);line-height:1.5;}
+
+/* POS DETAIL SECTION */
+.pos-sec{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem 1.5rem;margin-bottom:14px;}
+.pos-sec-hdr{display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap;}
+.pos-badge{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;padding:8px 16px;border-radius:8px;cursor:pointer;transition:all .15s;flex-shrink:0;}
+.pos-badge:hover{opacity:0.8;}
+.pos-badge.speaking{outline:2px solid var(--rust);}
+.pos-info{flex:1;}
+.pos-info-name{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:2px;}
+.pos-info-quest{font-size:13px;color:var(--muted);font-style:italic;margin-bottom:6px;}
+.pos-sound-btn{display:inline-flex;align-items:center;gap:5px;padding:5px 13px;font-family:'Source Serif 4',serif;font-size:12px;font-weight:700;border:1.5px solid;border-radius:16px;cursor:pointer;transition:all .15s;}
+.pos-sound-btn:hover{opacity:0.8;}
+.pos-sound-btn.speaking{background:#fce4e4 !important;border-color:var(--rust) !important;color:var(--rust) !important;}
+.pos-sound-btn::before{content:"🔊 ";}
+.pos-sound-btn.speaking::before{content:"⏹ ";}
+.pos-subtypes{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin:10px 0;}
+.pos-subtype{background:var(--cream);border-radius:7px;padding:8px 12px;font-size:13px;line-height:1.5;cursor:pointer;}
+.pos-subtype:hover{background:var(--gold-light);}
+.pos-subtype.speaking{background:#fff5f5;color:var(--rust);}
+.pos-subtype strong{display:block;font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-bottom:2px;}
+.pos-examples{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0;}
+.pos-ex{font-family:'Playfair Display',serif;font-size:14px;font-weight:700;padding:4px 9px;border:1px solid var(--border);border-radius:6px;cursor:pointer;background:var(--cream);transition:all .15s;}
+.pos-ex:hover{background:var(--gold-light);border-color:var(--gold);}
+.pos-ex.speaking{border-color:var(--rust);background:#fff5f5;color:var(--rust);}
+
+/* SENTENCE ANALYSER */
+.sent-analyse{background:var(--ink);border-radius:var(--radius);padding:1.5rem;margin:1rem 0;}
+.sa-title{font-family:'Playfair Display',serif;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;text-align:center;}
+.sa-sent{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:1.2rem;}
+.sa-word{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;}
+.sa-w{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#fff;padding:6px 10px;border-radius:6px;transition:all .15s;}
+.sa-word:hover .sa-w{background:rgba(184,134,11,0.2);}
+.sa-word.speaking .sa-w{background:rgba(192,57,43,0.25);color:#ff9b8a;}
+.sa-label{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:2px 7px;border-radius:10px;}
+
+/* PRACTICE SENTENCES */
+.sent-box{background:#fff;border:1px solid var(--border);border-left:4px solid var(--forest);border-radius:var(--radius);padding:1rem 1.25rem;margin-bottom:10px;font-size:16px;line-height:2.3;display:flex;align-items:flex-start;gap:10px;}
+.sent-num{font-size:11px;font-weight:700;color:var(--gold);flex-shrink:0;margin-top:6px;}
+.word-tap{cursor:pointer;border-radius:3px;padding:1px 2px;transition:background .1s;display:inline-block;}
+.word-tap:hover{background:var(--gold-light);}
+.word-tap.speaking{background:var(--gold-light);color:var(--gold);font-weight:600;}
+
+/* QUIZ */
+.quiz-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;max-width:580px;}
+.quiz-prompt-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:1rem;}
+.quiz-prompt{font-family:'Playfair Display',serif;font-size:17px;flex:1;line-height:1.4;}
+.quiz-display-wrap{text-align:center;margin-bottom:1.2rem;}
+.quiz-display{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:var(--gold);padding:1rem;background:var(--cream);border-radius:var(--radius);letter-spacing:2px;display:block;width:100%;cursor:pointer;border:none;}
+.quiz-display:hover{background:#EDD97A;}
+.quiz-display.speaking{background:#fce4e4;color:var(--rust);}
+.quiz-display-hint{font-size:12px;color:var(--muted);margin-top:5px;font-style:italic;}
+.quiz-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem;}
+.q-opt{padding:11px;font-family:'Source Serif 4',serif;font-size:13px;font-weight:600;border:1.5px solid var(--border);border-radius:8px;background:var(--cream);color:var(--ink);cursor:pointer;transition:all .15s;text-align:left;}
+.q-opt:hover{border-color:var(--gold);background:var(--gold-light);}
+.q-opt.correct{background:#EAF3DE;border-color:var(--forest);color:#27500A;}
+.q-opt.wrong{background:#FCEBEB;border-color:var(--rust);color:#791F1F;}
+.quiz-fb{font-size:14px;padding:10px 14px;border-radius:8px;margin-bottom:1rem;line-height:1.5;display:none;}
+.quiz-fb.ok{background:#EAF3DE;color:#27500A;}
+.quiz-fb.err{background:#FCEBEB;color:#791F1F;}
+.next-btn{padding:10px 24px;background:var(--ink);color:var(--gold);border:none;border-radius:20px;font-family:'Source Serif 4',serif;font-size:14px;font-weight:600;cursor:pointer;display:none;}
+.next-btn:hover{opacity:0.85;}
+.score-row{display:flex;align-items:center;gap:12px;margin-bottom:1.2rem;font-size:13px;color:var(--muted);}
+.score-track{flex:1;height:5px;background:var(--cream);border-radius:3px;overflow:hidden;}
+.score-fill{height:100%;background:var(--forest);border-radius:3px;transition:width .3s;}
+.ch-nav{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 0;border-top:1px solid var(--border);margin-top:2rem;flex-wrap:wrap;gap:10px;}
+.nav-lnk{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border:1px solid var(--border);border-radius:20px;font-size:13px;font-weight:600;color:var(--muted);background:var(--cream);text-decoration:none;transition:all .15s;}
+.nav-lnk:hover{border-color:var(--ink);color:var(--ink);}
+.nav-lnk.next{background:var(--ink);color:var(--gold);border-color:var(--ink);}
+.phase-badge{font-size:11px;background:var(--gold-light);color:var(--gold);border:1px solid rgba(184,134,11,0.3);padding:4px 12px;border-radius:12px;font-weight:600;}
+</style>
+</head>
+<body>
+
+<div class="voice-bar">
+  <a class="home-btn" href="index.html" title="Back to Home">🏠</a>
+  <span class="vb-brand">The Reading Blueprint</span>
+  <span class="vb-label">🔊 Voice</span>
+  <select class="voice-select" id="voice-select" onchange="onVoiceChange()">
+    <option value="-1">Loading voices...</option>
+  </select>
+  <div class="speed-group">
+    <span class="spd-label">Speed</span>
+    <button class="spd-btn" data-rate="0.6" onclick="setSpeed(0.6,this)">Slow</button>
+    <button class="spd-btn active" data-rate="0.85" onclick="setSpeed(0.85,this)">Normal</button>
+    <button class="spd-btn" data-rate="1.1" onclick="setSpeed(1.1,this)">Fast</button>
+  </div>
+  <button class="vtest" onclick="testVoice(this)">Test voice</button>
+  <span class="vsaved" id="vsaved">✓ Saved</span>
+</div>
+
+<div class="chapter-hero">
+  <div class="ch-num">Chapter 12 of 19</div>
+  <h1 class="ch-title">Parts of Speech:<br>The Grammar of Meaning</h1>
+  <p class="ch-sub">Nouns · Pronouns · Verbs · Adjectives · Adverbs · Prepositions · Conjunctions · Interjections</p>
+  <button class="hero-btn" onclick="readHero(this)">Listen to introduction</button>
+</div>
+
+<div class="container">
+  <div class="tabs-bar">
+    <button class="tab-btn active" onclick="showPanel('learn',this)">① Learn</button>
+    <button class="tab-btn" onclick="showPanel('nouns',this)">② Nouns & Pronouns</button>
+    <button class="tab-btn" onclick="showPanel('verbs',this)">③ Verbs</button>
+    <button class="tab-btn" onclick="showPanel('modifiers',this)">④ Adjectives & Adverbs</button>
+    <button class="tab-btn" onclick="showPanel('connectors',this)">⑤ Prepositions & Conjunctions</button>
+    <button class="tab-btn" onclick="showPanel('quiz',this)">⑥ Quiz</button>
+  </div>
+
+  <!-- ① LEARN -->
+  <div class="panel active" id="panel-learn">
+    <div class="sb gl">
+      <div class="sec-num">12.1</div>
+      <div class="sec-title">Why Grammar Matters for Reading
+        <button class="listen-btn" onclick="speakBtn('Section 12.1. Why Grammar Matters for Reading.',this)">Listen to title</button>
+      </div>
+      <div class="sec-body">
+        <p>Understanding grammar is not about memorising rules to please a teacher. It is about understanding <strong>how meaning is encoded in the structure of a sentence</strong>. When you know the function of each word in a sentence, you can understand more complex texts, catch ambiguity, and write clearly and powerfully.</p>
+      </div>
+      <button class="big-listen" onclick="speakBtn('Understanding grammar is not about memorising rules to please a teacher. It is about understanding how meaning is encoded in the structure of a sentence. When you know the function of each word in a sentence, you can understand more complex texts, catch ambiguity, and write clearly and powerfully.',this)">Listen to explanation</button>
+    </div>
+
+    <div class="sb rl">
+      <div class="sec-num">The Big Idea</div>
+      <div class="sec-title">Eight Parts — One System
+        <button class="listen-btn" onclick="speakBtn('The Big Idea. Eight Parts of Speech, one system.',this)">Listen to title</button>
+      </div>
+      <div class="callout">
+        Every word in every English sentence belongs to one of <strong>eight categories</strong> called the Parts of Speech. Each category has a specific job — a function it performs in the sentence. Understanding these functions is what separates a reader who decodes words from a reader who <strong>truly understands</strong> what they are reading.
+      </div>
+      <button class="big-listen" onclick="speakBtn('The Big Idea. Every word in every English sentence belongs to one of eight categories called the Parts of Speech. Each category has a specific job — a function it performs in the sentence. The eight parts are: Nouns, Pronouns, Verbs, Adjectives, Adverbs, Prepositions, Conjunctions, and Interjections. Understanding these functions is what separates a reader who merely decodes words from a reader who truly understands what they are reading.',this)">Listen to the Big Idea</button>
+    </div>
+
+    <div class="sb bl">
+      <div class="sec-num">All Eight — At a Glance</div>
+      <div class="sec-title">Tap Any Card to Hear It
+        <button class="listen-btn" onclick="speakBtn('Tap any card to hear the part of speech explained.',this)">Listen to instructions</button>
+      </div>
+      <div class="pos-overview" id="pos-overview"></div>
+    </div>
+
+    <div class="sb fl">
+      <div class="sec-num">Sentence Analyser — See Every Part of Speech</div>
+      <div class="sec-title">Colour-Coded Sentences
+        <button class="listen-btn" onclick="speakBtn('The sentences below are colour coded by part of speech. Tap any word to hear its part of speech identified.',this)">Listen to instructions</button>
+      </div>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:1rem;">Tap any word to hear its part of speech identified. Each colour represents a different part of speech.</p>
+      <div class="sent-analyse">
+        <div class="sa-title">Tap any word — hear its part of speech</div>
+        <div class="sa-sent" id="sa-sent-1"></div>
+        <div class="sa-sent" id="sa-sent-2"></div>
+      </div>
+      <button class="big-listen" onclick="speakBtn('Let us analyse two sentences. Sentence one: The brave knight quietly climbed the tall stone tower. Sentence two: She and I will work together because we must finish before midnight.',this)">Listen to both sentences</button>
+    </div>
+  </div>
+
+  <!-- ② NOUNS & PRONOUNS -->
+  <div class="panel" id="panel-nouns">
+    <div id="nouns-container"></div>
+  </div>
+
+  <!-- ③ VERBS -->
+  <div class="panel" id="panel-verbs">
+    <div id="verbs-container"></div>
+  </div>
+
+  <!-- ④ ADJECTIVES & ADVERBS -->
+  <div class="panel" id="panel-modifiers">
+    <div id="modifiers-container"></div>
+  </div>
+
+  <!-- ⑤ PREPOSITIONS & CONJUNCTIONS -->
+  <div class="panel" id="panel-connectors">
+    <div id="connectors-container"></div>
+    <div class="sb gl" style="margin-top:4px;">
+      <div class="sec-num">Practice Sentences — Tap Any Word</div>
+      <div class="sec-title">All Eight Parts of Speech in Context
+        <button class="listen-btn" onclick="speakBtn('Read each sentence aloud. Tap any word to hear it. Try to identify which part of speech each word belongs to.',this)">Listen to instructions</button>
+      </div>
+      <div id="practice-sentences"></div>
+    </div>
+  </div>
+
+  <!-- ⑥ QUIZ -->
+  <div class="panel" id="panel-quiz">
+    <div class="sb gl">
+      <div class="sec-num">Chapter 12 — Assessment</div>
+      <div class="sec-title">Test Yourself
+        <button class="listen-btn" onclick="speakBtn('Chapter 12 Assessment. Tap the word in the box to hear it. Then identify its part of speech.',this)">Listen to instructions</button>
+      </div>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:1.2rem;">Tap the <strong>word box</strong> to hear it. Then choose the correct answer.</p>
+      <div class="quiz-card">
+        <div class="score-row">
+          <span id="score-text">Score: 0 / 0</span>
+          <div class="score-track"><div class="score-fill" id="score-fill" style="width:0%"></div></div>
+        </div>
+        <div class="quiz-prompt-row">
+          <p class="quiz-prompt" id="quiz-prompt">Loading...</p>
+          <button class="listen-btn" onclick="readQuizQuestion(this)">Listen to question</button>
+        </div>
+        <div class="quiz-display-wrap">
+          <div class="quiz-display" id="quiz-display" onclick="readQuizWord(this)">—</div>
+          <div class="quiz-display-hint">Tap the word above to hear it</div>
+        </div>
+        <div class="quiz-opts" id="quiz-opts"></div>
+        <div class="quiz-fb" id="quiz-fb"></div>
+        <button class="next-btn" id="next-btn" onclick="nextQ()">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="ch-nav">
+    <a class="nav-lnk" href="chapter-11.html">← Chapter 11: Morphemes</a>
+    <span class="phase-badge">Phase 3 — Architecture of Meaning</span>
+    <a class="nav-lnk next" href="chapter-13.html">Chapter 13: Sentence Mechanics →</a>
+  </div>
+</div>
+
+<script>
+let voices=[],selectedVoiceIndex=-1,speechRate=0.85;
+function loadVoices(){
+  voices=window.speechSynthesis.getVoices();
+  const sel=document.getElementById('voice-select');
+  if(!voices.length)return;
+  const eng=voices.filter(v=>v.lang.startsWith('en'));
+  sel.innerHTML='<option value="-1">🔊 Browser default</option>';
+  eng.forEach(v=>{const idx=voices.indexOf(v);const o=document.createElement('option');o.value=idx;o.textContent=v.name+' ('+v.lang+')'+(v.localService?' ★':'');sel.appendChild(o);});
+  const sv=localStorage.getItem('rbVoiceIndex'),sr=localStorage.getItem('rbSpeechRate');
+  if(sv!=null){sel.value=sv;selectedVoiceIndex=parseInt(sv);}
+  if(sr!=null){speechRate=parseFloat(sr);document.querySelectorAll('.spd-btn').forEach(b=>b.classList.toggle('active',parseFloat(b.getAttribute('data-rate'))===speechRate));}
+}
+function onVoiceChange(){selectedVoiceIndex=parseInt(document.getElementById('voice-select').value);localStorage.setItem('rbVoiceIndex',selectedVoiceIndex);showSaved();}
+function setSpeed(r,btn){speechRate=r;localStorage.setItem('rbSpeechRate',r);document.querySelectorAll('.spd-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');showSaved();}
+function showSaved(){const s=document.getElementById('vsaved');s.classList.add('show');setTimeout(()=>s.classList.remove('show'),2000);}
+function applyVoice(u){u.rate=speechRate;if(selectedVoiceIndex>=0&&voices[selectedVoiceIndex]){u.voice=voices[selectedVoiceIndex];u.lang=voices[selectedVoiceIndex].lang;}else u.lang='en-GB';}
+function speakBtn(text,btn){
+  if(!window.speechSynthesis)return;
+  window.speechSynthesis.cancel();
+  document.querySelectorAll('.speaking').forEach(b=>b.classList.remove('speaking'));
+  const u=new SpeechSynthesisUtterance(text);applyVoice(u);
+  if(btn){btn.classList.add('speaking');u.onend=()=>btn.classList.remove('speaking');u.onerror=()=>btn.classList.remove('speaking');}
+  window.speechSynthesis.speak(u);
+}
+function sayWord(word,el){
+  if(!window.speechSynthesis)return;
+  window.speechSynthesis.cancel();
+  document.querySelectorAll('.speaking').forEach(b=>b.classList.remove('speaking'));
+  if(el)el.classList.add('speaking');
+  const u=new SpeechSynthesisUtterance(word);applyVoice(u);u.rate=speechRate*0.85;
+  if(el)u.onend=()=>el.classList.remove('speaking');
+  window.speechSynthesis.speak(u);
+}
+function testVoice(btn){speakBtn('Hello. This is your selected voice. The brave knight quietly climbed the tall stone tower.',btn);}
+function readHero(btn){speakBtn('Chapter 12: Parts of Speech — The Grammar of Meaning. Every word in every English sentence belongs to one of eight categories called the parts of speech. Understanding these functions is what separates a reader who merely decodes words from a reader who truly understands what they are reading.',btn);}
+function showPanel(id,btn){
+  window.speechSynthesis&&window.speechSynthesis.cancel();
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(t=>t.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// PARTS OF SPEECH DATA
+const posData=[
+  {num:'1',name:'Noun',color:'#B8860B',def:'Names a person, place, thing, or idea',question:'Who or what?',
+   audio:'A noun is the name of a person, place, thing, or idea. Every sentence must have a noun. Examples: dog, city, happiness, courage, London, Maria.',
+   subtypes:[
+     {label:'Common',desc:'dog, city, book, teacher, happiness'},
+     {label:'Proper (capitalised)',desc:'London, Maria, Monday, Africa'},
+     {label:'Concrete (touchable)',desc:'table, rain, bread, fire, stone'},
+     {label:'Abstract (ideas)',desc:'love, freedom, justice, anger, beauty'},
+     {label:'Collective (groups)',desc:'team, flock, herd, choir, jury'},
+   ],
+   examples:['dog','London','happiness','team','fire','justice','teacher','courage']},
+  {num:'2',name:'Pronoun',color:'#C0392B',def:'Replaces a noun to avoid repetition',question:'Who substitutes the noun?',
+   audio:'A pronoun replaces a noun to avoid repetition. Without pronouns, you would say: Maria went to the store and Maria bought Maria\'s bread. With pronouns: Maria went to the store and she bought her bread. Examples: I, me, you, he, she, it, we, they, who, which, this, that.',
+   subtypes:[
+     {label:'Personal',desc:'I, me, you, he, she, it, we, they'},
+     {label:'Relative',desc:'who, whom, whose, which, that'},
+     {label:'Indefinite',desc:'someone, anyone, everyone, nothing'},
+     {label:'Reflexive',desc:'myself, yourself, himself, themselves'},
+     {label:'Demonstrative',desc:'this, that, these, those'},
+   ],
+   examples:['I','she','they','who','this','everyone','himself','which']},
+  {num:'3',name:'Verb',color:'#2C5F2E',def:'Expresses action or state of being',question:'What does / is?',
+   audio:'Verbs are the engines of sentences. Without a verb, you do not have a complete sentence. Every sentence must have a verb. Examples of action verbs: run, eat, build, write, think. Examples of state verbs: is, am, are, was, were, seem, feel, become.',
+   subtypes:[
+     {label:'Action',desc:'run, eat, build, write, think, decide'},
+     {label:'State (being)',desc:'is, am, are, was, were, seem, appear'},
+     {label:'Helping',desc:'can, could, will, would, shall, should, may'},
+     {label:'Transitive (takes object)',desc:'"She read the book." — book is the object'},
+     {label:'Intransitive (no object)',desc:'"He slept." — nothing receives the action'},
+   ],
+   examples:['run','is','think','build','will','seem','wrote','became']},
+  {num:'4',name:'Adjective',color:'#1A4A7A',def:'Describes or limits a noun',question:'What kind? Which? How many?',
+   audio:'Adjectives modify nouns — they describe or limit them. They answer questions like: what kind, which one, and how many. Examples: tall, silent, three, ancient, bright, cold, impossible, golden.',
+   subtypes:[
+     {label:'Descriptive',desc:'tall, silent, bright, cold, ancient'},
+     {label:'Quantitative',desc:'three, many, few, several, all'},
+     {label:'Demonstrative',desc:'this, that, these, those'},
+     {label:'Interrogative',desc:'which, what, whose'},
+   ],
+   examples:['tall','ancient','bright','three','golden','impossible','cold','silent']},
+  {num:'5',name:'Adverb',color:'#6A0DAD',def:'Modifies a verb, adjective, or adverb',question:'How? When? Where? How often?',
+   audio:'Adverbs modify verbs, adjectives, or other adverbs. They answer: how, when, where, how often, and how much. Examples: quickly, very, yesterday, almost, never, sadly, here, always.',
+   subtypes:[
+     {label:'Manner (how)',desc:'quickly, carefully, sadly, slowly'},
+     {label:'Time (when)',desc:'yesterday, soon, now, always, never'},
+     {label:'Place (where)',desc:'here, there, away, inside, outside'},
+     {label:'Degree (how much)',desc:'very, quite, almost, extremely, too'},
+   ],
+   examples:['quickly','never','here','very','sadly','yesterday','almost','always']},
+  {num:'6',name:'Preposition',color:'#7A7468',def:'Shows relationship between a noun and other elements',question:'Where? When? In what direction?',
+   audio:'Prepositions show the relationship between a noun and another element in the sentence — usually location, direction, or time. Common prepositions: in, on, at, to, for, from, with, by, about, after, before, between, through, under, above, below, behind, beside, across, along.',
+   subtypes:[
+     {label:'Location',desc:'in, on, at, above, below, behind, beside'},
+     {label:'Direction',desc:'to, into, toward, across, along, through'},
+     {label:'Time',desc:'at, on, in, before, after, during, until'},
+     {label:'Other',desc:'for, from, with, by, about, between, among'},
+   ],
+   examples:['in','on','behind','through','before','with','toward','between']},
+  {num:'7',name:'Conjunction',color:'#B8860B',def:'Joins words, phrases, or clauses',question:'What connects these elements?',
+   audio:'Conjunctions join words, phrases, or clauses. Coordinating conjunctions — remembered by the acronym FANBOYS — are: for, and, nor, but, or, yet, so. Subordinating conjunctions include: because, although, while, since, unless, until, when, if. Correlative conjunctions come in pairs: both and, either or, neither nor, not only but also.',
+   subtypes:[
+     {label:'Coordinating (FANBOYS)',desc:'for, and, nor, but, or, yet, so'},
+     {label:'Subordinating',desc:'because, although, while, since, unless, when, if'},
+     {label:'Correlative (pairs)',desc:'both...and, either...or, neither...nor'},
+   ],
+   examples:['and','but','because','although','or','since','neither','yet']},
+  {num:'8',name:'Interjection',color:'#C0392B',def:'Expresses strong emotion — grammatically independent',question:'What emotion is expressed?',
+   audio:'Interjections express strong emotions and are grammatically independent from the rest of the sentence. They stand alone. Examples: Wow! Oh no. Hmm. Ouch! Well, actually. Bravo! Great!',
+   subtypes:[
+     {label:'Exclamatory',desc:'Wow! Bravo! Amazing! Fantastic!'},
+     {label:'Hesitation',desc:'Hmm, well, um, er, uh...'},
+     {label:'Pain/surprise',desc:'Ouch! Oh! Ah! Oh no.'},
+   ],
+   examples:['Wow!','Ouch!','Bravo!','Hmm','Oh no','Well','Ah','Great!']},
+];
+
+function buildPOSOverview(){
+  const el=document.getElementById('pos-overview');
+  posData.forEach(pos=>{
+    const card=document.createElement('div');
+    card.className='pos-card';
+    card.style.borderTopColor=pos.color;
+    card.innerHTML=`<div class="pos-num" style="color:${pos.color};">${pos.num}. ${pos.name}</div>
+      <div class="pos-name" style="color:${pos.color};">${pos.name}</div>
+      <div class="pos-def">${pos.def}</div>`;
+    card.onclick=()=>{
+      document.querySelectorAll('.pos-card.speaking').forEach(c=>c.classList.remove('speaking'));
+      card.classList.add('speaking');
+      const u=new SpeechSynthesisUtterance(pos.audio);applyVoice(u);
+      u.onend=()=>card.classList.remove('speaking');
+      window.speechSynthesis.cancel();window.speechSynthesis.speak(u);
+    };
+    el.appendChild(card);
+  });
+}
+
+function buildPOSSection(pos,containerId){
+  const el=document.getElementById(containerId);
+  const wrap=document.createElement('div');wrap.className='sb gl';
+  const secNum=document.createElement('div');secNum.className='sec-num';secNum.textContent='12.2 — '+pos.name;
+  const secTitle=document.createElement('div');secTitle.className='sec-title';
+  secTitle.innerHTML=`<span style="color:${pos.color};font-family:'Playfair Display',serif;font-size:20px;font-weight:700;">${pos.name}s</span>`;
+  const listenTitleBtn=document.createElement('button');listenTitleBtn.className='listen-btn';
+  listenTitleBtn.textContent='Listen to title';
+  listenTitleBtn.onclick=()=>speakBtn('Part of speech number '+pos.num+': '+pos.name+'. '+pos.def,listenTitleBtn);
+  secTitle.appendChild(listenTitleBtn);
+
+  const secBody=document.createElement('div');secBody.className='sec-body';
+  secBody.innerHTML=`<p><strong>Definition:</strong> ${pos.def}</p><p><strong>Questions it answers:</strong> ${pos.question}</p>`;
+
+  const bigBtn=document.createElement('button');bigBtn.className='big-listen';
+  bigBtn.textContent='Listen to full explanation';
+  bigBtn.onclick=()=>speakBtn(pos.audio,bigBtn);
+
+  // subtypes
+  const stLabel=document.createElement('div');stLabel.style.cssText='font-size:11px;font-weight:700;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin:14px 0 8px;';stLabel.textContent='Types of '+pos.name;
+  const stGrid=document.createElement('div');stGrid.className='pos-subtypes';
+  pos.subtypes.forEach(st=>{
+    const div=document.createElement('div');div.className='pos-subtype';
+    div.innerHTML=`<strong>${st.label}</strong>${st.desc}`;
+    div.onclick=()=>{
+      document.querySelectorAll('.pos-subtype.speaking').forEach(d=>d.classList.remove('speaking'));
+      div.classList.add('speaking');
+      const u=new SpeechSynthesisUtterance(st.label+': '+st.desc);applyVoice(u);
+      u.onend=()=>div.classList.remove('speaking');window.speechSynthesis.cancel();window.speechSynthesis.speak(u);
+    };
+    stGrid.appendChild(div);
+  });
+
+  // examples
+  const exLabel=document.createElement('div');exLabel.style.cssText='font-size:11px;font-weight:700;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin:14px 0 8px;';exLabel.textContent='Example words — tap to hear';
+  const exGrid=document.createElement('div');exGrid.className='pos-examples';
+  pos.examples.forEach(w=>{
+    const span=document.createElement('span');span.className='pos-ex';span.style.borderColor=pos.color+'44';span.textContent=w;
+    span.onclick=()=>sayWord(w,span);exGrid.appendChild(span);
+  });
+  const readAllBtn=document.createElement('button');readAllBtn.className='listen-btn';readAllBtn.style.marginTop='6px';
+  readAllBtn.textContent='Read all examples';
+  readAllBtn.onclick=()=>speakBtn(pos.examples.join('. '),readAllBtn);
+
+  wrap.appendChild(secNum);wrap.appendChild(secTitle);wrap.appendChild(secBody);
+  wrap.appendChild(bigBtn);wrap.appendChild(stLabel);wrap.appendChild(stGrid);
+  wrap.appendChild(exLabel);wrap.appendChild(exGrid);wrap.appendChild(readAllBtn);
+  el.appendChild(wrap);
+}
+
+// SENTENCE ANALYSER
+const saSentences=[
+  {
+    id:'sa-sent-1',
+    words:[
+      {w:'The',pos:'Article',color:'#7A7468'},{w:'brave',pos:'Adjective',color:'#1A4A7A'},
+      {w:'knight',pos:'Noun',color:'#B8860B'},{w:'quietly',pos:'Adverb',color:'#6A0DAD'},
+      {w:'climbed',pos:'Verb',color:'#2C5F2E'},{w:'the',pos:'Article',color:'#7A7468'},
+      {w:'tall',pos:'Adjective',color:'#1A4A7A'},{w:'stone',pos:'Adjective',color:'#1A4A7A'},
+      {w:'tower.',pos:'Noun',color:'#B8860B'},
+    ]
+  },
+  {
+    id:'sa-sent-2',
+    words:[
+      {w:'She',pos:'Pronoun',color:'#C0392B'},{w:'and',pos:'Conjunction',color:'#B8860B'},
+      {w:'I',pos:'Pronoun',color:'#C0392B'},{w:'will',pos:'Helping Verb',color:'#2C5F2E'},
+      {w:'work',pos:'Verb',color:'#2C5F2E'},{w:'together',pos:'Adverb',color:'#6A0DAD'},
+      {w:'because',pos:'Conjunction',color:'#B8860B'},{w:'we',pos:'Pronoun',color:'#C0392B'},
+      {w:'must',pos:'Helping Verb',color:'#2C5F2E'},{w:'finish',pos:'Verb',color:'#2C5F2E'},
+      {w:'before',pos:'Preposition',color:'#7A7468'},{w:'midnight.',pos:'Noun',color:'#B8860B'},
+    ]
+  },
+];
+function buildSentenceAnalyser(){
+  saSentences.forEach(s=>{
+    const el=document.getElementById(s.id);
+    s.words.forEach(wd=>{
+      const wrap=document.createElement('div');wrap.className='sa-word';
+      const w=document.createElement('div');w.className='sa-w';w.textContent=wd.w;
+      const lbl=document.createElement('div');lbl.className='sa-label';
+      lbl.style.cssText=`background:${wd.color}22;color:${wd.color};`;
+      lbl.textContent=wd.pos;
+      wrap.appendChild(w);wrap.appendChild(lbl);
+      wrap.onclick=()=>{
+        document.querySelectorAll('.sa-word.speaking').forEach(d=>d.classList.remove('speaking'));
+        wrap.classList.add('speaking');
+        const clean=wd.w.replace(/[^a-zA-Z]/g,'');
+        const u=new SpeechSynthesisUtterance(clean+' — '+wd.pos);applyVoice(u);
+        u.onend=()=>wrap.classList.remove('speaking');window.speechSynthesis.cancel();window.speechSynthesis.speak(u);
+      };
+      el.appendChild(wrap);
+    });
+  });
+}
+
+// CONNECTORS SECTION — prepositions and conjunctions detail
+function buildConnectors(){
+  const el=document.getElementById('connectors-container');
+  [posData[5],posData[6],posData[7]].forEach(pos=>{
+    buildPOSSection(pos,'connectors-container');
+  });
+}
+
+// PRACTICE SENTENCES
+const practiceSentences=[
+  'The ancient library held remarkable secrets.',
+  'She ran quickly toward the bright green door.',
+  'Wow! He solved the impossible puzzle before midnight.',
+  'We sang and danced because the rain had stopped.',
+  'The small brown cat sat quietly on the warm windowsill.',
+  'Oh no! They forgot the most important key.',
+];
+function buildPracticeSentences(){
+  const el=document.getElementById('practice-sentences');
+  practiceSentences.forEach((s,i)=>{
+    const row=document.createElement('div');row.className='sent-box';
+    const num=document.createElement('div');num.className='sent-num';num.textContent=(i+1)+'.';
+    const txt=document.createElement('div');txt.style.flex='1';
+    s.split(' ').forEach(w=>{
+      const clean=w.replace(/[^a-zA-Z!.?]/g,'');
+      const span=document.createElement('span');span.className='word-tap';span.textContent=w+' ';
+      span.onclick=()=>sayWord(clean,span);txt.appendChild(span);
+    });
+    const btn=document.createElement('button');btn.className='listen-btn';btn.style.flexShrink='0';
+    btn.textContent='Listen';btn.onclick=()=>speakBtn(s,btn);
+    row.appendChild(num);row.appendChild(txt);row.appendChild(btn);el.appendChild(row);
+  });
+}
+
+// QUIZ
+const quizData=[
+  {q:'What part of speech is the underlined word in: "The brave KNIGHT climbed the tower"?',d:'knight',correct:'Noun — it names a person',opts:['Noun — it names a person','Verb — it expresses action','Adjective — it describes','Adverb — it modifies a verb']},
+  {q:'What part of speech is the underlined word in: "The BRAVE knight climbed"?',d:'brave',correct:'Adjective — it describes the noun knight',opts:['Adjective — it describes the noun knight','Adverb — it modifies the verb','Noun — it names something','Verb — it expresses action']},
+  {q:'What part of speech is the underlined word in: "She climbed QUIETLY"?',d:'quietly',correct:'Adverb — it tells how she climbed',opts:['Adverb — it tells how she climbed','Adjective — it describes a noun','Verb — it is the main action','Preposition — it shows a relationship']},
+  {q:'What part of speech is the underlined word in: "SHE climbed the tower"?',d:'she',correct:'Pronoun — it replaces a noun',opts:['Pronoun — it replaces a noun','Noun — it names a person','Verb — it expresses action','Conjunction — it joins words']},
+  {q:'What part of speech is the underlined word in: "She climbed BECAUSE she was brave"?',d:'because',correct:'Conjunction — it joins two clauses',opts:['Conjunction — it joins two clauses','Preposition — it shows a relationship','Adverb — it tells when','Pronoun — it replaces a noun']},
+  {q:'What part of speech is the underlined word in: "She sat ON the chair"?',d:'on',correct:'Preposition — it shows the relationship between sat and chair',opts:['Preposition — it shows the relationship between sat and chair','Conjunction — it joins words','Adverb — it tells where','Adjective — it describes chair']},
+  {q:'What part of speech is the underlined word in: "She CLIMBED the tower"?',d:'climbed',correct:'Verb — it expresses the action',opts:['Verb — it expresses the action','Noun — it names something','Adverb — it modifies something','Adjective — it describes something']},
+  {q:'What part of speech is "Wow!" in this sentence: "WOW! She solved it!"?',d:'Wow!',correct:'Interjection — it expresses strong emotion independently',opts:['Interjection — it expresses strong emotion independently','Noun — it names a feeling','Adverb — it intensifies the verb','Conjunction — it connects the clauses']},
+  {q:'What is the purpose of grammar in reading?',d:'sentence',correct:'To understand how meaning is encoded in sentence structure',opts:['To understand how meaning is encoded in sentence structure','To memorise rules for tests','To make writing look formal','To count syllables in words']},
+  {q:'Which part of speech must EVERY complete sentence contain?',d:'verb',correct:'A verb — without one there is no complete sentence',opts:['A verb — without one there is no complete sentence','An adjective — to describe','A preposition — to show relationships','An adverb — to modify the action']},
+];
+let qi=0,score=0,answered=false,currentQ=null;
+const shuffle=a=>a.sort(()=>Math.random()-.5);
+let order=shuffle([...Array(quizData.length).keys()]);
+function readQuizQuestion(btn){if(currentQ)speakBtn(currentQ.q,btn);}
+function readQuizWord(el){if(currentQ)sayWord(currentQ.d,el);}
+function renderQ(){
+  answered=false;currentQ=quizData[order[qi]];
+  document.getElementById('quiz-prompt').textContent=currentQ.q;
+  const disp=document.getElementById('quiz-display');disp.textContent=currentQ.d;disp.classList.remove('speaking');
+  const opts=document.getElementById('quiz-opts');opts.innerHTML='';
+  shuffle([...currentQ.opts]).forEach(opt=>{
+    const b=document.createElement('button');b.className='q-opt';b.textContent=opt;
+    b.onclick=()=>checkQ(opt,currentQ.correct,b);opts.appendChild(b);
+  });
+  document.getElementById('quiz-fb').style.display='none';
+  document.getElementById('next-btn').style.display='none';
+  setTimeout(()=>speakBtn(currentQ.q+'. The word is: '+currentQ.d,null),350);
+}
+function checkQ(chosen,correct,btn){
+  if(answered)return;answered=true;
+  const fb=document.getElementById('quiz-fb');
+  if(chosen===correct){score++;btn.classList.add('correct');fb.className='quiz-fb ok';fb.textContent='✓ Correct! '+correct;}
+  else{btn.classList.add('wrong');document.querySelectorAll('.q-opt').forEach(b=>{if(b.textContent===correct)b.classList.add('correct');});fb.className='quiz-fb err';fb.textContent='✗ The correct answer is: '+correct;}
+  fb.style.display='block';
+  speakBtn(fb.textContent.replace('✓ ','').replace('✗ The correct answer is: ','The correct answer is: '),null);
+  document.getElementById('next-btn').style.display='inline-block';
+  const t=qi+1;
+  document.getElementById('score-text').textContent='Score: '+score+' / '+t;
+  document.getElementById('score-fill').style.width=Math.round(score/t*100)+'%';
+}
+function nextQ(){qi++;if(qi>=order.length){qi=0;score=0;order=shuffle([...Array(quizData.length).keys()]);}renderQ();}
+
+// INIT
+if(window.speechSynthesis){if(speechSynthesis.onvoiceschanged!==undefined)speechSynthesis.onvoiceschanged=loadVoices;loadVoices();}
+buildPOSOverview();
+buildSentenceAnalyser();
+buildPOSSection(posData[0],'nouns-container');
+buildPOSSection(posData[1],'nouns-container');
+buildPOSSection(posData[2],'verbs-container');
+buildPOSSection(posData[3],'modifiers-container');
+buildPOSSection(posData[4],'modifiers-container');
+buildConnectors();
+buildPracticeSentences();
+renderQ();
+</script>
+</body>
+</html>

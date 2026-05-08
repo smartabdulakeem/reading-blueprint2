@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 2 — Vowels & Consonants | The Reading Blueprint</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1C1A17;
+    --paper: #FAF7F2;
+    --cream: #F2EDE4;
+    --gold: #B8860B;
+    --gold-light: #F5E6B0;
+    --rust: #C0392B;
+    --forest: #2C5F2E;
+    --blue: #1A4A7A;
+    --blue-light: #E0EAF5;
+    --muted: #7A7468;
+    --border: rgba(28,26,23,0.12);
+    --radius: 10px;
+    --shadow: 0 2px 16px rgba(28,26,23,0.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--paper);
+    color: var(--ink);
+    min-height: 100vh;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23B8860B' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  /* ── VOICE BAR ── */
+  .voice-bar { background:var(--ink); padding:8px 1.5rem; display:flex; align-items:center; gap:10px; flex-wrap:wrap; position:sticky; top:0; z-index:200; box-shadow:0 2px 12px rgba(28,26,23,0.3); }
+  .vb-brand{font-family:'Playfair Display',serif;color:var(--gold);font-size:13px;letter-spacing:1.5px;text-transform:uppercase;flex-shrink:0;margin-right:6px;}
+  .voice-bar-label { font-size:11px; font-weight:700; color:rgba(255,255,255,0.4); letter-spacing:1.5px; text-transform:uppercase; white-space:nowrap; flex-shrink:0; }
+  .voice-select { flex:1; min-width:180px; max-width:300px; padding:6px 28px 6px 10px; font-family:'Source Serif 4',serif; font-size:13px; border:1px solid var(--border); border-radius:7px; background:var(--cream); color:var(--ink); cursor:pointer; appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237A7468' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 10px center; }
+  .voice-select:focus { outline:none; border-color:var(--gold); }
+  .speed-group { display:flex; align-items:center; gap:4px; flex-shrink:0; }
+  .speed-label { font-size:11px; font-weight:700; color:var(--muted); letter-spacing:1px; text-transform:uppercase; margin-right:4px; }
+  .speed-btn { padding:5px 12px; font-family:'Source Serif 4',serif; font-size:12px; font-weight:600; border:1px solid var(--border); border-radius:6px; background:var(--cream); color:var(--muted); cursor:pointer; transition:all .15s; }
+  .speed-btn.active { background:var(--ink); color:var(--gold); border-color:var(--ink); }
+  .speed-btn:hover:not(.active) { border-color:var(--gold); color:var(--gold); }
+  .vtest-btn { display:inline-flex; align-items:center; gap:6px; padding:6px 14px; font-family:'Source Serif 4',serif; font-size:12px; font-weight:600; border:1px solid rgba(184,134,11,0.4); border-radius:16px; background:var(--gold-light); color:var(--gold); cursor:pointer; transition:all .15s; flex-shrink:0; }
+  .vtest-btn:hover { background:#ecd98a; }
+  .vtest-btn.speaking { background:#fde; border-color:var(--rust); color:var(--rust); }
+  .vtest-btn::before { content:"▶"; font-size:9px; }
+  .vtest-btn.speaking::before { content:"◼"; }
+  .voice-status { font-size:11px; color:var(--forest); font-style:italic; flex-shrink:0; opacity:0; transition:opacity .3s; }
+  .voice-status.show { opacity:1; }
+
+  .site-header { background: var(--ink); padding: 0.75rem 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  .site-header .brand { font-family: 'Playfair Display', serif; color: var(--gold); font-size: 14px; letter-spacing: 1.5px; text-transform: uppercase; }
+  .site-header .phase-tag { font-size: 12px; color: rgba(255,255,255,0.5); letter-spacing: 1px; text-transform: uppercase; }
+  .chapter-hero { background: var(--ink); padding: 3rem 2rem 2.5rem; text-align: center; border-bottom: 3px solid var(--gold); position: relative; overflow: hidden; }
+  .chapter-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 0%, rgba(184,134,11,0.15) 0%, transparent 70%); }
+  .chapter-number { font-family: 'Playfair Display', serif; font-size: 12px; color: var(--gold); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 12px; position: relative; }
+  .chapter-title { font-family: 'Playfair Display', serif; font-size: clamp(26px, 5vw, 44px); color: #fff; line-height: 1.15; margin-bottom: 12px; position: relative; }
+  .chapter-subtitle { font-size: 15px; color: rgba(255,255,255,0.55); font-style: italic; margin-bottom: 1.5rem; position: relative; }
+  .hero-listen-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; border: 1.5px solid rgba(184,134,11,0.6); border-radius: 24px; background: rgba(184,134,11,0.1); color: var(--gold); font-family: 'Source Serif 4', serif; font-size: 13px; font-weight: 600; cursor: pointer; transition: all .2s; position: relative; }
+  .hero-listen-btn:hover { background: rgba(184,134,11,0.2); }
+  .hero-listen-btn.speaking { background: rgba(192,57,43,0.2); border-color: var(--rust); color: #ff7b6b; }
+  .hero-listen-btn::before { content: "▶"; font-size: 10px; }
+  .hero-listen-btn.speaking::before { content: "◼"; }
+  .container { max-width: 840px; margin: 0 auto; padding: 2rem 1.25rem; }
+  .tabs-bar { display: flex; gap: 4px; margin-bottom: 2rem; background: var(--cream); padding: 5px; border-radius: var(--radius); border: 1px solid var(--border); flex-wrap: wrap; }
+  .tab-btn { flex: 1; min-width: 90px; padding: 8px 10px; font-family: 'Source Serif 4', serif; font-size: 13px; font-weight: 600; border: none; border-radius: 7px; background: transparent; color: var(--muted); cursor: pointer; transition: all .15s; text-align: center; white-space: nowrap; }
+  .tab-btn.active { background: var(--ink); color: var(--gold); box-shadow: 0 2px 8px rgba(28,26,23,0.2); }
+  .tab-btn:hover:not(.active) { background: rgba(28,26,23,0.06); color: var(--ink); }
+  .panel { display: none; } .panel.active { display: block; }
+  .section-block { background: var(--cream); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem 1.75rem; margin-bottom: 1.25rem; }
+  .section-block.gold-left { border-left: 4px solid var(--gold); }
+  .section-block.rust-left { border-left: 4px solid var(--rust); }
+  .section-block.forest-left { border-left: 4px solid var(--forest); }
+  .section-block.blue-left { border-left: 4px solid var(--blue); }
+  .section-num { font-size: 11px; font-weight: 600; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--ink); margin-bottom: 10px; line-height: 1.3; }
+  .section-body { font-size: 15px; line-height: 1.8; color: #3A3730; }
+  .section-body p { margin-bottom: 10px; }
+  .section-body p:last-child { margin-bottom: 0; }
+  .listen-btn { display: inline-flex; align-items: center; gap: 5px; padding: 4px 12px; font-family: 'Source Serif 4', serif; font-size: 12px; font-weight: 600; border: 1px solid var(--border); border-radius: 16px; background: #fff; color: var(--muted); cursor: pointer; transition: all .15s; margin-left: 8px; vertical-align: middle; }
+  .listen-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .listen-btn.speaking { border-color: var(--rust); color: var(--rust); background: #fff5f5; }
+  .listen-btn::before { content: "▶"; font-size: 9px; }
+  .listen-btn.speaking::before { content: "◼"; }
+  .callout { background: var(--gold-light); border: 1px solid rgba(184,134,11,0.3); border-radius: var(--radius); padding: 1rem 1.25rem; margin: 1rem 0; font-size: 14px; line-height: 1.7; }
+  .callout strong { color: var(--gold); }
+  .callout-blue { background: var(--blue-light); border: 1px solid rgba(26,74,122,0.2); border-radius: var(--radius); padding: 1rem 1.25rem; margin: 1rem 0; font-size: 14px; line-height: 1.7; }
+
+  /* ── VOWEL / CONSONANT DISPLAY ── */
+  .family-split { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 1rem 0; }
+  @media(max-width:500px){ .family-split { grid-template-columns: 1fr; } }
+  .family-box { border-radius: var(--radius); padding: 1.25rem; text-align: center; }
+  .family-box.vowel { background: #FEF9E7; border: 2px solid var(--gold); }
+  .family-box.consonant { background: #EAF5EA; border: 2px solid var(--forest); }
+  .family-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
+  .family-label.v { color: var(--gold); }
+  .family-label.c { color: var(--forest); }
+  .family-letters { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+  .fam-chip { padding: 8px 12px; border-radius: 7px; font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; cursor: pointer; transition: all .15s; user-select: none; }
+  .fam-chip.v-chip { background: var(--gold-light); color: var(--gold); border: 1.5px solid rgba(184,134,11,0.3); }
+  .fam-chip.c-chip { background: #d4edda; color: var(--forest); border: 1.5px solid rgba(44,95,46,0.25); }
+  .fam-chip:hover { transform: scale(1.08); }
+  .fam-chip.speaking { transform: scale(1.12); opacity: 0.8; }
+
+  /* ── SHORT VOWEL TABLE ── */
+  .vowel-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 14px; }
+  .vowel-table th { background: var(--ink); color: var(--gold); padding: 8px 12px; text-align: left; font-family: 'Playfair Display', serif; font-weight: 600; }
+  .vowel-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); }
+  .vowel-table tr:nth-child(even) td { background: #fff; }
+  .vowel-table tr:nth-child(odd) td { background: var(--cream); }
+  .vowel-big { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--gold); }
+  .mouth-pos { font-size: 13px; color: var(--muted); font-style: italic; }
+
+  /* ── VOICED/UNVOICED ── */
+  .pair-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 1rem 0; }
+  .pair-box { background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 1rem; text-align: center; }
+  .pair-title { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
+  .pair-title.voiced { color: var(--forest); }
+  .pair-title.unvoiced { color: var(--rust); }
+  .pair-sounds { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+  .pair-sound { padding: 6px 10px; border-radius: 6px; font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; cursor: pointer; transition: all .15s; }
+  .pair-sound.v-sound { background: #EAF5EA; color: var(--forest); border: 1px solid rgba(44,95,46,0.2); }
+  .pair-sound.u-sound { background: #FCEBEB; color: var(--rust); border: 1px solid rgba(192,57,43,0.2); }
+  .pair-sound:hover { transform: scale(1.08); }
+
+  /* ── SORTING ACTIVITY ── */
+  .sort-area { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 1rem 0; }
+  .sort-bin { background: #fff; border: 2px dashed var(--border); border-radius: var(--radius); padding: 1rem; min-height: 100px; }
+  .sort-bin.vowel-bin { border-color: rgba(184,134,11,0.4); }
+  .sort-bin.cons-bin { border-color: rgba(44,95,46,0.4); }
+  .sort-bin-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
+  .sort-bin-label.v { color: var(--gold); }
+  .sort-bin-label.c { color: var(--forest); }
+  .sort-pool { display: flex; flex-wrap: wrap; gap: 7px; }
+  .sort-chip { padding: 7px 13px; border-radius: 7px; font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; cursor: pointer; background: var(--cream); border: 1.5px solid var(--border); color: var(--ink); transition: all .15s; user-select: none; }
+  .sort-chip:hover { border-color: var(--gold); color: var(--gold); background: var(--gold-light); }
+  .sort-chip.placed-v { background: var(--gold-light); color: var(--gold); border-color: rgba(184,134,11,0.5); }
+  .sort-chip.placed-c { background: #d4edda; color: var(--forest); border-color: rgba(44,95,46,0.3); }
+  .sort-chip.wrong-sort { background: #FCEBEB; color: var(--rust); border-color: rgba(192,57,43,0.4); animation: shake 0.3s; }
+  @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-6px)} 75%{transform:translateX(6px)} }
+  .sort-result { font-size: 13px; color: var(--forest); font-weight: 600; margin-top: 10px; display: none; }
+
+  /* ── CONTROLLED TEXT ── */
+  .controlled-text-box { background: var(--cream); border: 1px solid var(--border); border-left: 4px solid var(--forest); border-radius: var(--radius); padding: 1.25rem 1.5rem; margin: 1rem 0; font-size: 16px; line-height: 2.2; letter-spacing: 0.3px; }
+  .word-tap { cursor: pointer; border-radius: 3px; padding: 0 2px; transition: background .1s; display: inline-block; }
+  .word-tap:hover { background: var(--gold-light); }
+  .word-tap.speaking { background: var(--gold-light); color: var(--gold); font-weight: 600; }
+
+  /* ── QUIZ ── */
+  .quiz-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; max-width: 580px; }
+  .quiz-prompt { font-family: 'Playfair Display', serif; font-size: 18px; margin-bottom: 1rem; color: var(--ink); }
+  .quiz-letter-display { font-family: 'Playfair Display', serif; font-size: 72px; font-weight: 700; color: var(--gold); text-align: center; padding: 1rem; background: var(--cream); border-radius: var(--radius); margin-bottom: 1.2rem; }
+  .quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1rem; }
+  .q-opt { padding: 12px; font-family: 'Source Serif 4', serif; font-size: 14px; font-weight: 600; border: 1.5px solid var(--border); border-radius: 8px; background: var(--cream); color: var(--ink); cursor: pointer; transition: all .15s; }
+  .q-opt:hover { border-color: var(--gold); background: var(--gold-light); }
+  .q-opt.correct { background: #EAF3DE; border-color: #639922; color: #27500A; }
+  .q-opt.wrong { background: #FCEBEB; border-color: var(--rust); color: #791F1F; }
+  .quiz-feedback { font-size: 14px; padding: 10px 14px; border-radius: 8px; margin-bottom: 1rem; line-height: 1.5; display: none; }
+  .quiz-feedback.ok { background: #EAF3DE; color: #27500A; }
+  .quiz-feedback.err { background: #FCEBEB; color: #791F1F; }
+  .next-btn { padding: 10px 24px; background: var(--ink); color: var(--gold); border: none; border-radius: 20px; font-family: 'Source Serif 4', serif; font-size: 14px; font-weight: 600; cursor: pointer; display: none; }
+  .next-btn:hover { opacity: 0.85; }
+  .score-row { display: flex; align-items: center; gap: 12px; margin-bottom: 1.2rem; font-size: 13px; color: var(--muted); }
+  .score-track { flex: 1; height: 5px; background: var(--cream); border-radius: 3px; overflow: hidden; }
+  .score-fill { height: 100%; background: var(--forest); border-radius: 3px; transition: width .3s; }
+  .chapter-nav { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 0; border-top: 1px solid var(--border); margin-top: 2rem; flex-wrap: wrap; gap: 10px; }
+  .nav-link { display: inline-flex; align-items: center; gap: 6px; padding: 9px 18px; border: 1px solid var(--border); border-radius: 20px; font-size: 13px; font-weight: 600; color: var(--muted); background: var(--cream); cursor: pointer; text-decoration: none; }
+  .nav-link.prev { cursor: pointer; }
+  .nav-link.next-chapter { background: var(--ink); color: var(--gold); border-color: var(--ink); }
+  .phase-badge { font-size: 11px; background: var(--gold-light); color: var(--gold); border: 1px solid rgba(184,134,11,0.3); padding: 4px 12px; border-radius: 12px; font-weight: 600; letter-spacing: 0.5px; }
+  .blend-step { display: flex; align-items: flex-start; gap: 10px; padding: 8px 12px; border-radius: 7px; background: var(--cream); font-size: 14px; margin-bottom: 6px; }
+  .blend-step-num { font-size: 11px; font-weight: 700; color: var(--gold); width: 20px; flex-shrink: 0; margin-top: 2px; }
+.home-btn{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(184,134,11,0.15);border:1.5px solid rgba(184,134,11,0.45);border-radius:8px;color:var(--gold);font-size:15px;cursor:pointer;transition:all .2s;text-decoration:none;flex-shrink:0;margin-right:4px;position:relative;}
+.home-btn:hover{background:rgba(184,134,11,0.3);border-color:var(--gold);transform:scale(1.08);}
+.home-btn::after{content:"Home";position:absolute;bottom:-26px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--gold);font-size:10px;padding:2px 7px;border-radius:4px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;border:1px solid rgba(184,134,11,0.3);}
+.home-btn:hover::after{opacity:1;}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <span class="brand">The Reading Blueprint</span>
+  <span class="phase-tag">Phase 1 — Sound Foundations</span>
+</header>
+
+<div class="voice-bar">
+  <a class="home-btn" href="index.html" title="Back to Home">🏠</a>
+  <span class="vb-brand">The Reading Blueprint</span>
+  <span class="voice-bar-label">🔊 Voice</span>
+  <select class="voice-select" id="voice-select" onchange="onVoiceChange()"><option value="-1">Loading voices...</option></select>
+  <div class="speed-group">
+    <span class="speed-label">Speed</span>
+    <button class="speed-btn" data-rate="0.6" onclick="setSpeed(0.6,this)">Slow</button>
+    <button class="speed-btn active" data-rate="0.85" onclick="setSpeed(0.85,this)">Normal</button>
+    <button class="speed-btn" data-rate="1.1" onclick="setSpeed(1.1,this)">Fast</button>
+  </div>
+  <button class="vtest-btn" id="vtest-btn" onclick="testVoice(this)">Test voice</button>
+  <span class="voice-status" id="voice-status">✓ Saved</span>
+</div>
+
+<div class="chapter-hero">
+  <div class="chapter-number">Chapter 2 of 19</div>
+  <h1 class="chapter-title">Vowels and Consonants:<br>The Two Families</h1>
+  <p class="chapter-subtitle">The open sounds and the shaped sounds that build every word</p>
+  <button class="hero-listen-btn" id="hero-btn" onclick="readHero(this)">Listen to introduction</button>
+</div>
+
+<div class="container">
+
+  <div class="tabs-bar">
+    <button class="tab-btn active" onclick="showPanel('learn',this)">① Learn</button>
+    <button class="tab-btn" onclick="showPanel('vowels',this)">② Short Vowels</button>
+    <button class="tab-btn" onclick="showPanel('consonants',this)">③ Consonants</button>
+    <button class="tab-btn" onclick="showPanel('sort',this)">④ Sort Activity</button>
+    <button class="tab-btn" onclick="showPanel('text',this)">⑤ Read Aloud</button>
+    <button class="tab-btn" onclick="showPanel('quiz',this)">⑥ Quiz</button>
+  </div>
+
+  <!-- ══ LEARN ══ -->
+  <div class="panel active" id="panel-learn">
+
+    <div class="section-block gold-left">
+      <div class="section-num">2.1</div>
+      <h2 class="section-title">The Two Great Families
+        <button class="listen-btn" onclick="speakBtn('The 26 letters of the alphabet are divided into two families based on how the sound is made in your mouth: Vowels and Consonants. Every word in the English language must contain at least one vowel. This is not a rule someone invented — it is a fact about how the human mouth produces language.',this)">Listen</button>
+      </h2>
+      <div class="section-body">
+        <p>The 26 letters of the alphabet are divided into two families based on how the sound is made in your mouth: <strong>Vowels</strong> and <strong>Consonants</strong>. Every word in the English language must contain at least one vowel. This is not a rule someone invented — it is a fact about how the human mouth produces language.</p>
+      </div>
+      <div class="family-split" style="margin-top:1rem;">
+        <div class="family-box vowel">
+          <div class="family-label v">Vowels — 5 letters</div>
+          <div class="family-letters">
+            <div class="fam-chip v-chip" onclick="sayAndShow('A','a as in ant')">A</div>
+            <div class="fam-chip v-chip" onclick="sayAndShow('E','e as in egg')">E</div>
+            <div class="fam-chip v-chip" onclick="sayAndShow('I','i as in igloo')">I</div>
+            <div class="fam-chip v-chip" onclick="sayAndShow('O','o as in on')">O</div>
+            <div class="fam-chip v-chip" onclick="sayAndShow('U','u as in up')">U</div>
+          </div>
+          <p style="font-size:12px;color:var(--muted);margin-top:10px;">Tap to hear</p>
+        </div>
+        <div class="family-box consonant">
+          <div class="family-label c">Consonants — 21 letters</div>
+          <div class="family-letters" id="cons-chips"></div>
+          <p style="font-size:12px;color:var(--muted);margin-top:10px;">Tap to hear</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-block rust-left">
+      <div class="section-num">2.2</div>
+      <h2 class="section-title">Vowels: The Open Sounds
+        <button class="listen-btn" onclick="speakBtn('There are 5 primary vowel letters: A, E, I, O, U. When you make a vowel sound, notice something important: your mouth is open and no part of your mouth — lips, teeth, tongue — blocks the flow of air. The sound flows freely outward. This is the defining physical characteristic of a vowel. The letter Y sometimes acts as a vowel — you will learn exactly when in Phase 2.',this)">Listen</button>
+      </h2>
+      <div class="section-body">
+        <p>There are <strong>5 primary vowel letters: A, E, I, O, U</strong>. When you make a vowel sound, notice something important: your mouth is <em>open</em> and no part of your mouth blocks the flow of air. The sound flows freely outward. This is the defining physical characteristic of a vowel.</p>
+        <p>The letter <strong>Y</strong> sometimes acts as a vowel — you will learn exactly when in Phase 2.</p>
+      </div>
+      <div class="callout">
+        <strong>Physical rule:</strong> Say "ahhh." Feel how open your mouth is, how freely the sound flows. That openness is what makes it a vowel sound.
+      </div>
+    </div>
+
+    <div class="section-block forest-left">
+      <div class="section-num">2.3</div>
+      <h2 class="section-title">Consonants: The Shaped Sounds
+        <button class="listen-btn" onclick="speakBtn('All 21 remaining letters are consonants: B, C, D, F, G, H, J, K, L, M, N, P, Q, R, S, T, V, W, X, Y, Z. When you make a consonant sound, some part of your mouth shapes or restricts the airflow. Lips together for B and P. Tongue on teeth for T and D. Tongue on roof of mouth for L and N. This physical shaping is what gives consonants their crisp, distinctive sounds. Consonants frame the vowels; vowels give words their voice.',this)">Listen</button>
+      </h2>
+      <div class="section-body">
+        <p>All 21 remaining letters are consonants. When you make a consonant sound, some part of your mouth <strong>shapes or restricts the airflow</strong>:</p>
+      </div>
+      <div style="margin:12px 0;">
+        <div class="blend-step"><span class="blend-step-num">→</span> Lips together for <strong>/b/</strong> and <strong>/p/</strong></div>
+        <div class="blend-step"><span class="blend-step-num">→</span> Tongue on teeth for <strong>/t/</strong> and <strong>/d/</strong></div>
+        <div class="blend-step"><span class="blend-step-num">→</span> Tongue on roof of mouth for <strong>/l/</strong> and <strong>/n/</strong></div>
+      </div>
+      <div class="section-body">
+        <p>Consonants <em>frame</em> the vowels; vowels give words their <em>voice</em>.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══ SHORT VOWELS ══ -->
+  <div class="panel" id="panel-vowels">
+
+    <div class="section-block gold-left">
+      <div class="section-num">2.4</div>
+      <h2 class="section-title">Short Vowel Sounds: The Foundation
+        <button class="listen-btn" onclick="speakBtn('Every vowel letter can make more than one sound. The first sound you must master for each vowel is its short sound. Short vowels are produced quickly and cleanly. They appear most commonly in simple words with the pattern Consonant-Vowel-Consonant, which you will study thoroughly in Chapter 3.',this)">Listen</button>
+      </h2>
+      <div class="section-body">
+        <p>Every vowel letter can make more than one sound. The first sound you must master for each vowel is its <strong>short sound</strong>. Short vowels are produced quickly and cleanly. Tap any row to hear the vowel and its examples.</p>
+      </div>
+      <table class="vowel-table" style="margin-top:1rem;">
+        <thead>
+          <tr><th>Vowel</th><th>Sound</th><th>Description</th><th>Examples</th><th>▶</th></tr>
+        </thead>
+        <tbody id="vowel-rows"></tbody>
+      </table>
+    </div>
+
+    <div class="section-block rust-left">
+      <div class="section-num">2.5</div>
+      <h2 class="section-title">Mouth Positions
+        <button class="listen-btn" onclick="speakBtn('Learning the physical position of your mouth for each vowel sound will help you hear the difference between sounds that look similar on paper. Practice in front of a mirror. For A: mouth opens wide, jaw drops, tongue low and flat. For E: lips slightly spread as if smiling, tongue mid-height. For I: lips spread further, tongue near top of mouth. For O: lips form a small circle, tongue pulled back. For U: lips slightly rounded, relaxed, tongue middle position.',this)">Listen</button>
+      </h2>
+      <div class="section-body"><p>Practice in front of a mirror. Feel your mouth change position as you move through each vowel.</p></div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:1rem;" id="mouth-cards"></div>
+    </div>
+
+  </div>
+
+  <!-- ══ CONSONANTS ══ -->
+  <div class="panel" id="panel-consonants">
+
+    <div class="section-block blue-left">
+      <div class="section-num">2.6</div>
+      <h2 class="section-title">Voiced vs. Unvoiced Consonants
+        <button class="listen-btn" onclick="speakBtn('Consonants can be grouped in helpful ways. One important grouping is voiced versus unvoiced. Place two fingers on your throat. Say ssss. You feel no vibration — S is unvoiced. Now say zzzz. You feel vibration — Z is voiced. Many consonants come in voiced and unvoiced pairs. Voiced sounds: B, D, G, V, Z, and the TH in this. Unvoiced sounds: P, T, K, F, S, and the TH in thin.',this)">Listen</button>
+      </h2>
+      <div class="callout-blue">
+        <strong>Try it:</strong> Place two fingers on your throat. Say <em>/s/</em> — no vibration (unvoiced). Now say <em>/z/</em> — feel the vibration (voiced). This is the only difference between these two sounds.
+      </div>
+      <div class="pair-grid">
+        <div class="pair-box">
+          <div class="pair-title voiced">Voiced — vibration felt</div>
+          <div class="pair-sounds" id="voiced-sounds"></div>
+        </div>
+        <div class="pair-box">
+          <div class="pair-title unvoiced">Unvoiced — no vibration</div>
+          <div class="pair-sounds" id="unvoiced-sounds"></div>
+        </div>
+      </div>
+      <div class="section-body" style="margin-top:1rem;">
+        <p>This distinction will become important when you study blends and digraphs in Phase 2.</p>
+      </div>
+    </div>
+
+    <div class="section-block forest-left">
+      <div class="section-num">Summary</div>
+      <h2 class="section-title">The Two Families at a Glance
+        <button class="listen-btn" onclick="speakBtn('Summary. Vowels: 5 letters — A, E, I, O, U. Mouth is open, air flows freely. Every word must have at least one vowel. Consonants: 21 letters. Mouth shapes or blocks the airflow. Consonants frame the vowels. Short vowels are the foundation — master A, E, I, O, U in their short forms first.',this)">Listen</button>
+      </h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:1rem;">
+        <div style="background:#fff;border:1px solid var(--border);border-radius:8px;padding:1rem;">
+          <div style="font-size:11px;font-weight:700;color:var(--gold);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">Vowels</div>
+          <div style="font-size:13px;color:var(--ink);line-height:1.7;">5 letters: A E I O U<br>Mouth is <strong>open</strong><br>Air flows freely<br>Every word needs one</div>
+        </div>
+        <div style="background:#fff;border:1px solid var(--border);border-radius:8px;padding:1rem;">
+          <div style="font-size:11px;font-weight:700;color:var(--forest);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">Consonants</div>
+          <div style="font-size:13px;color:var(--ink);line-height:1.7;">21 letters<br>Mouth <strong>shapes</strong> airflow<br>Lips, teeth, tongue<br>Frame the vowel</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══ SORT ACTIVITY ══ -->
+  <div class="panel" id="panel-sort">
+    <div class="section-block gold-left">
+      <div class="section-num">2.7 — Activity</div>
+      <h2 class="section-title">Sorting Activity: Vowels or Consonants?
+        <button class="listen-btn" onclick="speakBtn('Sort each letter into the correct column. Tap a letter to place it. Vowels go in the gold column on the left. Consonants go in the green column on the right.',this)">Instructions</button>
+      </h2>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:1rem;">Tap a letter, then tap the correct column to place it. Vowel or Consonant?</p>
+
+      <div class="sort-area">
+        <div class="sort-bin vowel-bin" id="bin-vowel" onclick="placeLetter('vowel')">
+          <div class="sort-bin-label v">Vowels (5)</div>
+          <div class="sort-pool" id="placed-vowels"></div>
+        </div>
+        <div class="sort-bin cons-bin" id="bin-cons" onclick="placeLetter('consonant')">
+          <div class="sort-bin-label c">Consonants (21)</div>
+          <div class="sort-pool" id="placed-cons"></div>
+        </div>
+      </div>
+
+      <div style="margin:1rem 0;">
+        <div style="font-size:11px;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">Letters to sort — tap one, then tap a column</div>
+        <div class="sort-pool" id="sort-pool"></div>
+      </div>
+
+      <div class="sort-result" id="sort-result">✓ All sorted correctly! Well done!</div>
+      <button onclick="resetSort()" style="margin-top:10px;padding:7px 18px;background:var(--cream);border:1px solid var(--border);border-radius:16px;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;">Reset</button>
+    </div>
+  </div>
+
+  <!-- ══ READ ALOUD ══ -->
+  <div class="panel" id="panel-text">
+    <div class="section-block forest-left">
+      <div class="section-num">2.8 — Controlled Text 1</div>
+      <h2 class="section-title">Read Aloud
+        <button class="listen-btn" onclick="readFullText(this)">Read full text</button>
+      </h2>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:1rem;">Every word uses only sounds you have been taught. Tap any word to hear it. Read the whole passage aloud three times until it flows smoothly.</p>
+      <div class="controlled-text-box" id="controlled-text"></div>
+      <div style="margin-top:1rem;font-size:13px;color:var(--muted);">
+        <strong>Tip:</strong> Use Controlled Blending from Chapter 1 — sound each letter, then blend.
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ QUIZ ══ -->
+  <div class="panel" id="panel-quiz">
+    <div class="section-block gold-left">
+      <div class="section-num">Chapter 2 — Assessment</div>
+      <h2 class="section-title" style="margin-bottom:1.2rem;">Test Yourself</h2>
+      <div class="quiz-card">
+        <div class="score-row">
+          <span id="score-text">Score: 0 / 0</span>
+          <div class="score-track"><div class="score-fill" id="score-fill" style="width:0%"></div></div>
+        </div>
+        <p class="quiz-prompt" id="quiz-prompt">Loading...</p>
+        <div class="quiz-letter-display" id="quiz-letter" style="font-size:36px;padding:0.75rem;letter-spacing:2px;">—</div>
+        <div class="quiz-options" id="quiz-opts"></div>
+        <div class="quiz-feedback" id="quiz-feedback"></div>
+        <button class="next-btn" id="next-btn" onclick="nextQuestion()">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="chapter-nav">
+    <a class="nav-link prev" href="chapter-01.html">← Chapter 1: The Alphabet</a>
+    <span class="phase-badge">Phase 1 — Sound Foundations</span>
+    <a class="nav-link next-chapter" href="chapter-03.html">Chapter 3: Short Vowels & CVC →</a>
+  </div>
+
+</div>
+
+<script>
+// ── VOICE ENGINE ────────────────────────────────────
+let voices = [];
+let selectedVoiceIndex = -1;
+let speechRate = 0.85;
+
+function loadVoices() {
+  voices = window.speechSynthesis.getVoices();
+  const select = document.getElementById('voice-select');
+  if (!voices.length) return;
+  const engVoices = voices.filter(v => v.lang.startsWith('en'));
+  select.innerHTML = '<option value="-1">🔊 Browser default</option>';
+  engVoices.forEach(v => {
+    const idx = voices.indexOf(v);
+    const opt = document.createElement('option');
+    opt.value = idx;
+    opt.textContent = v.name + ' (' + v.lang + ')' + (v.localService ? ' ★' : '');
+    select.appendChild(opt);
+  });
+  const saved = localStorage.getItem('rbVoiceIndex');
+  const savedRate = localStorage.getItem('rbSpeechRate');
+  if (saved !== null) { select.value = saved; selectedVoiceIndex = parseInt(saved); }
+  if (savedRate !== null) {
+    speechRate = parseFloat(savedRate);
+    document.querySelectorAll('.speed-btn').forEach(btn => {
+      btn.classList.toggle('active', parseFloat(btn.getAttribute('data-rate')) === speechRate);
+    });
+  }
+}
+function onVoiceChange() {
+  selectedVoiceIndex = parseInt(document.getElementById('voice-select').value);
+  localStorage.setItem('rbVoiceIndex', selectedVoiceIndex);
+  showVoiceStatus();
+}
+function setSpeed(rate, btn) {
+  speechRate = rate;
+  localStorage.setItem('rbSpeechRate', rate);
+  document.querySelectorAll('.speed-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  showVoiceStatus();
+}
+function showVoiceStatus() {
+  const s = document.getElementById('voice-status');
+  s.classList.add('show');
+  setTimeout(() => s.classList.remove('show'), 2000);
+}
+function testVoice(btn) {
+  speakBtn('Hello. This is a test of your selected voice. The quick brown fox jumps over the lazy dog.', btn);
+}
+function applyVoice(utt) {
+  utt.rate = speechRate;
+  if (selectedVoiceIndex >= 0 && voices[selectedVoiceIndex]) {
+    utt.voice = voices[selectedVoiceIndex];
+    utt.lang = voices[selectedVoiceIndex].lang;
+  } else { utt.lang = 'en-GB'; }
+}
+function speakBtn(text, btn) {
+  if (!window.speechSynthesis) return;
+  window.speechSynthesis.cancel();
+  document.querySelectorAll('.listen-btn.speaking,.hero-listen-btn.speaking,.vtest-btn.speaking').forEach(b => b.classList.remove('speaking'));
+  const utt = new SpeechSynthesisUtterance(text);
+  applyVoice(utt);
+  if (btn) { btn.classList.add('speaking'); utt.onend = () => btn.classList.remove('speaking'); utt.onerror = () => btn.classList.remove('speaking'); }
+  window.speechSynthesis.speak(utt);
+}
+function sayWord(word) {
+  if (!window.speechSynthesis) return;
+  window.speechSynthesis.cancel();
+  const utt = new SpeechSynthesisUtterance(word);
+  applyVoice(utt);
+  utt.rate = speechRate * 0.95;
+  window.speechSynthesis.speak(utt);
+}
+function sayAndShow(letter, sound) {
+  speakBtn(letter + '. ' + sound, null);
+}
+if (window.speechSynthesis) {
+  if (speechSynthesis.onvoiceschanged !== undefined) speechSynthesis.onvoiceschanged = loadVoices;
+  loadVoices();
+}
+
+// ── CONSONANT CHIPS ──────────────────────────────────
+const consonants = ['B','C','D','F','G','H','J','K','L','M','N','P','Q','R','S','T','V','W','X','Y','Z'];
+const consSounds = {B:'b as in bat',C:'k as in cat',D:'d as in dog',F:'f as in fan',G:'g as in get',H:'h as in hat',J:'j as in jar',K:'k as in kit',L:'l as in leg',M:'m as in mat',N:'n as in net',P:'p as in pig',Q:'kw as in quick',R:'r as in run',S:'s as in sun',T:'t as in top',V:'v as in van',W:'w as in win',X:'ks as in box',Y:'y as in yes',Z:'z as in zip'};
+function buildConsChips() {
+  const el = document.getElementById('cons-chips');
+  consonants.forEach(c => {
+    const chip = document.createElement('div');
+    chip.className = 'fam-chip c-chip';
+    chip.textContent = c;
+    chip.onclick = () => sayAndShow(c, consSounds[c]);
+    el.appendChild(chip);
+  });
+}
+
+// ── SHORT VOWEL TABLE ─────────────────────────────────
+const vowelData = [
+  {v:'A', sound:'/a/', desc:'Short, bright — open jaw wide', ex:'ant, cat, hat, ran, bad', words:['ant','cat','hat','ran','bad']},
+  {v:'E', sound:'/e/', desc:'Middle, flat — lips spread slightly', ex:'egg, bed, red, hen, wet', words:['egg','bed','red','hen','wet']},
+  {v:'I', sound:'/i/', desc:'High, crisp — tongue near top', ex:'igloo, sit, big, win, pin', words:['igloo','sit','big','win','pin']},
+  {v:'O', sound:'/o/', desc:'Round, back — lips form circle', ex:'on, hot, dog, pot, top', words:['on','hot','dog','pot','top']},
+  {v:'U', sound:'/u/', desc:'Low, soft — lips relaxed', ex:'up, bus, sun, cut, fun', words:['up','bus','sun','cut','fun']},
+];
+function buildVowelTable() {
+  const tbody = document.getElementById('vowel-rows');
+  vowelData.forEach(row => {
+    const tr = document.createElement('tr');
+    tr.style.cursor = 'pointer';
+    tr.innerHTML = `<td><span class="vowel-big">${row.v}</span></td><td style="font-weight:600">${row.sound}</td><td class="mouth-pos">${row.desc}</td><td>${row.ex}</td><td><button class="listen-btn" onclick="speakBtn('Short ${row.v}. ${row.sound}. ${row.desc}. Examples: ${row.ex}', this)">▶</button></td>`;
+    tbody.appendChild(tr);
+  });
+}
+
+// ── MOUTH POSITION CARDS ─────────────────────────────
+const mouthData = [
+  {v:'A /a/', pos:'Jaw drops, mouth wide open, tongue low and flat'},
+  {v:'E /e/', pos:'Lips slightly spread as if beginning to smile, tongue mid-height'},
+  {v:'I /i/', pos:'Lips spread further, tongue rises near roof of mouth'},
+  {v:'O /o/', pos:'Lips form a small rounded circle, tongue pulled back'},
+  {v:'U /u/', pos:'Lips slightly rounded and relaxed, tongue in middle position'},
+];
+function buildMouthCards() {
+  const el = document.getElementById('mouth-cards');
+  mouthData.forEach(item => {
+    const card = document.createElement('div');
+    card.style.cssText = 'background:#fff;border:1px solid var(--border);border-radius:8px;padding:1rem;cursor:pointer;transition:all .15s;';
+    card.innerHTML = `<div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--gold);margin-bottom:6px;">${item.v}</div><div style="font-size:12px;color:var(--muted);line-height:1.6;">${item.pos}</div>`;
+    card.onclick = () => speakBtn(item.v + '. Mouth position: ' + item.pos, null);
+    card.onmouseenter = () => card.style.borderColor = 'var(--gold)';
+    card.onmouseleave = () => card.style.borderColor = 'var(--border)';
+    el.appendChild(card);
+  });
+}
+
+// ── VOICED/UNVOICED ──────────────────────────────────
+const voicedList = ['/b/','  /d/','  /g/','  /v/','  /z/','  /th/ (this)'];
+const unvoicedList = ['/p/','  /t/','  /k/','  /f/','  /s/','  /th/ (thin)'];
+function buildVoicing() {
+  const vEl = document.getElementById('voiced-sounds');
+  const uEl = document.getElementById('unvoiced-sounds');
+  ['/b/','/d/','/g/','/v/','/z/'].forEach(s => {
+    const el = document.createElement('div');
+    el.className = 'pair-sound v-sound';
+    el.textContent = s;
+    el.onclick = () => speakBtn(s.replace('/','').replace('/',''), null);
+    vEl.appendChild(el);
+  });
+  const th1 = document.createElement('div');
+  th1.className = 'pair-sound v-sound'; th1.textContent = '/th/ (this)';
+  th1.onclick = () => speakBtn('this', null);
+  vEl.appendChild(th1);
+  ['/p/','/t/','/k/','/f/','/s/'].forEach(s => {
+    const el = document.createElement('div');
+    el.className = 'pair-sound u-sound';
+    el.textContent = s;
+    el.onclick = () => speakBtn(s.replace('/','').replace('/',''), null);
+    uEl.appendChild(el);
+  });
+  const th2 = document.createElement('div');
+  th2.className = 'pair-sound u-sound'; th2.textContent = '/th/ (thin)';
+  th2.onclick = () => speakBtn('thin', null);
+  uEl.appendChild(th2);
+}
+
+// ── SORT ACTIVITY ────────────────────────────────────
+const allLetters = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+const vowelSet = new Set(['A','E','I','O','U']);
+let selectedLetter = null;
+let sortedCount = 0;
+
+function buildSortPool() {
+  const pool = document.getElementById('sort-pool');
+  pool.innerHTML = '';
+  sortedCount = 0;
+  document.getElementById('placed-vowels').innerHTML = '';
+  document.getElementById('placed-cons').innerHTML = '';
+  document.getElementById('sort-result').style.display = 'none';
+  const shuffled = [...allLetters].sort(() => Math.random() - 0.5);
+  shuffled.forEach(letter => {
+    const chip = document.createElement('div');
+    chip.className = 'sort-chip';
+    chip.textContent = letter;
+    chip.id = 'chip-' + letter;
+    chip.onclick = () => selectLetter(letter, chip);
+    pool.appendChild(chip);
+  });
+}
+
+function selectLetter(letter, chip) {
+  document.querySelectorAll('.sort-chip').forEach(c => c.style.outline = '');
+  selectedLetter = letter;
+  chip.style.outline = '3px solid var(--gold)';
+}
+
+function placeLetter(type) {
+  if (!selectedLetter) return;
+  const isVowel = vowelSet.has(selectedLetter);
+  const correct = (type === 'vowel' && isVowel) || (type === 'consonant' && !isVowel);
+  const chip = document.getElementById('chip-' + selectedLetter);
+  if (!chip) return;
+  if (correct) {
+    chip.style.outline = '';
+    chip.className = 'sort-chip ' + (isVowel ? 'placed-v' : 'placed-c');
+    chip.onclick = null;
+    const target = document.getElementById(isVowel ? 'placed-vowels' : 'placed-cons');
+    chip.style.cursor = 'default';
+    target.appendChild(chip);
+    sortedCount++;
+    if (sortedCount === 26) {
+      document.getElementById('sort-result').style.display = 'block';
+      speakBtn('Excellent! You sorted all 26 letters correctly!', null);
+    }
+  } else {
+    chip.classList.add('wrong-sort');
+    setTimeout(() => chip.classList.remove('wrong-sort'), 400);
+    speakBtn(selectedLetter + ' is a ' + (isVowel ? 'vowel' : 'consonant') + '. Try the other column.', null);
+  }
+  selectedLetter = null;
+}
+
+function resetSort() { buildSortPool(); }
+
+// ── CONTROLLED TEXT ──────────────────────────────────
+const ctText = 'Sam sat. Tam ran. The dog sat on a mat. A big hen got a fig. His cat ran to the mat. Sam has a tan hat.';
+function buildControlledText() {
+  const el = document.getElementById('controlled-text');
+  el.innerHTML = '';
+  ctText.split(' ').forEach(w => {
+    const clean = w.replace(/[^a-zA-Z]/g, '');
+    const span = document.createElement('span');
+    span.className = 'word-tap';
+    span.textContent = w + ' ';
+    span.onclick = () => {
+      document.querySelectorAll('.word-tap.speaking').forEach(s => s.classList.remove('speaking'));
+      span.classList.add('speaking');
+      window.speechSynthesis.cancel();
+      const utt = new SpeechSynthesisUtterance(clean);
+      applyVoice(utt);
+      utt.rate = speechRate * 0.9;
+      utt.onend = () => span.classList.remove('speaking');
+      window.speechSynthesis.speak(utt);
+    };
+    el.appendChild(span);
+  });
+}
+function readFullText(btn) {
+  speakBtn('Sam sat. Tam ran. The dog sat on a mat. A big hen got a fig. His cat ran to the mat. Sam has a tan hat.', btn);
+}
+
+// ── QUIZ ─────────────────────────────────────────────
+const quizData = [
+  {q:'Is this letter a vowel or a consonant?', letter:'E', correct:'Vowel', options:['Vowel','Consonant']},
+  {q:'Is this letter a vowel or a consonant?', letter:'B', correct:'Consonant', options:['Vowel','Consonant']},
+  {q:'What is the SHORT sound of this vowel?', letter:'A', correct:'/a/ as in ant', options:['/a/ as in ant','/ay/ as in cake','/ah/ as in far','/e/ as in egg']},
+  {q:'What is the SHORT sound of this vowel?', letter:'I', correct:'/i/ as in igloo', options:['/i/ as in igloo','/eye/ as in time','/ee/ as in feet','/a/ as in cat']},
+  {q:'Is this letter a vowel or a consonant?', letter:'U', correct:'Vowel', options:['Vowel','Consonant']},
+  {q:'Is this consonant VOICED or UNVOICED?', letter:'/b/', correct:'Voiced — you feel vibration', options:['Voiced — you feel vibration','Unvoiced — no vibration']},
+  {q:'Is this consonant VOICED or UNVOICED?', letter:'/s/', correct:'Unvoiced — no vibration', options:['Voiced — you feel vibration','Unvoiced — no vibration']},
+  {q:'What is the SHORT sound of this vowel?', letter:'O', correct:'/o/ as in on', options:['/o/ as in on','/oh/ as in bone','/oo/ as in moon','/u/ as in up']},
+  {q:'How many PRIMARY VOWELS are there in English?', letter:'?', correct:'5', options:['3','5','6','7']},
+  {q:'Every English word must contain at least one...', letter:'?', correct:'Vowel', options:['Vowel','Consonant','Silent letter','Blend']},
+];
+let qi=0, score=0, answered=false;
+function shuffle(a){return a.sort(()=>Math.random()-.5);}
+let order = shuffle([...Array(quizData.length).keys()]);
+
+function renderQuestion(){
+  answered = false;
+  const q = quizData[order[qi]];
+  document.getElementById('quiz-prompt').textContent = q.q;
+  document.getElementById('quiz-letter').textContent = q.letter;
+  const opts = document.getElementById('quiz-opts');
+  opts.innerHTML = '';
+  const shuffled = shuffle([...q.options]);
+  shuffled.forEach(opt => {
+    const b = document.createElement('button');
+    b.className = 'q-opt'; b.textContent = opt;
+    b.onclick = () => checkAnswer(opt, q.correct, b);
+    opts.appendChild(b);
+  });
+  document.getElementById('quiz-feedback').style.display = 'none';
+  document.getElementById('next-btn').style.display = 'none';
+  if (q.letter !== '?') setTimeout(() => sayWord(q.letter), 300);
+}
+
+function checkAnswer(chosen, correct, btn){
+  if(answered) return;
+  answered = true;
+  const fb = document.getElementById('quiz-feedback');
+  if(chosen === correct){
+    score++;
+    btn.classList.add('correct');
+    fb.className = 'quiz-feedback ok';
+    fb.textContent = '✓ Correct! ' + correct;
+  } else {
+    btn.classList.add('wrong');
+    document.querySelectorAll('.q-opt').forEach(b => { if(b.textContent===correct) b.classList.add('correct'); });
+    fb.className = 'quiz-feedback err';
+    fb.textContent = '✗ The correct answer is: ' + correct;
+  }
+  fb.style.display = 'block';
+  speakBtn(fb.textContent.replace('✓ ','').replace('✗ ',''), null);
+  document.getElementById('next-btn').style.display = 'inline-block';
+  const total = qi+1;
+  document.getElementById('score-text').textContent = 'Score: '+score+' / '+total;
+  document.getElementById('score-fill').style.width = Math.round(score/total*100)+'%';
+}
+
+function nextQuestion(){
+  qi++;
+  if(qi>=order.length){qi=0;score=0;order=shuffle([...Array(quizData.length).keys()]);}
+  renderQuestion();
+}
+
+// ── PANELS ───────────────────────────────────────────
+function showPanel(id, btn) {
+  window.speechSynthesis && window.speechSynthesis.cancel();
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+
+function readHero(btn) {
+  speakBtn('Chapter 2: Vowels and Consonants — The Two Families. This chapter covers the 5 vowels, the 21 consonants, short vowel sounds, mouth positions, and the difference between voiced and unvoiced consonants.', btn);
+}
+
+// ── INIT ─────────────────────────────────────────────
+buildConsChips();
+buildVowelTable();
+buildMouthCards();
+buildVoicing();
+buildSortPool();
+buildControlledText();
+renderQuestion();
+</script>
+</body>
+</html>

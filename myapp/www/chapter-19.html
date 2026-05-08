@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 19 — The Expert Reader | The Reading Blueprint</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1C1A17;--paper:#FAF7F2;--cream:#F2EDE4;--gold:#B8860B;--gold-light:#F5E6B0;--rust:#C0392B;--forest:#2C5F2E;--blue:#1A4A7A;--purple:#6A0DAD;--muted:#7A7468;--border:rgba(28,26,23,0.12);--radius:10px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:var(--ink);min-height:100vh;}
+.voice-bar{background:var(--ink);padding:8px 1.5rem;display:flex;align-items:center;gap:10px;flex-wrap:wrap;position:sticky;top:0;z-index:200;box-shadow:0 2px 12px rgba(28,26,23,0.3);}
+.vb-brand{font-family:'Playfair Display',serif;color:var(--gold);font-size:13px;letter-spacing:1.5px;text-transform:uppercase;flex-shrink:0;margin-right:6px;}
+.home-btn{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(184,134,11,0.15);border:1.5px solid rgba(184,134,11,0.45);border-radius:8px;color:var(--gold);font-size:15px;cursor:pointer;transition:all .2s;text-decoration:none;flex-shrink:0;margin-right:4px;position:relative;}
+.home-btn:hover{background:rgba(184,134,11,0.3);border-color:var(--gold);transform:scale(1.08);}
+.home-btn::after{content:"Home";position:absolute;bottom:-26px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--gold);font-size:10px;padding:2px 7px;border-radius:4px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;border:1px solid rgba(184,134,11,0.3);}
+.home-btn:hover::after{opacity:1;}
+.vb-label{font-size:11px;font-weight:700;color:rgba(255,255,255,0.4);letter-spacing:1.5px;text-transform:uppercase;white-space:nowrap;flex-shrink:0;}
+.voice-select{min-width:150px;max-width:260px;padding:5px 26px 5px 9px;font-family:'Source Serif 4',serif;font-size:13px;border:1px solid rgba(255,255,255,0.15);border-radius:7px;background:rgba(255,255,255,0.08);color:#fff;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23B8860B' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 9px center;}
+.voice-select option{background:#1C1A17;color:#fff;}
+.speed-group{display:flex;align-items:center;gap:4px;flex-shrink:0;}
+.spd-label{font-size:11px;font-weight:700;color:rgba(255,255,255,0.4);letter-spacing:1px;text-transform:uppercase;margin-right:3px;}
+.spd-btn{padding:4px 10px;font-family:'Source Serif 4',serif;font-size:12px;font-weight:600;border:1px solid rgba(255,255,255,0.15);border-radius:6px;background:transparent;color:rgba(255,255,255,0.5);cursor:pointer;transition:all .15s;}
+.spd-btn.active{background:var(--gold);color:var(--ink);border-color:var(--gold);}
+.spd-btn:hover:not(.active){border-color:var(--gold);color:var(--gold);}
+.vtest{display:inline-flex;align-items:center;gap:5px;padding:5px 13px;font-family:'Source Serif 4',serif;font-size:12px;font-weight:600;border:1px solid rgba(184,134,11,0.5);border-radius:16px;background:rgba(184,134,11,0.12);color:var(--gold);cursor:pointer;transition:all .15s;flex-shrink:0;}
+.vtest:hover{background:rgba(184,134,11,0.22);}
+.vtest.speaking{background:rgba(192,57,43,0.2);border-color:var(--rust);color:#ff7b6b;}
+.vtest::before{content:"▶";font-size:9px;}
+.vtest.speaking::before{content:"◼";}
+.vsaved{font-size:11px;color:var(--gold);font-style:italic;flex-shrink:0;opacity:0;transition:opacity .3s;}
+.vsaved.show{opacity:1;}
+.chapter-hero{background:var(--ink);padding:3rem 2rem 2.5rem;text-align:center;border-bottom:3px solid var(--gold);position:relative;overflow:hidden;}
+.chapter-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(184,134,11,0.22) 0%,transparent 70%);}
+.ch-num{font-family:'Playfair Display',serif;font-size:12px;color:var(--gold);letter-spacing:4px;text-transform:uppercase;margin-bottom:12px;position:relative;}
+.ch-title{font-family:'Playfair Display',serif;font-size:clamp(26px,5vw,44px);color:#fff;line-height:1.15;margin-bottom:10px;position:relative;}
+.ch-sub{font-size:15px;color:rgba(255,255,255,0.5);font-style:italic;margin-bottom:1.5rem;position:relative;}
+.hero-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border:1.5px solid rgba(184,134,11,0.6);border-radius:24px;background:rgba(184,134,11,0.1);color:var(--gold);font-family:'Source Serif 4',serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;position:relative;}
+.hero-btn:hover{background:rgba(184,134,11,0.2);}
+.hero-btn.speaking{background:rgba(192,57,43,0.2);border-color:var(--rust);color:#ff7b6b;}
+.hero-btn::before{content:"▶";font-size:10px;}
+.hero-btn.speaking::before{content:"◼";}
+.container{max-width:860px;margin:0 auto;padding:2rem 1.25rem;}
+.tabs-bar{display:flex;gap:4px;margin-bottom:2rem;background:var(--cream);padding:5px;border-radius:var(--radius);border:1px solid var(--border);flex-wrap:wrap;}
+.tab-btn{flex:1;min-width:80px;padding:8px 10px;font-family:'Source Serif 4',serif;font-size:13px;font-weight:600;border:none;border-radius:7px;background:transparent;color:var(--muted);cursor:pointer;transition:all .15s;text-align:center;white-space:nowrap;}
+.tab-btn.active{background:var(--ink);color:var(--gold);}
+.tab-btn:hover:not(.active){background:rgba(28,26,23,0.06);color:var(--ink);}
+.panel{display:none;}.panel.active{display:block;}
+.sb{background:var(--cream);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem 1.75rem;margin-bottom:1.25rem;}
+.sb.gl{border-left:4px solid var(--gold);}
+.sb.rl{border-left:4px solid var(--rust);}
+.sb.fl{border-left:4px solid var(--forest);}
+.sb.bl{border-left:4px solid var(--blue);}
+.sb.pl{border-left:4px solid var(--purple);}
+.sec-num{font-size:11px;font-weight:600;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;}
+.sec-title{font-family:'Playfair Display',serif;font-size:20px;color:var(--ink);margin-bottom:10px;line-height:1.3;display:flex;align-items:center;flex-wrap:wrap;gap:8px;}
+.sec-body{font-size:15px;line-height:1.8;color:#3A3730;}
+.sec-body p{margin-bottom:10px;}
+.listen-btn{display:inline-flex;align-items:center;gap:5px;padding:4px 12px;font-family:'Source Serif 4',serif;font-size:12px;font-weight:600;border:1px solid var(--border);border-radius:16px;background:#fff;color:var(--muted);cursor:pointer;transition:all .15s;flex-shrink:0;}
+.listen-btn:hover{border-color:var(--gold);color:var(--gold);}
+.listen-btn.speaking{border-color:var(--rust);color:var(--rust);background:#fff5f5;}
+.listen-btn::before{content:"▶";font-size:9px;}
+.listen-btn.speaking::before{content:"◼";}
+.big-listen{display:flex;align-items:center;gap:8px;padding:10px 18px;font-family:'Source Serif 4',serif;font-size:14px;font-weight:700;border:2px solid var(--gold);border-radius:20px;background:var(--gold-light);color:var(--ink);cursor:pointer;transition:all .2s;margin-top:12px;width:fit-content;}
+.big-listen:hover{background:#EDD97A;}
+.big-listen.speaking{background:#fce4e4;border-color:var(--rust);color:var(--rust);}
+.big-listen::before{content:"🔊";font-size:14px;}
+.big-listen.speaking::before{content:"⏹";}
+.callout{background:var(--gold-light);border:1px solid rgba(184,134,11,0.3);border-radius:var(--radius);padding:1rem 1.25rem;margin:1rem 0;font-size:14px;line-height:1.8;}
+.step-row{display:flex;align-items:flex-start;gap:10px;padding:8px 12px;border-radius:7px;background:var(--cream);font-size:14px;margin-bottom:6px;line-height:1.6;}
+.step-n{font-size:11px;font-weight:700;color:var(--gold);width:24px;flex-shrink:0;margin-top:2px;}
+
+/* METACOGNITION STRATEGIES */
+.meta-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin:1rem 0;}
+.meta-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;border-top:4px solid;cursor:pointer;transition:all .15s;}
+.meta-card:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(28,26,23,0.08);}
+.meta-card.speaking{outline:2px solid var(--rust);}
+.meta-name{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;margin-bottom:4px;}
+.meta-question{font-size:13px;font-weight:700;color:var(--muted);font-style:italic;margin-bottom:8px;}
+.meta-how{font-size:13px;line-height:1.6;color:var(--ink);}
+
+/* TEXT STRUCTURE */
+.ts-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);margin:1rem 0;}
+.ts-table th{padding:9px 14px;font-family:'Source Serif 4',serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;background:var(--ink);color:var(--gold);}
+.ts-table td{padding:9px 14px;border-bottom:1px solid var(--border);background:#fff;font-size:14px;cursor:pointer;vertical-align:top;}
+.ts-table td.ts-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;width:160px;}
+.ts-table td.ts-signals{color:var(--blue);font-size:12px;font-style:italic;}
+.ts-table td.ts-example{color:var(--muted);font-size:13px;}
+.ts-table td:hover{background:var(--gold-light);}
+.ts-table tr:last-child td{border-bottom:none;}
+
+/* CRITICAL QUESTIONS */
+.cq-box{background:var(--ink);border-radius:var(--radius);padding:1.75rem;margin:1rem 0;}
+.cq-title{font-family:'Playfair Display',serif;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;text-align:center;}
+.cq-category{margin-bottom:1.2rem;}
+.cq-cat-label{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:8px;}
+.cq-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.06);cursor:pointer;transition:all .15s;}
+.cq-item:last-child{border-bottom:none;}
+.cq-item:hover .cq-text{color:var(--gold-light);}
+.cq-item.speaking .cq-text{color:var(--gold);}
+.cq-bullet{color:rgba(184,134,11,0.6);flex-shrink:0;margin-top:2px;}
+.cq-text{font-family:'Source Serif 4',serif;font-size:14px;color:rgba(255,255,255,0.8);line-height:1.5;}
+
+/* DAILY BLUEPRINT */
+.habits-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin:1rem 0;}
+.habit-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;cursor:pointer;transition:all .15s;}
+.habit-card:hover{background:var(--gold-light);border-color:var(--gold);}
+.habit-card.speaking{border-color:var(--rust);background:#fff5f5;}
+.habit-num{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:var(--gold);line-height:1;margin-bottom:8px;}
+.habit-name{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;margin-bottom:4px;}
+.habit-desc{font-size:13px;color:var(--muted);line-height:1.5;}
+
+/* MASTER READER PASSAGE */
+.passage-box{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem 2rem;margin:1rem 0;font-size:15px;line-height:1.9;color:#3A3730;}
+.word-tap{cursor:pointer;border-radius:3px;padding:1px 2px;transition:background .1s;display:inline-block;}
+.word-tap:hover{background:var(--gold-light);}
+.word-tap.speaking{background:var(--gold-light);color:var(--gold);font-weight:600;}
+
+/* COMPLETION */
+.completion-box{background:var(--ink);border:3px solid var(--gold);border-radius:var(--radius);padding:2.5rem 2rem;text-align:center;margin:1rem 0;}
+.comp-title{font-family:'Playfair Display',serif;font-size:clamp(24px,5vw,38px);color:var(--gold);line-height:1.2;margin-bottom:12px;}
+.comp-sub{font-size:15px;color:rgba(255,255,255,0.6);margin-bottom:1.5rem;font-style:italic;line-height:1.7;max-width:520px;margin-left:auto;margin-right:auto;}
+.comp-phases{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:1.5rem 0;}
+.comp-phase{background:rgba(255,255,255,0.06);border:1px solid rgba(184,134,11,0.3);border-radius:8px;padding:8px 16px;font-size:13px;font-weight:600;color:rgba(255,255,255,0.7);}
+.comp-phase span{color:var(--gold);}
+.comp-quote{font-family:'Playfair Display',serif;font-size:18px;font-style:italic;color:rgba(255,255,255,0.5);border-top:1px solid rgba(184,134,11,0.2);padding-top:1.5rem;margin-top:1.5rem;line-height:1.7;max-width:520px;margin-left:auto;margin-right:auto;}
+
+/* QA */
+.qa-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;margin-bottom:12px;border-left:4px solid;}
+.qa-level{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;}
+.qa-q{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--ink);margin-bottom:8px;cursor:pointer;}
+.qa-q:hover{color:var(--gold);}
+.qa-a{font-size:14px;color:var(--muted);line-height:1.7;padding:8px 12px;background:var(--cream);border-radius:6px;display:none;}
+.qa-a.show{display:block;}
+.qa-toggle{font-size:12px;font-weight:700;cursor:pointer;color:var(--blue);background:none;border:none;padding:0;margin-top:4px;font-family:'Source Serif 4',serif;}
+.qa-toggle:hover{text-decoration:underline;}
+
+/* QUIZ */
+.quiz-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;max-width:580px;}
+.quiz-prompt-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:1rem;}
+.quiz-prompt{font-family:'Playfair Display',serif;font-size:16px;flex:1;line-height:1.4;}
+.quiz-display-wrap{text-align:center;margin-bottom:1.2rem;}
+.quiz-display{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--gold);padding:1rem;background:var(--cream);border-radius:var(--radius);letter-spacing:1px;display:block;width:100%;cursor:pointer;border:none;line-height:1.5;}
+.quiz-display:hover{background:#EDD97A;}
+.quiz-display.speaking{background:#fce4e4;color:var(--rust);}
+.quiz-display-hint{font-size:12px;color:var(--muted);margin-top:5px;font-style:italic;}
+.quiz-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem;}
+.q-opt{padding:11px;font-family:'Source Serif 4',serif;font-size:13px;font-weight:600;border:1.5px solid var(--border);border-radius:8px;background:var(--cream);color:var(--ink);cursor:pointer;transition:all .15s;text-align:left;}
+.q-opt:hover{border-color:var(--gold);background:var(--gold-light);}
+.q-opt.correct{background:#EAF3DE;border-color:var(--forest);color:#27500A;}
+.q-opt.wrong{background:#FCEBEB;border-color:var(--rust);color:#791F1F;}
+.quiz-fb{font-size:14px;padding:10px 14px;border-radius:8px;margin-bottom:1rem;line-height:1.5;display:none;}
+.quiz-fb.ok{background:#EAF3DE;color:#27500A;}
+.quiz-fb.err{background:#FCEBEB;color:#791F1F;}
+.next-btn{padding:10px 24px;background:var(--ink);color:var(--gold);border:none;border-radius:20px;font-family:'Source Serif 4',serif;font-size:14px;font-weight:600;cursor:pointer;display:none;}
+.next-btn:hover{opacity:0.85;}
+.score-row{display:flex;align-items:center;gap:12px;margin-bottom:1.2rem;font-size:13px;color:var(--muted);}
+.score-track{flex:1;height:5px;background:var(--cream);border-radius:3px;overflow:hidden;}
+.score-fill{height:100%;background:var(--forest);border-radius:3px;transition:width .3s;}
+.ch-nav{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 0;border-top:1px solid var(--border);margin-top:2rem;flex-wrap:wrap;gap:10px;}
+.nav-lnk{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border:1px solid var(--border);border-radius:20px;font-size:13px;font-weight:600;color:var(--muted);background:var(--cream);text-decoration:none;transition:all .15s;}
+.nav-lnk:hover{border-color:var(--ink);color:var(--ink);}
+.nav-lnk.next{background:var(--ink);color:var(--gold);border-color:var(--ink);}
+.phase-badge{font-size:11px;background:var(--gold-light);color:var(--gold);border:1px solid rgba(184,134,11,0.3);padding:4px 12px;border-radius:12px;font-weight:600;}
+</style>
+</head>
+<body>
+
+<div class="voice-bar">
+  <a class="home-btn" href="index.html">🏠</a>
+  <span class="vb-brand">The Reading Blueprint</span>
+  <span class="vb-label">🔊 Voice</span>
+  <select class="voice-select" id="voice-select" onchange="onVoiceChange()">
+    <option value="-1">Loading voices...</option>
+  </select>
+  <div class="speed-group">
+    <span class="spd-label">Speed</span>
+    <button class="spd-btn" data-rate="0.6" onclick="setSpeed(0.6,this)">Slow</button>
+    <button class="spd-btn active" data-rate="0.85" onclick="setSpeed(0.85,this)">Normal</button>
+    <button class="spd-btn" data-rate="1.1" onclick="setSpeed(1.1,this)">Fast</button>
+  </div>
+  <button class="vtest" onclick="testVoice(this)">Test voice</button>
+  <span class="vsaved" id="vsaved">✓ Saved</span>
+</div>
+
+<div class="chapter-hero">
+  <div class="ch-num">Chapter 19 of 19 — The Final Chapter</div>
+  <h1 class="ch-title">The Expert Reader:<br>Where Literacy Becomes a Superpower</h1>
+  <p class="ch-sub">Metacognition · Text Structure · Critical Reading · The Daily Reading Blueprint</p>
+  <button class="hero-btn" onclick="readHero(this)">Listen to introduction</button>
+</div>
+
+<div class="container">
+  <div class="tabs-bar">
+    <button class="tab-btn active" onclick="showPanel('learn',this)">① Learn</button>
+    <button class="tab-btn" onclick="showPanel('metacog',this)">② Metacognition</button>
+    <button class="tab-btn" onclick="showPanel('textstructure',this)">③ Text Structure</button>
+    <button class="tab-btn" onclick="showPanel('critical',this)">④ Critical Reading</button>
+    <button class="tab-btn" onclick="showPanel('daily',this)">⑤ Daily Blueprint</button>
+    <button class="tab-btn" onclick="showPanel('complete',this)">⑥ Complete</button>
+  </div>
+
+  <!-- ① LEARN -->
+  <div class="panel active" id="panel-learn">
+    <div class="sb gl">
+      <div class="sec-num">19.1</div>
+      <div class="sec-title">The Expert Reader
+        <button class="listen-btn" onclick="speakBtn('Section 19.1. The Expert Reader.',this)">Listen to title</button>
+      </div>
+      <div class="sec-body">
+        <p>An expert reader is not simply someone who reads quickly or makes no errors. An expert reader is someone who reads <strong>strategically, critically, and adaptively</strong> — choosing the right strategies for the right texts, monitoring their own understanding, and adjusting their approach when comprehension breaks down.</p>
+        <p>Expert reading is a <strong>learnable skill</strong> — not a talent you are born with.</p>
+      </div>
+      <button class="big-listen" onclick="speakBtn('An expert reader is not simply someone who reads quickly or makes no errors. An expert reader is someone who reads strategically, critically, and adaptively. They choose the right strategies for the right texts. They monitor their own understanding as they read. And they adjust their approach immediately when comprehension breaks down. Expert reading is a learnable skill — not a talent you are born with. Every strategy in this chapter can be practised, refined, and made automatic.',this)">Listen to explanation</button>
+    </div>
+
+    <div class="sb rl">
+      <div class="sec-num">The Big Idea</div>
+      <div class="sec-title">Reading Is Thinking Made Visible
+        <button class="listen-btn" onclick="speakBtn('The Big Idea. Reading is thinking made visible.',this)">Listen to title</button>
+      </div>
+      <div class="callout">
+        Reading and thinking are the same activity. When you read deeply, you are not passively receiving information — you are <strong>actively constructing meaning</strong>, questioning the author, connecting ideas, and evaluating arguments.<br><br>
+        The difference between a weak reader and an expert reader is not intelligence. It is <strong>strategy</strong>.
+      </div>
+      <button class="big-listen" onclick="speakBtn('The Big Idea. Reading is thinking made visible. When you read deeply, you are not passively receiving information — you are actively constructing meaning, questioning the author, connecting ideas, and evaluating arguments. The difference between a weak reader and an expert reader is not intelligence. It is strategy. A weak reader waits for the text to make sense. An expert reader makes it make sense — through deliberate, practised strategies.',this)">Listen to the Big Idea</button>
+    </div>
+
+    <div class="sb fl">
+      <div class="sec-num">Chapter Goals — Your Final Chapter</div>
+      <div class="sec-title">What You Will Master
+        <button class="listen-btn" onclick="speakBtn('Final Chapter Goals.',this)">Listen to title</button>
+      </div>
+      <div style="margin-top:10px;">
+        <div class="step-row"><span class="step-n">✓</span>Six metacognitive reading strategies — thinking about your own thinking</div>
+        <div class="step-row"><span class="step-n">✓</span>Six text structure types — recognising how non-fiction is organised</div>
+        <div class="step-row"><span class="step-n">✓</span>The critical reading question framework — reading that pushes back</div>
+        <div class="step-row"><span class="step-n">✓</span>The Daily Reading Blueprint — five habits for lifelong literacy</div>
+        <div class="step-row"><span class="step-n">✓</span>The Master Reader Passage — all 19 chapters in one demanding text</div>
+      </div>
+      <button class="big-listen" onclick="speakBtn('Final Chapter Goals. By the end of this chapter you will master: six metacognitive reading strategies for thinking about your own thinking while you read. Six text structure types for recognising how non-fiction is organised. The critical reading question framework — reading that pushes back and evaluates. The Daily Reading Blueprint — five habits for building lifelong literacy. And the Master Reader Passage — a demanding final text that draws on all nineteen chapters.',this)">Listen to goals</button>
+    </div>
+  </div>
+
+  <!-- ② METACOGNITION -->
+  <div class="panel" id="panel-metacog">
+    <div class="sb gl">
+      <div class="sec-num">19.2 — Metacognitive Reading Strategies</div>
+      <div class="sec-title">Thinking About Your Own Thinking
+        <button class="listen-btn" onclick="speakBtn('Section 19.2. Metacognitive Reading Strategies. Thinking about your own thinking.',this)">Listen to title</button>
+      </div>
+      <div class="sec-body"><p>Metacognition is the ability to <strong>monitor and direct your own thinking</strong>. Expert readers constantly ask: Am I understanding this? Where did I lose the thread? What strategy should I use here? Tap any strategy card to hear it explained.</p></div>
+      <button class="big-listen" onclick="speakBtn('Metacognition is the ability to monitor and direct your own thinking. Expert readers constantly ask: Am I understanding this? Where exactly did I lose the thread? What strategy should I use to fix this? Six metacognitive strategies make all the difference between passive and active reading.',this)">Listen to metacognition explanation</button>
+    </div>
+    <div class="meta-grid" id="meta-grid"></div>
+  </div>
+
+  <!-- ③ TEXT STRUCTURE -->
+  <div class="panel" id="panel-textstructure">
+    <div class="sb gl">
+      <div class="sec-num">19.3 — Text Structure Recognition</div>
+      <div class="sec-title">Six Ways Non-Fiction Is Organised
+        <button class="listen-btn" onclick="speakBtn('Section 19.3. Text Structure Recognition. Six ways non-fiction is organised.',this)">Listen to title</button>
+      </div>
+      <div class="sec-body"><p>Non-fiction texts use predictable organisational patterns called text structures. Recognising the structure before or during reading <strong>dramatically improves comprehension and recall</strong>.</p></div>
+      <button class="big-listen" onclick="speakBtn('Non-fiction texts use predictable organisational patterns called text structures. When you recognise the structure of a text before or during reading, you dramatically improve your comprehension and recall — because you know what kind of information to expect and how to organise it in your memory. There are six main text structures: description, chronological order, compare and contrast, cause and effect, problem and solution, and question and answer.',this)">Listen to text structure overview</button>
+    </div>
+    <div class="sb bl">
+      <div class="sec-num">Six Structures — Tap Any Row to Hear It</div>
+      <table class="ts-table" id="ts-table">
+        <thead><tr><th>Structure</th><th>Signal Words</th><th>Example Topic</th></tr></thead>
+        <tbody id="ts-body"></tbody>
+      </table>
+    </div>
+    <div class="sb fl">
+      <div class="sec-num">Identify the Structure — Practice</div>
+      <div class="sec-title">Tap Any Passage to Hear It
+        <button class="listen-btn" onclick="speakBtn('Read each short passage. Identify which text structure the author is using. Tap any passage to hear it.',this)">Listen to instructions</button>
+      </div>
+      <div id="ts-practice"></div>
+    </div>
+  </div>
+
+  <!-- ④ CRITICAL READING -->
+  <div class="panel" id="panel-critical">
+    <div class="sb gl">
+      <div class="sec-num">19.4 — Critical Reading</div>
+      <div class="sec-title">Reading That Pushes Back
+        <button class="listen-btn" onclick="speakBtn('Section 19.4. Critical Reading. Reading that pushes back.',this)">Listen to title</button>
+      </div>
+      <div class="sec-body">
+        <p>Critical reading means <strong>evaluating what you read</strong> rather than simply absorbing it. A critical reader asks: Is this claim supported? Is this reasoning valid? Is there a perspective missing? Who benefits from this argument?</p>
+      </div>
+      <button class="big-listen" onclick="speakBtn('Critical reading means evaluating what you read rather than simply absorbing it. A critical reader asks: Is this claim supported by sufficient evidence? Is the reasoning valid or does it contain logical fallacies? Is there an important perspective that is missing? Who benefits from this argument? Are there hidden assumptions? What is the author\'s purpose? A critical reader does not automatically distrust — they simply do not automatically trust. They follow the evidence.',this)">Listen to critical reading explanation</button>
+    </div>
+    <div class="sb bl">
+      <div class="sec-num">The Critical Reading Question Framework — Tap Any Question to Hear It</div>
+      <div class="cq-box" id="cq-box">
+        <div class="cq-title">Ask These Questions of Every Text You Read</div>
+      </div>
+    </div>
+    <div class="sb fl">
+      <div class="sec-num">Master Reader Passage — Apply Critical Reading</div>
+      <div class="sec-title">Read and Evaluate
+        <button class="listen-btn" id="passage-btn" onclick="readPassage(this)">Read full passage</button>
+      </div>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:1rem;">Read this passage. Apply your critical reading questions. Then answer the six-level questions below — tap any question to hear it, tap Show Answer to see the response.</p>
+      <div class="passage-box" id="passage-box"></div>
+    </div>
+    <div class="sb gl" style="margin-top:4px;">
+      <div class="sec-num">Six-Level Questions on the Passage</div>
+      <div class="sec-title">From Literal to Critical
+        <button class="listen-btn" onclick="speakBtn('Six questions on the passage — one at each comprehension level. Tap any question to hear it. Tap Show Answer to reveal the response.',this)">Listen to instructions</button>
+      </div>
+      <div id="qa-cards"></div>
+    </div>
+  </div>
+
+  <!-- ⑤ DAILY BLUEPRINT -->
+  <div class="panel" id="panel-daily">
+    <div class="sb gl">
+      <div class="sec-num">19.5 — The Daily Reading Blueprint</div>
+      <div class="sec-title">Five Habits for Lifelong Literacy
+        <button class="listen-btn" onclick="speakBtn('Section 19.5. The Daily Reading Blueprint. Five habits for lifelong literacy.',this)">Listen to title</button>
+      </div>
+      <div class="sec-body">
+        <p>Literacy is not a destination — it is a practice. The readers who grow most rapidly are those who have made reading a <strong>daily non-negotiable habit</strong>. These five habits, practised consistently, will transform any reader into an expert within one year.</p>
+      </div>
+      <button class="big-listen" onclick="speakBtn('Literacy is not a destination — it is a daily practice. The readers who grow most rapidly are not the most talented. They are the most consistent. These five habits, practised daily, will transform any reader into an expert within one year: Read every day, at least 20 minutes. Read widely across genres and subjects. Read with a pen — annotate, question, connect. Review new vocabulary weekly. Discuss what you read — with anyone, in any format.',this)">Listen to Daily Blueprint</button>
+    </div>
+    <div class="habits-grid" id="habits-grid"></div>
+    <div class="sb bl" style="margin-top:4px;">
+      <div class="sec-num">A Reading Practice Plan</div>
+      <div class="sec-title">Structuring Your Week
+        <button class="listen-btn" onclick="speakBtn('A reading practice plan for structuring your week.',this)">Listen to title</button>
+      </div>
+      <div style="margin-top:10px;">
+        <div class="step-row"><span class="step-n">Mon</span><strong>Fiction:</strong> At least 20 minutes. Read for pleasure — build fluency and love of reading.</div>
+        <div class="step-row"><span class="step-n">Tue</span><strong>Non-fiction:</strong> Use SQ3R. Annotate. Practise all five comprehension levels.</div>
+        <div class="step-row"><span class="step-n">Wed</span><strong>Vocabulary:</strong> Review new words from the week. Make word maps for two new Tier 2 words.</div>
+        <div class="step-row"><span class="step-n">Thu</span><strong>Aloud:</strong> Read something aloud for 10 minutes. Focus on prosody and expression.</div>
+        <div class="step-row"><span class="step-n">Fri</span><strong>Critical:</strong> Read a news article or essay. Apply critical reading questions.</div>
+        <div class="step-row"><span class="step-n">Sat</span><strong>Review:</strong> Dicto-Comp with a short passage. Review your annotations from the week.</div>
+        <div class="step-row"><span class="step-n">Sun</span><strong>Free read:</strong> Read whatever you want — whatever makes you excited to open a book.</div>
+      </div>
+      <button class="big-listen" onclick="speakBtn('A reading practice plan. Monday: read fiction for at least 20 minutes for pleasure and fluency. Tuesday: read non-fiction using SQ3R with full annotation. Wednesday: vocabulary work — review new words, make word maps for two new Tier 2 words. Thursday: read something aloud for 10 minutes, focusing on prosody and expression. Friday: read a news article or essay and apply critical reading questions. Saturday: complete a Dicto-Comp with a short passage. Sunday: free reading — whatever excites you most.',this)">Listen to full weekly plan</button>
+    </div>
+  </div>
+
+  <!-- ⑥ COMPLETE -->
+  <div class="panel" id="panel-complete">
+    <div class="sb gl">
+      <div class="sec-num">The Final Assessment</div>
+      <div class="sec-title">Master Reader Passage — Full Quiz
+        <button class="listen-btn" onclick="speakBtn('Chapter 19 Final Assessment.',this)">Listen to instructions</button>
+      </div>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:1.2rem;">Tap the <strong>display box</strong> to hear it. Then choose the correct answer.</p>
+      <div class="quiz-card">
+        <div class="score-row">
+          <span id="score-text">Score: 0 / 0</span>
+          <div class="score-track"><div class="score-fill" id="score-fill" style="width:0%"></div></div>
+        </div>
+        <div class="quiz-prompt-row">
+          <p class="quiz-prompt" id="quiz-prompt">Loading...</p>
+          <button class="listen-btn" onclick="readQuizQuestion(this)">Listen to question</button>
+        </div>
+        <div class="quiz-display-wrap">
+          <div class="quiz-display" id="quiz-display" onclick="readQuizWord(this)">—</div>
+          <div class="quiz-display-hint">Tap above to hear it</div>
+        </div>
+        <div class="quiz-opts" id="quiz-opts"></div>
+        <div class="quiz-fb" id="quiz-fb"></div>
+        <button class="next-btn" id="next-btn" onclick="nextQ()">Next →</button>
+      </div>
+    </div>
+
+    <!-- COURSE COMPLETION -->
+    <div class="completion-box" id="completion-box">
+      <div class="comp-title">You Have Completed<br>The Reading Blueprint</div>
+      <div class="comp-sub">From the 26 letters of the alphabet to the strategies of the expert reader — you have covered the complete architecture of reading. What began as sounds has become a superpower.</div>
+      <div class="comp-phases">
+        <div class="comp-phase"><span>Phase 1</span> Sound Foundations</div>
+        <div class="comp-phase"><span>Phase 2</span> Cracking the Code</div>
+        <div class="comp-phase"><span>Phase 3</span> Architecture of Meaning</div>
+        <div class="comp-phase"><span>Phase 4</span> Achieving Fluency</div>
+      </div>
+      <button class="big-listen" style="margin:1rem auto;" onclick="readCompletion(this)">Listen to completion message</button>
+      <div class="comp-quote">"The more that you read, the more things you will know. The more that you learn, the more places you'll go." — Dr. Seuss</div>
+    </div>
+
+    <div class="ch-nav" style="justify-content:center;">
+      <a class="nav-lnk" href="chapter-18.html">← Chapter 18: Vocabulary</a>
+      <a class="nav-lnk next" href="index.html">🏠 Return to Home</a>
+    </div>
+  </div>
+</div>
+
+<script>
+let voices=[],selectedVoiceIndex=-1,speechRate=0.85;
+function loadVoices(){
+  voices=window.speechSynthesis.getVoices();
+  const sel=document.getElementById('voice-select');
+  if(!voices.length)return;
+  const eng=voices.filter(v=>v.lang.startsWith('en'));
+  sel.innerHTML='<option value="-1">🔊 Browser default</option>';
+  eng.forEach(v=>{const idx=voices.indexOf(v);const o=document.createElement('option');o.value=idx;o.textContent=v.name+' ('+v.lang+')'+(v.localService?' ★':'');sel.appendChild(o);});
+  const sv=localStorage.getItem('rbVoiceIndex'),sr=localStorage.getItem('rbSpeechRate');
+  if(sv!=null){sel.value=sv;selectedVoiceIndex=parseInt(sv);}
+  if(sr!=null){speechRate=parseFloat(sr);document.querySelectorAll('.spd-btn').forEach(b=>b.classList.toggle('active',parseFloat(b.getAttribute('data-rate'))===speechRate));}
+}
+function onVoiceChange(){selectedVoiceIndex=parseInt(document.getElementById('voice-select').value);localStorage.setItem('rbVoiceIndex',selectedVoiceIndex);showSaved();}
+function setSpeed(r,btn){speechRate=r;localStorage.setItem('rbSpeechRate',r);document.querySelectorAll('.spd-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');showSaved();}
+function showSaved(){const s=document.getElementById('vsaved');s.classList.add('show');setTimeout(()=>s.classList.remove('show'),2000);}
+function applyVoice(u){u.rate=speechRate;if(selectedVoiceIndex>=0&&voices[selectedVoiceIndex]){u.voice=voices[selectedVoiceIndex];u.lang=voices[selectedVoiceIndex].lang;}else u.lang='en-GB';}
+function speakBtn(text,btn){
+  if(!window.speechSynthesis)return;
+  window.speechSynthesis.cancel();
+  document.querySelectorAll('.speaking').forEach(b=>b.classList.remove('speaking'));
+  const u=new SpeechSynthesisUtterance(text);applyVoice(u);
+  if(btn){btn.classList.add('speaking');u.onend=()=>btn.classList.remove('speaking');u.onerror=()=>btn.classList.remove('speaking');}
+  window.speechSynthesis.speak(u);
+}
+function sayWord(word,el){
+  if(!window.speechSynthesis)return;
+  window.speechSynthesis.cancel();
+  document.querySelectorAll('.speaking').forEach(b=>b.classList.remove('speaking'));
+  if(el)el.classList.add('speaking');
+  const u=new SpeechSynthesisUtterance(word);applyVoice(u);u.rate=speechRate*0.85;
+  if(el)u.onend=()=>el.classList.remove('speaking');
+  window.speechSynthesis.speak(u);
+}
+function testVoice(btn){speakBtn('Hello. This is your selected voice. Reading is thinking made visible.',btn);}
+function readHero(btn){speakBtn('Chapter 19: The Expert Reader — Where Literacy Becomes a Superpower. This is the final chapter of The Reading Blueprint. An expert reader reads strategically, critically, and adaptively. Expert reading is a learnable skill — not a talent you are born with.',btn);}
+function showPanel(id,btn){
+  window.speechSynthesis&&window.speechSynthesis.cancel();
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(t=>t.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+function readCompletion(btn){
+  speakBtn('Congratulations. You have completed The Reading Blueprint. You began with the 26 letters of the alphabet, and you have arrived here — at the strategies of the expert reader. You have covered the complete architecture of literacy: sounds, patterns, syllables, morphemes, grammar, sentences, paragraphs, punctuation, comprehension, fluency, vocabulary, and critical reading. What began as sounds has become a superpower. The question now is not whether you can read. The question is: what will you read next?',btn);
+}
+
+// METACOGNITION
+const metaStrategies=[
+  {name:'Monitoring',color:'#B8860B',question:'Am I understanding this?',how:'Constantly check your own comprehension as you read. If you realise you have read a paragraph without understanding it — stop. Reread. Do not continue until the meaning is clear.',audio:'Metacognitive strategy: Monitoring. Constantly ask yourself: am I understanding this? If you realise you have read a paragraph without understanding it, stop immediately. Reread the passage. Do not continue until the meaning is clear. Skilled readers notice comprehension breakdown; weak readers do not.'},
+  {name:'Clarifying',color:'#1A4A7A',question:'What is confusing me and why?',how:'Identify specifically what is causing confusion — is it a vocabulary word? A complex sentence structure? A missing piece of background knowledge? Name the problem precisely, then solve it.',audio:'Metacognitive strategy: Clarifying. Identify specifically what is causing confusion. Is it a vocabulary word you do not know? A complex sentence structure? A missing piece of background knowledge? Name the problem precisely — then apply the right solution. Looking up a vocabulary word is different from re-reading for structure.'},
+  {name:'Predicting',color:'#2C5F2E',question:'What will happen or be argued next?',how:'Before reading, use the title, headings, and first sentences to predict what the text will cover. While reading, predict what comes next. Prediction forces active engagement.',audio:'Metacognitive strategy: Predicting. Before reading, use the title, headings, and first sentences to predict what the text will cover. While reading, predict what argument or information comes next. Prediction forces active engagement — your brain is looking for confirmation or contradiction rather than passively receiving words.'},
+  {name:'Questioning',color:'#C0392B',question:'What questions does this text raise?',how:'Generate questions as you read — not just recall questions, but genuine curiosity questions. Asking questions transforms reading from passive reception to active inquiry.',audio:'Metacognitive strategy: Questioning. Generate questions as you read — not just recall questions for a test, but genuine curiosity questions. Why did the author choose this structure? What evidence would change my mind? What is missing from this argument? Asking questions transforms reading from passive reception to active intellectual inquiry.'},
+  {name:'Connecting',color:'#6A0DAD',question:'What does this connect to?',how:'Make explicit connections: text-to-self (your experience), text-to-text (other reading), text-to-world (real events). Connections build long-term memory and deepen understanding.',audio:'Metacognitive strategy: Connecting. Make explicit connections as you read. Text to self: how does this connect to your own experience? Text to text: how does this connect to other things you have read? Text to world: how does this connect to real events in the world? These connections build long-term memory and deepen understanding.'},
+  {name:'Synthesising',color:'#7A7468',question:'What is the overall meaning or insight?',how:'After reading, go beyond summary — what has this changed in your thinking? What new insight does combining this text with your prior knowledge produce?',audio:'Metacognitive strategy: Synthesising. After reading, go beyond simple summary. Ask: what has this text changed in my thinking? What new insight does combining this text with my prior knowledge produce? Synthesising is the highest level of reading — it transforms information into understanding.'},
+];
+function buildMetaGrid(){
+  const el=document.getElementById('meta-grid');
+  metaStrategies.forEach(ms=>{
+    const card=document.createElement('div');card.className='meta-card';card.style.borderTopColor=ms.color;
+    card.innerHTML=`<div class="meta-name" style="color:${ms.color};">${ms.name}</div>
+      <div class="meta-question">"${ms.question}"</div>
+      <div class="meta-how">${ms.how}</div>`;
+    card.onclick=()=>{
+      document.querySelectorAll('.meta-card.speaking').forEach(c=>c.classList.remove('speaking'));
+      card.classList.add('speaking');
+      const u=new SpeechSynthesisUtterance(ms.audio);applyVoice(u);
+      u.onend=()=>card.classList.remove('speaking');window.speechSynthesis.cancel();window.speechSynthesis.speak(u);
+    };
+    el.appendChild(card);
+  });
+}
+
+// TEXT STRUCTURES
+const tsData=[
+  {name:'Description',signals:'for example, characteristics include, is defined as, features',example:'A biography of a historical figure',audio:'Description text structure. The author describes a topic by listing its characteristics, features, or attributes. Signal words: for example, characteristics include, is defined as, features.'},
+  {name:'Chronological',signals:'first, then, next, finally, in 1945, after that, subsequently',example:'A history of the Civil Rights Movement',audio:'Chronological text structure. Events are presented in time order. Signal words: first, then, next, finally, in a specific year, after that, subsequently.'},
+  {name:'Compare / Contrast',signals:'similarly, on the other hand, in contrast, both, unlike, whereas',example:'Traditional vs. online learning',audio:'Compare and contrast text structure. The author examines similarities and differences between two or more subjects. Signal words: similarly, on the other hand, in contrast, both, unlike, whereas.'},
+  {name:'Cause / Effect',signals:'because, therefore, as a result, consequently, led to, due to',example:'The causes of deforestation',audio:'Cause and effect text structure. The author explains why something happened and what resulted from it. Signal words: because, therefore, as a result, consequently, led to, due to.'},
+  {name:'Problem / Solution',signals:'the problem is, one solution, to address this, resolve, a challenge',example:'Solutions to urban traffic congestion',audio:'Problem and solution text structure. The author identifies a problem and proposes one or more solutions. Signal words: the problem is, one solution, to address this, resolve, a challenge.'},
+  {name:'Question / Answer',signals:'What is…? Why does…? How can…? The answer is, research shows',example:'FAQ sections, science explainers',audio:'Question and answer text structure. The author poses questions and then answers them directly. Common in FAQ sections, science explainers, and some essays.'},
+];
+function buildTSTable(){
+  const tbody=document.getElementById('ts-body');
+  tsData.forEach(row=>{
+    const tr=document.createElement('tr');
+    const tn=document.createElement('td');tn.className='ts-name';tn.style.color='var(--gold)';tn.textContent=row.name;tn.onclick=()=>speakBtn(row.audio,tn);
+    const ts=document.createElement('td');ts.className='ts-signals';ts.textContent=row.signals;ts.onclick=()=>speakBtn(row.audio,ts);
+    const te=document.createElement('td');te.className='ts-example';te.textContent=row.example;te.onclick=()=>speakBtn(row.audio,te);
+    tr.appendChild(tn);tr.appendChild(ts);tr.appendChild(te);tbody.appendChild(tr);
+  });
+}
+
+// TEXT STRUCTURE PRACTICE
+const tsPractice=[
+  {text:'The loss of rainforests has led to a dramatic reduction in biodiversity. As a result, many species have become endangered. Furthermore, deforestation has contributed significantly to rising global temperatures.',structure:'Cause and Effect',clue:'Signal words: led to, as a result, contributed to — these all show cause causing effect.',audio:'The loss of rainforests has led to a dramatic reduction in biodiversity. As a result, many species have become endangered. Furthermore, deforestation has contributed significantly to rising global temperatures.'},
+  {text:'Like traditional classrooms, online learning requires students to complete assignments and assessments. However, unlike face-to-face education, it allows learners to work at their own pace and from any location.',structure:'Compare and Contrast',clue:'Signal words: like, however, unlike — comparing and contrasting two types of learning.',audio:'Like traditional classrooms, online learning requires students to complete assignments and assessments. However, unlike face-to-face education, it allows learners to work at their own pace and from any location.'},
+  {text:'Urban traffic congestion is a growing problem in major cities worldwide. One solution is to invest in public transport infrastructure. Another approach is to introduce congestion pricing for vehicles entering city centres.',structure:'Problem and Solution',clue:'Signal words: problem, solution, approach — identifying a problem and proposing solutions.',audio:'Urban traffic congestion is a growing problem in major cities worldwide. One solution is to invest in public transport infrastructure. Another approach is to introduce congestion pricing for vehicles entering city centres.'},
+];
+function buildTSPractice(){
+  const el=document.getElementById('ts-practice');
+  tsPractice.forEach(p=>{
+    const wrap=document.createElement('div');wrap.style.cssText='background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;margin-bottom:12px;';
+    const txt=document.createElement('div');txt.style.cssText='font-family:Playfair Display,serif;font-size:16px;font-weight:700;color:var(--ink);margin-bottom:10px;cursor:pointer;';
+    txt.textContent=p.text;txt.onclick=()=>speakBtn(p.audio,txt);
+    const clueDiv=document.createElement('div');clueDiv.style.cssText='font-size:13px;color:var(--muted);font-style:italic;margin-bottom:6px;display:none;';clueDiv.textContent='Clue: '+p.clue;
+    const ansDiv=document.createElement('div');ansDiv.style.cssText='font-size:14px;color:var(--forest);font-weight:700;padding:6px 12px;background:#EAF3DE;border-radius:6px;display:none;';
+    ansDiv.textContent='Structure: '+p.structure;
+    const btnRow=document.createElement('div');btnRow.style.display='flex';btnRow.style.gap='8px';
+    const toggle=document.createElement('button');toggle.className='listen-btn';toggle.textContent='▶ Show answer';
+    let shown=false;
+    toggle.onclick=()=>{shown=!shown;clueDiv.style.display=shown?'block':'none';ansDiv.style.display=shown?'block':'none';toggle.textContent=shown?'▼ Hide':'▶ Show answer';if(shown)speakBtn('Structure: '+p.structure+'. '+p.clue,null);};
+    const listenBtn=document.createElement('button');listenBtn.className='listen-btn';listenBtn.textContent='Hear passage';listenBtn.onclick=()=>speakBtn(p.audio,listenBtn);
+    btnRow.appendChild(toggle);btnRow.appendChild(listenBtn);
+    wrap.appendChild(txt);wrap.appendChild(clueDiv);wrap.appendChild(ansDiv);wrap.appendChild(btnRow);el.appendChild(wrap);
+  });
+}
+
+// CRITICAL QUESTIONS
+const cqData={
+  'About the Evidence':[
+    'What specific evidence supports this claim?',
+    'Is the evidence sufficient, or are there important gaps?',
+    'Is the source credible, expert, and unbiased?',
+  ],
+  'About the Argument':[
+    'Is the reasoning logically valid — do the conclusions follow from the evidence?',
+    'Are there any logical fallacies (e.g. generalisation, false cause, appeal to emotion)?',
+    'What would challenge or disprove this argument?',
+  ],
+  'About Perspective':[
+    'Whose perspective is included — and whose is absent?',
+    'Who benefits from this argument being believed?',
+    'What assumptions is the author making that are not stated?',
+  ],
+  'About Context':[
+    'When and where was this written — how might that shape its content?',
+    'Is this information current — could it be outdated?',
+    'How does this text compare to other sources on the same topic?',
+  ],
+};
+function buildCriticalQuestions(){
+  const el=document.getElementById('cq-box');
+  Object.entries(cqData).forEach(([cat,questions])=>{
+    const section=document.createElement('div');section.className='cq-category';
+    const label=document.createElement('div');label.className='cq-cat-label';label.textContent=cat;
+    section.appendChild(label);
+    questions.forEach(q=>{
+      const item=document.createElement('div');item.className='cq-item';
+      const bullet=document.createElement('span');bullet.className='cq-bullet';bullet.textContent='▸';
+      const text=document.createElement('div');text.className='cq-text';text.textContent=q;
+      item.appendChild(bullet);item.appendChild(text);
+      item.onclick=()=>{
+        document.querySelectorAll('.cq-item.speaking').forEach(c=>c.classList.remove('speaking'));
+        item.classList.add('speaking');
+        const u=new SpeechSynthesisUtterance(q);applyVoice(u);
+        u.onend=()=>item.classList.remove('speaking');window.speechSynthesis.cancel();window.speechSynthesis.speak(u);
+      };
+      section.appendChild(item);
+    });
+    el.appendChild(section);
+  });
+}
+
+// MASTER READER PASSAGE
+const passageText='Every morning for thirty years, James Baldwin wrote. Not because the words came easily — they often did not — but because he understood something that most people never grasp: that the act of writing, like the act of reading, is an act of freedom. To read critically is to refuse to be passive. It is to bring your full intelligence to the page and demand that the text account for itself. Baldwin once observed that the purpose of art is to lay bare the questions that have been hidden by the answers. Reading, done seriously, performs the same function. It does not give you certainty. It gives you better questions. And in a world saturated with misinformation, propaganda, and the passive consumption of algorithmically curated content, the person who reads critically and writes deliberately possesses something rare: the ability to think clearly, to evaluate evidence, and to resist manipulation. This is what The Reading Blueprint has been building, chapter by chapter, from the very first sound to this final paragraph. Not merely a literate person. An intellectually free one.';
+function buildPassage(){
+  const el=document.getElementById('passage-box');
+  passageText.split(' ').forEach(w=>{
+    const clean=w.replace(/[^a-zA-Z]/g,'');
+    const span=document.createElement('span');span.className='word-tap';span.textContent=w+' ';
+    span.onclick=()=>sayWord(clean||w,span);el.appendChild(span);
+  });
+}
+function readPassage(btn){speakBtn(passageText,btn);}
+
+// Q&A
+const qaData=[
+  {level:'Level 1 — Literal',color:'#B8860B',q:'How many years did James Baldwin write every morning?',a:'Thirty years.',audio:'Literal question: How many years did James Baldwin write every morning?'},
+  {level:'Level 2 — Inferential',color:'#1A4A7A',q:'Why does the author say the words "often did not" come easily to Baldwin?',a:'To show that disciplined daily practice — not inspiration — is what creates a writer. Baldwin wrote despite difficulty, not because of ease.',audio:'Inferential question: Why does the author say the words often did not come easily to Baldwin?'},
+  {level:'Level 3 — Structural',color:'#2C5F2E',q:'What text structure does this passage primarily use?',a:'Description/Analysis — the author describes and analyses the meaning and purpose of critical reading, building an argument through a series of connected claims.',audio:'Structural question: What text structure does this passage primarily use?'},
+  {level:'Level 4 — Evaluative',color:'#C0392B',q:'The passage claims that critical readers can "resist manipulation." Is this claim supported? What might its limitations be?',a:'The claim is plausible but not fully supported within the passage itself. A critical response would note: critical reading reduces but does not eliminate susceptibility to manipulation, emotional appeals can bypass even trained critical readers, and the claim would benefit from specific evidence.',audio:'Evaluative question: The passage claims critical readers can resist manipulation. Is this supported? What are its limitations?'},
+  {level:'Level 5 — Applied',color:'#6A0DAD',q:'How does this passage connect to your own experience as a reader completing this course?',a:'Open response — a key connection: the passage frames literacy as freedom and intellectual autonomy. Ask yourself: what questions do you now know how to ask that you could not ask before beginning this course?',audio:'Applied question: How does this passage connect to your own experience as a reader completing this course?'},
+  {level:'Level 6 — Critical',color:'#7A7468',q:'The passage invokes James Baldwin — who benefits from this choice of example? What might a critical reader ask about it?',a:'Invoking Baldwin lends cultural and intellectual weight to the argument. A critical reader might ask: is this appeal to authority relevant to the argument? Does the author provide evidence for the Baldwin claim? Is the quotation verifiable? What perspective might offer a different view of reading as freedom?',audio:'Critical question: Who benefits from the choice to invoke James Baldwin? What might a critical reader ask?'},
+];
+function buildQA(){
+  const el=document.getElementById('qa-cards');
+  qaData.forEach(qa=>{
+    const card=document.createElement('div');card.className='qa-card';card.style.borderLeftColor=qa.color;
+    const lvl=document.createElement('div');lvl.className='qa-level';lvl.style.color=qa.color;lvl.textContent=qa.level;
+    const q=document.createElement('div');q.className='qa-q';q.textContent=qa.q;q.onclick=()=>speakBtn(qa.audio,q);
+    const listenBtn=document.createElement('button');listenBtn.className='listen-btn';listenBtn.style.margin='4px 0 8px';
+    listenBtn.textContent='Listen to question';listenBtn.onclick=()=>speakBtn(qa.audio,listenBtn);
+    const a=document.createElement('div');a.className='qa-a';a.textContent=qa.a;
+    const toggle=document.createElement('button');toggle.className='qa-toggle';toggle.textContent='▶ Show answer';
+    toggle.onclick=()=>{const s=a.classList.toggle('show');toggle.textContent=s?'▼ Hide answer':'▶ Show answer';if(s)speakBtn(qa.a,null);};
+    const readABtn=document.createElement('button');readABtn.className='listen-btn';readABtn.style.margin='4px 0 0 8px';
+    readABtn.textContent='Hear answer';readABtn.onclick=()=>speakBtn(qa.a,readABtn);
+    card.appendChild(lvl);card.appendChild(q);card.appendChild(listenBtn);card.appendChild(toggle);card.appendChild(a);card.appendChild(readABtn);
+    el.appendChild(card);
+  });
+}
+
+// DAILY HABITS
+const habitsData=[
+  {num:'1',name:'Read Every Day',desc:'At least 20 minutes, no exceptions. Consistency beats intensity. Ten minutes every day outperforms two hours once a week.',audio:'Habit 1: Read Every Day. At least 20 minutes, no exceptions. Consistency beats intensity every time. Ten minutes every day outperforms two hours once a week.'},
+  {num:'2',name:'Read Widely',desc:'Across genres, subjects, and perspectives. Fiction for empathy and language. Non-fiction for knowledge. Poetry for precision.',audio:'Habit 2: Read Widely. Read across genres, subjects, and perspectives. Fiction for empathy and language. Non-fiction for knowledge. Poetry for precision. Specialisation is valuable — but a wide reader is a deep thinker.'},
+  {num:'3',name:'Read With a Pen',desc:'Annotate, underline, question, connect. A book you have marked is a book you have truly read.',audio:'Habit 3: Read With a Pen. Annotate, underline, question, connect. Use the ten-symbol annotation system from Chapter 16. A book you have marked is a book you have truly read. Passive reading leaves no trace.'},
+  {num:'4',name:'Review Vocabulary',desc:'Weekly review of new words. Make word maps for the most important ones. Revisit them monthly.',audio:'Habit 4: Review Vocabulary Weekly. Review new words every week. Make word maps for the most important ones. Revisit your word maps monthly. Vocabulary is compounding — each word you learn makes the next word easier.'},
+  {num:'5',name:'Discuss What You Read',desc:'With anyone, in any format — a conversation, a journal, a review. Articulating ideas in your own words is the deepest form of comprehension.',audio:'Habit 5: Discuss What You Read. With anyone, in any format — a conversation, a journal entry, a written review. Articulating ideas in your own words is the deepest form of comprehension. Teaching is learning.'},
+];
+function buildHabits(){
+  const el=document.getElementById('habits-grid');
+  habitsData.forEach(h=>{
+    const card=document.createElement('div');card.className='habit-card';
+    card.innerHTML=`<div class="habit-num">${h.num}</div><div class="habit-name">${h.name}</div><div class="habit-desc">${h.desc}</div>`;
+    card.onclick=()=>{
+      document.querySelectorAll('.habit-card.speaking').forEach(c=>c.classList.remove('speaking'));
+      card.classList.add('speaking');
+      const u=new SpeechSynthesisUtterance(h.audio);applyVoice(u);
+      u.onend=()=>card.classList.remove('speaking');window.speechSynthesis.cancel();window.speechSynthesis.speak(u);
+    };
+    el.appendChild(card);
+  });
+}
+
+// QUIZ
+const quizData=[
+  {q:'What is metacognition?',d:'Metacognition',correct:'The ability to monitor and direct your own thinking while reading',opts:['The ability to monitor and direct your own thinking while reading','The speed at which a reader processes words','The number of books a person has read','The ability to decode unfamiliar words']},
+  {q:'What does the Monitoring strategy ask?',d:'Monitoring',correct:'Am I understanding this? And what do I do when I am not?',opts:['Am I understanding this? And what do I do when I am not?','How fast am I reading?','What vocabulary words do I not know?','How long is this text?']},
+  {q:'Which text structure presents events in time order?',d:'Chronological',correct:'Chronological — signal words: first, then, next, finally',opts:['Chronological — signal words: first, then, next, finally','Compare/Contrast — signal words: unlike, similarly','Problem/Solution — signal words: the problem is','Cause/Effect — signal words: therefore, as a result']},
+  {q:'What signal words indicate a Cause and Effect structure?',d:'Cause/Effect',correct:'Because, therefore, as a result, led to, consequently',opts:['Because, therefore, as a result, led to, consequently','First, then, next, finally, subsequently','Similarly, unlike, on the other hand, in contrast','The problem is, one solution, to address this']},
+  {q:'What is the purpose of critical reading?',d:'Critical reading',correct:'To evaluate what you read rather than simply absorbing it',opts:['To evaluate what you read rather than simply absorbing it','To read as fast as possible without making errors','To memorise the main points of a text','To identify the author\'s vocabulary choices']},
+  {q:'Which Daily Blueprint habit is described as the deepest form of comprehension?',d:'Discuss What You Read',correct:'Discussing — articulating ideas in your own words',opts:['Discussing — articulating ideas in your own words','Reading every day for 20 minutes','Annotating with a pen','Reviewing vocabulary weekly']},
+  {q:'What does the Synthesising metacognitive strategy involve?',d:'Synthesising',correct:'Asking what has changed in your thinking after reading',opts:['Asking what has changed in your thinking after reading','Simply summarising the main points','Predicting what will happen next','Identifying confusing vocabulary']},
+  {q:'What does a critical reader ask about evidence?',d:'Critical questioning',correct:'Is the evidence sufficient and the source credible?',opts:['Is the evidence sufficient and the source credible?','Is the text long or short?','Was the text written recently?','Does the author use difficult vocabulary?']},
+  {q:'What is the expert reader defined as in this chapter?',d:'Expert Reader',correct:'Someone who reads strategically, critically, and adaptively',opts:['Someone who reads strategically, critically, and adaptively','Someone who reads very quickly with no errors','Someone who has read more than 100 books','Someone who has memorised the dictionary']},
+  {q:'What is the final insight of The Reading Blueprint?',d:'Literacy = Freedom',correct:'Critical reading builds intellectual freedom — the ability to think clearly and resist manipulation',opts:['Critical reading builds intellectual freedom — the ability to think clearly and resist manipulation','The most important skill is reading speed','Phonics is the only tool a reader needs','Memorising vocabulary is the key to comprehension']},
+];
+let qi=0,score=0,answered=false,currentQ=null;
+const shuffle=a=>a.sort(()=>Math.random()-.5);
+let order=shuffle([...Array(quizData.length).keys()]);
+function readQuizQuestion(btn){if(currentQ)speakBtn(currentQ.q,btn);}
+function readQuizWord(el){if(currentQ)speakBtn(currentQ.d,el);}
+function renderQ(){
+  answered=false;currentQ=quizData[order[qi]];
+  document.getElementById('quiz-prompt').textContent=currentQ.q;
+  const disp=document.getElementById('quiz-display');disp.textContent=currentQ.d;disp.classList.remove('speaking');
+  const opts=document.getElementById('quiz-opts');opts.innerHTML='';
+  shuffle([...currentQ.opts]).forEach(opt=>{
+    const b=document.createElement('button');b.className='q-opt';b.textContent=opt;
+    b.onclick=()=>checkQ(opt,currentQ.correct,b);opts.appendChild(b);
+  });
+  document.getElementById('quiz-fb').style.display='none';
+  document.getElementById('next-btn').style.display='none';
+  setTimeout(()=>speakBtn(currentQ.q+'. The topic is: '+currentQ.d,null),350);
+}
+function checkQ(chosen,correct,btn){
+  if(answered)return;answered=true;
+  const fb=document.getElementById('quiz-fb');
+  if(chosen===correct){score++;btn.classList.add('correct');fb.className='quiz-fb ok';fb.textContent='✓ Correct! '+correct;}
+  else{btn.classList.add('wrong');document.querySelectorAll('.q-opt').forEach(b=>{if(b.textContent===correct)b.classList.add('correct');});fb.className='quiz-fb err';fb.textContent='✗ The correct answer is: '+correct;}
+  fb.style.display='block';
+  speakBtn(fb.textContent.replace('✓ ','').replace('✗ The correct answer is: ','The correct answer is: '),null);
+  document.getElementById('next-btn').style.display='inline-block';
+  const t=qi+1;
+  document.getElementById('score-text').textContent='Score: '+score+' / '+t;
+  document.getElementById('score-fill').style.width=Math.round(score/t*100)+'%';
+}
+function nextQ(){qi++;if(qi>=order.length){qi=0;score=0;order=shuffle([...Array(quizData.length).keys()]);}renderQ();}
+
+// INIT
+if(window.speechSynthesis){if(speechSynthesis.onvoiceschanged!==undefined)speechSynthesis.onvoiceschanged=loadVoices;loadVoices();}
+buildMetaGrid();
+buildTSTable();
+buildTSPractice();
+buildCriticalQuestions();
+buildPassage();
+buildQA();
+buildHabits();
+renderQ();
+</script>
+</body>
+</html>

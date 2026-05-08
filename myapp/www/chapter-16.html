@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 16 — Reading Comprehension | The Reading Blueprint</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1C1A17;--paper:#FAF7F2;--cream:#F2EDE4;--gold:#B8860B;--gold-light:#F5E6B0;--rust:#C0392B;--forest:#2C5F2E;--blue:#1A4A7A;--purple:#6A0DAD;--muted:#7A7468;--border:rgba(28,26,23,0.12);--radius:10px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:var(--ink);min-height:100vh;}
+.voice-bar{background:var(--ink);padding:8px 1.5rem;display:flex;align-items:center;gap:10px;flex-wrap:wrap;position:sticky;top:0;z-index:200;box-shadow:0 2px 12px rgba(28,26,23,0.3);}
+.vb-brand{font-family:'Playfair Display',serif;color:var(--gold);font-size:13px;letter-spacing:1.5px;text-transform:uppercase;flex-shrink:0;margin-right:6px;}
+.home-btn{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(184,134,11,0.15);border:1.5px solid rgba(184,134,11,0.45);border-radius:8px;color:var(--gold);font-size:15px;cursor:pointer;transition:all .2s;text-decoration:none;flex-shrink:0;margin-right:4px;position:relative;}
+.home-btn:hover{background:rgba(184,134,11,0.3);border-color:var(--gold);transform:scale(1.08);}
+.home-btn::after{content:"Home";position:absolute;bottom:-26px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--gold);font-size:10px;padding:2px 7px;border-radius:4px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;border:1px solid rgba(184,134,11,0.3);}
+.home-btn:hover::after{opacity:1;}
+.vb-label{font-size:11px;font-weight:700;color:rgba(255,255,255,0.4);letter-spacing:1.5px;text-transform:uppercase;white-space:nowrap;flex-shrink:0;}
+.voice-select{min-width:150px;max-width:260px;padding:5px 26px 5px 9px;font-family:'Source Serif 4',serif;font-size:13px;border:1px solid rgba(255,255,255,0.15);border-radius:7px;background:rgba(255,255,255,0.08);color:#fff;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23B8860B' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 9px center;}
+.voice-select option{background:#1C1A17;color:#fff;}
+.speed-group{display:flex;align-items:center;gap:4px;flex-shrink:0;}
+.spd-label{font-size:11px;font-weight:700;color:rgba(255,255,255,0.4);letter-spacing:1px;text-transform:uppercase;margin-right:3px;}
+.spd-btn{padding:4px 10px;font-family:'Source Serif 4',serif;font-size:12px;font-weight:600;border:1px solid rgba(255,255,255,0.15);border-radius:6px;background:transparent;color:rgba(255,255,255,0.5);cursor:pointer;transition:all .15s;}
+.spd-btn.active{background:var(--gold);color:var(--ink);border-color:var(--gold);}
+.spd-btn:hover:not(.active){border-color:var(--gold);color:var(--gold);}
+.vtest{display:inline-flex;align-items:center;gap:5px;padding:5px 13px;font-family:'Source Serif 4',serif;font-size:12px;font-weight:600;border:1px solid rgba(184,134,11,0.5);border-radius:16px;background:rgba(184,134,11,0.12);color:var(--gold);cursor:pointer;transition:all .15s;flex-shrink:0;}
+.vtest:hover{background:rgba(184,134,11,0.22);}
+.vtest.speaking{background:rgba(192,57,43,0.2);border-color:var(--rust);color:#ff7b6b;}
+.vtest::before{content:"▶";font-size:9px;}
+.vtest.speaking::before{content:"◼";}
+.vsaved{font-size:11px;color:var(--gold);font-style:italic;flex-shrink:0;opacity:0;transition:opacity .3s;}
+.vsaved.show{opacity:1;}
+.chapter-hero{background:var(--ink);padding:3rem 2rem 2.5rem;text-align:center;border-bottom:3px solid var(--gold);position:relative;overflow:hidden;}
+.chapter-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(184,134,11,0.18) 0%,transparent 70%);}
+.ch-num{font-family:'Playfair Display',serif;font-size:12px;color:var(--gold);letter-spacing:4px;text-transform:uppercase;margin-bottom:12px;position:relative;}
+.ch-title{font-family:'Playfair Display',serif;font-size:clamp(26px,5vw,44px);color:#fff;line-height:1.15;margin-bottom:10px;position:relative;}
+.ch-sub{font-size:15px;color:rgba(255,255,255,0.5);font-style:italic;margin-bottom:1.5rem;position:relative;}
+.hero-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border:1.5px solid rgba(184,134,11,0.6);border-radius:24px;background:rgba(184,134,11,0.1);color:var(--gold);font-family:'Source Serif 4',serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;position:relative;}
+.hero-btn:hover{background:rgba(184,134,11,0.2);}
+.hero-btn.speaking{background:rgba(192,57,43,0.2);border-color:var(--rust);color:#ff7b6b;}
+.hero-btn::before{content:"▶";font-size:10px;}
+.hero-btn.speaking::before{content:"◼";}
+.container{max-width:860px;margin:0 auto;padding:2rem 1.25rem;}
+.tabs-bar{display:flex;gap:4px;margin-bottom:2rem;background:var(--cream);padding:5px;border-radius:var(--radius);border:1px solid var(--border);flex-wrap:wrap;}
+.tab-btn{flex:1;min-width:80px;padding:8px 10px;font-family:'Source Serif 4',serif;font-size:13px;font-weight:600;border:none;border-radius:7px;background:transparent;color:var(--muted);cursor:pointer;transition:all .15s;text-align:center;white-space:nowrap;}
+.tab-btn.active{background:var(--ink);color:var(--gold);}
+.tab-btn:hover:not(.active){background:rgba(28,26,23,0.06);color:var(--ink);}
+.panel{display:none;}.panel.active{display:block;}
+.sb{background:var(--cream);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem 1.75rem;margin-bottom:1.25rem;}
+.sb.gl{border-left:4px solid var(--gold);}
+.sb.rl{border-left:4px solid var(--rust);}
+.sb.fl{border-left:4px solid var(--forest);}
+.sb.bl{border-left:4px solid var(--blue);}
+.sb.pl{border-left:4px solid var(--purple);}
+.sec-num{font-size:11px;font-weight:600;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;}
+.sec-title{font-family:'Playfair Display',serif;font-size:20px;color:var(--ink);margin-bottom:10px;line-height:1.3;display:flex;align-items:center;flex-wrap:wrap;gap:8px;}
+.sec-body{font-size:15px;line-height:1.8;color:#3A3730;}
+.sec-body p{margin-bottom:10px;}
+.listen-btn{display:inline-flex;align-items:center;gap:5px;padding:4px 12px;font-family:'Source Serif 4',serif;font-size:12px;font-weight:600;border:1px solid var(--border);border-radius:16px;background:#fff;color:var(--muted);cursor:pointer;transition:all .15s;flex-shrink:0;}
+.listen-btn:hover{border-color:var(--gold);color:var(--gold);}
+.listen-btn.speaking{border-color:var(--rust);color:var(--rust);background:#fff5f5;}
+.listen-btn::before{content:"▶";font-size:9px;}
+.listen-btn.speaking::before{content:"◼";}
+.big-listen{display:flex;align-items:center;gap:8px;padding:10px 18px;font-family:'Source Serif 4',serif;font-size:14px;font-weight:700;border:2px solid var(--gold);border-radius:20px;background:var(--gold-light);color:var(--ink);cursor:pointer;transition:all .2s;margin-top:12px;width:fit-content;}
+.big-listen:hover{background:#EDD97A;}
+.big-listen.speaking{background:#fce4e4;border-color:var(--rust);color:var(--rust);}
+.big-listen::before{content:"🔊";font-size:14px;}
+.big-listen.speaking::before{content:"⏹";}
+.callout{background:var(--gold-light);border:1px solid rgba(184,134,11,0.3);border-radius:var(--radius);padding:1rem 1.25rem;margin:1rem 0;font-size:14px;line-height:1.8;}
+.step-row{display:flex;align-items:flex-start;gap:10px;padding:8px 12px;border-radius:7px;background:var(--cream);font-size:14px;margin-bottom:6px;line-height:1.6;}
+.step-n{font-size:11px;font-weight:700;color:var(--gold);width:20px;flex-shrink:0;margin-top:2px;}
+
+/* FIVE LEVELS */
+.levels-stack{display:flex;flex-direction:column;gap:10px;margin:1rem 0;}
+.level-card{border-radius:var(--radius);padding:1.2rem 1.5rem;cursor:pointer;transition:all .15s;border:1px solid var(--border);display:flex;align-items:flex-start;gap:14px;}
+.level-card:hover{transform:translateX(4px);box-shadow:2px 0 12px rgba(28,26,23,0.06);}
+.level-card.speaking{outline:2px solid var(--rust);}
+.level-num{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;line-height:1;flex-shrink:0;width:44px;text-align:center;margin-top:2px;}
+.level-body{flex:1;}
+.level-name{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;margin-bottom:3px;}
+.level-q{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;}
+.level-desc{font-size:13px;color:var(--muted);line-height:1.5;}
+
+/* SQ3R TABLE */
+.sqr-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);margin:1rem 0;}
+.sqr-table th{padding:9px 14px;font-family:'Source Serif 4',serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;background:var(--ink);color:var(--gold);}
+.sqr-table td{padding:10px 14px;border-bottom:1px solid var(--border);background:#fff;font-size:14px;cursor:pointer;vertical-align:top;}
+.sqr-table td.step-cell{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;width:60px;}
+.sqr-table td.name-cell{font-weight:700;color:var(--ink);width:140px;}
+.sqr-table td.do-cell{color:var(--muted);line-height:1.6;}
+.sqr-table td:hover{background:var(--gold-light);}
+.sqr-table tr:last-child td{border-bottom:none;}
+
+/* ANNOTATION SYSTEM */
+.ann-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin:1rem 0;}
+.ann-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1rem;cursor:pointer;transition:all .15s;}
+.ann-card:hover{background:var(--gold-light);border-color:var(--gold);}
+.ann-card.speaking{border-color:var(--rust);background:#fff5f5;}
+.ann-symbol{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--gold);margin-bottom:6px;}
+.ann-meaning{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:3px;}
+.ann-desc{font-size:12px;color:var(--muted);line-height:1.5;}
+
+/* PASSAGE + QA */
+.passage-box{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem 2rem;margin:1rem 0;font-size:15px;line-height:1.9;color:#3A3730;}
+.word-tap{cursor:pointer;border-radius:3px;padding:1px 2px;transition:background .1s;display:inline-block;}
+.word-tap:hover{background:var(--gold-light);}
+.word-tap.speaking{background:var(--gold-light);color:var(--gold);font-weight:600;}
+.qa-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;margin-bottom:12px;}
+.qa-level{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;}
+.qa-q{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--ink);margin-bottom:8px;cursor:pointer;}
+.qa-q:hover{color:var(--gold);}
+.qa-a{font-size:14px;color:var(--muted);line-height:1.7;padding:8px 12px;background:var(--cream);border-radius:6px;display:none;}
+.qa-a.show{display:block;}
+.qa-toggle{font-size:12px;font-weight:700;cursor:pointer;color:var(--blue);background:none;border:none;padding:0;margin-top:4px;font-family:'Source Serif 4',serif;}
+.qa-toggle:hover{text-decoration:underline;}
+
+/* QUIZ */
+.quiz-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;max-width:580px;}
+.quiz-prompt-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:1rem;}
+.quiz-prompt{font-family:'Playfair Display',serif;font-size:16px;flex:1;line-height:1.4;}
+.quiz-display-wrap{text-align:center;margin-bottom:1.2rem;}
+.quiz-display{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--gold);padding:1rem;background:var(--cream);border-radius:var(--radius);letter-spacing:1px;display:block;width:100%;cursor:pointer;border:none;line-height:1.5;}
+.quiz-display:hover{background:#EDD97A;}
+.quiz-display.speaking{background:#fce4e4;color:var(--rust);}
+.quiz-display-hint{font-size:12px;color:var(--muted);margin-top:5px;font-style:italic;}
+.quiz-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem;}
+.q-opt{padding:11px;font-family:'Source Serif 4',serif;font-size:13px;font-weight:600;border:1.5px solid var(--border);border-radius:8px;background:var(--cream);color:var(--ink);cursor:pointer;transition:all .15s;text-align:left;}
+.q-opt:hover{border-color:var(--gold);background:var(--gold-light);}
+.q-opt.correct{background:#EAF3DE;border-color:var(--forest);color:#27500A;}
+.q-opt.wrong{background:#FCEBEB;border-color:var(--rust);color:#791F1F;}
+.quiz-fb{font-size:14px;padding:10px 14px;border-radius:8px;margin-bottom:1rem;line-height:1.5;display:none;}
+.quiz-fb.ok{background:#EAF3DE;color:#27500A;}
+.quiz-fb.err{background:#FCEBEB;color:#791F1F;}
+.next-btn{padding:10px 24px;background:var(--ink);color:var(--gold);border:none;border-radius:20px;font-family:'Source Serif 4',serif;font-size:14px;font-weight:600;cursor:pointer;display:none;}
+.next-btn:hover{opacity:0.85;}
+.score-row{display:flex;align-items:center;gap:12px;margin-bottom:1.2rem;font-size:13px;color:var(--muted);}
+.score-track{flex:1;height:5px;background:var(--cream);border-radius:3px;overflow:hidden;}
+.score-fill{height:100%;background:var(--forest);border-radius:3px;transition:width .3s;}
+.ch-nav{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 0;border-top:1px solid var(--border);margin-top:2rem;flex-wrap:wrap;gap:10px;}
+.nav-lnk{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border:1px solid var(--border);border-radius:20px;font-size:13px;font-weight:600;color:var(--muted);background:var(--cream);text-decoration:none;transition:all .15s;}
+.nav-lnk:hover{border-color:var(--ink);color:var(--ink);}
+.nav-lnk.next{background:var(--ink);color:var(--gold);border-color:var(--ink);}
+.phase-badge{font-size:11px;background:var(--gold-light);color:var(--gold);border:1px solid rgba(184,134,11,0.3);padding:4px 12px;border-radius:12px;font-weight:600;}
+</style>
+</head>
+<body>
+
+<div class="voice-bar">
+  <a class="home-btn" href="index.html">🏠</a>
+  <span class="vb-brand">The Reading Blueprint</span>
+  <span class="vb-label">🔊 Voice</span>
+  <select class="voice-select" id="voice-select" onchange="onVoiceChange()">
+    <option value="-1">Loading voices...</option>
+  </select>
+  <div class="speed-group">
+    <span class="spd-label">Speed</span>
+    <button class="spd-btn" data-rate="0.6" onclick="setSpeed(0.6,this)">Slow</button>
+    <button class="spd-btn active" data-rate="0.85" onclick="setSpeed(0.85,this)">Normal</button>
+    <button class="spd-btn" data-rate="1.1" onclick="setSpeed(1.1,this)">Fast</button>
+  </div>
+  <button class="vtest" onclick="testVoice(this)">Test voice</button>
+  <span class="vsaved" id="vsaved">✓ Saved</span>
+</div>
+
+<div class="chapter-hero">
+  <div class="ch-num">Chapter 16 of 19</div>
+  <h1 class="ch-title">Reading Comprehension:<br>Five Levels of Understanding</h1>
+  <p class="ch-sub">Beyond decoding — the purpose of every word you have ever learned to read</p>
+  <button class="hero-btn" onclick="readHero(this)">Listen to introduction</button>
+</div>
+
+<div class="container">
+  <div class="tabs-bar">
+    <button class="tab-btn active" onclick="showPanel('learn',this)">① Learn</button>
+    <button class="tab-btn" onclick="showPanel('levels',this)">② Five Levels</button>
+    <button class="tab-btn" onclick="showPanel('sq3r',this)">③ SQ3R Method</button>
+    <button class="tab-btn" onclick="showPanel('annotation',this)">④ Annotation</button>
+    <button class="tab-btn" onclick="showPanel('practice',this)">⑤ Practice Passage</button>
+    <button class="tab-btn" onclick="showPanel('quiz',this)">⑥ Quiz</button>
+  </div>
+
+  <!-- ① LEARN -->
+  <div class="panel active" id="panel-learn">
+    <div class="sb gl">
+      <div class="sec-num">16.1</div>
+      <div class="sec-title">Beyond Decoding
+        <button class="listen-btn" onclick="speakBtn('Section 16.1. Beyond Decoding.',this)">Listen to title</button>
+      </div>
+      <div class="sec-body">
+        <p>Decoding is <strong>necessary but not sufficient</strong> for reading. You can decode every word in a passage and still fail to understand what it means.</p>
+        <p><strong>Comprehension is the purpose of reading.</strong> Decoding is the doorway; comprehension is the room you enter.</p>
+      </div>
+      <button class="big-listen" onclick="speakBtn('Decoding is necessary but not sufficient for reading. You can decode every word in a passage and still fail to understand what the passage means. Comprehension is the purpose of reading. Decoding is the doorway — comprehension is the room you enter. Every skill you have learned from Chapter 1 to Chapter 15 has been preparation for this: truly understanding what you read.',this)">Listen to explanation</button>
+    </div>
+
+    <div class="sb rl">
+      <div class="sec-num">The Big Idea</div>
+      <div class="sec-title">Five Levels — Moving Deeper
+        <button class="listen-btn" onclick="speakBtn('The Big Idea. Five levels of comprehension, moving from surface to deep.',this)">Listen to title</button>
+      </div>
+      <div class="callout">
+        Reading researchers have identified <strong>five levels</strong> of understanding. A skilled reader moves through all of them — often simultaneously.<br><br>
+        <strong>Level 1 — Literal:</strong> What the text directly says.<br>
+        <strong>Level 2 — Inferential:</strong> What the text implies but does not state.<br>
+        <strong>Level 3 — Structural:</strong> How the text is organised.<br>
+        <strong>Level 4 — Evaluative:</strong> Whether the text is accurate or well-argued.<br>
+        <strong>Level 5 — Applied:</strong> How the text connects to life, other texts, or the world.
+      </div>
+      <button class="big-listen" onclick="speakBtn('The Big Idea. Reading researchers have identified five levels of understanding. A skilled reader moves through all five, often simultaneously. Level 1: Literal — what the text directly says. No inference required. Level 2: Inferential — what the text implies but does not state directly. Using clues plus prior knowledge. Level 3: Structural — how the text is organised. Genre, text structure, authorial choices. Level 4: Evaluative — whether the text is accurate, fair, or well-argued. Assessing quality and identifying bias. Level 5: Applied — how the text connects to your life, other texts, or the world. Making text-to-self, text-to-text, and text-to-world connections.',this)">Listen to all five levels</button>
+    </div>
+
+    <div class="sb fl">
+      <div class="sec-num">Chapter Goals</div>
+      <div class="sec-title">What You Will Master
+        <button class="listen-btn" onclick="speakBtn('Chapter Goals.',this)">Listen to title</button>
+      </div>
+      <div style="margin-top:10px;">
+        <div class="step-row"><span class="step-n">✓</span>All five comprehension levels — what each demands of the reader</div>
+        <div class="step-row"><span class="step-n">✓</span>The SQ3R method — a complete system for reading non-fiction</div>
+        <div class="step-row"><span class="step-n">✓</span>The active annotation system — 10 symbols and their meanings</div>
+        <div class="step-row"><span class="step-n">✓</span>Apply all five levels to a real passage with full Q&amp;A</div>
+      </div>
+      <button class="big-listen" onclick="speakBtn('By the end of this chapter you will master: all five comprehension levels and what each one demands of the reader. The SQ3R method — a complete structured system for reading non-fiction for deep understanding. The active annotation system — ten symbols and their meanings for marking any text. And applying all five comprehension levels to a real passage with worked questions and answers.',this)">Listen to goals</button>
+    </div>
+  </div>
+
+  <!-- ② FIVE LEVELS -->
+  <div class="panel" id="panel-levels">
+    <div class="sb gl">
+      <div class="sec-num">16.2 — The Five Comprehension Levels</div>
+      <div class="sec-title">From Surface to Depth
+        <button class="listen-btn" onclick="speakBtn('Section 16.2. The Five Comprehension Levels. From surface to depth. Tap any level card to hear it explained.',this)">Listen to title</button>
+      </div>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:1rem;">Tap any level card to hear it fully explained with its question type and description.</p>
+      <button class="big-listen" onclick="speakBtn('The five comprehension levels, from surface to depth. Level 1 is the most basic. Level 5 is the deepest. A skilled reader moves through all five as they read — sometimes without even realising it.',this)">Listen to overview</button>
+    </div>
+    <div class="levels-stack" id="levels-stack"></div>
+  </div>
+
+  <!-- ③ SQ3R -->
+  <div class="panel" id="panel-sq3r">
+    <div class="sb gl">
+      <div class="sec-num">16.3 — The SQ3R Method</div>
+      <div class="sec-title">A Reading System for Deep Understanding
+        <button class="listen-btn" onclick="speakBtn('Section 16.3. The SQ3R Method. A reading system for deep understanding.',this)">Listen to title</button>
+      </div>
+      <div class="sec-body">
+        <p>SQ3R is a structured approach to reading non-fiction texts for deep understanding. It prevents passive reading — the kind where your eyes move across the page but your mind absorbs nothing.</p>
+      </div>
+      <button class="big-listen" onclick="speakBtn('SQ3R is a structured approach to reading non-fiction texts for deep understanding. It prevents passive reading — the kind where your eyes move across the page but your mind absorbs very little. The letters S Q 3 R stand for five steps: Survey, Question, Read, Recite, and Review.',this)">Listen to SQ3R explanation</button>
+    </div>
+    <div class="sb bl">
+      <div class="sec-num">Five Steps — Tap Any Row to Hear It</div>
+      <table class="sqr-table" id="sqr-table">
+        <thead><tr><th style="width:56px;">Step</th><th>Name</th><th>What to Do</th></tr></thead>
+        <tbody id="sqr-body"></tbody>
+      </table>
+    </div>
+    <div class="sb fl">
+      <div class="sec-num">SQ3R in Practice</div>
+      <div class="sec-title">Apply It to Any Non-Fiction Text
+        <button class="listen-btn" onclick="speakBtn('How to apply SQ3R to any non-fiction text.',this)">Listen to title</button>
+      </div>
+      <div style="margin-top:10px;">
+        <div class="step-row"><span class="step-n">S</span><strong>Survey first:</strong> Before reading, scan the title, headings, first and last paragraphs. Build a mental map.</div>
+        <div class="step-row"><span class="step-n">Q</span><strong>Turn headings into questions:</strong> "The Causes of War" becomes "What caused this war?" Write them down.</div>
+        <div class="step-row"><span class="step-n">R1</span><strong>Read actively:</strong> Look for answers to your questions. Underline key sentences. Mark unfamiliar words.</div>
+        <div class="step-row"><span class="step-n">R2</span><strong>Recite after each section:</strong> Close the text. Answer your question from memory. This is the most powerful step.</div>
+        <div class="step-row"><span class="step-n">R3</span><strong>Review the whole text:</strong> Re-read your questions and answers. Re-read anything you could not recite. Write a brief summary.</div>
+      </div>
+      <button class="big-listen" onclick="speakBtn('SQ3R in practice. Step S — Survey: before reading, scan the title, headings, first and last paragraphs, and any bolded terms. Build a mental map of what the text contains. Step Q — Question: turn each heading into a question you want the text to answer. Write these questions before you start reading. Step R1 — Read: read the text actively, looking for answers to your questions. Underline key sentences. Circle unfamiliar vocabulary. Step R2 — Recite: after each section, close the text and answer your question from memory in your own words. This is the most powerful step for retention. Step R3 — Review: after finishing the whole text, review your questions and answers. Re-read any sections you could not recite. Write a brief summary.',this)">Listen to all five steps</button>
+    </div>
+  </div>
+
+  <!-- ④ ANNOTATION -->
+  <div class="panel" id="panel-annotation">
+    <div class="sb gl">
+      <div class="sec-num">16.4 — Active Annotation System</div>
+      <div class="sec-title">Mark Your Text — Stay Engaged
+        <button class="listen-btn" onclick="speakBtn('Section 16.4. The Active Annotation System. Marking a text as you read forces your brain to engage actively with it.',this)">Listen to title</button>
+      </div>
+      <div class="sec-body">
+        <p>Marking a text as you read <strong>forces your brain to engage actively</strong>. Use this consistent annotation system across all your reading — the same symbols every time, so they become automatic.</p>
+      </div>
+      <button class="big-listen" onclick="speakBtn('The Active Annotation System. Marking a text as you read forces your brain to engage actively. Use a consistent system of symbols across all your reading so that the symbols become automatic. The ten symbols in this system cover the most important types of engagement: importance, vocabulary, surprise, confusion, connection, and structure.',this)">Listen to annotation explanation</button>
+    </div>
+    <div class="sb bl">
+      <div class="sec-num">Ten Symbols — Tap Any Card to Hear It</div>
+      <div class="ann-grid" id="ann-grid"></div>
+      <button class="big-listen" style="margin-top:1rem;" onclick="speakBtn('The ten annotation symbols. Underline: the most important sentence in a paragraph — the topic sentence or key claim. Circle: an unfamiliar word — look it up immediately and write the definition in the margin. Star: a piece of information that is especially important or surprising. Question mark in the margin: something you do not understand or that seems doubtful. Exclamation mark in the margin: something that strongly surprises, impresses, or connects to your experience. Bracket: a whole section that develops one key idea. Arrow: draw between two sections that are causally connected. T-T: text to text — this connects to another text you have read. T-S: text to self — this connects to your own experience. T-W: text to world — this connects to a real-world event or issue.',this)">Listen to all ten symbols</button>
+    </div>
+  </div>
+
+  <!-- ⑤ PRACTICE PASSAGE -->
+  <div class="panel" id="panel-practice">
+    <div class="sb gl">
+      <div class="sec-num">16.5 — Comprehension Practice</div>
+      <div class="sec-title">The Penicillin Passage
+        <button class="listen-btn" id="passage-read-btn" onclick="readPassage(this)">Read full passage</button>
+      </div>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:1rem;">Read the passage first. Tap any word to hear it. Then work through the five-level questions below — tap each question to hear it, and tap "Show answer" to reveal the answer.</p>
+      <div class="passage-box" id="passage-box"></div>
+    </div>
+    <div class="sb bl">
+      <div class="sec-num">Five-Level Questions — One for Each Level</div>
+      <div class="sec-title">Tap Any Question to Hear It
+        <button class="listen-btn" onclick="speakBtn('Five questions about the passage — one for each comprehension level. Tap any question to hear it. Then tap Show Answer to see and hear the answer.',this)">Listen to instructions</button>
+      </div>
+      <div id="qa-cards"></div>
+    </div>
+  </div>
+
+  <!-- ⑥ QUIZ -->
+  <div class="panel" id="panel-quiz">
+    <div class="sb gl">
+      <div class="sec-num">Chapter 16 — Assessment</div>
+      <div class="sec-title">Test Yourself
+        <button class="listen-btn" onclick="speakBtn('Chapter 16 Assessment. Tap the display box to hear it. Then answer the question about reading comprehension.',this)">Listen to instructions</button>
+      </div>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:1.2rem;">Tap the <strong>display box</strong> to hear it. Then choose the correct answer.</p>
+      <div class="quiz-card">
+        <div class="score-row">
+          <span id="score-text">Score: 0 / 0</span>
+          <div class="score-track"><div class="score-fill" id="score-fill" style="width:0%"></div></div>
+        </div>
+        <div class="quiz-prompt-row">
+          <p class="quiz-prompt" id="quiz-prompt">Loading...</p>
+          <button class="listen-btn" onclick="readQuizQuestion(this)">Listen to question</button>
+        </div>
+        <div class="quiz-display-wrap">
+          <div class="quiz-display" id="quiz-display" onclick="readQuizWord(this)">—</div>
+          <div class="quiz-display-hint">Tap above to hear it</div>
+        </div>
+        <div class="quiz-opts" id="quiz-opts"></div>
+        <div class="quiz-fb" id="quiz-fb"></div>
+        <button class="next-btn" id="next-btn" onclick="nextQ()">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="ch-nav">
+    <a class="nav-lnk" href="chapter-15.html">← Chapter 15: Paragraph Structure</a>
+    <span class="phase-badge">Phase 4 — Achieving Fluency</span>
+    <a class="nav-lnk next" href="chapter-17.html">Chapter 17: Prosody →</a>
+  </div>
+</div>
+
+<script>
+let voices=[],selectedVoiceIndex=-1,speechRate=0.85;
+function loadVoices(){
+  voices=window.speechSynthesis.getVoices();
+  const sel=document.getElementById('voice-select');
+  if(!voices.length)return;
+  const eng=voices.filter(v=>v.lang.startsWith('en'));
+  sel.innerHTML='<option value="-1">🔊 Browser default</option>';
+  eng.forEach(v=>{const idx=voices.indexOf(v);const o=document.createElement('option');o.value=idx;o.textContent=v.name+' ('+v.lang+')'+(v.localService?' ★':'');sel.appendChild(o);});
+  const sv=localStorage.getItem('rbVoiceIndex'),sr=localStorage.getItem('rbSpeechRate');
+  if(sv!=null){sel.value=sv;selectedVoiceIndex=parseInt(sv);}
+  if(sr!=null){speechRate=parseFloat(sr);document.querySelectorAll('.spd-btn').forEach(b=>b.classList.toggle('active',parseFloat(b.getAttribute('data-rate'))===speechRate));}
+}
+function onVoiceChange(){selectedVoiceIndex=parseInt(document.getElementById('voice-select').value);localStorage.setItem('rbVoiceIndex',selectedVoiceIndex);showSaved();}
+function setSpeed(r,btn){speechRate=r;localStorage.setItem('rbSpeechRate',r);document.querySelectorAll('.spd-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');showSaved();}
+function showSaved(){const s=document.getElementById('vsaved');s.classList.add('show');setTimeout(()=>s.classList.remove('show'),2000);}
+function applyVoice(u){u.rate=speechRate;if(selectedVoiceIndex>=0&&voices[selectedVoiceIndex]){u.voice=voices[selectedVoiceIndex];u.lang=voices[selectedVoiceIndex].lang;}else u.lang='en-GB';}
+function speakBtn(text,btn){
+  if(!window.speechSynthesis)return;
+  window.speechSynthesis.cancel();
+  document.querySelectorAll('.speaking').forEach(b=>b.classList.remove('speaking'));
+  const u=new SpeechSynthesisUtterance(text);applyVoice(u);
+  if(btn){btn.classList.add('speaking');u.onend=()=>btn.classList.remove('speaking');u.onerror=()=>btn.classList.remove('speaking');}
+  window.speechSynthesis.speak(u);
+}
+function sayWord(word,el){
+  if(!window.speechSynthesis)return;
+  window.speechSynthesis.cancel();
+  document.querySelectorAll('.speaking').forEach(b=>b.classList.remove('speaking'));
+  if(el)el.classList.add('speaking');
+  const u=new SpeechSynthesisUtterance(word);applyVoice(u);u.rate=speechRate*0.85;
+  if(el)u.onend=()=>el.classList.remove('speaking');
+  window.speechSynthesis.speak(u);
+}
+function testVoice(btn){speakBtn('Hello. This is your selected voice. Decoding is the doorway. Comprehension is the room you enter.',btn);}
+function readHero(btn){speakBtn('Chapter 16: Reading Comprehension — Five Levels of Understanding. Decoding is necessary but not sufficient for reading. You can decode every word in a passage and still fail to understand what it means. Comprehension is the purpose of reading — everything you have learned so far has prepared you for this.',btn);}
+function showPanel(id,btn){
+  window.speechSynthesis&&window.speechSynthesis.cancel();
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(t=>t.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// FIVE LEVELS
+const levelsData=[
+  {num:'1',name:'Literal',color:'#B8860B',question:'What the text directly says',desc:'Who, what, where, when, how — directly stated in the text. No inference required. If the answer is in the text, it is a literal question.',
+   audio:'Level 1: Literal comprehension. This is the most basic level. You read what the text directly says. The question types are: who, what, where, when, how — directly stated in the text. No inference required. If the answer is in the text, you are at Level 1.'},
+  {num:'2',name:'Inferential',color:'#1A4A7A',question:'What the text implies but does not state',desc:'Using clues in the text plus your prior knowledge to draw conclusions the author left unstated. You read between the lines.',
+   audio:'Level 2: Inferential comprehension. This level requires you to read between the lines. You use clues in the text plus your prior knowledge to draw conclusions the author left unstated. The answer is not written — you have to figure it out from what is written.'},
+  {num:'3',name:'Structural',color:'#2C5F2E',question:'How the text is organised',desc:'Identifying the genre, text structure (cause/effect, comparison, problem/solution), and the author\'s organisational choices.',
+   audio:'Level 3: Structural comprehension. At this level you ask: how is this text organised? What genre is it? What text structure is the author using — cause and effect, comparison and contrast, problem and solution, chronological order? Understanding the structure helps you understand and remember the content.'},
+  {num:'4',name:'Evaluative',color:'#C0392B',question:'Whether the text is accurate, fair, or well-argued',desc:'Assessing the quality of evidence, identifying bias, and judging the author\'s argument critically. You become a critical reader.',
+   audio:'Level 4: Evaluative comprehension. This level asks you to judge the text. Is it accurate? Is it fair? Is the argument well-constructed? What evidence is presented and is it sufficient? Are there gaps, biases, or logical flaws? At this level you are a critical reader, not a passive absorber.'},
+  {num:'5',name:'Applied',color:'#6A0DAD',question:'How the text connects to life, other texts, or the world',desc:'Making text-to-self, text-to-text, and text-to-world connections. Applying new knowledge from the text.',
+   audio:'Level 5: Applied comprehension. The deepest level. Here you ask: how does this text connect to my own life? How does it connect to other texts I have read? How does it connect to the world? You make text-to-self, text-to-text, and text-to-world connections. At this level, reading becomes transformative.'},
+];
+function buildLevels(){
+  const el=document.getElementById('levels-stack');
+  levelsData.forEach(lv=>{
+    const card=document.createElement('div');card.className='level-card';card.style.borderLeftColor=lv.color;card.style.borderLeftWidth='4px';
+    const num=document.createElement('div');num.className='level-num';num.style.color=lv.color;num.textContent=lv.num;
+    const body=document.createElement('div');body.className='level-body';
+    body.innerHTML=`<div class="level-name" style="color:${lv.color};">${lv.name}</div>
+      <div class="level-q" style="color:${lv.color};">${lv.question}</div>
+      <div class="level-desc">${lv.desc}</div>`;
+    const btn=document.createElement('button');btn.className='listen-btn';btn.style.marginTop='8px';
+    btn.textContent='Hear Level '+lv.num;btn.onclick=(e)=>{e.stopPropagation();speakBtn(lv.audio,btn);};
+    body.appendChild(btn);
+    card.appendChild(num);card.appendChild(body);
+    card.onclick=()=>{
+      document.querySelectorAll('.level-card.speaking').forEach(c=>c.classList.remove('speaking'));
+      card.classList.add('speaking');
+      const u=new SpeechSynthesisUtterance(lv.audio);applyVoice(u);
+      u.onend=()=>card.classList.remove('speaking');window.speechSynthesis.cancel();window.speechSynthesis.speak(u);
+    };
+    el.appendChild(card);
+  });
+}
+
+// SQ3R TABLE
+const sq3rData=[
+  {step:'S',name:'Survey',do:'Before reading, scan the text: title, headings, subheadings, bolded terms, captions, first and last paragraph. Build a mental map.',
+   audio:'S — Survey. Before reading anything, scan the text. Read the title, headings, subheadings, bolded terms, captions, and the first and last paragraph. Build a mental map of what the text contains before you read a single word.'},
+  {step:'Q',name:'Question',do:'Turn each heading into a question. Write these questions before reading. They become your reading goals.',
+   audio:'Q — Question. Turn each heading into a question. If the heading is "The Causes of War", your question is: what caused this war? Write these questions before you start reading. They become your reading goals — you are now reading with purpose.'},
+  {step:'R¹',name:'Read',do:'Read actively, looking for answers to your questions. Underline key sentences. Circle unfamiliar vocabulary. Mark confusing sections.',
+   audio:'R1 — Read. Read the text actively, looking for answers to the questions you wrote. Underline the key sentences. Circle unfamiliar vocabulary and look it up immediately. Put a question mark next to anything confusing.'},
+  {step:'R²',name:'Recite',do:'After each section, close the text and answer your question from memory in your own words. This is the most powerful step for retention.',
+   audio:'R2 — Recite. After reading each section, close the text and answer your question from memory in your own words. Do not look back at the text. This forces your brain to retrieve what it just read — and retrieval is the most powerful force for long-term memory.'},
+  {step:'R³',name:'Review',do:'After reading the whole text, review your questions and answers. Re-read what you could not recite. Write a brief summary.',
+   audio:'R3 — Review. After reading the entire text, go back and review your questions and answers. Re-read any sections you could not recite in the previous step. Then write a brief summary of the whole text in your own words.'},
+];
+function buildSQ3R(){
+  const tbody=document.getElementById('sqr-body');
+  sq3rData.forEach(row=>{
+    const tr=document.createElement('tr');
+    const ts=document.createElement('td');ts.className='step-cell';ts.style.color='var(--gold)';ts.textContent=row.step;ts.onclick=()=>speakBtn(row.audio,ts);
+    const tn=document.createElement('td');tn.className='name-cell';tn.textContent=row.name;tn.onclick=()=>speakBtn(row.name+'. '+row.do,tn);
+    const td=document.createElement('td');td.className='do-cell';td.textContent=row.do;td.onclick=()=>speakBtn(row.audio,td);
+    tr.appendChild(ts);tr.appendChild(tn);tr.appendChild(td);tbody.appendChild(tr);
+  });
+}
+
+// ANNOTATION
+const annData=[
+  {sym:'___',meaning:'Underline',desc:'The most important sentence — topic sentence or key claim'},
+  {sym:'○',meaning:'Circle',desc:'An unfamiliar word — look it up, write definition in margin'},
+  {sym:'★',meaning:'Star',desc:'Especially important or surprising information'},
+  {sym:'?',meaning:'Question mark',desc:'Something you do not understand or that seems doubtful'},
+  {sym:'!',meaning:'Exclamation mark',desc:'Something that strongly surprises or connects to your experience'},
+  {sym:'[ ]',meaning:'Bracket',desc:'A whole section developing one key idea'},
+  {sym:'→',meaning:'Arrow',desc:'Draw between two sections that are causally connected'},
+  {sym:'T-T',meaning:'Text to Text',desc:'This connects to another text you have read'},
+  {sym:'T-S',meaning:'Text to Self',desc:'This connects to your own life or experience'},
+  {sym:'T-W',meaning:'Text to World',desc:'This connects to a real-world event or issue'},
+];
+function buildAnnotation(){
+  const el=document.getElementById('ann-grid');
+  annData.forEach(a=>{
+    const card=document.createElement('div');card.className='ann-card';
+    card.innerHTML=`<div class="ann-symbol">${a.sym}</div>
+      <div class="ann-meaning">${a.meaning}</div>
+      <div class="ann-desc">${a.desc}</div>`;
+    card.onclick=()=>{
+      document.querySelectorAll('.ann-card.speaking').forEach(c=>c.classList.remove('speaking'));
+      card.classList.add('speaking');
+      const u=new SpeechSynthesisUtterance(a.meaning+'. '+a.desc);applyVoice(u);
+      u.onend=()=>card.classList.remove('speaking');window.speechSynthesis.cancel();window.speechSynthesis.speak(u);
+    };
+    el.appendChild(card);
+  });
+}
+
+// PRACTICE PASSAGE
+const passageText='In 1928, Scottish bacteriologist Alexander Fleming returned to his laboratory after a holiday to find that one of his petri dishes had been contaminated with mould. Rather than discarding the dish, Fleming noticed something remarkable: the bacteria surrounding the mould had died. The mould, Penicillium notatum, was producing a substance that killed bacteria. Fleming named this substance penicillin. Despite his discovery, Fleming lacked the biochemical skills to isolate and purify the compound. It was not until 1940 that Howard Florey and Ernst Chain at Oxford University successfully purified penicillin and demonstrated its power to cure bacterial infections in mice. By 1945, mass production had begun, and penicillin was saving thousands of lives during the Second World War. Fleming, Florey, and Chain shared the Nobel Prize in Medicine that same year. Today, penicillin remains the foundation of a class of antibiotics that has saved an estimated two hundred million lives since its discovery.';
+
+function buildPassage(){
+  const el=document.getElementById('passage-box');
+  passageText.split(' ').forEach(w=>{
+    const clean=w.replace(/[^a-zA-Z]/g,'');
+    const span=document.createElement('span');span.className='word-tap';span.textContent=w+' ';
+    span.onclick=()=>sayWord(clean||w,span);el.appendChild(span);
+  });
+}
+function readPassage(btn){speakBtn(passageText,btn);}
+
+// Q&A CARDS
+const qaData=[
+  {level:'Level 1 — Literal',levelColor:'#B8860B',
+   q:'Who discovered the mould that killed bacteria, and in what year?',
+   a:'Alexander Fleming discovered it in 1928, when he returned from a holiday to find contaminated petri dishes.',
+   audio:'Level 1 Literal question: Who discovered the mould that killed bacteria, and in what year?'},
+  {level:'Level 2 — Inferential',levelColor:'#1A4A7A',
+   q:'Why did it take 12 years between Fleming\'s discovery and penicillin being used to treat infections?',
+   a:'Fleming lacked the biochemical skills to isolate and purify the compound. It required Florey and Chain at Oxford to do the work — suggesting that scientific breakthroughs often require collaboration across different areas of expertise.',
+   audio:'Level 2 Inferential question: Why did it take 12 years between Fleming\'s discovery and penicillin being used to treat infections?'},
+  {level:'Level 3 — Structural',levelColor:'#2C5F2E',
+   q:'What text structure does this passage use?',
+   a:'Chronological (time-order): events are narrated in sequence from 1928 to 1945 and beyond. This structure helps the reader follow the development of a discovery over time.',
+   audio:'Level 3 Structural question: What text structure does this passage use?'},
+  {level:'Level 4 — Evaluative',levelColor:'#C0392B',
+   q:'The passage says penicillin "has saved an estimated two hundred million lives." Is this claim verifiable? What might its limitations be?',
+   a:'This is an open discussion question. Consider: the word "estimated" signals uncertainty. Who made this estimate? What methodology was used? Does it account for antibiotic resistance? Are other antibiotics included? Evaluating evidence means asking these questions — not just accepting the number.',
+   audio:'Level 4 Evaluative question: The passage claims penicillin has saved two hundred million lives. Is this claim verifiable? What might its limitations be?'},
+  {level:'Level 5 — Applied',levelColor:'#6A0DAD',
+   q:'What does Fleming\'s story suggest about the role of curiosity and observation in scientific discovery?',
+   a:'Open response — a key insight: Fleming could have discarded the contaminated dish as a ruined experiment. His curiosity changed history. Applied thinking connects this to broader life: what have you almost discarded that deserved closer attention?',
+   audio:'Level 5 Applied question: What does Fleming\'s story suggest about the role of curiosity and observation in scientific discovery?'},
+];
+function buildQA(){
+  const el=document.getElementById('qa-cards');
+  qaData.forEach(qa=>{
+    const card=document.createElement('div');card.className='qa-card';card.style.borderLeftColor=qa.levelColor;card.style.borderLeftWidth='4px';card.style.borderLeft='4px solid '+qa.levelColor;
+    const lvl=document.createElement('div');lvl.className='qa-level';lvl.style.color=qa.levelColor;lvl.textContent=qa.level;
+    const q=document.createElement('div');q.className='qa-q';q.textContent=qa.q;
+    q.onclick=()=>speakBtn(qa.audio,q);
+    const listenBtn=document.createElement('button');listenBtn.className='listen-btn';listenBtn.style.margin='4px 0 8px';
+    listenBtn.textContent='Listen to question';listenBtn.onclick=()=>speakBtn(qa.audio,listenBtn);
+    const a=document.createElement('div');a.className='qa-a';a.textContent=qa.a;
+    const toggle=document.createElement('button');toggle.className='qa-toggle';toggle.textContent='▶ Show answer';
+    toggle.onclick=()=>{
+      const showing=a.classList.toggle('show');
+      toggle.textContent=showing?'▼ Hide answer':'▶ Show answer';
+      if(showing)speakBtn(qa.a,null);
+    };
+    const readABtn=document.createElement('button');readABtn.className='listen-btn';readABtn.style.margin='6px 0 0 8px';
+    readABtn.textContent='Hear answer';readABtn.onclick=()=>speakBtn(qa.a,readABtn);
+    card.appendChild(lvl);card.appendChild(q);card.appendChild(listenBtn);card.appendChild(toggle);card.appendChild(a);card.appendChild(readABtn);
+    el.appendChild(card);
+  });
+}
+
+// QUIZ
+const quizData=[
+  {q:'What is the purpose of reading comprehension?',d:'Decoding vs comprehension',correct:'To understand the meaning of what is read — not just decode the words',opts:['To understand the meaning of what is read — not just decode the words','To read every word without making a mistake','To read as fast as possible','To memorise the text perfectly']},
+  {q:'What does Level 1 (Literal) comprehension require?',d:'Level 1',correct:'Reading what the text directly states — no inference needed',opts:['Reading what the text directly states — no inference needed','Reading between the lines','Judging the quality of the argument','Connecting the text to your own life']},
+  {q:'What does Level 2 (Inferential) comprehension require?',d:'Level 2',correct:'Drawing conclusions from clues the author left unstated',opts:['Drawing conclusions from clues the author left unstated','Reading what the text directly says','Judging whether the text is accurate','Identifying the text structure']},
+  {q:'What does Level 4 (Evaluative) comprehension require?',d:'Level 4',correct:'Assessing the quality, accuracy, and fairness of the argument',opts:['Assessing the quality, accuracy, and fairness of the argument','Reading what the text directly says','Making connections to your own life','Identifying the chronological structure']},
+  {q:'What does the S in SQ3R stand for?',d:'SQ3R',correct:'Survey — scan the text before reading to build a mental map',opts:['Survey — scan the text before reading to build a mental map','Summarise — write a brief summary after reading','Skim — read quickly without stopping','Study — read every word three times']},
+  {q:'Which SQ3R step is described as the most powerful for retention?',d:'R² — Recite',correct:'Recite — close the text and answer questions from memory',opts:['Recite — close the text and answer questions from memory','Read — read the text actively','Survey — scan the text first','Review — re-read the whole text']},
+  {q:'What does a circled word in the annotation system mean?',d:'○ circled word',correct:'An unfamiliar word — look it up and write the definition in the margin',opts:['An unfamiliar word — look it up and write the definition in the margin','The most important sentence','A connection to another text','A section the reader agrees with']},
+  {q:'What does T-W mean in the annotation system?',d:'T-W',correct:'Text to World — this connects to a real-world event or issue',opts:['Text to World — this connects to a real-world event or issue','Text to Writing — use this idea in your own writing','Text to Work — apply this in a professional context','Text Width — the annotation spans the whole line']},
+  {q:'What does Level 3 (Structural) comprehension ask?',d:'Level 3',correct:'How is the text organised? What structure did the author choose?',opts:['How is the text organised? What structure did the author choose?','What does the text directly say?','Is the text accurate and fair?','How does this connect to my life?']},
+  {q:'What does Level 5 (Applied) comprehension involve?',d:'Level 5',correct:'Making text-to-self, text-to-text, and text-to-world connections',opts:['Making text-to-self, text-to-text, and text-to-world connections','Reading the text a second time','Identifying all vocabulary words','Summarising in one sentence']},
+];
+let qi=0,score=0,answered=false,currentQ=null;
+const shuffle=a=>a.sort(()=>Math.random()-.5);
+let order=shuffle([...Array(quizData.length).keys()]);
+function readQuizQuestion(btn){if(currentQ)speakBtn(currentQ.q,btn);}
+function readQuizWord(el){if(currentQ)speakBtn(currentQ.d,el);}
+function renderQ(){
+  answered=false;currentQ=quizData[order[qi]];
+  document.getElementById('quiz-prompt').textContent=currentQ.q;
+  const disp=document.getElementById('quiz-display');disp.textContent=currentQ.d;disp.classList.remove('speaking');
+  const opts=document.getElementById('quiz-opts');opts.innerHTML='';
+  shuffle([...currentQ.opts]).forEach(opt=>{
+    const b=document.createElement('button');b.className='q-opt';b.textContent=opt;
+    b.onclick=()=>checkQ(opt,currentQ.correct,b);opts.appendChild(b);
+  });
+  document.getElementById('quiz-fb').style.display='none';
+  document.getElementById('next-btn').style.display='none';
+  setTimeout(()=>speakBtn(currentQ.q+'. The topic is: '+currentQ.d,null),350);
+}
+function checkQ(chosen,correct,btn){
+  if(answered)return;answered=true;
+  const fb=document.getElementById('quiz-fb');
+  if(chosen===correct){score++;btn.classList.add('correct');fb.className='quiz-fb ok';fb.textContent='✓ Correct! '+correct;}
+  else{btn.classList.add('wrong');document.querySelectorAll('.q-opt').forEach(b=>{if(b.textContent===correct)b.classList.add('correct');});fb.className='quiz-fb err';fb.textContent='✗ The correct answer is: '+correct;}
+  fb.style.display='block';
+  speakBtn(fb.textContent.replace('✓ ','').replace('✗ The correct answer is: ','The correct answer is: '),null);
+  document.getElementById('next-btn').style.display='inline-block';
+  const t=qi+1;
+  document.getElementById('score-text').textContent='Score: '+score+' / '+t;
+  document.getElementById('score-fill').style.width=Math.round(score/t*100)+'%';
+}
+function nextQ(){qi++;if(qi>=order.length){qi=0;score=0;order=shuffle([...Array(quizData.length).keys()]);}renderQ();}
+
+// INIT
+if(window.speechSynthesis){if(speechSynthesis.onvoiceschanged!==undefined)speechSynthesis.onvoiceschanged=loadVoices;loadVoices();}
+buildLevels();
+buildSQ3R();
+buildAnnotation();
+buildPassage();
+buildQA();
+renderQ();
+</script>
+</body>
+</html>
