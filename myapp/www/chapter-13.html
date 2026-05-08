@@ -370,10 +370,10 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:va
   </div>
 </div>
 
-<script>
+<script src="cordova.js"></script><script>
 let voices=[],selectedVoiceIndex=-1,speechRate=0.85;
 function loadVoices(){
-  voices=window.speechSynthesis.getVoices();
+  voices=TTS.getVoices();
   const sel=document.getElementById('voice-select');
   if(!voices.length)return;
   const eng=voices.filter(v=>v.lang.startsWith('en'));
@@ -388,26 +388,26 @@ function setSpeed(r,btn){speechRate=r;localStorage.setItem('rbSpeechRate',r);doc
 function showSaved(){const s=document.getElementById('vsaved');s.classList.add('show');setTimeout(()=>s.classList.remove('show'),2000);}
 function applyVoice(u){u.rate=speechRate;if(selectedVoiceIndex>=0&&voices[selectedVoiceIndex]){u.voice=voices[selectedVoiceIndex];u.lang=voices[selectedVoiceIndex].lang;}else u.lang='en-GB';}
 function speakBtn(text,btn){
-  if(!window.speechSynthesis)return;
-  window.speechSynthesis.cancel();
+  if(!TTS)return;
+  TTS.cancel();
   document.querySelectorAll('.speaking').forEach(b=>b.classList.remove('speaking'));
   const u=new SpeechSynthesisUtterance(text);applyVoice(u);
   if(btn){btn.classList.add('speaking');u.onend=()=>btn.classList.remove('speaking');u.onerror=()=>btn.classList.remove('speaking');}
-  window.speechSynthesis.speak(u);
+  TTS.speak(u);
 }
 function sayWord(word,el){
-  if(!window.speechSynthesis)return;
-  window.speechSynthesis.cancel();
+  if(!TTS)return;
+  TTS.cancel();
   document.querySelectorAll('.speaking').forEach(b=>b.classList.remove('speaking'));
   if(el)el.classList.add('speaking');
   const u=new SpeechSynthesisUtterance(word);applyVoice(u);u.rate=speechRate*0.85;
   if(el)u.onend=()=>el.classList.remove('speaking');
-  window.speechSynthesis.speak(u);
+  TTS.speak(u);
 }
 function testVoice(btn){speakBtn('Hello. This is your selected voice. The tall man walked slowly down the narrow street.',btn);}
 function readHero(btn){speakBtn('Chapter 13: Sentence Mechanics — Building Powerful Sentences. You will learn the four sentence types, four sentence structures, how to identify the subject and predicate, common sentence errors to avoid, and the kernel-to-complex expansion technique for building powerful, precise sentences.',btn);}
 function showPanel(id,btn){
-  window.speechSynthesis&&window.speechSynthesis.cancel();
+  TTS&&TTS.cancel();
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(t=>t.classList.remove('active'));
   document.getElementById('panel-'+id).classList.add('active');
@@ -443,7 +443,7 @@ function buildSentTypes(){
       card.classList.add('speaking');
       const u=new SpeechSynthesisUtterance(st.audio+' '+st.example);applyVoice(u);
       u.onend=()=>card.classList.remove('speaking');
-      window.speechSynthesis.cancel();window.speechSynthesis.speak(u);
+      TTS.cancel();TTS.speak(u);
     };
     el.appendChild(card);
   });
@@ -493,7 +493,7 @@ function buildExpansion(){
       document.querySelectorAll('.exp-step.speaking').forEach(d=>d.classList.remove('speaking'));
       div.classList.add('speaking');
       const u=new SpeechSynthesisUtterance(step.text);applyVoice(u);
-      u.onend=()=>div.classList.remove('speaking');window.speechSynthesis.cancel();window.speechSynthesis.speak(u);
+      u.onend=()=>div.classList.remove('speaking');TTS.cancel();TTS.speak(u);
     };
     el.appendChild(div);
   });
@@ -517,7 +517,7 @@ function buildSP(){
       document.querySelectorAll('.sp-subject.speaking,.sp-predicate.speaking').forEach(d=>d.classList.remove('speaking'));
       subj.classList.add('speaking');
       const u=new SpeechSynthesisUtterance('Subject: '+row.subj);applyVoice(u);
-      u.onend=()=>subj.classList.remove('speaking');window.speechSynthesis.cancel();window.speechSynthesis.speak(u);
+      u.onend=()=>subj.classList.remove('speaking');TTS.cancel();TTS.speak(u);
     };
     const pred=document.createElement('div');pred.className='sp-predicate';
     pred.innerHTML=`<div class="sp-text">${row.pred}</div><div class="sp-label">Predicate</div>`;
@@ -525,7 +525,7 @@ function buildSP(){
       document.querySelectorAll('.sp-subject.speaking,.sp-predicate.speaking').forEach(d=>d.classList.remove('speaking'));
       pred.classList.add('speaking');
       const u=new SpeechSynthesisUtterance('Predicate: '+row.pred);applyVoice(u);
-      u.onend=()=>pred.classList.remove('speaking');window.speechSynthesis.cancel();window.speechSynthesis.speak(u);
+      u.onend=()=>pred.classList.remove('speaking');TTS.cancel();TTS.speak(u);
     };
     div.appendChild(subj);div.appendChild(pred);el.appendChild(div);
   });
@@ -627,7 +627,7 @@ function checkQ(chosen,correct,btn){
 function nextQ(){qi++;if(qi>=order.length){qi=0;score=0;order=shuffle([...Array(quizData.length).keys()]);}renderQ();}
 
 // INIT
-if(window.speechSynthesis){if(speechSynthesis.onvoiceschanged!==undefined)speechSynthesis.onvoiceschanged=loadVoices;loadVoices();}
+if(TTS){if(speechSynthesis.onvoiceschanged!==undefined)speechSynthesis.onvoiceschanged=loadVoices;loadVoices();}
 buildSentTypes();
 buildStructTable();
 buildExpansion();

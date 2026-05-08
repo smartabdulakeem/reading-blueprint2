@@ -362,11 +362,11 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:va
   </div>
 </div>
 
-<script>
+<script src="cordova.js"></script><script>
 // VOICE ENGINE
 let voices=[],selectedVoiceIndex=-1,speechRate=0.85;
 function loadVoices(){
-  voices=window.speechSynthesis.getVoices();
+  voices=TTS.getVoices();
   const sel=document.getElementById('voice-select');
   if(!voices.length)return;
   const eng=voices.filter(v=>v.lang.startsWith('en'));
@@ -381,26 +381,26 @@ function setSpeed(r,btn){speechRate=r;localStorage.setItem('rbSpeechRate',r);doc
 function showSaved(){const s=document.getElementById('vsaved');s.classList.add('show');setTimeout(()=>s.classList.remove('show'),2000);}
 function applyVoice(u){u.rate=speechRate;if(selectedVoiceIndex>=0&&voices[selectedVoiceIndex]){u.voice=voices[selectedVoiceIndex];u.lang=voices[selectedVoiceIndex].lang;}else u.lang='en-GB';}
 function speakBtn(text,btn){
-  if(!window.speechSynthesis)return;
-  window.speechSynthesis.cancel();
+  if(!TTS)return;
+  TTS.cancel();
   document.querySelectorAll('.speaking').forEach(b=>b.classList.remove('speaking'));
   const u=new SpeechSynthesisUtterance(text);applyVoice(u);
   if(btn){btn.classList.add('speaking');u.onend=()=>btn.classList.remove('speaking');u.onerror=()=>btn.classList.remove('speaking');}
-  window.speechSynthesis.speak(u);
+  TTS.speak(u);
 }
 function sayWord(word,el){
-  if(!window.speechSynthesis)return;
-  window.speechSynthesis.cancel();
+  if(!TTS)return;
+  TTS.cancel();
   document.querySelectorAll('.speaking').forEach(b=>b.classList.remove('speaking'));
   if(el)el.classList.add('speaking');
   const u=new SpeechSynthesisUtterance(word);applyVoice(u);u.rate=speechRate*0.85;
   if(el)u.onend=()=>el.classList.remove('speaking');
-  window.speechSynthesis.speak(u);
+  TTS.speak(u);
 }
 function testVoice(btn){speakBtn('Hello. This is your selected voice for The Reading Blueprint. The cat sat on the mat. The rain fell on the trail. The bird sat on a far branch.',btn);}
 function readHero(btn){speakBtn('Chapter 8: Phonograms — The Master Pattern Library. A phonogram is a letter or group of letters that consistently represents a particular sound. Mastering phonograms means mastering the repeating architecture of English. Once you know one pattern, you unlock dozens of words instantly.',btn);}
 function showPanel(id,btn){
-  window.speechSynthesis&&window.speechSynthesis.cancel();
+  TTS&&TTS.cancel();
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(t=>t.classList.remove('active'));
   document.getElementById('panel-'+id).classList.add('active');
@@ -559,7 +559,7 @@ function checkQ(chosen,correct,btn){
 function nextQ(){qi++;if(qi>=order.length){qi=0;score=0;order=shuffle([...Array(quizData.length).keys()]);}renderQ();}
 
 // INIT
-if(window.speechSynthesis){if(speechSynthesis.onvoiceschanged!==undefined)speechSynthesis.onvoiceschanged=loadVoices;loadVoices();}
+if(TTS){if(speechSynthesis.onvoiceschanged!==undefined)speechSynthesis.onvoiceschanged=loadVoices;loadVoices();}
 buildPGSection(shortVowelFamilies,'short-vowel-container');
 buildPGSection(longVowelFamilies,'long-vowel-container');
 buildPGSection(rControlledFamilies,'r-controlled-container');

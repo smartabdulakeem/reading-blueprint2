@@ -431,13 +431,13 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--paper);color:va
   </div>
 </div>
 
-<script>
+<script src="cordova.js"></script><script>
 // =========================================================
 // VOICE ENGINE
 // =========================================================
 let voices=[],selectedVoiceIndex=-1,speechRate=0.85;
 function loadVoices(){
-  voices=window.speechSynthesis.getVoices();
+  voices=TTS.getVoices();
   const sel=document.getElementById('voice-select');
   if(!voices.length)return;
   const eng=voices.filter(v=>v.lang.startsWith('en'));
@@ -458,26 +458,26 @@ function setSpeed(r,btn){speechRate=r;localStorage.setItem('rbSpeechRate',r);doc
 function showSaved(){const s=document.getElementById('vsaved');s.classList.add('show');setTimeout(()=>s.classList.remove('show'),2000);}
 function applyVoice(u){u.rate=speechRate;if(selectedVoiceIndex>=0&&voices[selectedVoiceIndex]){u.voice=voices[selectedVoiceIndex];u.lang=voices[selectedVoiceIndex].lang;}else u.lang='en-GB';}
 function speakBtn(text,btn){
-  if(!window.speechSynthesis)return;
-  window.speechSynthesis.cancel();
+  if(!TTS)return;
+  TTS.cancel();
   document.querySelectorAll('.speaking').forEach(b=>b.classList.remove('speaking'));
   const u=new SpeechSynthesisUtterance(text);applyVoice(u);
   if(btn){btn.classList.add('speaking');u.onend=()=>btn.classList.remove('speaking');u.onerror=()=>btn.classList.remove('speaking');}
-  window.speechSynthesis.speak(u);
+  TTS.speak(u);
 }
 function sayWord(word,el){
-  if(!window.speechSynthesis)return;
-  window.speechSynthesis.cancel();
+  if(!TTS)return;
+  TTS.cancel();
   document.querySelectorAll('.speaking').forEach(b=>b.classList.remove('speaking'));
   if(el){el.classList.add('speaking');}
   const u=new SpeechSynthesisUtterance(word);applyVoice(u);u.rate=speechRate*0.88;
   if(el)u.onend=()=>el.classList.remove('speaking');
-  window.speechSynthesis.speak(u);
+  TTS.speak(u);
 }
 function testVoice(btn){speakBtn('Hello. This is your selected voice for The Reading Blueprint. Jane made a cake and the moon rose above the cool pool.',btn);}
 function readHero(btn){speakBtn('Chapter 4: Long Vowel Sounds — The Vowels Speak Their Names. When a vowel is long, it says its own name — the same sound you hear when you recite the alphabet. In this chapter you will master the Silent E pattern and Vowel Teams, and learn to hear the difference between every short and long vowel sound.',btn);}
 function showPanel(id,btn){
-  window.speechSynthesis&&window.speechSynthesis.cancel();
+  TTS&&TTS.cancel();
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(t=>t.classList.remove('active'));
   document.getElementById('panel-'+id).classList.add('active');
@@ -843,7 +843,7 @@ function nextQ(){
 // =========================================================
 // INIT
 // =========================================================
-if(window.speechSynthesis){
+if(TTS){
   if(speechSynthesis.onvoiceschanged!==undefined) speechSynthesis.onvoiceschanged=loadVoices;
   loadVoices();
 }

@@ -428,14 +428,14 @@
 
 </div>
 
-<script>
+<script src="cordova.js"></script><script>
 // ── VOICE ENGINE ────────────────────────────────────
 let voices = [];
 let selectedVoiceIndex = -1;
 let speechRate = 0.85;
 
 function loadVoices() {
-  voices = window.speechSynthesis.getVoices();
+  voices = TTS.getVoices();
   const select = document.getElementById('voice-select');
   if (!voices.length) return;
   const engVoices = voices.filter(v => v.lang.startsWith('en'));
@@ -485,26 +485,26 @@ function applyVoice(utt) {
   } else { utt.lang = 'en-GB'; }
 }
 function speakBtn(text, btn) {
-  if (!window.speechSynthesis) return;
-  window.speechSynthesis.cancel();
+  if (!TTS) return;
+  TTS.cancel();
   document.querySelectorAll('.listen-btn.speaking,.hero-listen-btn.speaking,.vtest-btn.speaking').forEach(b => b.classList.remove('speaking'));
   const utt = new SpeechSynthesisUtterance(text);
   applyVoice(utt);
   if (btn) { btn.classList.add('speaking'); utt.onend = () => btn.classList.remove('speaking'); utt.onerror = () => btn.classList.remove('speaking'); }
-  window.speechSynthesis.speak(utt);
+  TTS.speak(utt);
 }
 function sayWord(word) {
-  if (!window.speechSynthesis) return;
-  window.speechSynthesis.cancel();
+  if (!TTS) return;
+  TTS.cancel();
   const utt = new SpeechSynthesisUtterance(word);
   applyVoice(utt);
   utt.rate = speechRate * 0.95;
-  window.speechSynthesis.speak(utt);
+  TTS.speak(utt);
 }
 function sayAndShow(letter, sound) {
   speakBtn(letter + '. ' + sound, null);
 }
-if (window.speechSynthesis) {
+if (TTS) {
   if (speechSynthesis.onvoiceschanged !== undefined) speechSynthesis.onvoiceschanged = loadVoices;
   loadVoices();
 }
@@ -663,12 +663,12 @@ function buildControlledText() {
     span.onclick = () => {
       document.querySelectorAll('.word-tap.speaking').forEach(s => s.classList.remove('speaking'));
       span.classList.add('speaking');
-      window.speechSynthesis.cancel();
+      TTS.cancel();
       const utt = new SpeechSynthesisUtterance(clean);
       applyVoice(utt);
       utt.rate = speechRate * 0.9;
       utt.onend = () => span.classList.remove('speaking');
-      window.speechSynthesis.speak(utt);
+      TTS.speak(utt);
     };
     el.appendChild(span);
   });
@@ -744,7 +744,7 @@ function nextQuestion(){
 
 // ── PANELS ───────────────────────────────────────────
 function showPanel(id, btn) {
-  window.speechSynthesis && window.speechSynthesis.cancel();
+  TTS && TTS.cancel();
   document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
   document.getElementById('panel-' + id).classList.add('active');
